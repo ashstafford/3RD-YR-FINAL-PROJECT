@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>Category Selection</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+             <style>
+body 
+  {
+   
+        background:  url("IMG_categorySelectionBackground.jpg") no-repeat center center fixed; 
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        background-size: cover;
+    }            
+.topmenu
+
+ul {
+    position: relative;
+    list-style-type: none;
+    margin: 10px;
+    padding: 0;
+    overflow: hidden;	
+    left:10%;
+	
+	
+}
+
+
+.topmenu li
+
+{
+	float :left;
+        position: relative;
+	padding: 0;
+	width: 200px;
+	line-height: 250%;
+	z-index: 1000;
+	
+}
+
+
+
+a:link, a:visited {
+    display: block;
+    width: 200px;
+    font-weight: bold;
+    color: #FFFFFF;
+    background-color:#000000;
+    text-align: center;
+    padding: 4px;
+    text-decoration: none;
+    text-transform: uppercase;
+}
+
+a:hover, a:active {
+    background-color:#666666
+	
+}
+
+div#pagecontent
+{
+    
+  min-height: 1500px;
+  padding: 50px;
+  left: 20%;
+  bottom: 50%;
+  font-family: serif;
+  font-size: 20px;
+ 
+}
+
+div#container
+{
+  position     : relative;
+  width        : 85%;
+  margin-left  : auto;
+  margin-right : auto;
+}
+</style>
+
+    </head>
+    
+    <body>
+
+    
+   <div id="container">  
+          <nav class = "topmenu">
+ <ul>
+      
+	<li><a href="/CA3WebApp/CategorySelection.html">Shop</a>
+	<li><a href="/CA3WebApp/Cart.jsp">Cart</a>
+	<li><a href="/CA3WebApp/Login.html">Login/Register</a>
+        <li><a href="MemberActionServlet?action=viewProfile">My Profile</a> 
+        <li><a href="MemberActionServlet?action=ViewPreviousOrders">View Orders</a>     
+        <li><a href="MemberActionServlet?action=logout">Logout</a></li>
+</ul>
+  </nav>
+        
+      <div id="pagecontent">
+          
+  
+        
+        <h1> Select a category: </h1>      
+        
+        <form action = "MemberActionServlet" method = "post">
+            
+            <p>
+                 <input type="hidden" name="action" value ="StarWars">
+                 <input type="image" src="swLogo.png" alt="Submit" width="200px" height="70px"/>
+                
+            </p>
+        </form>
+        
+         <form action = "MemberActionServlet" method = "post">
+               <p> 
+                   
+                 <input type="hidden" name="action" value ="Marvel">
+                 <input type="image" src="IMG_mLogo.jpeg" alt="Submit" width="200px" height="70px"/>
+                 
+               </p>
+         </form>
+        
+         <form action = "MemberActionServlet" method = "post">
+               <p> 
+                 <input type="hidden" name="action" value ="DC">
+                 <input type="image" src="IMG_dcLogo.jpg" alt="Submit" width="200px" height="70px"/>
+              
+               </p>
+         </form>
+        
+         <form action = "MemberActionServlet" method = "post">
+               <p> 
+                   
+                 <input type="hidden" name="action" value ="Disney">
+                 <input type="image" src="IMG_dLogo.jpg" alt="Submit" width="200px" height="70px"/>
+               
+               </p>
+         </form>
+        
+        <form action = "MemberActionServlet" method = "post">
+               <p> 
+                   
+                 <input type="hidden" name="action" value ="The Walking Dead">
+                 <input type="image" src="IMG_twdLogo.jpg" alt="Submit" width="200px" height="70px"/>
+                  
+               </p>
+         </form>
+        
+        <form action = "MemberActionServlet" method = "post">
+               <p> 
+                 <input type="hidden" name="action" value ="Doctor Who">
+                 <input type="image" src="IMG_dwLogo.jpg" alt="Submit" width="200px" height="70px"/>
+                  
+               </p>
+         </form>
+        
+        <form action = "MemberActionServlet" method = "post">
+               <p> 
+                  <input type="hidden" name="action" value ="Game Of Thrones">
+                  <input type="image" src="IMG_gotLogo.jpg" alt="Submit" width="200px" height="70px"/> 
+             
+               </p>
+         </form>
+        
+        
+        
+         <h2>Search for an Item</h2>
+        
+         <form action = "MemberActionServlet" method = "post">
+               <p>product name: <td> <input name="searchName" size=15 type="text" />  
+                 <input type="hidden" name="action" value="searchName" />
+                 <input type="submit" value="search"/>
+               </p>
+         </form>
+        
+      </div>
+  </div>
+    </body>
+</html>
