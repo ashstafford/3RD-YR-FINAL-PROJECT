@@ -54,14 +54,13 @@ public class MemberDao extends Dao implements MemberDaoInterface
                 int memberId = rs.getInt("memberId");
                 String firstName = rs.getString("firstName");
                 String lastName = rs.getString("lastName");
-                String address = rs.getString("address");
                 String userName = rs.getString("userName");
                 String password = rs.getString("password");
                 String email = rs.getString("email");
                 String memberImageUrl = rs.getString("memberImageUrl");
                 boolean isAdmin = rs.getBoolean("isAdmin");
 
-                Member m = new Member(memberId, firstName, lastName, address, userName, password,email,memberImageUrl,isAdmin);
+                Member m = new Member(memberId, firstName, lastName,userName, password,email,memberImageUrl,isAdmin);
                 member.add(m);
             }
 
@@ -129,14 +128,13 @@ public class MemberDao extends Dao implements MemberDaoInterface
                 int memberId = rs.getInt("memberId");
                 String firstName = rs.getString("firstName");
                 String lastName = rs.getString("lastName");
-                String address = rs.getString("address");
                 String userName = rs.getString("username");
                 String password = rs.getString("password");
                 String email = rs.getString("email");
                 String memberImageUrl = rs.getString("memberImageUrl");
                 boolean isAdmin = rs.getBoolean("isAdmin");
                 
-                m = new Member(memberId, firstName, lastName, address, username, password,email,memberImageUrl,isAdmin);
+                m = new Member(memberId, firstName, lastName, username, password,email,memberImageUrl,isAdmin);
             }
         } 
         
@@ -175,13 +173,13 @@ public class MemberDao extends Dao implements MemberDaoInterface
      *
      * @param firstName
      * @param lastName
-     * @param address
+   
      * @param userName
      * @param password
      * @return
      */
     @Override
-    public Member addMember(String firstName, String lastName, String address, String userName, String password,String email,String memberImageUrl,boolean isAdmin) 
+    public Member addMember(String firstName, String lastName, String userName, String password,String email,String memberImageUrl,boolean isAdmin) 
     {
         Connection con = null;
         PreparedStatement ps = null; 
@@ -221,7 +219,7 @@ public class MemberDao extends Dao implements MemberDaoInterface
 ////////        } 
 ////////        password = sb.toString();
             
-            String query = "Insert into member(firstName, lastName,address, userName, password,email,memberImageUrl,isAdmin) values(?,?,?,?,?,?,?,?)"; //query to insert member info into fields in the members table
+            String query = "Insert into member(firstName, lastName,userName, password,email,memberImageUrl,isAdmin) values(?,?,?,?,?,?,?)"; //query to insert member info into fields in the members table
             // Need to get the id back, so have to tell the database to return the id it generates
             ps = con.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
             
@@ -229,12 +227,11 @@ public class MemberDao extends Dao implements MemberDaoInterface
 
             ps.setString(1, firstName);
             ps.setString(2, lastName);
-            ps.setString(3, address);
-            ps.setString(4, userName);
-            ps.setString(5, password);
-            ps.setString(6, email);
-            ps.setString(7,memberImageUrl);
-            ps.setBoolean(8,isAdmin);
+            ps.setString(3, userName);
+            ps.setString(4, password);
+            ps.setString(5, email);
+            ps.setString(6,memberImageUrl);
+            ps.setBoolean(7,isAdmin);
             
            // blowfish bf = new blowfish();
             
@@ -265,7 +262,7 @@ public class MemberDao extends Dao implements MemberDaoInterface
                 memberId = generatedKeys.getInt(1);
             } 
             
-            m = new Member(memberId, firstName, lastName, address, userName, password,email,memberImageUrl,isAdmin); //stores the member in an object
+            m = new Member(memberId, firstName, lastName,userName, password,email,memberImageUrl,isAdmin); //stores the member in an object
             
              
         } 
@@ -335,13 +332,12 @@ public class MemberDao extends Dao implements MemberDaoInterface
                 String username = rs.getString("userName");
                 String password = rs.getString("password");
                 String lastname = rs.getString("lastName");
-                String address = rs.getString("address");
                 String firstname = rs.getString("firstName");
                 String email = rs.getString("email");
                 String memberImageUrl = rs.getString("memberImageUrl");
                 boolean isAdmin = rs.getBoolean("isAdmin");
 
-                m = new Member(memberId, firstname, lastname, address, username, password,email,memberImageUrl,isAdmin);
+                m = new Member(memberId, firstname, lastname, username, password,email,memberImageUrl,isAdmin);
             }
         } catch (SQLException e)
         {
@@ -605,67 +601,5 @@ public class MemberDao extends Dao implements MemberDaoInterface
         }
      return true;   
     }
-
-    /**
-     *
-     * @param address
-     * @param newAddress
-     * @return
-     */
-    @Override
-    public boolean editAddress(String address, String newAddress) 
-    {
-        Connection conn = null;
-        PreparedStatement ps = null;
-        ResultSet rs = null;
-        int memberId = 0;
-        
-        try
-        {
-
-            conn = getConnection();
-            String query = "Update member set address =? where address=? and memberId =?";
-            ps = conn.prepareStatement(query);
-            ps.setString(1, newAddress);
-            ps.setString(2, address);
-            ps.setInt(3,memberId);     //TEST
-            
-
-            ps.executeUpdate();
-            
-
-        } catch (SQLException e)
-        {
-           e.printStackTrace();
-           return false;
-
-        } finally
-        {
-            try
-            {
-                if (rs != null)
-                {
-                    rs.close();
-                }
-
-                if (ps != null)
-                {
-                    ps.close();
-                }
-
-                if (conn != null)
-                {
-                    conn.close();
-                }
-
-            } catch (SQLException e)
-            {
-                e.printStackTrace();
-                return false;
-            }
-        }
-     return true;   
-    }
-
 
 }

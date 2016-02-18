@@ -16,7 +16,6 @@ public class Member
     private int memberId;
     private String firstName;
     private String lastName;
-    private String address;
     private String userName;
     private String password;
     private String email;
@@ -41,12 +40,12 @@ public class Member
      * @param password
      * 
      */
-    public Member(int memberId, String firstName, String lastName, String address, String userName, String password,String email,String memberImageUrl,boolean isAdmin)
+    public Member(int memberId, String firstName, String lastName, String userName, String password,String email,String memberImageUrl,boolean isAdmin)
     {
         this.memberId = memberId;
         this.firstName = firstName;
         this.lastName = lastName;
-        this.address = address;
+       
         this.userName = userName;
         this.password = password;
         this.email = email;
@@ -106,24 +105,6 @@ public class Member
     public void setLastName(String lastName)
     {
         this.lastName = lastName;
-    }
-
-    /**
-     *
-     * @return
-     */
-    public String getAddress()
-    {
-        return address;
-    }
-
-    /**
-     *
-     * @param address
-     */
-    public void setAddress(String address)
-    {
-        this.address = address;
     }
 
     /**
@@ -220,15 +201,14 @@ public class Member
     public int hashCode() 
     {
         int hash = 7;
-        hash = 53 * hash + this.memberId;
-        hash = 53 * hash + Objects.hashCode(this.firstName);
-        hash = 53 * hash + Objects.hashCode(this.lastName);
-        hash = 53 * hash + Objects.hashCode(this.address);
-        hash = 53 * hash + Objects.hashCode(this.userName);
-        hash = 53 * hash + Objects.hashCode(this.password);
-        hash = 53 * hash + Objects.hashCode(this.email);
-        hash = 53 * hash + Objects.hashCode(this.memberImageUrl);
-        hash = 53 * hash + (this.isAdmin ? 1 : 0);
+        hash = 97 * hash + this.memberId;
+        hash = 97 * hash + Objects.hashCode(this.firstName);
+        hash = 97 * hash + Objects.hashCode(this.lastName);
+        hash = 97 * hash + Objects.hashCode(this.userName);
+        hash = 97 * hash + Objects.hashCode(this.password);
+        hash = 97 * hash + Objects.hashCode(this.email);
+        hash = 97 * hash + Objects.hashCode(this.memberImageUrl);
+        hash = 97 * hash + (this.isAdmin ? 1 : 0);
         return hash;
     }
 
@@ -239,69 +219,53 @@ public class Member
         {
             return false;
         }
-        if (getClass() != obj.getClass())
+        if (getClass() != obj.getClass()) 
         {
             return false;
         }
-        
         final Member other = (Member) obj;
-        
         if (this.memberId != other.memberId)
         {
             return false;
         }
-        
-        if (!Objects.equals(this.firstName, other.firstName))
+        if (!Objects.equals(this.firstName, other.firstName)) 
         {
             return false;
         }
-        
-        if (!Objects.equals(this.lastName, other.lastName))
+        if (!Objects.equals(this.lastName, other.lastName)) 
         {
             return false;
         }
-        
-        if (!Objects.equals(this.address, other.address))
+        if (!Objects.equals(this.userName, other.userName))
         {
             return false;
         }
-        
-        if (!Objects.equals(this.userName, other.userName)) 
-        {
-            return false;
-        }
-        
         if (!Objects.equals(this.password, other.password)) 
         {
             return false;
         }
-        
-        if (!Objects.equals(this.email, other.email))
+        if (!Objects.equals(this.email, other.email)) 
         {
             return false;
         }
-        
-        if (!Objects.equals(this.memberImageUrl, other.memberImageUrl)) 
+        if (!Objects.equals(this.memberImageUrl, other.memberImageUrl))
         {
             return false;
         }
-        
-        if (this.isAdmin != other.isAdmin) 
+        if (this.isAdmin != other.isAdmin)
         {
             return false;
         }
-        
         return true;
     }
 
     @Override
     public String toString() 
     {
-        return "Member{" + "memberId=" + memberId + ", firstName=" + firstName + ", lastName=" + lastName + ", address=" + address + ", userName=" + userName + ", password=" + password + ", email=" + email + ", memberImageUrl=" + memberImageUrl + ", isAdmin=" + isAdmin + '}';
+        return "Member{" + "memberId=" + memberId + ", firstName=" + firstName + ", lastName=" + lastName + ", userName=" + userName + ", password=" + password + ", email=" + email + ", memberImageUrl=" + memberImageUrl + ", isAdmin=" + isAdmin + '}';
     }
-    
-    
-    
+
+   
     
     
     

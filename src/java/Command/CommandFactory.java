@@ -93,10 +93,6 @@ public class CommandFactory
         {
     		command = new EditPasswordCommand();
     	}
-        if (commandStr.equals("Edit Address")) 
-        {
-    		command = new EditAddressCommand();
-    	}
         if (commandStr.equals("SearchItem")) 
         {
     		command = new SearchItemCommand();
