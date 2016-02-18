@@ -37,6 +37,10 @@ public class CommandFactory
         {
     		command = new ViewProfileCommand();
     	}
+        if (commandStr.equals("ViewAllProducts")) 
+        {
+    		command = new ViewAllProductsCommand();
+    	}
         if (commandStr.equals("StarWars")) 
         {
     		command = new ViewStarWarsCommand();
