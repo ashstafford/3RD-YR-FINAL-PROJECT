@@ -130,11 +130,8 @@ div#container
         <h3> Personal Details </h3>
         <td><p> First Name: <%= m.getFirstName() %></p></td>
         <td><form action = "editFirstName.jsp" method = "post"> <p><input type = "submit" value = "Edit First Name" /></p></form></td>
-        
         <p> Last Name: <%= m.getLastName() %>
         <form action = "EditLastName.jsp" method = "post"> <p><input type = "submit" value = "Edit Last Name" /></p></form>
-        <p> Address: <%= m.getAddress() %></p>
-        <form action = "EditAddress.jsp" method = "post"> <p><input type = "submit" value = "Edit Address" /></p></form>
         <p> Username: <%= m.getUserName() %></p>
         <form action = "EditUserName.jsp" method = "post"> <p><input type = "submit" value = "Edit username" /></p></form>
         <p> Password</p>

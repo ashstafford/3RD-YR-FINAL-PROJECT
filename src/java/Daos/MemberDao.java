@@ -193,37 +193,19 @@ public class MemberDao extends Dao implements MemberDaoInterface
         
         try 
         {
+            
             con = this.getConnection();
-          //  String hashed = BCrypt.hashpw(password, BCrypt.gensalt());
-            
-////////            MessageDigest md = MessageDigest.getInstance("MD5");
-////////
-////////
-////////        String salts = "a,d,d,e,d,_,s,a,l,t";
-////////
-////////        String salttmps[] = salts.split(",");
-////////        byte salt[] = new byte[salttmps.length];
-////////
-////////        for (int i = 0; i < salt.length; i++) {
-////////          salt[i] = Byte.parseByte(salttmps[i]);
-////////        }
-////////        md.update(salt); 
-////////        md.update(password.getBytes());
-////////
-////////        byte byteData[] = md.digest();
-////////
-////////
-////////        StringBuffer sb = new StringBuffer();
-////////        for (int i = 0; i < byteData.length; i++) {
-////////         sb.append(Integer.toString((byteData[i] & 0xff) + 0x100, 16).substring(1));
-////////        } 
-////////        password = sb.toString();
-            
+
+             HashPasswordMD5 hp = new HashPasswordMD5();
+             String hashedPassword = hp.hashPassword(password);
+             
             String query = "Insert into member(firstName, lastName,userName, password,email,memberImageUrl,isAdmin) values(?,?,?,?,?,?,?)"; //query to insert member info into fields in the members table
-            // Need to get the id back, so have to tell the database to return the id it generates
+            
+           // Need to get the id back, so have to tell the database to return the id it generates
             ps = con.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
             
-          
+            System.out.println("hashed password: " + password);
+            System.out.println(firstName);
 
             ps.setString(1, firstName);
             ps.setString(2, lastName);
@@ -233,26 +215,10 @@ public class MemberDao extends Dao implements MemberDaoInterface
             ps.setString(6,memberImageUrl);
             ps.setBoolean(7,isAdmin);
             
-           // blowfish bf = new blowfish();
             
-           
+           ps.executeUpdate();
             
-           
-           // Hash a password for the first time
-      //   String hashed = BCrypt.hashpw(password, BCrypt.gensalt());
 
-//            // gensalt's log_rounds parameter determines the complexity
-//            // the work factor is 2**log_rounds, and the default is 10
-    //    hashed = BCrypt.hashpw(password, BCrypt.gensalt(12));
-
-            // Check that an unencrypted password matches one that has
-            // previously been hashed
-//     if (BCrypt.checkpw(password, hashed))
-//                    System.out.println("It matches");
-//            else
-//            System.out.println("It does not match");
-            
-            ps.executeUpdate();
             
                      // Find out what the id generated for this entry was
             generatedKeys = ps.getGeneratedKeys();
@@ -262,7 +228,7 @@ public class MemberDao extends Dao implements MemberDaoInterface
                 memberId = generatedKeys.getInt(1);
             } 
             
-            m = new Member(memberId, firstName, lastName,userName, password,email,memberImageUrl,isAdmin); //stores the member in an object
+            m = new Member(memberId, firstName, lastName,userName,password,email,memberImageUrl,isAdmin); //stores the member in an object
             
              
         } 
@@ -317,13 +283,17 @@ public class MemberDao extends Dao implements MemberDaoInterface
 
         try
         {
+           
             con = this.getConnection();
-
+            
+             HashPasswordMD5 hp = new HashPasswordMD5();
+             String hashedPassword = hp.hashPassword(passWord);
+          
+            
             String query = "select * from Member where userName = ? and password = ?";
             ps = con.prepareStatement(query);
             ps.setString(1, userName);
-            //ps.setString(2, passWord);
-            ps.setString(2, passWord);
+            ps.setString(2, hashedPassword);
 
             rs = ps.executeQuery();
             if (rs.next())
@@ -336,10 +306,18 @@ public class MemberDao extends Dao implements MemberDaoInterface
                 String email = rs.getString("email");
                 String memberImageUrl = rs.getString("memberImageUrl");
                 boolean isAdmin = rs.getBoolean("isAdmin");
+            
+               if(hashedPassword.equals(password))
+               {    
 
-                m = new Member(memberId, firstname, lastname, username, password,email,memberImageUrl,isAdmin);
+                m = new Member(memberId,username, password, lastname, firstname, email,memberImageUrl,isAdmin);
+     
+               }
+
             }
-        } catch (SQLException e)
+            
+        } 
+         catch (SQLException e)
         {
             e.printStackTrace();
         } 
