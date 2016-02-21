@@ -42,7 +42,6 @@ public interface MemberDaoInterface
      *
      * @param firstName
      * @param lastName
-     * @param address
      * @param userName
      * @param password
      * @param email
@@ -50,7 +49,7 @@ public interface MemberDaoInterface
      * @param isAdmin
      * @return
      */
-    public Member addMember(String firstName, String lastName, String address, String userName, String password,String email,String memberImageUrl,boolean isAdmin); 
+    public Member addMember(String firstName, String lastName, String userName, String password,String email,String memberImageUrl,boolean isAdmin); 
 
     /**
      *
@@ -90,5 +89,5 @@ public interface MemberDaoInterface
      * @param newAddress
      * @return
      */
-    public boolean editAddress(String address,String newAddress);
+   
 }

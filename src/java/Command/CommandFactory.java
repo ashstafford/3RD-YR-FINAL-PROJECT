@@ -37,6 +37,10 @@ public class CommandFactory
         {
     		command = new ViewProfileCommand();
     	}
+        if (commandStr.equals("ViewAllProducts")) 
+        {
+    		command = new ViewAllProductsCommand();
+    	}
         if (commandStr.equals("StarWars")) 
         {
     		command = new ViewStarWarsCommand();
@@ -88,10 +92,6 @@ public class CommandFactory
         if (commandStr.equals("Edit Password")) 
         {
     		command = new EditPasswordCommand();
-    	}
-        if (commandStr.equals("Edit Address")) 
-        {
-    		command = new EditAddressCommand();
     	}
         if (commandStr.equals("SearchItem")) 
         {

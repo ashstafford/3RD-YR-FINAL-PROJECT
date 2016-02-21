@@ -54,14 +54,13 @@ public class MemberDao extends Dao implements MemberDaoInterface
                 int memberId = rs.getInt("memberId");
                 String firstName = rs.getString("firstName");
                 String lastName = rs.getString("lastName");
-                String address = rs.getString("address");
                 String userName = rs.getString("userName");
                 String password = rs.getString("password");
                 String email = rs.getString("email");
                 String memberImageUrl = rs.getString("memberImageUrl");
                 boolean isAdmin = rs.getBoolean("isAdmin");
 
-                Member m = new Member(memberId, firstName, lastName, address, userName, password,email,memberImageUrl,isAdmin);
+                Member m = new Member(memberId, firstName, lastName,userName, password,email,memberImageUrl,isAdmin);
                 member.add(m);
             }
 
@@ -129,14 +128,13 @@ public class MemberDao extends Dao implements MemberDaoInterface
                 int memberId = rs.getInt("memberId");
                 String firstName = rs.getString("firstName");
                 String lastName = rs.getString("lastName");
-                String address = rs.getString("address");
                 String userName = rs.getString("username");
                 String password = rs.getString("password");
                 String email = rs.getString("email");
                 String memberImageUrl = rs.getString("memberImageUrl");
                 boolean isAdmin = rs.getBoolean("isAdmin");
                 
-                m = new Member(memberId, firstName, lastName, address, username, password,email,memberImageUrl,isAdmin);
+                m = new Member(memberId, firstName, lastName, username, password,email,memberImageUrl,isAdmin);
             }
         } 
         
@@ -175,13 +173,13 @@ public class MemberDao extends Dao implements MemberDaoInterface
      *
      * @param firstName
      * @param lastName
-     * @param address
+   
      * @param userName
      * @param password
      * @return
      */
     @Override
-    public Member addMember(String firstName, String lastName, String address, String userName, String password,String email,String memberImageUrl,boolean isAdmin) 
+    public Member addMember(String firstName, String lastName, String userName, String password,String email,String memberImageUrl,boolean isAdmin) 
     {
         Connection con = null;
         PreparedStatement ps = null; 
@@ -195,67 +193,32 @@ public class MemberDao extends Dao implements MemberDaoInterface
         
         try 
         {
+            
             con = this.getConnection();
-          //  String hashed = BCrypt.hashpw(password, BCrypt.gensalt());
+
+             HashPasswordMD5 hp = new HashPasswordMD5();
+             String hashedPassword = hp.hashPassword(password);
+             
+            String query = "Insert into member(firstName, lastName,userName, password,email,memberImageUrl,isAdmin) values(?,?,?,?,?,?,?)"; //query to insert member info into fields in the members table
             
-////////            MessageDigest md = MessageDigest.getInstance("MD5");
-////////
-////////
-////////        String salts = "a,d,d,e,d,_,s,a,l,t";
-////////
-////////        String salttmps[] = salts.split(",");
-////////        byte salt[] = new byte[salttmps.length];
-////////
-////////        for (int i = 0; i < salt.length; i++) {
-////////          salt[i] = Byte.parseByte(salttmps[i]);
-////////        }
-////////        md.update(salt); 
-////////        md.update(password.getBytes());
-////////
-////////        byte byteData[] = md.digest();
-////////
-////////
-////////        StringBuffer sb = new StringBuffer();
-////////        for (int i = 0; i < byteData.length; i++) {
-////////         sb.append(Integer.toString((byteData[i] & 0xff) + 0x100, 16).substring(1));
-////////        } 
-////////        password = sb.toString();
-            
-            String query = "Insert into member(firstName, lastName,address, userName, password,email,memberImageUrl,isAdmin) values(?,?,?,?,?,?,?,?)"; //query to insert member info into fields in the members table
-            // Need to get the id back, so have to tell the database to return the id it generates
+           // Need to get the id back, so have to tell the database to return the id it generates
             ps = con.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
             
-          
+            System.out.println("hashed password: " + password);
+            System.out.println(firstName);
 
             ps.setString(1, firstName);
             ps.setString(2, lastName);
-            ps.setString(3, address);
-            ps.setString(4, userName);
-            ps.setString(5, password);
-            ps.setString(6, email);
-            ps.setString(7,memberImageUrl);
-            ps.setBoolean(8,isAdmin);
+            ps.setString(3, userName);
+            ps.setString(4, password);
+            ps.setString(5, email);
+            ps.setString(6,memberImageUrl);
+            ps.setBoolean(7,isAdmin);
             
-           // blowfish bf = new blowfish();
             
-           
+           ps.executeUpdate();
             
-           
-           // Hash a password for the first time
-      //   String hashed = BCrypt.hashpw(password, BCrypt.gensalt());
 
-//            // gensalt's log_rounds parameter determines the complexity
-//            // the work factor is 2**log_rounds, and the default is 10
-    //    hashed = BCrypt.hashpw(password, BCrypt.gensalt(12));
-
-            // Check that an unencrypted password matches one that has
-            // previously been hashed
-//     if (BCrypt.checkpw(password, hashed))
-//                    System.out.println("It matches");
-//            else
-//            System.out.println("It does not match");
-            
-            ps.executeUpdate();
             
                      // Find out what the id generated for this entry was
             generatedKeys = ps.getGeneratedKeys();
@@ -265,7 +228,7 @@ public class MemberDao extends Dao implements MemberDaoInterface
                 memberId = generatedKeys.getInt(1);
             } 
             
-            m = new Member(memberId, firstName, lastName, address, userName, password,email,memberImageUrl,isAdmin); //stores the member in an object
+            m = new Member(memberId, firstName, lastName,userName,password,email,memberImageUrl,isAdmin); //stores the member in an object
             
              
         } 
@@ -320,13 +283,17 @@ public class MemberDao extends Dao implements MemberDaoInterface
 
         try
         {
+           
             con = this.getConnection();
-
+            
+             HashPasswordMD5 hp = new HashPasswordMD5();
+             String hashedPassword = hp.hashPassword(passWord);
+          
+            
             String query = "select * from Member where userName = ? and password = ?";
             ps = con.prepareStatement(query);
             ps.setString(1, userName);
-            //ps.setString(2, passWord);
-            ps.setString(2, passWord);
+            ps.setString(2, hashedPassword);
 
             rs = ps.executeQuery();
             if (rs.next())
@@ -335,15 +302,22 @@ public class MemberDao extends Dao implements MemberDaoInterface
                 String username = rs.getString("userName");
                 String password = rs.getString("password");
                 String lastname = rs.getString("lastName");
-                String address = rs.getString("address");
                 String firstname = rs.getString("firstName");
                 String email = rs.getString("email");
                 String memberImageUrl = rs.getString("memberImageUrl");
                 boolean isAdmin = rs.getBoolean("isAdmin");
+            
+               if(hashedPassword.equals(password))
+               {    
 
-                m = new Member(memberId, firstname, lastname, address, username, password,email,memberImageUrl,isAdmin);
+                m = new Member(memberId,username, password, lastname, firstname, email,memberImageUrl,isAdmin);
+     
+               }
+
             }
-        } catch (SQLException e)
+            
+        } 
+         catch (SQLException e)
         {
             e.printStackTrace();
         } 
@@ -605,67 +579,5 @@ public class MemberDao extends Dao implements MemberDaoInterface
         }
      return true;   
     }
-
-    /**
-     *
-     * @param address
-     * @param newAddress
-     * @return
-     */
-    @Override
-    public boolean editAddress(String address, String newAddress) 
-    {
-        Connection conn = null;
-        PreparedStatement ps = null;
-        ResultSet rs = null;
-        int memberId = 0;
-        
-        try
-        {
-
-            conn = getConnection();
-            String query = "Update member set address =? where address=? and memberId =?";
-            ps = conn.prepareStatement(query);
-            ps.setString(1, newAddress);
-            ps.setString(2, address);
-            ps.setInt(3,memberId);     //TEST
-            
-
-            ps.executeUpdate();
-            
-
-        } catch (SQLException e)
-        {
-           e.printStackTrace();
-           return false;
-
-        } finally
-        {
-            try
-            {
-                if (rs != null)
-                {
-                    rs.close();
-                }
-
-                if (ps != null)
-                {
-                    ps.close();
-                }
-
-                if (conn != null)
-                {
-                    conn.close();
-                }
-
-            } catch (SQLException e)
-            {
-                e.printStackTrace();
-                return false;
-            }
-        }
-     return true;   
-    }
-
 
 }

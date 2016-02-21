@@ -6,7 +6,6 @@ create table member(
 memberId int(20) not null AUTO_INCREMENT,
 firstName varchar(20) not null,
 lastName varchar(20) not null,
-address varchar(50) not null,
 userName varchar(20) not null,
 password varchar(20) not null,
 email varchar(40) not null,
@@ -77,10 +76,10 @@ Insert into `product`(`productId`, `productImageUrl`, `productName`, `productPri
 (27,'IMG_GOT3.jpg','GAME OF THRONES THE NORTH REMEMBERS T-SHIRT',20.00,23, 'Game of Thrones'),
 (28,'IMG_GOT4.jpg','GAME OF THRONES: A POP-UP GUIDE TO WESTEROS BOOK',50.00,27, 'Game of Thrones');
 
-Insert into `member`(`memberId`, `firstName`, `lastName`, `address`, `userName`, `password` ,`email` ,`memberImageUrl`, `isAdmin`) values
-(1, 'Bob', 'McGinty', '17 main st', 'Bob123', 'password', 'ash@yahoo.net', 'IMG_TWD1.jpg','true'),
-(3, 'john', 'Rock', '5 main st', 'john1', 'password','ash@hotmail.com', 'IMG_TWD1.jpg','false'),
-(4, 'aisling', 'stafford', '17 dublin rd', 'ashstaff', 'password','ashs@yahoo.com', 'IMG_TWD1.jpg','true');
+Insert into `member`(`memberId`, `firstName`, `lastName`,`userName`, `password` ,`email` ,`memberImageUrl`, `isAdmin`) values
+(1, 'Bob', 'McGinty', 'Bob123', 'password', 'ash@yahoo.net', 'IMG_TWD1.jpg','true'),
+(3, 'john', 'Rock', 'john1', 'password','ash@hotmail.com', 'IMG_TWD1.jpg','false'),
+(4, 'aisling', 'stafford','ashstaff', 'password','ashs@yahoo.com', 'IMG_TWD1.jpg','true');
 
 insert into `salesReceipt` (`receiptId`, `dateOrdered`, `totalPrice`, `memberId`, `paymentType`) values
 (1, 23-05-2015, 120.00, 1, 'card'),
