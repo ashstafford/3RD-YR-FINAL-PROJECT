@@ -28,7 +28,15 @@ public class Member
      */
     public Member()
     {
-        
+        memberId = 2;        
+        firstName = "Ben";
+        lastName = "VanRhee";
+        address = "Tipperary";
+        userName = "bennyboy";
+        password = "password";
+        email = "ben@gmail.com";
+        memberImageUrl = "IMG_TWD1.jpg";
+        isAdmin = false;
     }   
     
     /**
