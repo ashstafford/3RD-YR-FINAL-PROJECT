@@ -38,6 +38,7 @@ public class ViewDisneyCommand implements Command
                 List<Product> products = new ArrayList<>();
                 products = pDao.getProductsByCategory("Disney");
  
+                
                 //Put the list of products into the session so that JSP(the View) can display them...
                 session.setAttribute("DProducts", products);
                 forwardToJsp = "/DisneyPage.jsp";	

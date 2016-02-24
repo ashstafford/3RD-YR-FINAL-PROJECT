@@ -1,9 +1,3 @@
-<%-- 
-    Document   : ViewAllProducts
-    Created on : 18-Feb-2016, 10:55:27
-    Author     : D00155224
---%>
-
 <%@page import="java.util.List"%>
 <%@page import="Dtos.Product"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -89,7 +83,7 @@ div#container
   margin-left  : auto;
   margin-right : auto;
 }
-          
+
 select#soflow, select#soflow-color {
    -webkit-appearance: button;
    -webkit-border-radius: 2px;
@@ -120,6 +114,7 @@ select#soflow-color {
    border-radius: 20px;
    padding-left: 15px;
 }
+          
 
         </style>
     </head>   
@@ -142,8 +137,8 @@ select#soflow-color {
         
         <table>
          <form action="MemberActionServlet" method="post">  
-             <select name="filterComboBox" id="soflow">
-  <!-- This method is nice because it doesn't require extra div tags, but it also doesn't retain the style across all browsers. -->
+             <select name="filterComboBox" id="soflow"> 
+               
                <option value="1">Select an Option</option>
                <option value="2">Price - Lowest To Highest</option> 
                <option value="3">Price - Highest To Lowest</option>
@@ -154,7 +149,7 @@ select#soflow-color {
   
                 <%
                     List<Product> products;
-                    products = (List) (request.getSession().getAttribute("AllProducts"));
+                    products = (List) (request.getSession().getAttribute("fileredProducts"));
 
                     if (products != null) 
                     { 

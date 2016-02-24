@@ -33,6 +33,10 @@ public class CommandFactory
         {
     		command = new RegisterCommand();
     	}
+        if (commandStr.equals("filterProducts")) 
+        {
+    		command = new PriceComparisonCommand();
+    	}
         if (commandStr.equals("viewProfile")) 
         {
     		command = new ViewProfileCommand();
