@@ -57,6 +57,7 @@ public class MemberDaoTest
         Member expResult = instance.findMemberByUsername(username);
         Member result = instance.findMemberByUsername(username);
         assertEquals(expResult, result);
+        
         // TODO review the generated test code and remove the default call to fail.
         
     }
@@ -70,18 +71,17 @@ public class MemberDaoTest
 //        System.out.println("addMember");
 //        String firstName = "";
 //        String lastName = "";
-//        String address = "";
 //        String userName = "";
 //        String password = "";
 //        String email = "";
 //        String memberImageUrl = "";
 //        boolean isAdmin = false ;      
 //        MemberDao instance = new MemberDao();
-//        Member expResult = instance.addMember(firstName, lastName, address, userName, password, email, memberImageUrl, isAdmin);
-//        Member result = instance.addMember(firstName, lastName, address, userName, password, email, memberImageUrl, isAdmin);
+//        Member expResult = instance.addMember(firstName, lastName, userName, password, email, memberImageUrl, isAdmin);
+//        Member result = instance.addMember(firstName, lastName, userName, password, email, memberImageUrl, isAdmin);
 //        assertEquals(expResult, result);
 //        System.out.println("Test Passed");
-//        instance.addMember(firstName, lastName, address, userName, password, email, memberImageUrl, isAdmin);
+//        instance.addMember(firstName, lastName, userName, password, email, memberImageUrl, isAdmin);
 //        
 //    }
 
@@ -92,7 +92,7 @@ public class MemberDaoTest
     @Test
     public void testFindMemberByUserNamePassword() throws Exception {
         System.out.println("findMemberByUserNamePassword");
-        Member m = new Member(1, "Bob", "McGinty", "17 main st", "bob123", "password", "ash@yahoo.net", "IMG_TWD1.jpg",false);        
+        Member m = new Member(1, "bob123", "password", "Bob", "McGinty", "ash@yahoo.net", "IMG_TWD1.jpg",false);        
         String userName = "bob123";
         String passWord = "password";
         MemberDao instance = new MemberDao();
@@ -112,10 +112,12 @@ public class MemberDaoTest
         String userName = "bob123";
         String newUserName = "ben10";
         MemberDao instance = new MemberDao();
-        boolean expResult = instance.editUserName(userName, newUserName);
+        boolean expResult = true;
         boolean result = instance.editUserName(userName, newUserName);
         assertEquals(expResult, result);  
         System.out.println("Test Passed");
+        Member m = instance.findMemberByUsername("bob123");
+       //System.out.println(m.toString());
         instance.editUserName(newUserName, userName);
     }
 
@@ -132,6 +134,7 @@ public class MemberDaoTest
         boolean result = instance.editPassword(password, newPassword);
         assertEquals(expResult, result);
         System.out.println("Test Passed");
+        boolean m = instance.editPassword("password", "pass");
         instance.editPassword(newPassword, password);
         // TODO review the generated test code and remove the default call to fail.
   
@@ -150,6 +153,7 @@ public class MemberDaoTest
         boolean result = instance.editFirstName(firstName, newFirstName);
         assertEquals(expResult, result);
         System.out.println("Test Passed");
+         boolean m = instance.editFirstName("Ben","Bob");
         instance.editFirstName(newFirstName, firstName);
         // TODO review the generated test code and remove the default call to fail.
     
@@ -168,28 +172,11 @@ public class MemberDaoTest
         boolean result = instance.editLastName(lastName, newLastName);
         assertEquals(expResult, result);
         System.out.println("Test Passed");
+         boolean m = instance.editLastName("stafford", "aungier");
         instance.editLastName(newLastName, lastName);
         // TODO review the generated test code and remove the default call to fail.
     
     }
 
-    /**
-     * Test of editAddress method, of class MemberDao.
-     * @throws java.lang.Exception
-     */
-    @Test
-    public void testEditAddress() throws Exception {
-        System.out.println("editAddress");
-        String address = "1 main st";
-        String newAddress = "19 dublin rd";
-        MemberDao instance = new MemberDao();
-        boolean expResult = true;
-        boolean result = instance.editAddress(address, newAddress);
-        assertEquals(expResult, result);
-         System.out.println("Test Passed");
-        instance.editAddress(newAddress, address);
-        // TODO review the generated test code and remove the default call to fail.
-       
-    }
-    
+  
 }

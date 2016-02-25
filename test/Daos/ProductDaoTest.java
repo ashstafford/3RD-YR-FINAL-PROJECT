@@ -29,41 +29,41 @@ public class ProductDaoTest
         
     }
     
-    /**
-     *
-     */
-    @BeforeClass
-    public static void setUpClass()
-    {
-        
-    }
-    
-    /**
-     *
-     */
-    @AfterClass
-    public static void tearDownClass() 
-    {
-        
-    }
-    
-    /**
-     *
-     */
-    @Before
-    public void setUp()
-    {
-        
-    }
-    
-    /**
-     *
-     */
-    @After
-    public void tearDown() 
-    {
-        
-    }
+//    /**
+//     *
+//     */
+//    @BeforeClass
+//    public static void setUpClass()
+//    {
+//        
+//    }
+//    
+//    /**
+//     *
+//     */
+//    @AfterClass
+//    public static void tearDownClass() 
+//    {
+//        
+//    }
+//    
+//    /**
+//     *
+//     */
+//    @Before
+//    public void setUp()
+//    {
+//        
+//    }
+//    
+//    /**
+//     *
+//     */
+//    @After
+//    public void tearDown() 
+//    {
+//        
+//    }
 
     /**
      * Test of getAllProducts method, of class ProductDao.
@@ -85,7 +85,7 @@ public class ProductDaoTest
     @Test
     public void testGetProductsByCategory() {
         System.out.println("getProductsByCategory");
-        String category = "";
+        String category = "The Walking Dead";
         ProductDao instance = new ProductDao();
         ArrayList<Product> expResult = instance.getProductsByCategory(category);
         ArrayList<Product> result = instance.getProductsByCategory(category);
@@ -100,9 +100,9 @@ public class ProductDaoTest
     @Test
     public void testFindProductByTitle() {
         System.out.println("findProductByTitle");
-        String title = "";
+        String title = "DOCTOR WHO TARDIS HOODY";
         ProductDao instance = new ProductDao();
-        Product expResult = null;
+        Product expResult = instance.findProductByTitle(title);
         Product result = instance.findProductByTitle(title);
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.

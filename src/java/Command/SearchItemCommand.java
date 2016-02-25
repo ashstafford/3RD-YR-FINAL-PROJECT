@@ -28,7 +28,7 @@ public class SearchItemCommand implements Command
     {
         String forwardToJsp;
         
-        String Sitem = request.getParameter("searchItem");
+        String Sitem = request.getParameter("searchName");
         
         ProductDao pDao = new ProductDao();
         
