@@ -85,9 +85,10 @@ public interface MemberDaoInterface
 
     /**
      *
-     * @param address
-     * @param newAddress
+     * @param email
      * @return
      */
-   
+    public Member findMemberByEmailAddress(String eMail); 
+    
+    
 }

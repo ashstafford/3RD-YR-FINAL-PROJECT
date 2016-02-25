@@ -168,6 +168,77 @@ public class MemberDao extends Dao implements MemberDaoInterface
         }
         return m;    
     }
+    
+    /**The method takes in a email parameter and searches the database for 
+     * a matching member based on their email address.
+     * 
+     *
+     * @param email String variable which stores the email being searched  
+     * @return the member object for the corresponding email address 
+     */
+    
+    @Override
+    public Member findMemberByEmailAddress(String eMail) 
+    {
+        Connection con = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        Member m = null;
+
+        try
+        {
+            con = this.getConnection();
+
+            String query = "select * from member where email =?";
+            ps = con.prepareStatement(query);
+            ps.setString(1, eMail);
+
+            rs = ps.executeQuery();
+            if (rs.next())
+            {
+                int memberId = rs.getInt("memberId");
+                String firstName = rs.getString("firstName");
+                String lastName = rs.getString("lastName");
+                String userName = rs.getString("username");
+                String password = rs.getString("password");
+                String email = rs.getString("eMail");
+                String memberImageUrl = rs.getString("memberImageUrl");
+                boolean isAdmin = rs.getBoolean("isAdmin");
+                
+                m = new Member(memberId, firstName, lastName, userName, password,email,memberImageUrl,isAdmin);
+            }
+        } 
+        
+        catch (SQLException e)   
+        {
+          e.printStackTrace();
+        } 
+        
+        finally
+        {
+            try
+            {
+                if (rs != null)
+                {
+                    rs.close();
+                }
+                if (ps != null)
+                {
+                    ps.close();
+                }
+                if (con != null)
+                {
+                    freeConnection(con);
+                }
+            }
+            catch (SQLException e)
+            {
+               e.printStackTrace();
+             
+            }
+        }
+        return m;    
+    }
 
     /**
      *
