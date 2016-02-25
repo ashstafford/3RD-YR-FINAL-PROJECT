@@ -143,7 +143,7 @@ div#otherButtons
                
             <% 
                
-               if(m.isAdmin())
+            if(m.isAdmin())
             {
                 %><td><form action = "AddProduct.jsp" method = "post"> <p><input type = "submit" value = "Add Product" /></p></form></td><%
             }
