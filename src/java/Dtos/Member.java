@@ -20,7 +20,7 @@ public class Member
     private String lastName;
     private String email;
     private String memberImageUrl;
-    private boolean isAdmin;
+    private boolean admin;
 
     /**
      *
@@ -34,7 +34,7 @@ public class Member
         password = "password";
         email = "ben@gmail.com";
         memberImageUrl = "IMG_TWD1.jpg";
-        isAdmin = false;
+        admin = false;
     }   
     
     /**
@@ -47,7 +47,7 @@ public class Member
      * @param password
      * 
      */
-    public Member(int memberId, String userName, String password,String firstName,String lastName,  String email,String memberImageUrl,boolean isAdmin)
+    public Member(int memberId, String userName, String password,String firstName,String lastName,  String email,String memberImageUrl,boolean admin)
     {
         this.memberId = memberId;
         this.userName = userName;
@@ -56,7 +56,7 @@ public class Member
         this.lastName = lastName;
         this.email = email;
         this.memberImageUrl = memberImageUrl;
-        this.isAdmin = isAdmin;
+        this.admin = admin;
     }
 
     /**
@@ -189,89 +189,27 @@ public class Member
      *
      * @return isAdmin
      */
-    public boolean isIsAdmin() 
+    public boolean isAdmin() 
     {
-        return isAdmin;
+        return admin;
     }
     
        /**
      *
      * @param isAdmin
      */
-    public void setIsAdmin(boolean isAdmin) 
+    public void setIsAdmin(boolean admin) 
     {
-        this.isAdmin = isAdmin;
+        this.admin = admin;
     }
 
     @Override
-    public int hashCode() 
+    public String toString() 
     {
-        int hash = 7;
-        hash = 97 * hash + this.memberId;
-        hash = 97 * hash + Objects.hashCode(this.firstName);
-        hash = 97 * hash + Objects.hashCode(this.lastName);
-        hash = 97 * hash + Objects.hashCode(this.userName);
-        hash = 97 * hash + Objects.hashCode(this.password);
-        hash = 97 * hash + Objects.hashCode(this.email);
-        hash = 97 * hash + Objects.hashCode(this.memberImageUrl);
-        hash = 97 * hash + (this.isAdmin ? 1 : 0);
-        return hash;
+        return "Member{" + "memberId=" + memberId + ", userName=" + userName + ", password=" + password + ", firstName=" + firstName + ", lastName=" + lastName + ", email=" + email + ", memberImageUrl=" + memberImageUrl + ", admin=" + admin + '}';
     }
 
-    @Override
-    public boolean equals(Object obj) 
-    {
-        if (obj == null) 
-        {
-            return false;
-        }
-        if (getClass() != obj.getClass()) 
-        {
-            return false;
-        }
-        final Member other = (Member) obj;
-        if (this.memberId != other.memberId)
-        {
-            return false;
-        }
-        if (!Objects.equals(this.firstName, other.firstName)) 
-        {
-            return false;
-        }
-        if (!Objects.equals(this.lastName, other.lastName)) 
-        {
-            return false;
-        }
-        if (!Objects.equals(this.userName, other.userName))
-        {
-            return false;
-        }
-        if (!Objects.equals(this.password, other.password)) 
-        {
-            return false;
-        }
-        if (!Objects.equals(this.email, other.email)) 
-        {
-            return false;
-        }
-        if (!Objects.equals(this.memberImageUrl, other.memberImageUrl))
-        {
-            return false;
-        }
-        if (this.isAdmin != other.isAdmin)
-        {
-            return false;
-        }
-        return true;
-    }
-
-    @Override
-    public String toString()
-    {
-        return "Member{" + "memberId=" + memberId + ", userName=" + userName + ", password=" + password + ", firstName=" + firstName + ", lastName=" + lastName + ", email=" + email + ", memberImageUrl=" + memberImageUrl + ", isAdmin=" + isAdmin + '}';
-    }
-
-   
+    
 
     
    

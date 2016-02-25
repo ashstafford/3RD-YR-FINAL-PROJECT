@@ -142,13 +142,13 @@ div#otherButtons
               
                
             <% 
-              // boolean admin = m.isIsAdmin();
-               // if(admin == 1)
+               
+               if(m.isAdmin())
             {
                 %><td><form action = "AddProduct.jsp" method = "post"> <p><input type = "submit" value = "Add Product" /></p></form></td><%
             }
 
-              out.println("hahaha " + m.isIsAdmin());
+              out.println("hahaha " + m.isAdmin());
             %>               
            </div>
              
@@ -158,8 +158,10 @@ div#otherButtons
    
             
         <h1> Welcome <%= m.getFirstName() %>! </h1>
-    
-        <h2> What would you like to do? </h2>
+        
+        <td><img src="<%=m.getMemberImageUrl()%>" style="width: 300px; height: 250px;"></td>  
+        
+       
 
         <h3> Personal Details </h3>
         <td><p> First Name: <%= m.getFirstName() %></p></td>
@@ -170,6 +172,11 @@ div#otherButtons
         <form action = "EditUserName.jsp" method = "post"> <p><input type = "submit" value = "Edit username" /></p></form>
         <p> Password</p>
         <form action = "EditPassword.jsp" method = "post"> <p><input type = "submit" value = "Edit password" /></p></form>
+        <p> Email: <%= m.getEmail() %></p>
+        <form action = "EditEmail.jsp" method = "post"> <p><input type = "submit" value = "Edit Email" /></p></form>
+        <p> profile picture <%= m.getMemberImageUrl() %></p>
+        <form action = "EditUserName.jsp" method = "post"> <p><input type = "submit" value = "Edit username" /></p></form>
+        
        
       <%  }
         %>

@@ -122,7 +122,8 @@ div#container
                 
                 <td><img src="<%=prod.getProductImageUrl()%>" style="width: 300px; height: 250px;"></td>
                 <td><%=prod.getProductName()%></td>
-                <td><% out.println("\t\t"); %><td>
+                <td><% out.println("\t\t"); %></td>
+                <td>Quantity in stock: <%prod.getQuantityInStock(); %></td>
                 <td></td>
                 <td></td>
                 <td></td>
