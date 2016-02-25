@@ -101,6 +101,10 @@ public class CommandFactory
         {
     		command = new EditPasswordCommand();
     	}
+        if (commandStr.equals("Edit Email")) 
+        {
+    		command = new EditEmailCommand();
+    	}
         if (commandStr.equals("SearchItem")) 
         {
     		command = new SearchItemCommand();

@@ -651,4 +651,57 @@ public class MemberDao extends Dao implements MemberDaoInterface
      return true;   
     }
 
+     @Override
+    public boolean editEmail(String email, String newEmail) 
+    {
+        Connection conn = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+
+        try
+        {
+
+            conn = getConnection();
+            String query = "Update member set email =? where email=?";
+            ps = conn.prepareStatement(query);
+            ps.setString(1, newEmail);
+            ps.setString(2, email);
+
+            ps.executeUpdate();
+
+        } catch (SQLException e)
+        {
+           e.printStackTrace();
+            return false;
+
+        } finally
+        {
+            try
+            {
+                if (rs != null)
+                {
+                    rs.close();
+                }
+
+                if (ps != null)
+                {
+                    ps.close();
+                }
+
+                if (conn != null)
+                {
+                    conn.close();
+                }
+
+            } catch (SQLException e)
+            {
+                e.printStackTrace();
+                return false;
+                  
+            }
+        }
+     return true;   
+    }
+    
+    
 }

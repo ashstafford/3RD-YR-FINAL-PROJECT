@@ -36,7 +36,7 @@ public class EditEmailCommand implements Command
            if(newEmail != null)
            {
                
-             boolean updated =  mDao.editUserName(m.getEmail(),newEmail);
+             boolean updated =  mDao.editEmail(m.getEmail(),newEmail);
    
                 if(updated == true)
                 {    

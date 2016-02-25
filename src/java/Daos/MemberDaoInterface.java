@@ -90,5 +90,5 @@ public interface MemberDaoInterface
      */
     public Member findMemberByEmailAddress(String eMail); 
     
-    
+    public boolean editEmail(String email, String newEmail);
 }
