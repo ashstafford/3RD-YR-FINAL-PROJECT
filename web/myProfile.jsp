@@ -18,7 +18,10 @@
                     body 
             {
            
-        background: url("IMG_myProfileBackground.jpg") no-repeat center center fixed; 
+       
+
+background: url("IMG_myProfileBackground.jpg") no-repeat center center fixed; 
+
         -webkit-background-size: cover;
         -moz-background-size: cover;
         -o-background-size: cover;
@@ -88,6 +91,12 @@ div#container
   margin-left  : auto;
   margin-right : auto;
 }
+div#otherButtons
+{
+      left: 69%;
+     font-family: serif;
+     color:#FFFFFF;
+}
 </style>
 
     </head>
@@ -105,22 +114,47 @@ div#container
 
        
       
-       <div id="pagecontent">
+          
          <%  Member m = (Member)session.getAttribute("member"); 
          
         if(m == null)
         {
             
-         %><li><a href="/CA3WebApp/Login.html">Login/Register</a>
-                                                               <%
+         %>
+        
+            <li><a href="/CA3WebApp/Login.html">Login/Register</a>
+            <meta http-equiv="refresh" 
+            content="0; url=Login.html">
+        <%
         
         }
         else
         {
+      
             
-            %><li><a href="MemberActionServlet?action=logout">Logout</a></li>
-                           
+        %>
+            
+           <li><a href="MemberActionServlet?action=logout">Logout</a></li>
+                      
    </ul>
+     </nav> 
+           <div id ="otherButtons"> 
+              
+               
+            <% 
+              // boolean admin = m.isIsAdmin();
+               // if(admin == 1)
+            {
+                %><td><form action = "AddProduct.jsp" method = "post"> <p><input type = "submit" value = "Add Product" /></p></form></td><%
+            }
+
+              out.println("hahaha " + m.isIsAdmin());
+            %>               
+           </div>
+             
+    
+            <div id="pagecontent">
+     
    
             
         <h1> Welcome <%= m.getFirstName() %>! </h1>
@@ -130,11 +164,8 @@ div#container
         <h3> Personal Details </h3>
         <td><p> First Name: <%= m.getFirstName() %></p></td>
         <td><form action = "editFirstName.jsp" method = "post"> <p><input type = "submit" value = "Edit First Name" /></p></form></td>
-        
         <p> Last Name: <%= m.getLastName() %>
         <form action = "EditLastName.jsp" method = "post"> <p><input type = "submit" value = "Edit Last Name" /></p></form>
-        <p> Address: <%= m.getAddress() %></p>
-        <form action = "EditAddress.jsp" method = "post"> <p><input type = "submit" value = "Edit Address" /></p></form>
         <p> Username: <%= m.getUserName() %></p>
         <form action = "EditUserName.jsp" method = "post"> <p><input type = "submit" value = "Edit username" /></p></form>
         <p> Password</p>
@@ -142,7 +173,9 @@ div#container
        
       <%  }
         %>
-    </nav>      
-</div>
+      </div> 
+    </div>
+     
+
     </body>
 </html>

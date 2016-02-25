@@ -43,4 +43,6 @@ public interface ProductDaoInterface
      */
     public ArrayList<Product> getProductsByCategory(String category);
     
+    public boolean addProduct(String productImageUrl,String productName,double productPrice,int quantityInStock,String category);
+    
 }

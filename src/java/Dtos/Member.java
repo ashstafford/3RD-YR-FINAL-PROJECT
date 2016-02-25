@@ -14,10 +14,10 @@ import java.util.Objects;
 public class Member
 {
     private int memberId;
-    private String firstName;
-    private String lastName;
     private String userName;
     private String password;
+    private String firstName;
+    private String lastName;
     private String email;
     private String memberImageUrl;
     private boolean isAdmin;
@@ -27,7 +27,14 @@ public class Member
      */
     public Member()
     {
-        
+        memberId = 2;        
+        firstName = "Ben";
+        lastName = "VanRhee";
+        userName = "bennyboy";
+        password = "password";
+        email = "ben@gmail.com";
+        memberImageUrl = "IMG_TWD1.jpg";
+        isAdmin = false;
     }   
     
     /**
@@ -40,14 +47,13 @@ public class Member
      * @param password
      * 
      */
-    public Member(int memberId, String firstName, String lastName, String userName, String password,String email,String memberImageUrl,boolean isAdmin)
+    public Member(int memberId, String userName, String password,String firstName,String lastName,  String email,String memberImageUrl,boolean isAdmin)
     {
         this.memberId = memberId;
-        this.firstName = firstName;
-        this.lastName = lastName;
-       
         this.userName = userName;
         this.password = password;
+        this.firstName = firstName;
+        this.lastName = lastName;
         this.email = email;
         this.memberImageUrl = memberImageUrl;
         this.isAdmin = isAdmin;
@@ -260,11 +266,14 @@ public class Member
     }
 
     @Override
-    public String toString() 
+    public String toString()
     {
-        return "Member{" + "memberId=" + memberId + ", firstName=" + firstName + ", lastName=" + lastName + ", userName=" + userName + ", password=" + password + ", email=" + email + ", memberImageUrl=" + memberImageUrl + ", isAdmin=" + isAdmin + '}';
+        return "Member{" + "memberId=" + memberId + ", userName=" + userName + ", password=" + password + ", firstName=" + firstName + ", lastName=" + lastName + ", email=" + email + ", memberImageUrl=" + memberImageUrl + ", isAdmin=" + isAdmin + '}';
     }
 
+   
+
+    
    
     
     
