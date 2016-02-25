@@ -12,6 +12,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 
 /**
@@ -89,6 +90,79 @@ public class ProductDao extends Dao implements ProductDaoInterface
         }
         return products;
 
+    }
+    
+    @Override
+    public boolean addProduct(String productImageUrl,String productName,double productPrice,int quantityInStock,String category)  
+    {
+            Connection conn = null;
+            PreparedStatement ps = null;
+            ResultSet generatedKeys = null;
+            int productId = -1;
+            Product p = null;
+            ResultSet rs = null;
+            
+            
+            try 
+            {
+
+                conn = getConnection();
+                String query = "Insert into product (productImageUrl, productName, productPrice,quantityInStock,category) values(?,?,?,?,?)"; 
+                ps = conn.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
+                ps.setString(1, productImageUrl);
+                ps.setString(2, productName);
+                ps.setDouble(3, productPrice);
+                ps.setInt(4, quantityInStock);
+                ps.setString(5,category);
+
+                ps.executeUpdate();  //updates the table
+                
+                generatedKeys = ps.getGeneratedKeys();
+            
+                if(generatedKeys.next())
+                {
+                  productId = generatedKeys.getInt(1);
+                } 
+               
+                p = new Product(productId,productImageUrl,productName,productPrice,quantityInStock,category);
+            } 
+              
+            catch (SQLException e) 
+            {
+                System.out.println("Exception happened in addProduct method");
+                e.getMessage();
+                return false;
+
+            } 
+            
+            finally
+            {
+                try 
+                {
+                    if (rs != null) 
+                    {
+                        rs.close();
+                    }
+                    
+                    if (ps != null) 
+                    {
+                        ps.close();
+                    }
+                    
+                    if (conn != null)
+                    {
+                        conn.close();
+                    }
+
+                }
+                
+                catch (SQLException e) 
+                {
+                    System.out.println("Exception happened in 'finally' part of the addProduct method");
+                    e.getMessage();
+                }
+            }
+         return true;   
     }
     
     /**

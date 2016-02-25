@@ -52,15 +52,15 @@ public class MemberDao extends Dao implements MemberDaoInterface
             while (rs.next())
             {
                 int memberId = rs.getInt("memberId");
-                String firstName = rs.getString("firstName");
-                String lastName = rs.getString("lastName");
                 String userName = rs.getString("userName");
                 String password = rs.getString("password");
+                String firstName = rs.getString("firstName");
+                String lastName = rs.getString("lastName");
                 String email = rs.getString("email");
                 String memberImageUrl = rs.getString("memberImageUrl");
                 boolean isAdmin = rs.getBoolean("isAdmin");
 
-                Member m = new Member(memberId, firstName, lastName,userName, password,email,memberImageUrl,isAdmin);
+                Member m = new Member(memberId,userName, password, firstName, lastName,email,memberImageUrl,isAdmin);
                 member.add(m);
             }
 
@@ -126,10 +126,10 @@ public class MemberDao extends Dao implements MemberDaoInterface
             if (rs.next())
             {
                 int memberId = rs.getInt("memberId");
+                String userName = rs.getString("userName");
+                String password = rs.getString("password");
                 String firstName = rs.getString("firstName");
                 String lastName = rs.getString("lastName");
-                String userName = rs.getString("username");
-                String password = rs.getString("password");
                 String email = rs.getString("email");
                 String memberImageUrl = rs.getString("memberImageUrl");
                 boolean isAdmin = rs.getBoolean("isAdmin");
@@ -199,7 +199,7 @@ public class MemberDao extends Dao implements MemberDaoInterface
              HashPasswordMD5 hp = new HashPasswordMD5();
              String hashedPassword = hp.hashPassword(password);
              
-            String query = "Insert into member(firstName, lastName,userName, password,email,memberImageUrl,isAdmin) values(?,?,?,?,?,?,?)"; //query to insert member info into fields in the members table
+            String query = "Insert into member(userName, password,firstName, lastName,email,memberImageUrl,isAdmin) values(?,?,?,?,?,?,?)"; //query to insert member info into fields in the members table
             
            // Need to get the id back, so have to tell the database to return the id it generates
             ps = con.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
@@ -207,10 +207,10 @@ public class MemberDao extends Dao implements MemberDaoInterface
             System.out.println("hashed password: " + password);
             System.out.println(firstName);
 
-            ps.setString(1, firstName);
-            ps.setString(2, lastName);
-            ps.setString(3, userName);
-            ps.setString(4, password);
+            ps.setString(1, userName);
+            ps.setString(2, password);
+            ps.setString(3, firstName);
+            ps.setString(4, lastName);
             ps.setString(5, email);
             ps.setString(6,memberImageUrl);
             ps.setBoolean(7,isAdmin);
@@ -301,8 +301,8 @@ public class MemberDao extends Dao implements MemberDaoInterface
                 int memberId = rs.getInt("memberId"); //changed
                 String username = rs.getString("userName");
                 String password = rs.getString("password");
+                 String firstname = rs.getString("firstName");
                 String lastname = rs.getString("lastName");
-                String firstname = rs.getString("firstName");
                 String email = rs.getString("email");
                 String memberImageUrl = rs.getString("memberImageUrl");
                 boolean isAdmin = rs.getBoolean("isAdmin");
@@ -310,7 +310,7 @@ public class MemberDao extends Dao implements MemberDaoInterface
                if(hashedPassword.equals(password))
                {    
 
-                m = new Member(memberId,username, password, lastname, firstname, email,memberImageUrl,isAdmin);
+                m = new Member(memberId,username, password, firstname, lastname, email,memberImageUrl,isAdmin);
      
                }
 

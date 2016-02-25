@@ -99,7 +99,7 @@ public class MemberTest {
     public void testGetLastName() {
         System.out.println("getLastName");
         Member instance = new Member();
-        String expResult = "Van Rhee";
+        String expResult = "VanRhee";
         String result = instance.getLastName();
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.

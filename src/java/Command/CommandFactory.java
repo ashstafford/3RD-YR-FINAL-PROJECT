@@ -41,6 +41,10 @@ public class CommandFactory
         {
     		command = new ViewProfileCommand();
     	}
+        if (commandStr.equals("AddProduct")) 
+        {
+    		command = new AddProductCommand();
+    	}
         if (commandStr.equals("ViewAllProducts")) 
         {
     		command = new ViewAllProductsCommand();
