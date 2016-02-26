@@ -102,8 +102,8 @@ public class ProductDaoTest
         System.out.println("findProductByTitle");
         String title = "DOCTOR WHO TARDIS HOODY";
         ProductDao instance = new ProductDao();
-        Product expResult = instance.findProductByTitle(title);
-        Product result = instance.findProductByTitle(title);
+        ArrayList<Product> expResult = instance.findProductsByTitle(title);
+        ArrayList<Product> result = instance.findProductsByTitle(title);
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
    
@@ -113,7 +113,8 @@ public class ProductDaoTest
      * Test of findProductById method, of class ProductDao.
      */
     @Test
-    public void testFindProductById() {
+    public void testFindProductById() 
+    {
         System.out.println("findProductById");
         int id = 0;
         ProductDao instance = new ProductDao();

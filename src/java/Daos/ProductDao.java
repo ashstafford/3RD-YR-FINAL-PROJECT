@@ -296,7 +296,7 @@ public class ProductDao extends Dao implements ProductDaoInterface
             }
              
             
-                System.out.println("haha" + prod);
+                //System.out.println("haha" + prod);
             
           } 
             

@@ -174,7 +174,7 @@ div#otherButtons
         <p> Email: <%= m.getEmail() %></p>
         <form action = "EditEmail.jsp" method = "post"> <p><input type = "submit" value = "Edit Email" /></p></form>
         <p> profile picture <%= m.getMemberImageUrl() %></p>
-        <form action = "EditUserName.jsp" method = "post"> <p><input type = "submit" value = "Edit profile image url" /></p></form>
+        <form action = "EditMemberImageUrl.jsp" method = "post"> <p><input type = "submit" value = "Edit MemberImageUrl" /></p></form>
         
        
       <%  }

@@ -105,7 +105,7 @@ public class CommandFactory
         {
     		command = new EditEmailCommand();
     	}
-        if (commandStr.equals("Edit Member Image Url")) 
+        if (commandStr.equals("Edit MemberImageUrl")) 
         {
     		command = new EditMemberImageUrlCommand();
     	}
