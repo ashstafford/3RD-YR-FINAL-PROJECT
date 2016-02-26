@@ -115,7 +115,7 @@ div#container
                 <td></td>
                 <td></td>
                 <td></td>
-                <td><p>Price: €<%=p.getPrice()%></p></td>
+                <td><p>Price: €<%=p.getProductPrice()%></p></td>
        </div>
    </div>
     </body>

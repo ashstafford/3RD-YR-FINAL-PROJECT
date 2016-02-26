@@ -29,6 +29,7 @@ public class SearchItemCommand implements Command
         String forwardToJsp;
         
         String Sitem = request.getParameter("searchName");
+        System.out.println("Search item command " + Sitem);
         
         ProductDao pDao = new ProductDao();
         
@@ -36,6 +37,7 @@ public class SearchItemCommand implements Command
         {
             Product p = pDao.findProductByTitle(Sitem);
             
+            System.out.println("product: " + p);
             if(p != null)
             {
                     HttpSession session = request.getSession();

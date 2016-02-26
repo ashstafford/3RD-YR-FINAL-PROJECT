@@ -3,13 +3,13 @@
     Created on : 13-Dec-2015, 18:24:37
     Author     : Aisling
 --%>
-
+<%@page import="Dtos.Product"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>item not found/title>
+        <title>item not found</title>
             <style>
                 body 
   {

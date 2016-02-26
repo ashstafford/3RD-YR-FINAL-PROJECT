@@ -109,7 +109,7 @@ public class CommandFactory
         {
     		command = new EditMemberImageUrlCommand();
     	}
-        if (commandStr.equals("SearchItem")) 
+        if (commandStr.equalsIgnoreCase("searchName")) 
         {
     		command = new SearchItemCommand();
     	}  
