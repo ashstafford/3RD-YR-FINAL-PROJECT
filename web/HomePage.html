@@ -27,6 +27,7 @@ and open the template in the editor.
   color:#ffffff;
   text-decoration: none;
   color: black;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 .navigation a:hover {
@@ -103,7 +104,7 @@ and open the template in the editor.
                 </ul>-->
                     
                 <ul class="navigation">
-                    <li><a href="/CA3WebApp/Login.html">My Account</a></li>
+                    <li><a href="MemberActionServlet?action=viewProfile">My Profile</a></li>
                     <li><a href="/CA3WebApp/Login.html">Login</a></li>
                     <li><a href="/CA3WebApp/Login.html">Sign Up</a></li>
                 </ul>
@@ -125,7 +126,18 @@ and open the template in the editor.
         <li> <a href="/CA3WebApp/ContactUs.jsp">Contact</a> </li>
         <li> <a href="/CA3WebApp/Cart.jsp">Cart</a> </li>
         
+        <div id="searchbar">
+        <form  action = "MemberActionServlet" method = "post" >
+               <p><td> <input name="searchName" size=30 type="text" />  
+                 <input type="hidden" name="action" value="searchName" />
+                 <input type="submit" value="Search"/>
+               </p>
+         </form>
+         </div>
+        
     </ul>
+           
+           
 </nav>
             
             
@@ -190,8 +202,8 @@ and open the template in the editor.
     </li>
 </ul>
                 
-                <div class="view view-first">  
-     <img src="swLogo.png" />  
+     <div class="view view-first">  
+     <img src="starwars_homepage.jpg" />  
      <div class="mask">  
      <h2>Starwars Merchandise</h2>  
      <p>Get all your unique Starwars merchandise at a great price!</p>  
@@ -202,27 +214,27 @@ and open the template in the editor.
 	 <div class="view2 view-first">  
      <img src="deadpool_homepage.jpg" />  
      <div class="mask">  
-     <h2>Deadpool</h2>  
+     <h2>Marvel</h2>  
      <p>This is the most popular movie at the minute, so get your Merch now at a great price</p>  
          <a href="/CA3WebApp/CategorySelection.html" class="info">Shop Now</a>  
      </div>
 	 </div>
                 
             
-            <div class="view3 view-first">  
-     <img src="dcLogo.jpg" />  
+        <div class="view3 view-first">  
+     <img src="dc_homepage.jpg" />  
      <div class="mask">  
-     <h2>All Products</h2>  
+     <h2>DC Comics</h2>  
      <p>In our store we have a huge range of products at a great price! Shop now!</p>  
          <a href="/CA3WebApp/CategorySelection.html" class="info">Shop Now</a>  
      </div> 
 	</div>
 	
 	<div class="view4 view-first">  
-     <img src="dLogo.jpg" />  
+     <img src="disney_homepage.jpg" />  
      <div class="mask">  
-     <h2>About or Store</h2>  
-     <p>Need to find out information about our website and our products! Click here</p>  
+     <h2>Disney</h2>  
+     <p>This is a very popular theme within our store, we have great quality products so have a look here! Click here</p>  
          <a href="/CA3WebApp/CategorySelection.html" class="info">Shop Now</a>  
      </div> 
 	</div>
@@ -230,10 +242,10 @@ and open the template in the editor.
 </div>
         
  
- <!--</div>
+
     <div id="copyright">
 	
-  
+        
 
 <!--<ul class="social-icons shadow">
   <li class="tab">

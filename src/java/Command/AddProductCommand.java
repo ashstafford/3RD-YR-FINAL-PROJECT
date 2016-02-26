@@ -27,14 +27,14 @@ public class AddProductCommand implements Command
 
              ProductDao pDao = new ProductDao();
              
-//             String regexUsername = "[a-zA-Z0-9]{4,}";
-//             String regexPrice = "[0-9]{1,}";
-//             String regexEmail = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
-//		+ "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
+//             
+             
+                String regexPrice = "^[0-9]+(\\.[0-9]{2})";
+                String regexQuantityInStock = "^[0-9]+";
 //         
-//             boolean passValid = false;
-//             boolean userValid = false;
-//             boolean emailValid = false;
+//             
+               boolean priceValid = false;
+               boolean quantityInStockValid = false;
           
             
              String productName = request.getParameter("productName");
@@ -45,24 +45,17 @@ public class AddProductCommand implements Command
              int quantity = Integer.parseInt(quantityInStock);
              
              String category = request.getParameter("category");
-             String productImageUrl = request.getParameter("productImageUrl");
-//              System.out.println("name " + productName);
-//              System.out.println("p price " + productPrice);
-//              System.out.println("price " + price);
-//              System.out.println("quantity in stock " + quantityInStock);
-//              System.out.println("category " + category);
-//              System.out.println("productImageUrl " + productImageUrl);
-            
-             
-//             if(userName.matches(regexUsername) && password.matches(regexPass) && email.matches(regexEmail))
-//             {
-//                 userValid = true;
-//                 passValid = true;
-//                 emailValid = true;
-//             }
+             String productImageUrl = request.getParameter("productImageUrl"); //Needs Validation
+//              
+ 
+             if(productPrice.matches(regexPrice) && quantityInStock.matches(regexQuantityInStock))
+             {
+                 priceValid = true;
+                 quantityInStockValid = true;
+             }
 
-             if (productName != null && category != null && productImageUrl != null && !productName.isEmpty() 
-                 && !category.isEmpty() && !productImageUrl.isEmpty())
+             if (productName != null && category != null && productImageUrl != null && priceValid != false && quantityInStockValid != false &&
+                     !productName.isEmpty() && !category.isEmpty() && !productImageUrl.isEmpty() && !productPrice.isEmpty() && !quantityInStock.isEmpty() )
              {
   
                   boolean productAdded = pDao.addProduct(productImageUrl,productName, price, quantity, category);

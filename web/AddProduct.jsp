@@ -107,7 +107,7 @@ div#container
                         <td></td>
                     </tr>
                     <tr>
-                        <td> Price  : </td><td> <input name="productPrice" placeholder="MUST be at least 8 characters " size=25 type="text" /> </td> 
+                        <td> Price  : </td><td> <input name="productPrice" placeholder="0.00" size=25 type="text" /> </td> 
                     </tr>
                      <tr>
                         <td> Quantity in Stock  : </td><td> <input name="quantityInStock" size=25 type="text" /> </td> 
