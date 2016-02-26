@@ -267,18 +267,20 @@ public class ProductDao extends Dao implements ProductDaoInterface
             ResultSet rs = null;
             
            Product prod = null; 
-            
+           System.out.println("Prod dao: " + title);
             try 
             {
                      
                 conn = getConnection();
-                String query = "select * from product where productName=?";
+                String query = "select * from product where productName like ?";
                 ps = conn.prepareStatement(query);
                 
-                ps.setString(1, title);
+                
+                ps.setString(1, title + "%" );
 
                 rs = ps.executeQuery();
                 
+             ArrayList<Product> products = new ArrayList<>();
              while (rs.next()) 
              {
                  prod = new Product(
@@ -288,8 +290,12 @@ public class ProductDao extends Dao implements ProductDaoInterface
                  rs.getDouble("productPrice"),
                  rs.getInt("quantityInStock"),
                  rs.getString("category"));
-                  
+                 products.add(prod);
+                 
             }
+             
+            
+                System.out.println("haha" + prod);
             
           } 
             
