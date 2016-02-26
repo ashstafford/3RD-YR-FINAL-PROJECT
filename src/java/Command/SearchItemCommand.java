@@ -7,6 +7,7 @@ package Command;
 
 import Daos.ProductDao;
 import Dtos.Product;
+import java.util.ArrayList;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -33,16 +34,18 @@ public class SearchItemCommand implements Command
         
         ProductDao pDao = new ProductDao();
         
+        ArrayList<Product> products = new ArrayList<>();
+        
         if(Sitem != null)
         {
-            Product p = pDao.findProductByTitle(Sitem);
+             products = pDao.findProductsByTitle(Sitem);
             
-            System.out.println("product: " + p);
-            if(p != null)
+        
+            if(products != null)
             {
                     HttpSession session = request.getSession();
 
-                    session.setAttribute("searchitem", p);
+                    session.setAttribute("searchitem", products);
 
                     forwardToJsp = "/SearchItemResults.jsp";
             }

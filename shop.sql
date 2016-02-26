@@ -14,10 +14,10 @@ isAdmin boolean,
 primary key(memberId))ENGINE=INNODB;
 
 create table product(
-productId int(20) not null,
+productId int(20) not null AUTO_INCREMENT,
 productImageUrl varchar(500),
 productName varchar(100) not null,
-productPrice double(20) not null,
+productPrice decimal(20) not null,
 quantityInStock int(50) not null,
 category varchar(20) not null, 
 primary key(productId));

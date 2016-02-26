@@ -173,7 +173,7 @@ select#soflow-color {
                 <td></td>
                 <td></td>
                 <td></td>
-                <td>Quantity in stock: <%prod.getQuantityInStock(); %></td>
+                <td>Quantity in stock: <%=prod.getQuantityInStock()%></td>
                 <td></td>
                 <td></td>
                 <td></td>

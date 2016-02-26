@@ -27,7 +27,7 @@ public interface ProductDaoInterface
      * @param title
      * @return
      */
-    public Product findProductByTitle(String title);
+    public ArrayList<Product> findProductsByTitle(String title);
 
     /**
      *

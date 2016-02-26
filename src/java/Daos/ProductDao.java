@@ -260,7 +260,7 @@ public class ProductDao extends Dao implements ProductDaoInterface
      * @return
      */
     @Override
-    public Product findProductByTitle(String title)   //takes in title and returns all details about that product
+    public ArrayList<Product> findProductsByTitle(String title)   //takes in title and returns all details about that product
     {
             Connection conn = null;
             PreparedStatement ps = null;
@@ -268,6 +268,7 @@ public class ProductDao extends Dao implements ProductDaoInterface
             
            Product prod = null; 
            System.out.println("Prod dao: " + title);
+           ArrayList<Product> products = new ArrayList<>();
             try 
             {
                      
@@ -276,11 +277,11 @@ public class ProductDao extends Dao implements ProductDaoInterface
                 ps = conn.prepareStatement(query);
                 
                 
-                ps.setString(1, title + "%" );
+                ps.setString(1, "%" + title + "%" );
 
                 rs = ps.executeQuery();
                 
-             ArrayList<Product> products = new ArrayList<>();
+             
              while (rs.next()) 
              {
                  prod = new Product(
@@ -333,7 +334,7 @@ public class ProductDao extends Dao implements ProductDaoInterface
                 }
             }
             
-        return prod;    
+        return products;    
     }   
 
     /**

@@ -4,11 +4,21 @@
     Author     : Aisling
 --%>
 
+<%@page import="java.util.List"%>
 <%@page import="Dtos.Product"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
+        
+        <script>
+    function goBack()
+    {             
+
+
+        window.history.back();
+    }
+</script>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Product Search Results</title>
         <style>        
@@ -103,11 +113,31 @@ div#container
   </nav>
        <div id="pagecontent">
            
-         <% Product p = (Product)session.getAttribute("searchitem"); %>
+           
+         <% List<Product> products;
+                    products = (List) (request.getSession().getAttribute("searchitem"));
+                    
+                    if (products != null) 
+                    { 
+                        
+                        for (Product prod : products) 
+                        {
+                %>
          
-         <img src="<%=p.getProductImageUrl()%>" style="width: 300px; height: 300px;"></td>
-                <td><%=p.getProductName()%></td>
-                <td><% out.println("\t\t"); %><td>
+        <tr>
+                
+                <td><img src="<%=prod.getProductImageUrl()%>" style="width: 300px; height: 250px;"></td>
+                <td><%=prod.getProductName()%></td>
+                <td><% out.println("\t\t"); %></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>Quantity in stock: <%=prod.getQuantityInStock() %></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>Price: €<%=prod.getProductPrice()%></p></td>
                 <td></td>
                 <td></td>
                 <td></td>
@@ -115,8 +145,17 @@ div#container
                 <td></td>
                 <td></td>
                 <td></td>
-                <td><p>Price: €<%=p.getProductPrice()%></p></td>
+                
+                         <%
+                    }
+                }
+                else
+                    {
+                        out.println("sorry not found!!");
+                    }        
+            %>
        </div>
    </div>
+       <button onclick="goBack()">Go Back</button>
     </body>
 </html>
