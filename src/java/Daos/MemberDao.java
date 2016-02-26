@@ -275,8 +275,7 @@ public class MemberDao extends Dao implements MemberDaoInterface
            // Need to get the id back, so have to tell the database to return the id it generates
             ps = con.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
             
-            System.out.println("hashed password: " + password);
-            System.out.println(firstName);
+            
 
             ps.setString(1, userName);
             ps.setString(2, password);

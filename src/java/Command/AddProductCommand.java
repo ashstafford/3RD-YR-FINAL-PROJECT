@@ -46,8 +46,13 @@ public class AddProductCommand implements Command
              
              String category = request.getParameter("category");
              String productImageUrl = request.getParameter("productImageUrl");
+//              System.out.println("name " + productName);
+//              System.out.println("p price " + productPrice);
+//              System.out.println("price " + price);
+//              System.out.println("quantity in stock " + quantityInStock);
+//              System.out.println("category " + category);
+//              System.out.println("productImageUrl " + productImageUrl);
             
-             boolean productAdded = false;
              
 //             if(userName.matches(regexUsername) && password.matches(regexPass) && email.matches(regexEmail))
 //             {
@@ -59,17 +64,23 @@ public class AddProductCommand implements Command
              if (productName != null && category != null && productImageUrl != null && !productName.isEmpty() 
                  && !category.isEmpty() && !productImageUrl.isEmpty())
              {
-                 
-                  pDao.addProduct(productImageUrl,productName, price, quantity, category);
+  
+                  boolean productAdded = pDao.addProduct(productImageUrl,productName, price, quantity, category);
                 
-                 
-                  session = request.getSession();
+                  if(productAdded == true)
+                  {
+                    session = request.getSession();
                   
-                  session.setAttribute("productAdded", true);
-                  
-
-//                  forwardToJsp = "/AddProduct.jsp";
+                    session.setAttribute("productAdded", true);
+                    
                     forwardToJsp = "/CategorySelection.html";
+                  } 
+                  else
+                  {
+                      forwardToJsp = "/RegisterFailure.jsp";
+                  }    
+                    //forwardToJsp = "/AddProduct.jsp";
+                    
                 
              } 
              else

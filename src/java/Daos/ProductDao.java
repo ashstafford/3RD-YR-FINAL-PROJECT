@@ -12,6 +12,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Types;
 import java.sql.Statement;
 import java.util.ArrayList;
 
@@ -99,40 +100,53 @@ public class ProductDao extends Dao implements ProductDaoInterface
             PreparedStatement ps = null;
             ResultSet generatedKeys = null;
             int productId = -1;
-            Product p = null;
+            //Product p = null;
             ResultSet rs = null;
             
+              System.out.println("name " + productName);
+              System.out.println("p price " + productPrice);
+      
+              System.out.println("quantity in stock " + quantityInStock);
+              System.out.println("category " + category);
+              System.out.println("productImageUrl " + productImageUrl);
             
             try 
             {
 
                 conn = getConnection();
-                String query = "Insert into product (productImageUrl, productName, productPrice,quantityInStock,category) values(?,?,?,?,?)"; 
+                System.out.println("addProduct: conn="+conn);
+                String query = "Insert into product (productId,productImageUrl,productName, productPrice,quantityInStock,category) values(?,?,?,?,?,?)"; 
                 ps = conn.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
-                ps.setString(1, productImageUrl);
-                ps.setString(2, productName);
-                ps.setDouble(3, productPrice);
-                ps.setInt(4, quantityInStock);
-                ps.setString(5,category);
-
-                ps.executeUpdate();  //updates the table
+                
+                ps.setNull (1,Types.INTEGER);   // for auto increment
+                ps.setString(2, productImageUrl);
+                ps.setString(3, productName);
+                ps.setDouble(4, productPrice);
+                ps.setInt(5, quantityInStock);
+                ps.setString(6,category);
+                
+                int i = ps.executeUpdate();  //updates the table
                 
                 generatedKeys = ps.getGeneratedKeys();
             
                 if(generatedKeys.next())
                 {
-                  productId = generatedKeys.getInt(1);
-                } 
-               
-                p = new Product(productId,productImageUrl,productName,productPrice,quantityInStock,category);
+                   productId = generatedKeys.getInt(1);
+                }
+                if(i == 0)
+                {
+                    return false;
+                }
+       
+                //p = new Product(productId,productImageUrl,productName,productPrice,quantityInStock,category);
             } 
               
             catch (SQLException e) 
             {
                 System.out.println("Exception happened in addProduct method");
-                e.getMessage();
-                return false;
-
+                System.out.println("adProduct: exception message = "+e.getMessage());
+                
+                //return false;
             } 
             
             finally

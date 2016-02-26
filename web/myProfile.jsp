@@ -13,7 +13,7 @@
         <title>My Profile</title>
         
         
-                <style>
+            <style>
 
                     body 
             {
@@ -147,8 +147,7 @@ div#otherButtons
             {
                 %><td><form action = "AddProduct.jsp" method = "post"> <p><input type = "submit" value = "Add Product" /></p></form></td><%
             }
-
-              out.println("hahaha " + m.isAdmin());
+            
             %>               
            </div>
              
@@ -175,7 +174,7 @@ div#otherButtons
         <p> Email: <%= m.getEmail() %></p>
         <form action = "EditEmail.jsp" method = "post"> <p><input type = "submit" value = "Edit Email" /></p></form>
         <p> profile picture <%= m.getMemberImageUrl() %></p>
-        <form action = "EditUserName.jsp" method = "post"> <p><input type = "submit" value = "Edit username" /></p></form>
+        <form action = "EditUserName.jsp" method = "post"> <p><input type = "submit" value = "Edit profile image url" /></p></form>
         
        
       <%  }
