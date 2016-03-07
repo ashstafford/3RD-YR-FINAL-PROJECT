@@ -145,7 +145,9 @@ div#otherButtons
                
             if(m.isAdmin())
             {
-                %><td><form action = "AddProduct.jsp" method = "post"> <p><input type = "submit" value = "Add Product" /></p></form></td><%
+                %><td><form action = "AddProduct.jsp" method = "post"> <p><input type = "submit" value = "Add Product" /></p></form></td>
+                  <td><form action = "MemberActionServlet" method = "post">  <input type="hidden" name="action" value ="ViewAllProducts"> <p><input type = "submit" value = "Edit Product" /></p></form></td>
+                <%
             }
             
             %>               
