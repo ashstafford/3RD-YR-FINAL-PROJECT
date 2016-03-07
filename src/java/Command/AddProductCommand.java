@@ -27,14 +27,14 @@ public class AddProductCommand implements Command
 
              ProductDao pDao = new ProductDao();
              
-//             
              
-                String regexPrice = "^[0-9]+(\\.[0-9]{2})";
-                String regexQuantityInStock = "^[0-9]+";
-//         
-//             
-               boolean priceValid = false;
-               boolean quantityInStockValid = false;
+             
+             String regexPrice = "^[0-9]+(\\.[0-9]{2})"; //begining of string
+             String regexQuantityInStock = "^\\d+";
+
+                
+             boolean priceValid = false;
+             boolean quantityInStockValid = false;
           
             
              String productName = request.getParameter("productName");
@@ -46,7 +46,7 @@ public class AddProductCommand implements Command
              
              String category = request.getParameter("category");
              String productImageUrl = request.getParameter("productImageUrl"); //Needs Validation
-//              
+             
  
              if(productPrice.matches(regexPrice) && quantityInStock.matches(regexQuantityInStock))
              {

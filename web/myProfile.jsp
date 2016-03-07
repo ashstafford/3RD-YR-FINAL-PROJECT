@@ -11,107 +11,143 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>My Profile</title>
+        <link rel="stylesheet" type="text/css" href="mainCSS.css" >
         
         
             <style>
-
-                    body 
-            {
-           
-       
-
-background: url("IMG_myProfileBackground.jpg") no-repeat center center fixed; 
-
-        -webkit-background-size: cover;
-        -moz-background-size: cover;
-        -o-background-size: cover;
-        background-size: cover;
-            }            
-.topmenu
-
-ul {
-    position: relative;
-    list-style-type: none;
-    margin: 10px;
-    padding: 0;
-    overflow: hidden;	
-    left:10%;
-	
-	
-}
-
-
-.topmenu li
-
-{
-	float :left;
-        position: relative;
-	padding: 0;
-	width: 200px;
-	line-height: 250%;
-	z-index: 1000;
-	
-}
-
-
-
-a:link, a:visited {
-    display: block;
-    width: 200px;
-    font-weight: bold;
-    color: #FFFFFF;
-    background-color:#000000;
-    text-align: center;
-    padding: 4px;
-    text-decoration: none;
-    text-transform: uppercase;
-}
-
-a:hover, a:active 
-{
-    background-color:#666666
-	
-}
-
-div#pagecontent
-{
     
-  min-height: 1500px;
-  padding: 50px;
-  left: 20%;
-  bottom: 50%;
-  font-family: serif;
-  color:#FFFFFF;
-}
-
-div#container
-{
-  position     : relative;
-  width        : 85%;
-  margin-left  : auto;
-  margin-right : auto;
-}
 div#otherButtons
 {
-      left: 69%;
+     left: 69%;
      font-family: serif;
      color:#FFFFFF;
+     padding-bottom: 300px;
+}                
+div#editButtons
+{
+     padding-left: 100px;
+     padding-top: 30px;
 }
+div#profilePicture
+{
+    padding-left: 70px;
+    padding-top:50px;
+    float :left;
+    clear: left;
+}
+
+div#profileDetails
+{
+    padding-left: 500px;
+    
+}
+
+.imageBorder
+{
+    border-width: 1px;
+    border-color: Black;
+}
+
+div#profilePicButton
+{
+    padding-left: 500px;
+    padding-top: 22px;
+    
+}
+
+h1
+{
+    padding-top: 30px;
+    padding-left: 500px;
+}
+
+h2
+{
+    padding-left: 100px;
+}
+h3
+{
+    padding-left: 500px;
+}
+ .navigation 
+ {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  background:#FFFFFF;
+  display: flex;
+  justify-content: flex-end;
+  color: black;
+}
+
+.navigation a 
+{
+  display: block;
+  padding: 1em;
+  color:#ffffff;
+  text-decoration: none;
+  color: black;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.navigation a:hover 
+{
+  background:#e6e6e6;
+  border-bottom-right-radius   : 10px;
+  border-bottom-left-radius: 10px;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+/* spreads navigation to "full-width", fills space around child items
+@media all and (max-width: 800px) 
+{
+  .navigation 
+  {
+    justify-content: space-around;
+  }
+}
+
+/* collapses navigation into a multi-row navigation on mobile screens
+@media all and (max-width: 600px) 
+{
+  .navigation 
+  {
+    padding: 0;
+    flex-direction: column;
+  }
+  
+  .navigation a 
+  {
+    padding: 1em;
+    text-align: center;
+    border-top: 1px solid rgba(255, 255, 255, 0.2); 
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2); 
+  }
+    
+  .navigation li:last-of-type a 
+  {
+    border-bottom: none;
+  }
+}
+
+
+
+
 </style>
 
     </head>
+   
+    
+    
     <body>
         
    <div id="container">  
           <nav class = "topmenu">
- <ul>
-      
-	<li><a href="/CA3WebApp/CategorySelection.html">Shop</a>
-	<li><a href="/CA3WebApp/Cart.jsp">Cart</a>
-	
-        <li><a href="MemberActionServlet?action=viewProfile">My Profile</a>
-        <li><a href="MemberActionServlet?action=ViewPreviousOrders">View Orders</a>   
-
+            <ul class="navigation">
+                    <li><a href="MemberActionServlet?action=viewProfile">My Profile</a></li>
+                    
+            
        
       
           
@@ -122,9 +158,13 @@ div#otherButtons
             
          %>
         
-            <li><a href="/CA3WebApp/Login.html">Login/Register</a>
+         <li><a href="/CA3WebApp/Login.html">Login</a></li>
             <meta http-equiv="refresh" 
             content="0; url=Login.html">
+            
+        <li><a href="/CA3WebApp/Login.html">Sign Up</a></li>
+        <meta http-equiv="refresh" 
+        content="0; url=Login.html">
         <%
         
         }
@@ -138,7 +178,85 @@ div#otherButtons
                       
    </ul>
      </nav> 
-           <div id ="otherButtons"> 
+        
+        <div id="banner">
+                <img src="bannerTemp.gif"/>
+            </div>
+  
+       <nav class="menu-1">
+    <ul class="menu">
+        <li> <a href="/CA3WebApp/HomePage.html">Home</a> </li>
+        <li> <a href="/CA3WebApp/CategorySelection.html">Shop</a> </li>
+        <li> <a href="/CA3WebApp/About.jsp">About</a> </li>
+        
+        <li> <a href="MemberActionServlet?action=ViewPreviousOrders">View Orders</a> </li>
+        
+        <li> <a href="/CA3WebApp/ContactUs.jsp">Contact</a> </li>
+        <li> <a href="/CA3WebApp/Cart.jsp">Cart</a> </li>
+        
+        <div id="searchbar">
+        <form  action = "MemberActionServlet" method = "post" >
+               <p><td> <input name="searchName" size=30 type="text" />  
+                 <input type="hidden" name="action" value="searchName" />
+                 <input type="submit" value="Search"/>
+               </p>
+        </form>
+        </div>
+        
+    </ul>
+           
+           
+</nav>
+        
+ 
+            <div id="pagecontent2">
+  
+        <div id="profilePicture">
+        <img src="<%=m.getMemberImageUrl()%>" class="imageBorder" style="width: 350px; height: 300px;">
+        </div>
+        
+        
+        
+        <h1> WELCOME <%= m.getFirstName().toUpperCase() %>! </h1>
+        
+        
+        <h3> Personal Details </h3>
+        <div id="profileDetails">
+        <p> First Name : <%= "   " +m.getFirstName() %></p>
+        <p> Last Name  : <%= "   " +m.getLastName() %>
+        <p> Username   : <%= "   " +m.getUserName() %></p>
+        <p> Email      : <%= "   " +m.getEmail() %></p>
+        </div>
+        
+        <div id="profilePicButton">
+        <form action = "EditMemberImageUrl.jsp" method = "post"> <p><input type = "submit"  value = "Change Profile Picture" /></p></form>
+        </div>
+        
+        <br>
+        <br>
+        <hr>
+        <br>
+        <br>
+        
+        <h2>CHANGE YOUR PERSONAL DETAILS </h2>
+        
+        <div id="editButtons">
+        <td><form action = "editFirstName.jsp" method = "post"> <p><input type = "submit" style="width:300px; height: 35px;" value = "Change First Name" /></p></form></td>
+        
+        <form action = "EditLastName.jsp" method = "post"> <p><input type = "submit" style="width:300px; height: 35px;" value = "Change Last Name" /></p></form>
+        
+        <form action = "EditUserName.jsp" method = "post"> <p><input type = "submit" style="width:300px; height: 35px;"  value = "Change Username" /></p></form>
+        
+        <form action = "EditPassword.jsp" method = "post"> <p><input type = "submit" style="width:300px; height: 35px;" value = "Change Password" /></p></form>
+        
+        <form action = "EditEmail.jsp" method = "post"> <p><input type = "submit" style="width:300px; height: 35px;"  value = "Change Email Address" /></p></form>
+        </div>
+        
+        <br>
+        <br>
+        
+        
+        <div id ="otherButtons"> 
               
                
             <% 
@@ -149,33 +267,7 @@ div#otherButtons
             }
             
             %>               
-           </div>
-             
-    
-            <div id="pagecontent">
-     
-   
-            
-        <h1> Welcome <%= m.getFirstName() %>! </h1>
-        
-        <td><img src="<%=m.getMemberImageUrl()%>" style="width: 300px; height: 250px;"></td>  
-        
-       
-
-        <h3> Personal Details </h3>
-        <td><p> First Name: <%= m.getFirstName() %></p></td>
-        <td><form action = "editFirstName.jsp" method = "post"> <p><input type = "submit" value = "Edit First Name" /></p></form></td>
-        <p> Last Name: <%= m.getLastName() %>
-        <form action = "EditLastName.jsp" method = "post"> <p><input type = "submit" value = "Edit Last Name" /></p></form>
-        <p> Username: <%= m.getUserName() %></p>
-        <form action = "EditUserName.jsp" method = "post"> <p><input type = "submit" value = "Edit username" /></p></form>
-        <p> Password</p>
-        <form action = "EditPassword.jsp" method = "post"> <p><input type = "submit" value = "Edit password" /></p></form>
-        <p> Email: <%= m.getEmail() %></p>
-        <form action = "EditEmail.jsp" method = "post"> <p><input type = "submit" value = "Edit Email" /></p></form>
-        <p> profile picture <%= m.getMemberImageUrl() %></p>
-        <form action = "EditMemberImageUrl.jsp" method = "post"> <p><input type = "submit" value = "Edit MemberImageUrl" /></p></form>
-        
+        </div>
        
       <%  }
         %>
