@@ -701,9 +701,9 @@ public class MemberDao extends Dao implements MemberDaoInterface
         }
      return true;   
     }
-    
+    //userid
     @Override
-    public boolean editMemberImageUrl(String memberImageUrl, String newMemberImageUrl) 
+    public boolean editMemberImageUrl(int memberId, String newMemberImageUrl) 
     {
         Connection conn = null;
         PreparedStatement ps = null;
@@ -713,10 +713,10 @@ public class MemberDao extends Dao implements MemberDaoInterface
         {
 
             conn = getConnection();
-            String query = "Update member set memberImageUrl =? where memberImageUrl=?";
+            String query = "Update member set memberImageUrl =? where memberId=?";
             ps = conn.prepareStatement(query);
             ps.setString(1, newMemberImageUrl);
-            ps.setString(2, memberImageUrl);
+            ps.setInt(2, memberId);
 
             ps.executeUpdate();
 

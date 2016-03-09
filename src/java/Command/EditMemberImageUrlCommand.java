@@ -36,7 +36,7 @@ public class EditMemberImageUrlCommand implements Command
            if(newMemberImageUrl != null)
            {
                
-             boolean updated =  mDao.editMemberImageUrl(m.getMemberImageUrl(),newMemberImageUrl);
+             boolean updated =  mDao.editMemberImageUrl(m.getMemberId(),newMemberImageUrl);
    
                 if(updated == true)
                 {    

@@ -9,7 +9,7 @@ lastName varchar(20) not null,
 userName varchar(20) not null,
 password varchar(20) not null,
 email varchar(40) not null,
-memberImageUrl varchar(500) not null,
+memberImageUrl varchar(1000) not null,
 isAdmin boolean,
 primary key(memberId))ENGINE=INNODB;
 

@@ -92,7 +92,7 @@ public interface MemberDaoInterface
     
     public boolean editEmail(String email, String newEmail);
     
-    public boolean editMemberImageUrl(String memberImageUrl, String newMemberImageUrl);
+    public boolean editMemberImageUrl(int memberId, String newMemberImageUrl);
     
     
     

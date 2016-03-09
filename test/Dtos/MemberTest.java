@@ -122,35 +122,7 @@ public class MemberTest {
        // fail("The test case is a prototype.");
     }
 
-    /**
-     * Test of getAddress method, of class Member.
-     */
-//    @Test
-//    public void testGetAddress() {
-//        System.out.println("getAddress");
-//        Member instance = new Member();
-//        String expResult = "Tipperary";
-//        String result = instance.getAddress();
-//        assertEquals(expResult, result);
-//        // TODO review the generated test code and remove the default call to fail.
-//       // fail("The test case is a prototype.");
-//    }
-//
-//    /**
-//     * Test of setAddress method, of class Member.
-//     */
-//    @Test
-//    public void testSetAddress() {
-//        System.out.println("setAddress");
-//         //creates new instance of member
-//        Member instance = new Member();
-//        //sets it to...
-//        instance.setAddress("Tipperary");
-//        //expected result
-//        assertEquals("Tipperary", instance.getAddress());
-//        // TODO review the generated test code and remove the default call to fail.
-//       // fail("The test case is a prototype.");
-//    }
+    
 
     /**
      * Test of getUserName method, of class Member.

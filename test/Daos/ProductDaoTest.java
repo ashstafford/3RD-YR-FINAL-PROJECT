@@ -28,6 +28,22 @@ public class ProductDaoTest
     {
         
     }
+
+    @BeforeClass
+    public static void setUpClass() throws Exception {
+    }
+
+    @AfterClass
+    public static void tearDownClass() throws Exception {
+    }
+
+    @Before
+    public void setUp() throws Exception {
+    }
+
+    @After
+    public void tearDown() throws Exception {
+    }
     
 //    /**
 //     *
@@ -124,5 +140,58 @@ public class ProductDaoTest
         // TODO review the generated test code and remove the default call to fail.
         
     }
+
+    /**
+     * Test of addProduct method, of class ProductDao.
+     */
+//    @Test
+//    public void testAddProduct() {
+//        System.out.println("addProduct");
+//        String productImageUrl = "";
+//        String productName = "";
+//        double productPrice = 0.0;
+//        int quantityInStock = 0;
+//        String category = "";
+//        ProductDao instance = new ProductDao();
+//        boolean expResult = false;
+//        boolean result = instance.addProduct(productImageUrl, productName, productPrice, quantityInStock, category);
+//        assertEquals(expResult, result);
+//        // TODO review the generated test code and remove the default call to fail.
+//        fail("The test case is a prototype.");
+//    }
+
+    /**
+     * Test of findProductsByTitle method, of class ProductDao.
+     */
+    @Test
+    public void testFindProductsByTitle() {
+        System.out.println("findProductsByTitle");
+        String title = "";
+        ProductDao instance = new ProductDao();
+        ArrayList<Product> expResult = null;
+        ArrayList<Product> result = instance.findProductsByTitle(title);
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of addProduct method, of class ProductDao.
+     */
+//    @Test
+//    public void testAddProduct() {
+//        System.out.println("addProduct");
+//        String productImageUrl = "";
+//        String productName = "red top";
+//        double productPrice = 20.0;
+//        int quantityInStock = 10;
+//        String category = "The Walking Dead";
+//        ProductDao instance = new ProductDao();
+//        boolean expResult = true;
+//        boolean result = instance.addProduct(productImageUrl, productName, productPrice, quantityInStock, category);
+//        assertEquals(expResult, result);
+//        System.out.println("Test Passed");
+//        ArrayList<Product> p = instance.findProductsByTitle("red top");
+//    }
     
 }
