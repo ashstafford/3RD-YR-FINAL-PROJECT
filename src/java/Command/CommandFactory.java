@@ -45,6 +45,10 @@ public class CommandFactory
         {
     		command = new AddProductCommand();
     	}
+        if (commandStr.equals("Remove Product")) 
+        {
+    		command = new RemoveProductCommand();
+    	}
         if (commandStr.equals("ViewAllProducts")) 
         {
     		command = new ViewAllProductsCommand();
