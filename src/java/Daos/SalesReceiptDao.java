@@ -14,6 +14,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.Types;
 import java.util.ArrayList;
 
 /**
@@ -23,17 +24,8 @@ import java.util.ArrayList;
 public class SalesReceiptDao extends Dao implements SalesReceiptDaoInterface
 {
 
-    /**
-     *
-     * @param dateOrdered
-     * @param productName
-     * @param price
-     * @param quantity
-     * @param memberId
-     * @return
-     */
     @Override
-    public SalesReceipt insertIntoSalesReceipt(Date dateOrdered,String productName,double price,int quantity,int memberId)
+    public SalesReceipt insertIntoSalesReceipt(Date dateOrdered,double totalPrice,int memberId,String paymentType) 
     {
                   
         
@@ -48,14 +40,15 @@ public class SalesReceiptDao extends Dao implements SalesReceiptDaoInterface
         {
 
             conn = getConnection();
-            String query = "Insert into salesReceipt(dateOrdered,productName,productPrice,quantity,memberId) values(?,?,?,?,?)";
+            String query = "Insert into salesReceipt(receiptId,dateOrdered,totalPrice,memberId,paymentType) values(?,?,?,?,?)";
             ps = conn.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
             
-            ps.setDate(1,dateOrdered);
-            ps.setString(2,productName);
-            ps.setDouble(3,price);
-            ps.setInt(4,quantity);
-            ps.setInt(5,memberId);
+            ps.setNull (1,Types.INTEGER);
+            ps.setDate(2,dateOrdered);
+            ps.setDouble(3,totalPrice);
+            ps.setInt(4,memberId);
+            ps.setString(5,paymentType);
+            
            
             
             ps.executeUpdate();
@@ -68,7 +61,10 @@ public class SalesReceiptDao extends Dao implements SalesReceiptDaoInterface
                 receiptId = generatedKeys.getInt(1);
             } 
  
-            sr = new SalesReceipt(receiptId,dateOrdered,productName,(int) price,quantity,memberId);
+            sr = new SalesReceipt(receiptId,dateOrdered,totalPrice,memberId,paymentType);
+            
+            
+            
         } 
         
         catch (SQLException e)
@@ -97,7 +93,7 @@ public class SalesReceiptDao extends Dao implements SalesReceiptDaoInterface
                
                 e.getMessage();
             }
-        }
+        } 
         
         return sr;
     }
@@ -128,23 +124,15 @@ public class SalesReceiptDao extends Dao implements SalesReceiptDaoInterface
             
             rs = ps.executeQuery();
             
-            int receiptId;
-            Date dateOrdered;
-            String productName;
-            int price;
-            int quantity;
-            int memberId;
-            
             while (rs.next())
             {
-                receiptId = rs.getInt("receiptId");
-                dateOrdered = rs.getDate("dateOrdered");
-                productName = rs.getString("productName");
-                price = rs.getInt("productPrice");
-                quantity = rs.getInt("quantity");
-                memberId = rs.getInt("memberId");
+                int receiptId = rs.getInt("receiptId");
+                Date dateOrdered = rs.getDate("dateOrdered");
+                double totalPrice = rs.getDouble("totalPrice");
+                int memberId = rs.getInt("memberId");
+                String paymentType = rs.getString("paymentType");
 
-                s = new SalesReceipt(receiptId,dateOrdered,productName, price,quantity,memberId);
+                s = new SalesReceipt(receiptId,dateOrdered,totalPrice,memberId,paymentType);
                 receipts.add(s);
    
             }

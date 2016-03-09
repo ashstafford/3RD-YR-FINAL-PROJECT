@@ -33,6 +33,6 @@ public interface SalesReceiptDaoInterface
      * @param memberId
      * @return
      */
-    public SalesReceipt insertIntoSalesReceipt(Date dateOrdered,String productName,double price,int quantity,int memberId);
+    public SalesReceipt insertIntoSalesReceipt(Date dateOrdered,double totalPrice,int memberId,String paymentType);
     
 }

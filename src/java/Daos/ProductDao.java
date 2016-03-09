@@ -114,7 +114,7 @@ public class ProductDao extends Dao implements ProductDaoInterface
             {
 
                 conn = getConnection();
-                System.out.println("addProduct: conn="+conn);
+                
                 String query = "Insert into product (productId,productImageUrl,productName, productPrice,quantityInStock,category) values(?,?,?,?,?,?)"; 
                 ps = conn.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
                 
@@ -413,6 +413,397 @@ public class ProductDao extends Dao implements ProductDaoInterface
             }
             
         return prod;    
-    }   
+    }
+ 
+       @Override
+        public int checkQuantityInStock(int id)  //how many of a particuar product is left
+        {
+            
+            Connection conn = null;
+            PreparedStatement ps = null;
+            ResultSet rs = null;
+            Product prod = null;
+            int qtyInStock = 0;
+
+        // ArrayList<Product> products = new ArrayList<>();
+
+        try 
+        {
+            conn = getConnection();
+            String query = "Select * from product where productId=?"; 
+            ps = conn.prepareStatement(query);
+            ps.setInt(1, id);
+            
+            rs = ps.executeQuery();
+
+          
+            while (rs.next()) 
+            {
+                 //prod = new Product(
+                 //rs.getInt("productId"),
+                 //rs.getString("productImageUrl"),        
+                 //rs.getString("productName"),
+                 //rs.getDouble("productPrice"),
+                 //rs.getInt("quantityInStock"),        
+                 //rs.getString("category"));
+                
+                //products.add(prod);
+                qtyInStock = rs.getInt("quantityInStock");
+
+            }
+            System.out.println("fdefef " + qtyInStock);
+            //qtyInStock = prod.getQuantityInStock();
+
+        } 
+        
+        catch (SQLException e) 
+        {
+            System.out.println("Exception happened in checkQuantityInStock method");
+            e.getMessage();
+
+        } 
+        
+        finally
+        {
+            try 
+            {
+                
+                if (rs != null)
+                {
+                    rs.close();
+                }
+                
+                if (ps != null)
+                {
+                    ps.close();
+                }
+                
+                if (conn != null) 
+                {
+                    conn.close();
+                }
+
+            } 
+            
+            catch (SQLException e) 
+            {
+                System.out.println("Exception happened in 'finally' part of the checkQuantityInStock method");
+                e.getMessage();
+            }
+        }
+//
+//        Product prod1 = new Product();
+//        
+//        for (Product prod : products)
+//        {
+//            if (prod.getProductId() == id)  //if the id of the product we are checking is equal to an productId in the table
+//            {
+//                prod1 = prod;         
+//            }
+//        }
+        
+       // System.out.println(bk1.getNoofcopies() + " copies is left ");
+
+        return qtyInStock;
+    }
+        
+    @Override
+    public boolean editProductDetails(int id,String productImageUrl,String productName, double productPrice,int quantityInStock,String category) //throws DaoException
+    {
+
+        Connection conn = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+
+        try
+        {
+              System.out.println("id " + id);
+              System.out.println("image " + productImageUrl);
+              System.out.println("name " + productName);
+              System.out.println("price " + productPrice);
+              System.out.println("qty " + quantityInStock);
+              System.out.println("category " + category);
+         
+        
+            conn = getConnection();
+            String query = "update product set productImageUrl =? && productName =? && productPrice && quantityInStock =? && category =? where id=?";
+            ps = conn.prepareStatement(query);
+            
+          
+            ps.setString(1,productImageUrl);
+            ps.setString(2,productName); 
+            ps.setDouble(3,productPrice);
+            ps.setInt(4,quantityInStock);
+            ps.setString(5,category);
+            ps.setInt(6,id);
+
+            ps.executeUpdate();
+  
+        } 
+        catch (SQLException e)
+        {
+             e.printStackTrace();
+            return false;
+        } 
+        finally
+        {
+            try
+            {
+                if (rs != null)
+                {
+                    rs.close();
+                }
+
+                if (ps != null)
+                {
+                    ps.close();
+                }
+
+                if (conn != null)
+                {
+                    conn.close();
+                }
+
+            } 
+            catch (SQLException e)
+            {
+                e.printStackTrace();
+                return false;
+            }
+        }
+        return true;
+    }
+    
+//    /**
+//     *
+//     * @param productPrice
+//     * @param newProductPrice
+//     * @return 
+//     */
+//    @Override
+//    public boolean editProductPrice(double productPrice, double newProductPrice) //throws DaoException
+//    {
+//
+//        Connection conn = null;
+//        PreparedStatement ps = null;
+//        ResultSet rs = null;
+//
+//        try
+//        {
+//                
+//            conn = getConnection();
+//            String query = "update product set productPrice =? where productPrice=?";
+//            ps = conn.prepareStatement(query);
+//            
+//            ps.setDouble(1,newProductPrice); 
+//            ps.setDouble(2,productPrice);
+//
+//            ps.executeUpdate();
+//  
+//        } 
+//        catch (SQLException e)
+//        {
+//             e.printStackTrace();
+//            return false;
+//        } 
+//        finally
+//        {
+//            try
+//            {
+//                if (rs != null)
+//                {
+//                    rs.close();
+//                }
+//
+//                if (ps != null)
+//                {
+//                    ps.close();
+//                }
+//
+//                if (conn != null)
+//                {
+//                    conn.close();
+//                }
+//
+//            } 
+//            catch (SQLException e)
+//            {
+//                e.printStackTrace();
+//                return false;
+//            }
+//        }
+//        return true;
+//    }
+//    
+//       /**
+//     *
+//     * @param quantityInStock
+//     * @param newQuantityInStock
+//     * @return 
+//     */
+//    public boolean editQuantityInStock(int quantityInStock, int newQuantityInStock)
+//    {
+//
+//        Connection conn = null;
+//        PreparedStatement ps = null;
+//        ResultSet rs = null;
+//
+//        try
+//        {
+//                
+//            conn = getConnection();
+//            String query = "update product set quantityInStock =? where quantityInStock=?";
+//            ps = conn.prepareStatement(query);
+//            
+//            ps.setDouble(1,newQuantityInStock); 
+//            ps.setDouble(2,quantityInStock);
+//
+//            ps.executeUpdate();
+//  
+//        } 
+//        catch (SQLException e)
+//        {
+//             e.printStackTrace();
+//            return false;
+//        } 
+//        finally
+//        {
+//            try
+//            {
+//                if (rs != null)
+//                {
+//                    rs.close();
+//                }
+//
+//                if (ps != null)
+//                {
+//                    ps.close();
+//                }
+//
+//                if (conn != null)
+//                {
+//                    conn.close();
+//                }
+//
+//            } 
+//            catch (SQLException e)
+//            {
+//                e.printStackTrace();
+//                return false;
+//            }
+//        }
+//        return true;
+//    }        
+//
+//    
+//    @Override
+//    public boolean editProductImageUrl(String productImageUrl, String newProductImageUrl) 
+//    {
+//      
+//        Connection conn = null;
+//        PreparedStatement ps = null;
+//        ResultSet rs = null;
+//
+//        try
+//        {
+//                
+//            conn = getConnection();
+//            String query = "update product set productImageUrl =? where productImageUrl=? && productId =?";
+//            ps = conn.prepareStatement(query);
+//            
+//            ps.setString(1,newProductImageUrl); 
+//            ps.setString(2,productImageUrl);
+//
+//            ps.executeUpdate();
+//  
+//        } 
+//        catch (SQLException e)
+//        {
+//             e.printStackTrace();
+//            return false;
+//        } 
+//        finally
+//        {
+//            try
+//            {
+//                if (rs != null)
+//                {
+//                    rs.close();
+//                }
+//
+//                if (ps != null)
+//                {
+//                    ps.close();
+//                }
+//
+//                if (conn != null)
+//                {
+//                    conn.close();
+//                }
+//
+//            } 
+//            catch (SQLException e)
+//            {
+//                e.printStackTrace();
+//                return false;
+//            }
+//        }
+//        return true;
+//    }
+//
+//    @Override
+//    public boolean editCategory(String category, String newCategory) 
+//    {
+//       
+//        Connection conn = null;
+//        PreparedStatement ps = null;
+//        ResultSet rs = null;
+//
+//        try
+//        {
+//                
+//            conn = getConnection();
+//            String query = "update product set category =? where category=?";
+//            ps = conn.prepareStatement(query);
+//            
+//            ps.setString(1,newCategory); 
+//            ps.setString(2,category);
+//
+//            ps.executeUpdate();
+//  
+//        } 
+//        catch (SQLException e)
+//        {
+//             e.printStackTrace();
+//            return false;
+//        } 
+//        finally
+//        {
+//            try
+//            {
+//                if (rs != null)
+//                {
+//                    rs.close();
+//                }
+//
+//                if (ps != null)
+//                {
+//                    ps.close();
+//                }
+//
+//                if (conn != null)
+//                {
+//                    conn.close();
+//                }
+//
+//            } 
+//            catch (SQLException e)
+//            {
+//                e.printStackTrace();
+//                return false;
+//            }
+//        }
+//        return true;
+//    }
 }
 

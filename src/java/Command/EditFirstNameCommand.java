@@ -44,8 +44,10 @@ public class EditFirstNameCommand implements Command
                      String fNameEdit = session.getId();
            
                      m.setFirstName(newName);
-           
+          
                     forwardToJsp = "/myProfile.jsp";
+                    
+                
                }  
            }   
                

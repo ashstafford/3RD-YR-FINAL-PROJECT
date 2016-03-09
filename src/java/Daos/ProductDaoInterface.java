@@ -45,4 +45,15 @@ public interface ProductDaoInterface
     
     public boolean addProduct(String productImageUrl,String productName,double productPrice,int quantityInStock,String category);
     
+    public boolean editProductDetails(int id,String productImageUrl,String productName, double productPrice,int quantityInStock,String category);
+//    
+//    public boolean editProductPrice(double productPrice, double newProductPrice);
+//    
+//    public boolean editQuantityInStock(int quantityInStock, int newQuantityInStock);
+//    
+//    public boolean editProductImageUrl(String productImageUrl, String newProductImageUrl);
+//    
+//    public boolean editCategory(String category, String newCategory);
+    
+    public int checkQuantityInStock(int id);
 }
