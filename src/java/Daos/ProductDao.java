@@ -179,6 +179,68 @@ public class ProductDao extends Dao implements ProductDaoInterface
          return true;   
     }
     
+        @Override
+        public boolean removeProduct(int productId) 
+        {
+         
+            Connection conn = null;
+            PreparedStatement ps = null;
+            ResultSet rs = null;
+            
+            
+            try
+            {
+
+                conn = getConnection();
+                String query = "delete from product where productId= ?"; 
+                ps = conn.prepareStatement(query);
+                ps.setInt(1, productId);
+
+                ps.executeUpdate();
+
+                
+
+            }
+            
+            catch (SQLException e) 
+            {
+                System.out.println("Exception happened in delete title method");
+                e.getMessage();
+                return false;
+            } 
+            
+            
+            finally
+            {
+                try 
+                {
+                    if (rs != null)
+                    {
+                        rs.close();
+                    }
+                    
+                    if (ps != null) 
+                    {
+                        ps.close();
+                    }
+                    
+                    if (conn != null) 
+                    {
+                        conn.close();
+                    }
+
+                } 
+                
+                catch (SQLException e) 
+                {
+                    System.out.println("Exception happened in 'finally' part of the delteTitle method");
+                    e.getMessage();
+                    return false;
+                }
+            }
+          return true;  
+        }
+    
     /**
      *
      * @param category
@@ -574,236 +636,6 @@ public class ProductDao extends Dao implements ProductDaoInterface
         return true;
     }
     
-//    /**
-//     *
-//     * @param productPrice
-//     * @param newProductPrice
-//     * @return 
-//     */
-//    @Override
-//    public boolean editProductPrice(double productPrice, double newProductPrice) //throws DaoException
-//    {
-//
-//        Connection conn = null;
-//        PreparedStatement ps = null;
-//        ResultSet rs = null;
-//
-//        try
-//        {
-//                
-//            conn = getConnection();
-//            String query = "update product set productPrice =? where productPrice=?";
-//            ps = conn.prepareStatement(query);
-//            
-//            ps.setDouble(1,newProductPrice); 
-//            ps.setDouble(2,productPrice);
-//
-//            ps.executeUpdate();
-//  
-//        } 
-//        catch (SQLException e)
-//        {
-//             e.printStackTrace();
-//            return false;
-//        } 
-//        finally
-//        {
-//            try
-//            {
-//                if (rs != null)
-//                {
-//                    rs.close();
-//                }
-//
-//                if (ps != null)
-//                {
-//                    ps.close();
-//                }
-//
-//                if (conn != null)
-//                {
-//                    conn.close();
-//                }
-//
-//            } 
-//            catch (SQLException e)
-//            {
-//                e.printStackTrace();
-//                return false;
-//            }
-//        }
-//        return true;
-//    }
-//    
-//       /**
-//     *
-//     * @param quantityInStock
-//     * @param newQuantityInStock
-//     * @return 
-//     */
-//    public boolean editQuantityInStock(int quantityInStock, int newQuantityInStock)
-//    {
-//
-//        Connection conn = null;
-//        PreparedStatement ps = null;
-//        ResultSet rs = null;
-//
-//        try
-//        {
-//                
-//            conn = getConnection();
-//            String query = "update product set quantityInStock =? where quantityInStock=?";
-//            ps = conn.prepareStatement(query);
-//            
-//            ps.setDouble(1,newQuantityInStock); 
-//            ps.setDouble(2,quantityInStock);
-//
-//            ps.executeUpdate();
-//  
-//        } 
-//        catch (SQLException e)
-//        {
-//             e.printStackTrace();
-//            return false;
-//        } 
-//        finally
-//        {
-//            try
-//            {
-//                if (rs != null)
-//                {
-//                    rs.close();
-//                }
-//
-//                if (ps != null)
-//                {
-//                    ps.close();
-//                }
-//
-//                if (conn != null)
-//                {
-//                    conn.close();
-//                }
-//
-//            } 
-//            catch (SQLException e)
-//            {
-//                e.printStackTrace();
-//                return false;
-//            }
-//        }
-//        return true;
-//    }        
-//
-//    
-//    @Override
-//    public boolean editProductImageUrl(String productImageUrl, String newProductImageUrl) 
-//    {
-//      
-//        Connection conn = null;
-//        PreparedStatement ps = null;
-//        ResultSet rs = null;
-//
-//        try
-//        {
-//                
-//            conn = getConnection();
-//            String query = "update product set productImageUrl =? where productImageUrl=? && productId =?";
-//            ps = conn.prepareStatement(query);
-//            
-//            ps.setString(1,newProductImageUrl); 
-//            ps.setString(2,productImageUrl);
-//
-//            ps.executeUpdate();
-//  
-//        } 
-//        catch (SQLException e)
-//        {
-//             e.printStackTrace();
-//            return false;
-//        } 
-//        finally
-//        {
-//            try
-//            {
-//                if (rs != null)
-//                {
-//                    rs.close();
-//                }
-//
-//                if (ps != null)
-//                {
-//                    ps.close();
-//                }
-//
-//                if (conn != null)
-//                {
-//                    conn.close();
-//                }
-//
-//            } 
-//            catch (SQLException e)
-//            {
-//                e.printStackTrace();
-//                return false;
-//            }
-//        }
-//        return true;
-//    }
-//
-//    @Override
-//    public boolean editCategory(String category, String newCategory) 
-//    {
-//       
-//        Connection conn = null;
-//        PreparedStatement ps = null;
-//        ResultSet rs = null;
-//
-//        try
-//        {
-//                
-//            conn = getConnection();
-//            String query = "update product set category =? where category=?";
-//            ps = conn.prepareStatement(query);
-//            
-//            ps.setString(1,newCategory); 
-//            ps.setString(2,category);
-//
-//            ps.executeUpdate();
-//  
-//        } 
-//        catch (SQLException e)
-//        {
-//             e.printStackTrace();
-//            return false;
-//        } 
-//        finally
-//        {
-//            try
-//            {
-//                if (rs != null)
-//                {
-//                    rs.close();
-//                }
-//
-//                if (ps != null)
-//                {
-//                    ps.close();
-//                }
-//
-//                if (conn != null)
-//                {
-//                    conn.close();
-//                }
-//
-//            } 
-//            catch (SQLException e)
-//            {
-//                e.printStackTrace();
-//                return false;
-//            }
-//        }
-//        return true;
-//    }
+
 }
 

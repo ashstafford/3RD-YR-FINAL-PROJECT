@@ -263,8 +263,10 @@ h3
                
             if(m.isAdmin())
             {
-                %><td><form action = "AddProduct.jsp" method = "post"> <p><input type = "submit" value = "Add Product" /></p></form></td>
-                  <td><form action = "MemberActionServlet" method = "post">  <input type="hidden" name="action" value ="ViewAllProducts"> <p><input type = "submit" value = "Edit Product" /></p></form></td>
+                %><td><form action = "AddProduct.jsp" method = "post"> <p><input type = "submit" name="action" value = "Add Product" /></p></form></td
+                  <td><form action = "SelectProductToEdit.jsp" method = "post"> <p><input type = "submit" name="action" value = "Remove Product" /></p></form></td>
+                  <td><form action = "SelectProductToEdit.jsp" method = "post"> <p><input type = "submit" name="action" value = "Edit Product" /></p></form></td>
+                
                 <%
             }
             

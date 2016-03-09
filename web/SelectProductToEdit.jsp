@@ -107,18 +107,18 @@ div#container
         
           <table>    
               
-              <%
+          <%
 
-                    List<Product> products;
-                    products = (List) (request.getSession().getAttribute("AllProducts"));
+            List<Product> products;
+            products = (List) (request.getSession().getAttribute("AllProducts"));
 
-                    if (products != null) 
-                    { 
+            if (products != null) 
+            { 
                         
-                        for (Product prod : products) 
-                        {
-                %>
-           <form action="MemberActionServlet" method="post">
+              for (Product prod : products) 
+              {
+           %>
+            <form action="MemberActionServlet" method="post">
                  
             <tr>
                 
@@ -141,24 +141,49 @@ div#container
                 <td></td>
                 <td></td>
                 <td></td>
-            
-                <td><input type="hidden" name="action" value="edit Product" /></td>
-                <input type="hidden" name="editProduct" value="<%= prod.getProductId()%>" />
-         </form> 
+           <%  
+               String action = request.getParameter("action");
+               
+               if(action.equals("Edit Product"))
+               {
+                   
+                   %>
+                   <td><input type="hidden" name="action" value="edit Product" /></td>
+                   <input type="hidden" name="editProduct" value="<%= prod.getProductId()%>"/><% 
+                  
                 
-             <form action="EditProductDetails.jsp" method="post"> 
+                
+               
+                     %>
+                   </form> 
+                
+                   <form action="EditProductDetails.jsp" method="post"> 
              
-                <td><input type="submit" value="Edit Product" /></td>
-             </tr>
-            </form> 
-    
+                     <td><input type="submit" value="Edit Product" /></td>
+                  </tr>
+                 </form>
             <%
-                    }
-                }
-                else
-                {
-                        out.println("sorry not found!!");
-                }        
+               } 
+               else
+               {
+        
+           %>
+             <td><input type="hidden" name="action" value="Remove Product" /></td>
+             <input type="hidden" name="removeProduct" value="<%= prod.getProductId()%>"/>
+              
+                   <form action="MemberActionServlet" method="post"> 
+             
+                <td><input type="submit" value="Remove Product" /></td>
+             </tr>
+           </form> 
+    
+        <%      }
+              }
+            }
+            else
+            {
+                out.println("sorry not found!!");
+            }        
             %>
 
 
