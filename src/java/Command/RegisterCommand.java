@@ -37,8 +37,7 @@ public class RegisterCommand implements Command
              String regexPass = "[a-zA-Z0-9]{8,}";
              String regexEmail = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
 		+ "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";  
-            //start of string
-            //
+          
          
              boolean passValid = false;
              boolean userValid = false;
@@ -51,6 +50,7 @@ public class RegisterCommand implements Command
              String lastName = request.getParameter("lastName");
              String email = request.getParameter("email");
              String memberImageUrl = request.getParameter("memberImageUrl");
+             String securityQuestionAnswer = request.getParameter("securityQuestionAnswer");
              boolean isAdmin = false;
              
              
@@ -61,10 +61,10 @@ public class RegisterCommand implements Command
                  emailValid = true;
              }
 
-             if (userValid != false && passValid != false && firstName != null && lastName != null && emailValid != false && memberImageUrl != null
-                     && !userName.isEmpty() && !password.isEmpty() && !firstName.isEmpty() && !lastName.isEmpty() && !email.isEmpty() && !memberImageUrl.isEmpty())
+             if (userValid != false && passValid != false && firstName != null && lastName != null && emailValid != false && memberImageUrl != null && securityQuestionAnswer !=null
+                     && !userName.isEmpty() && !password.isEmpty() && !firstName.isEmpty() && !lastName.isEmpty() && !email.isEmpty() && !memberImageUrl.isEmpty() && securityQuestionAnswer != null)
              {
-                 Member m = mDao.addMember(firstName, lastName, userName, password,email,memberImageUrl,isAdmin);
+                 Member m = mDao.addMember(userName, password,firstName, lastName,email,memberImageUrl,securityQuestionAnswer,isAdmin);
 
 
 

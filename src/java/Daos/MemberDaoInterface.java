@@ -38,18 +38,7 @@ public interface MemberDaoInterface
      */
     public Member findMemberByUsername(String username);
 
-    /**
-     *
-     * @param firstName
-     * @param lastName
-     * @param userName
-     * @param password
-     * @param email
-     * @param memberImageUrl
-     * @param isAdmin
-     * @return
-     */
-    public Member addMember(String firstName, String lastName, String userName, String password,String email,String memberImageUrl,boolean isAdmin); 
+   public Member addMember(String firstName, String lastName, String userName, String password,String email,String memberImageUrl,String securityQuestionAnswer,boolean isAdmin);
 
     /**
      *
@@ -57,7 +46,7 @@ public interface MemberDaoInterface
      * @param newUserName
      * @return
      */
-    public boolean editUserName(String userName,String newUserName);
+    public boolean editUserName(int id,String userName,String newUserName);
 
     /**
      *
@@ -65,7 +54,7 @@ public interface MemberDaoInterface
      * @param newPassword
      * @return
      */
-    public boolean editPassword(String password,String newPassword);
+    public boolean editPassword(int id,String password,String newPassword);
 
     /**
      *
@@ -73,7 +62,7 @@ public interface MemberDaoInterface
      * @param newFirstname
      * @return
      */
-    public boolean editFirstName(String firstName,String newFirstname);
+    public boolean editFirstName(int id,String firstName,String newFirstname);
 
     /**
      *
@@ -81,7 +70,7 @@ public interface MemberDaoInterface
      * @param newLastName
      * @return
      */
-    public boolean editLastName(String lastName,String newLastName);
+    public boolean editLastName(int id,String lastName,String newLastName);
 
     /**
      *
@@ -90,9 +79,9 @@ public interface MemberDaoInterface
      */
     public Member findMemberByEmailAddress(String eMail); 
     
-    public boolean editEmail(String email, String newEmail);
-    
-    public boolean editMemberImageUrl(String memberImageUrl, String newMemberImageUrl);
+    public boolean editEmail(int id,String email, String newEmail);
+            
+    public boolean editMemberImageUrl(int id,String memberImageUrl, String newMemberImageUrl);
     
     
     

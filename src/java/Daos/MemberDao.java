@@ -58,9 +58,10 @@ public class MemberDao extends Dao implements MemberDaoInterface
                 String lastName = rs.getString("lastName");
                 String email = rs.getString("email");
                 String memberImageUrl = rs.getString("memberImageUrl");
+                String securityQuestionAnswer = rs.getString("securityQuestionAnswer");
                 boolean isAdmin = rs.getBoolean("isAdmin");
 
-                Member m = new Member(memberId,userName, password, firstName, lastName,email,memberImageUrl,isAdmin);
+                Member m = new Member(memberId,userName, password, firstName, lastName,email,memberImageUrl,securityQuestionAnswer,isAdmin);
                 member.add(m);
             }
 
@@ -132,9 +133,10 @@ public class MemberDao extends Dao implements MemberDaoInterface
                 String lastName = rs.getString("lastName");
                 String email = rs.getString("email");
                 String memberImageUrl = rs.getString("memberImageUrl");
+                String securityQuestionAnswer = rs.getString("securityQuestionAnswer");
                 boolean isAdmin = rs.getBoolean("isAdmin");
                 
-                m = new Member(memberId, firstName, lastName, username, password,email,memberImageUrl,isAdmin);
+                m = new Member(memberId, firstName, lastName, username, password,email,memberImageUrl,securityQuestionAnswer,isAdmin);
             }
         } 
         
@@ -203,9 +205,10 @@ public class MemberDao extends Dao implements MemberDaoInterface
                 String password = rs.getString("password");
                 String email = rs.getString("eMail");
                 String memberImageUrl = rs.getString("memberImageUrl");
+                String securityQuestionAnswer = rs.getString("securityQuestionAnswer");
                 boolean isAdmin = rs.getBoolean("isAdmin");
                 
-                m = new Member(memberId, firstName, lastName, userName, password,email,memberImageUrl,isAdmin);
+                m = new Member(memberId,userName, password,firstName, lastName, email,memberImageUrl,securityQuestionAnswer,isAdmin);
             }
         } 
         
@@ -250,7 +253,7 @@ public class MemberDao extends Dao implements MemberDaoInterface
      * @return
      */
     @Override
-    public Member addMember(String firstName, String lastName, String userName, String password,String email,String memberImageUrl,boolean isAdmin) 
+    public Member addMember(String userName, String password,String firstName, String lastName, String email,String memberImageUrl,String securityQuestionAnswer,boolean isAdmin) 
     {
         Connection con = null;
         PreparedStatement ps = null; 
@@ -269,8 +272,9 @@ public class MemberDao extends Dao implements MemberDaoInterface
 
              HashPasswordMD5 hp = new HashPasswordMD5();
              String hashedPassword = hp.hashPassword(password);
+             String hashedSecurityAnswer = hp.hashPassword(securityQuestionAnswer);
              
-            String query = "Insert into member(userName, password,firstName, lastName,email,memberImageUrl,isAdmin) values(?,?,?,?,?,?,?)"; //query to insert member info into fields in the members table
+            String query = "Insert into member(userName, password,firstName, lastName,email,memberImageUrl,securityQuestionAnswer,isAdmin) values(?,?,?,?,?,?,?,?)"; //query to insert member info into fields in the members table
             
            // Need to get the id back, so have to tell the database to return the id it generates
             ps = con.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
@@ -278,12 +282,13 @@ public class MemberDao extends Dao implements MemberDaoInterface
             
 
             ps.setString(1, userName);
-            ps.setString(2, password);
+            ps.setString(2, hashedPassword);
             ps.setString(3, firstName);
             ps.setString(4, lastName);
             ps.setString(5, email);
             ps.setString(6,memberImageUrl);
-            ps.setBoolean(7,isAdmin);
+            ps.setString(7,hashedSecurityAnswer);
+            ps.setBoolean(8,isAdmin);
             
             
            ps.executeUpdate();
@@ -298,7 +303,7 @@ public class MemberDao extends Dao implements MemberDaoInterface
                 memberId = generatedKeys.getInt(1);
             } 
             
-            m = new Member(memberId, firstName, lastName,userName,password,email,memberImageUrl,isAdmin); //stores the member in an object
+            m = new Member(memberId,userName,password,firstName, lastName,email,memberImageUrl,securityQuestionAnswer,isAdmin); //stores the member in an object
             
              
         } 
@@ -371,16 +376,17 @@ public class MemberDao extends Dao implements MemberDaoInterface
                 int memberId = rs.getInt("memberId"); //changed
                 String username = rs.getString("userName");
                 String password = rs.getString("password");
-                 String firstname = rs.getString("firstName");
+                String firstname = rs.getString("firstName");
                 String lastname = rs.getString("lastName");
                 String email = rs.getString("email");
                 String memberImageUrl = rs.getString("memberImageUrl");
+                String securityQuestionAnswer = rs.getString("securityQuestionAnswer");
                 boolean isAdmin = rs.getBoolean("isAdmin");
             
                if(hashedPassword.equals(password))
                {    
 
-                m = new Member(memberId,username, password, firstname, lastname, email,memberImageUrl,isAdmin);
+                m = new Member(memberId,username, password, firstname, lastname, email,memberImageUrl,securityQuestionAnswer,isAdmin);
      
                }
 
@@ -422,7 +428,7 @@ public class MemberDao extends Dao implements MemberDaoInterface
      * @return
      */
     @Override
-    public boolean editUserName(String userName, String newUserName) //have seperate methods for each edit so user can select which field they want to edit and we can call the appropriate method - more efficent for database
+    public boolean editUserName(int id,String userName, String newUserName) //have seperate methods for each edit so user can select which field they want to edit and we can call the appropriate method - more efficent for database
     {
 
         Connection conn = null;
@@ -433,10 +439,11 @@ public class MemberDao extends Dao implements MemberDaoInterface
         {
 
             conn = getConnection();
-            String query = "Update member set userName =? where userName=?";
+            String query = "Update member set userName =? where userName=? and memberId=?";
             ps = conn.prepareStatement(query);
             ps.setString(1, newUserName); //sets newUserName as the new userName
             ps.setString(2, userName);
+            ps.setInt(3,id);
 
             ps.executeUpdate();
 
@@ -475,12 +482,13 @@ public class MemberDao extends Dao implements MemberDaoInterface
 
     /**
      *
+     * @param id
      * @param password
      * @param newPassword
      * @return
      */
     @Override
-    public boolean editPassword(String password, String newPassword) 
+    public boolean editPassword(int id,String password, String newPassword) 
     {
 
         Connection conn = null;
@@ -489,12 +497,15 @@ public class MemberDao extends Dao implements MemberDaoInterface
 
         try
         {
+            HashPasswordMD5 hp = new HashPasswordMD5();
+            String hashedPassword = hp.hashPassword(newPassword);
 
             conn = getConnection();
-            String query = "Update member set password =? where password=?";
+            String query = "Update member set password =? where password=? and memberId=?";
             ps = conn.prepareStatement(query);
-            ps.setString(1, newPassword);
+            ps.setString(1, hashedPassword);
             ps.setString(2, password);
+            ps.setInt(3, id);
 
             ps.executeUpdate();
 
@@ -538,7 +549,7 @@ public class MemberDao extends Dao implements MemberDaoInterface
      * @return
      */
     @Override
-    public boolean editFirstName(String firstName, String newFirstName) //throws DaoException
+    public boolean editFirstName(int id,String firstName, String newFirstName) //throws DaoException
     {
 
         Connection conn = null;
@@ -549,11 +560,12 @@ public class MemberDao extends Dao implements MemberDaoInterface
         {
                 
             conn = getConnection();
-            String query = "update member set firstName =? where firstName=?";
+            String query = "update member set firstName =? where firstName=? and memberId=?";
             ps = conn.prepareStatement(query);
             
             ps.setString(1,newFirstName); //sets newUserName as the new userName
             ps.setString(2,firstName);
+            ps.setInt(3,id);
 
             ps.executeUpdate();
   
@@ -599,7 +611,7 @@ public class MemberDao extends Dao implements MemberDaoInterface
      * @return
      */
     @Override
-    public boolean editLastName(String lastName, String newLastName) 
+    public boolean editLastName(int id,String lastName, String newLastName) 
     {
         Connection conn = null;
         PreparedStatement ps = null;
@@ -609,10 +621,11 @@ public class MemberDao extends Dao implements MemberDaoInterface
         {
 
             conn = getConnection();
-            String query = "Update member set lastName =? where lastName=?";
+            String query = "Update member set lastName =? where lastName=? and memberId=?";
             ps = conn.prepareStatement(query);
             ps.setString(1, newLastName);
             ps.setString(2, lastName);
+            ps.setInt(3,id);
 
             ps.executeUpdate();
 
@@ -650,8 +663,8 @@ public class MemberDao extends Dao implements MemberDaoInterface
      return true;   
     }
 
-     @Override
-    public boolean editEmail(String email, String newEmail) 
+    @Override
+    public boolean editEmail(int id,String email, String newEmail) 
     {
         Connection conn = null;
         PreparedStatement ps = null;
@@ -661,10 +674,11 @@ public class MemberDao extends Dao implements MemberDaoInterface
         {
 
             conn = getConnection();
-            String query = "Update member set email =? where email=?";
+            String query = "Update member set email =? where email=? and memberId=?";
             ps = conn.prepareStatement(query);
             ps.setString(1, newEmail);
             ps.setString(2, email);
+            ps.setInt(3,id);
 
             ps.executeUpdate();
 
@@ -703,7 +717,7 @@ public class MemberDao extends Dao implements MemberDaoInterface
     }
     
     @Override
-    public boolean editMemberImageUrl(String memberImageUrl, String newMemberImageUrl) 
+    public boolean editMemberImageUrl(int id,String memberImageUrl, String newMemberImageUrl) 
     {
         Connection conn = null;
         PreparedStatement ps = null;
@@ -713,10 +727,11 @@ public class MemberDao extends Dao implements MemberDaoInterface
         {
 
             conn = getConnection();
-            String query = "Update member set memberImageUrl =? where memberImageUrl=?";
+            String query = "Update member set memberImageUrl =? where memberImageUrl=? and memberId=?";
             ps = conn.prepareStatement(query);
             ps.setString(1, newMemberImageUrl);
             ps.setString(2, memberImageUrl);
+            ps.setInt(3,id);
 
             ps.executeUpdate();
 

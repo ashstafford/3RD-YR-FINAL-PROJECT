@@ -34,13 +34,13 @@ public class EditProductDetailsCommand implements Command
            String price = request.getParameter("productPrice");
            String quantityInStock = request.getParameter("quantityInStock");
            String category = request.getParameter("category");
-                   
            
-                if(id != null && productImageUrl != null && productName != null && price != null && quantityInStock != null 
-                   && category != null && !productImageUrl.isEmpty() && !productName.isEmpty() && !price.isEmpty() && 
-                   !quantityInStock.isEmpty() && !category.isEmpty())
-                {  
-                    
+           
+//           if(productName.isEmpty())
+//           {
+//               productName = 
+//           }   
+//                    
                    int productId = Integer.parseInt(id);
                    double newPrice = Double.parseDouble(price);
                    int newQuantity = Integer.parseInt(quantityInStock);
@@ -66,7 +66,7 @@ public class EditProductDetailsCommand implements Command
                     forwardToJsp = "/ViewAllProducts.jsp";
                }  
 
-           }
+           
              
           
            

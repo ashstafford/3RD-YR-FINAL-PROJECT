@@ -36,7 +36,7 @@ public class EditFirstNameCommand implements Command
            if(newName != null)
            {
                
-             boolean updated =  mDao.editFirstName(m.getFirstName(),newName);
+             boolean updated =  mDao.editFirstName(m.getMemberId(),m.getFirstName(),newName);
    
                 if(updated == true)
                 {    

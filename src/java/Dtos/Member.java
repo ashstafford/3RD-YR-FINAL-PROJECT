@@ -4,7 +4,6 @@
  * and open the template in the editor.
  */
 package Dtos;
-//Hi aisling
 import java.util.Objects;
 
 /**
@@ -20,6 +19,7 @@ public class Member
     private String lastName;
     private String email;
     private String memberImageUrl;
+    private String securtiyQuestionAnswer;
     private boolean admin;
 
     /**
@@ -27,27 +27,18 @@ public class Member
      */
     public Member()
     {
-        memberId = 2;        
+        memberId = 2;
+        userName = "bennyboy";
+        password = "password";        
         firstName = "Ben";
         lastName = "VanRhee";
-        userName = "bennyboy";
-        password = "password";
         email = "ben@gmail.com";
         memberImageUrl = "IMG_TWD1.jpg";
+        securtiyQuestionAnswer = "spot";
         admin = false;
     }   
-    
-    /**
-     *
-     * @param memberId
-     * @param firstName
-     * @param lastName
-     * @param address
-     * @param userName
-     * @param password
-     * 
-     */
-    public Member(int memberId, String userName, String password,String firstName,String lastName,  String email,String memberImageUrl,boolean admin)
+
+    public Member(int memberId, String userName, String password, String firstName, String lastName, String email, String memberImageUrl, String securtiyQuestionAnswer, boolean admin)
     {
         this.memberId = memberId;
         this.userName = userName;
@@ -56,6 +47,7 @@ public class Member
         this.lastName = lastName;
         this.email = email;
         this.memberImageUrl = memberImageUrl;
+        this.securtiyQuestionAnswer = securtiyQuestionAnswer;
         this.admin = admin;
     }
 
@@ -184,7 +176,16 @@ public class Member
     {
         this.memberImageUrl = memberImageUrl;
     }
-    
+
+    public String getSecurtiyQuestionAnswer()
+    {
+        return securtiyQuestionAnswer;
+    }
+
+    public void setSecurtiyQuestionAnswer(String securtiyQuestionAnswer)
+    {
+        this.securtiyQuestionAnswer = securtiyQuestionAnswer;
+    }
        /**
      *
      * @return isAdmin
@@ -204,16 +205,80 @@ public class Member
     }
 
     @Override
-    public String toString() 
+    public int hashCode()
     {
-        return "Member{" + "memberId=" + memberId + ", userName=" + userName + ", password=" + password + ", firstName=" + firstName + ", lastName=" + lastName + ", email=" + email + ", memberImageUrl=" + memberImageUrl + ", admin=" + admin + '}';
+        int hash = 3;
+        hash = 89 * hash + this.memberId;
+        hash = 89 * hash + Objects.hashCode(this.userName);
+        hash = 89 * hash + Objects.hashCode(this.password);
+        hash = 89 * hash + Objects.hashCode(this.firstName);
+        hash = 89 * hash + Objects.hashCode(this.lastName);
+        hash = 89 * hash + Objects.hashCode(this.email);
+        hash = 89 * hash + Objects.hashCode(this.memberImageUrl);
+        hash = 89 * hash + Objects.hashCode(this.securtiyQuestionAnswer);
+        hash = 89 * hash + (this.admin ? 1 : 0);
+        return hash;
     }
 
-    
+    @Override
+    public boolean equals(Object obj)
+    {
+        if (this == obj)
+        {
+            return true;
+        }
+        if (obj == null)
+        {
+            return false;
+        }
+        if (getClass() != obj.getClass())
+        {
+            return false;
+        }
+        final Member other = (Member) obj;
+        if (this.memberId != other.memberId)
+        {
+            return false;
+        }
+        if (this.admin != other.admin)
+        {
+            return false;
+        }
+        if (!Objects.equals(this.userName, other.userName))
+        {
+            return false;
+        }
+        if (!Objects.equals(this.password, other.password))
+        {
+            return false;
+        }
+        if (!Objects.equals(this.firstName, other.firstName))
+        {
+            return false;
+        }
+        if (!Objects.equals(this.lastName, other.lastName))
+        {
+            return false;
+        }
+        if (!Objects.equals(this.email, other.email))
+        {
+            return false;
+        }
+        if (!Objects.equals(this.memberImageUrl, other.memberImageUrl))
+        {
+            return false;
+        }
+        if (!Objects.equals(this.securtiyQuestionAnswer, other.securtiyQuestionAnswer))
+        {
+            return false;
+        }
+        return true;
+    }
 
-    
-   
-    
-    
+    @Override
+    public String toString()
+    {
+        return "Member{" + "memberId=" + memberId + ", userName=" + userName + ", password=" + password + ", firstName=" + firstName + ", lastName=" + lastName + ", email=" + email + ", memberImageUrl=" + memberImageUrl + ", securtiyQuestionAnswer=" + securtiyQuestionAnswer + ", admin=" + admin + '}';
+    }
     
 }

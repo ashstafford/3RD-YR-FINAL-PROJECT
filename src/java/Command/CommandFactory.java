@@ -33,6 +33,10 @@ public class CommandFactory
         {
     		command = new RegisterCommand();
     	}
+        if (commandStr.equals("resetPassword")) 
+        {
+    		command = new ResetPasswordCommand();
+    	}
         if (commandStr.equals("filterProducts")) 
         {
     		command = new PriceComparisonCommand();
@@ -108,6 +112,10 @@ public class CommandFactory
         if (commandStr.equals("Edit Email")) 
         {
     		command = new EditEmailCommand();
+    	}
+        if (commandStr.equals("Edit MemberImageUrl")) 
+        {
+    		command = new EditMemberImageUrlCommand();
     	}
         if (commandStr.equals("Edit Product")) 
         {

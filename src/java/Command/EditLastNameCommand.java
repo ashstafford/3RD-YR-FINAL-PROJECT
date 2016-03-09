@@ -36,7 +36,7 @@ public class EditLastNameCommand implements Command
            if(newName != null)
            {
                
-             boolean updated =  mDao.editLastName(m.getLastName(),newName);
+             boolean updated =  mDao.editLastName(m.getMemberId(),m.getLastName(),newName);
    
                 if(updated == true)
                 {    

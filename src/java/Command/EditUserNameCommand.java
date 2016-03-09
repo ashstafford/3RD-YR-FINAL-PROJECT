@@ -36,7 +36,7 @@ public class EditUserNameCommand implements Command
            if(newUserName != null)
            {
                
-             boolean updated =  mDao.editUserName(m.getUserName(),newUserName);
+             boolean updated =  mDao.editUserName(m.getMemberId(),m.getUserName(),newUserName);
    
                 if(updated == true)
                 {    
