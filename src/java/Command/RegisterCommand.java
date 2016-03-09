@@ -36,7 +36,9 @@ public class RegisterCommand implements Command
              String regexUsername = "[a-zA-Z0-9]{4,}";
              String regexPass = "[a-zA-Z0-9]{8,}";
              String regexEmail = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
-		+ "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
+		+ "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";  
+            //start of string
+            //
          
              boolean passValid = false;
              boolean userValid = false;

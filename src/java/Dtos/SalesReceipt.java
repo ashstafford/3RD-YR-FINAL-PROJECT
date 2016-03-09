@@ -17,28 +17,37 @@ public class SalesReceipt
 {
     private int receiptId;
     private Date dateOrdered;
-    private String ProductName;
-    private int productPrice;
-    private int quantity;
+    private double totalPrice;
     private int memberId;
+    private String paymentType;
 
-    /**
-     *
-     * @param receiptId
-     * @param dateOrdered
-     * @param ProductName
-     * @param productPrice
-     * @param quantity
-     * @param memberId
-     */
-    public SalesReceipt(int receiptId, Date dateOrdered, String ProductName, int productPrice, int quantity, int memberId)
+    public SalesReceipt(int receiptId, Date dateOrdered, double totalPrice, int memberId, String paymentType)
     {
         this.receiptId = receiptId;
         this.dateOrdered = dateOrdered;
-        this.ProductName = ProductName;
-        this.productPrice = productPrice;
-        this.quantity = quantity;
+        this.totalPrice = totalPrice;
         this.memberId = memberId;
+        this.paymentType = paymentType;
+    }
+
+    public double getTotalPrice()
+    {
+        return totalPrice;
+    }
+
+    public void setTotalPrice(double totalPrice)
+    {
+        this.totalPrice = totalPrice;
+    }
+
+    public String getPaymentType() 
+    {
+        return paymentType;
+    }
+
+    public void setPaymentType(String paymentType)
+    {
+        this.paymentType = paymentType;
     }
 
     /**
@@ -76,61 +85,7 @@ public class SalesReceipt
     {
         this.dateOrdered = dateOrdered;
     }
-
-    /**
-     *
-     * @return
-     */
-    public String getProductName()
-    {
-        return ProductName;
-    }
-
-    /**
-     *
-     * @param ProductName
-     */
-    public void setProductName(String ProductName)
-    {
-        this.ProductName = ProductName;
-    }
-
-    /**
-     *
-     * @return
-     */
-    public int getProductPrice()
-    {
-        return productPrice;
-    }
-
-    /**
-     *
-     * @param productPrice
-     */
-    public void setProductPrice(int productPrice)
-    {
-        this.productPrice = productPrice;
-    }
-
-    /**
-     *
-     * @return
-     */
-    public int getQuantity()
-    {
-        return quantity;
-    }
-
-    /**
-     *
-     * @param quantity
-     */
-    public void setQuantity(int quantity)
-    {
-        this.quantity = quantity;
-    }
-
+    
     /**
      *
      * @return
@@ -150,26 +105,29 @@ public class SalesReceipt
     }
 
     @Override
-    public int hashCode()
+    public int hashCode() 
     {
         int hash = 7;
-        hash = 29 * hash + this.receiptId;
-        hash = 29 * hash + Objects.hashCode(this.dateOrdered);
-        hash = 29 * hash + Objects.hashCode(this.ProductName);
-        hash = 29 * hash + this.productPrice;
-        hash = 29 * hash + this.quantity;
-        hash = 29 * hash + this.memberId;
+        hash = 79 * hash + this.receiptId;
+        hash = 79 * hash + Objects.hashCode(this.dateOrdered);
+        hash = 79 * hash + (int) (Double.doubleToLongBits(this.totalPrice) ^ (Double.doubleToLongBits(this.totalPrice) >>> 32));
+        hash = 79 * hash + this.memberId;
+        hash = 79 * hash + Objects.hashCode(this.paymentType);
         return hash;
     }
 
     @Override
-    public boolean equals(Object obj)
+    public boolean equals(Object obj) 
     {
-        if (obj == null)
+        if (this == obj) 
+        {
+            return true;
+        }
+        if (obj == null) 
         {
             return false;
         }
-        if (getClass() != obj.getClass())
+        if (getClass() != obj.getClass()) 
         {
             return false;
         }
@@ -178,23 +136,19 @@ public class SalesReceipt
         {
             return false;
         }
-        if (!Objects.equals(this.dateOrdered, other.dateOrdered))
+        if (Double.doubleToLongBits(this.totalPrice) != Double.doubleToLongBits(other.totalPrice)) 
         {
             return false;
         }
-        if (!Objects.equals(this.ProductName, other.ProductName))
+        if (this.memberId != other.memberId) 
         {
             return false;
         }
-        if (this.productPrice != other.productPrice)
+        if (!Objects.equals(this.paymentType, other.paymentType))
         {
             return false;
         }
-        if (this.quantity != other.quantity)
-        {
-            return false;
-        }
-        if (this.memberId != other.memberId)
+        if (!Objects.equals(this.dateOrdered, other.dateOrdered)) 
         {
             return false;
         }
@@ -202,11 +156,9 @@ public class SalesReceipt
     }
 
     @Override
-    public String toString()
+    public String toString() 
     {
-        return "SalesReceipt{" + "receiptId=" + receiptId + ", dateOrdered=" + dateOrdered + ", ProductName=" + ProductName + ", productPrice=" + productPrice + ", quantity=" + quantity + ", memberId=" + memberId + '}';
-    }
-
-    
+        return "SalesReceipt{" + "receiptId=" + receiptId + ", dateOrdered=" + dateOrdered + ", totalPrice=" + totalPrice + ", memberId=" + memberId + ", paymentType=" + paymentType + '}';
+    } 
     
 }

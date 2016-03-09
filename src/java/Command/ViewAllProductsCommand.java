@@ -62,8 +62,19 @@ public class ViewAllProductsCommand implements Command
                     
                 //Put the list of products into the session so that JSP(the View) can display them...
                 session.setAttribute("AllProducts", products);
-                forwardToJsp = "/ViewAllProducts.jsp";	
-       
+                
+                String referer = request.getHeader("Referer");
+               
+                
+                if(referer.equals("http://localhost:8084/CA3WebApp/MemberActionServlet"))
+                {
+                    forwardToJsp = "/SelectProductToEdit.jsp";
+                }
+                else
+                {    
+                    forwardToJsp = "/ViewAllProducts.jsp";	
+                }
+                
       return forwardToJsp;                
      } 
 }

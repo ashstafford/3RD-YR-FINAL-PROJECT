@@ -37,12 +37,13 @@ public class AddToCartCommand implements Command
             }
             else
             {
-
+               
                 String id = request.getParameter("addToCart");  //getting the productid of the product the user selected 
                 String quantity = request.getParameter("quantity");
 
                 if(id != null && !quantity.isEmpty())
-                {    
+                {   
+                    
                    int productId = Integer.parseInt(id);
                    int qty = Integer.parseInt(quantity);
 
@@ -57,12 +58,26 @@ public class AddToCartCommand implements Command
                    } 
                    
                    p = pDao.findProductById(productId);
-                   p.setQuantityInStock(qty);  //sets the quantity to the value the user entered
-                  
-                   cart.add(p);
+                   
+                  int quantityInStockCount = pDao.checkQuantityInStock(p.getProductId());
+                    
+                    System.out.println("haha " + quantityInStockCount);
+                  if(quantityInStockCount > 0) 
+                   {
+                       p.setQuantityInStock(qty);
+                       cart.add(p);
+                       session.setAttribute("cart", cart);
+                       forwardToJsp = "/Cart.jsp";
+                       
+                   } 
+                   else
+                   {
+                        //p.setQuantityInStock(qty);  //sets the quantity to the value the user entered
+                                    
+                        forwardToJsp = "/ProductOutOfStock.jsp";   
+                   }
 
-                   session.setAttribute("cart", cart);
-                   forwardToJsp = "/Cart.jsp";	
+                   	
                 }
                   
            }

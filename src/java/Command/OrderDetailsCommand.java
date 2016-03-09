@@ -6,6 +6,7 @@
 package Command;
 
 import Daos.MemberDao;
+import Daos.OrderItemDao;
 import Daos.SalesReceiptDao;
 import Dtos.Member;
 import Dtos.Product;
@@ -23,7 +24,7 @@ import javax.servlet.http.HttpSession;
 public class OrderDetailsCommand implements Command
 {
    
-        //inserts the book the user wishes to borrow into the booksOnLoan table
+       
                  
     /**
      *
@@ -38,38 +39,58 @@ public class OrderDetailsCommand implements Command
            HttpSession session = request.getSession();
            
            String forwardToJsp = "";
+                    
+           SalesReceiptDao srDao = new SalesReceiptDao();     
+           OrderItemDao oItemDao = new OrderItemDao();
            
            Member m = (Member) session.getAttribute("member");
            
            List<Product> cart;
            cart = (List) (request.getSession().getAttribute("cart"));
            
-           String productName;
-           int price;
-           int quantity;
+           //String quantity = request.getParameter("quantity");
            
-              
-            for (Product prod : cart) 
-            {
-               SalesReceiptDao srDao = new SalesReceiptDao();
+            //System.out.println("dsdsdsdsdsw" + quantity);
+           
+             int qtyOrdered = 10;
+           
+          // if(quantity != null)
+          // {    
+              //  int qtyOrdered = Integer.parseInt(quantity);
                 
-               int memberId = m.getMemberId();
-     
-               java.util.Date utilDate = new java.util.Date();
-                 
-               java.sql.Date dateOrdered = new java.sql.Date(utilDate.getTime());
-                
-               productName = prod.getProductName();
-               price = (int) prod.getProductPrice();
-               quantity = prod.getQuantityInStock();
-               
-               SalesReceipt sr1 =  srDao.insertIntoSalesReceipt(dateOrdered, productName, price, quantity, memberId);
-               
-            }
+                String productName;
+                double totalPrice = 0;
 
-            
-            forwardToJsp = "/PurchaseConfirmation.jsp";
-          
-        return forwardToJsp;    
+                java.util.Date utilDate = new java.util.Date();   
+                java.sql.Date dateOrdered = new java.sql.Date(utilDate.getTime());
+
+                int memberId = m.getMemberId();
+
+                String paymentType = "card";
+
+                for (Product prod : cart) 
+                {
+                   totalPrice = totalPrice + prod.getProductPrice() * prod.getQuantityInStock();
+                }
+                
+                SalesReceipt sr1 =  srDao.insertIntoSalesReceipt(dateOrdered,totalPrice,memberId,paymentType);
+ 
+                for (Product prod : cart) 
+                {
+                   oItemDao.insertIntoOrderItem(memberId, sr1.getReceiptId(), prod.getProductPrice(),qtyOrdered);
+                   int qty = prod.getQuantityInStock() - qtyOrdered;
+                   prod.setQuantityInStock(qty);
+                } 
+                
+                cart.clear();
+
+                forwardToJsp = "/PurchaseConfirmation.jsp";
+         //  }
+         //  else
+         //  {
+         //    forwardToJsp = "/LoginFailure.jsp";    
+         //  }   
+           
+             return forwardToJsp;    
     }   
 }

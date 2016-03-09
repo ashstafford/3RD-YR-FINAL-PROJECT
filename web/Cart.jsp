@@ -115,9 +115,10 @@ div#container
       
              
       <%
+          
                     List<Product> cart;
                     cart = (List) (request.getSession().getAttribute("cart"));
-
+                    
                     double total = 0;
                     
                     if (cart != null) 

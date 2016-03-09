@@ -11,31 +11,29 @@ package Dtos;
  */
 public class OrderItem
 {
-    private int orderNo;
+    private int receiptId;
     private int productId;
     private double price;
     private int quantity;
-    private int totalQuantity;
 
-    public OrderItem(int orderNo, int productId, double price, int quantity,int totalQuantity)
+    public OrderItem(int receiptId, int productId, double price, int quantity)
     {
-        this.orderNo = orderNo;
+        this.receiptId = receiptId;
         this.productId = productId;
         this.price = price;
         this.quantity = quantity;
-        this.totalQuantity = totalQuantity;
     }
 
-    public int getOrderNo()
+    public int getReceiptId()
     {
-        return orderNo;
+        return receiptId;
     }
 
-    public void setOrderNo(int orderNo)
+    public void setReceiptId(int receiptId)
     {
-        this.orderNo = orderNo;
+        this.receiptId = receiptId;
     }
-
+    
     public int getProductId()
     {
         return productId;
@@ -66,31 +64,24 @@ public class OrderItem
         this.quantity = quantity;
     }
 
-    public int getTotalQuantity()
-    {
-        return totalQuantity;
-    }
-
-    public void setTotalQuantity(int totalQuantity)
-    {
-        this.totalQuantity = totalQuantity;
-    }
-
     @Override
     public int hashCode()
     {
         int hash = 7;
-        hash = 23 * hash + this.orderNo;
-        hash = 23 * hash + this.productId;
-        hash = 23 * hash + (int) (Double.doubleToLongBits(this.price) ^ (Double.doubleToLongBits(this.price) >>> 32));
-        hash = 23 * hash + this.quantity;
-        hash = 23 * hash + this.totalQuantity;
+        hash = 97 * hash + this.receiptId;
+        hash = 97 * hash + this.productId;
+        hash = 97 * hash + (int) (Double.doubleToLongBits(this.price) ^ (Double.doubleToLongBits(this.price) >>> 32));
+        hash = 97 * hash + this.quantity;
         return hash;
     }
 
     @Override
     public boolean equals(Object obj)
     {
+        if (this == obj)
+        {
+            return true;
+        }
         if (obj == null)
         {
             return false;
@@ -100,7 +91,7 @@ public class OrderItem
             return false;
         }
         final OrderItem other = (OrderItem) obj;
-        if (this.orderNo != other.orderNo)
+        if (this.receiptId != other.receiptId)
         {
             return false;
         }
@@ -116,18 +107,9 @@ public class OrderItem
         {
             return false;
         }
-        if (this.totalQuantity != other.totalQuantity)
-        {
-            return false;
-        }
         return true;
     }
 
-    @Override
-    public String toString()
-    {
-        return "OrderItem{" + "orderNo=" + orderNo + ", productId=" + productId + ", price=" + price + ", quantity=" + quantity + ", totalQuantity=" + totalQuantity + '}';
-    }
-
+   
     
 }

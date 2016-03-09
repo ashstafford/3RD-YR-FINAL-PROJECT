@@ -86,7 +86,7 @@ div#container
 </style>
     </head>
     <body>
-        <div id="addPRoduct">  
+        <div id="addProduct">  
         <h1> Add Product </h1>   
         
         <%  // boolean productAdded = (boolean) session.getAttribute("fileredProducts");
