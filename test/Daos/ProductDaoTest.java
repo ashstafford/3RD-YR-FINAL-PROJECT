@@ -45,41 +45,7 @@ public class ProductDaoTest
     public void tearDown() throws Exception {
     }
     
-//    /**
-//     *
-//     */
-//    @BeforeClass
-//    public static void setUpClass()
-//    {
-//        
-//    }
-//    
-//    /**
-//     *
-//     */
-//    @AfterClass
-//    public static void tearDownClass() 
-//    {
-//        
-//    }
-//    
-//    /**
-//     *
-//     */
-//    @Before
-//    public void setUp()
-//    {
-//        
-//    }
-//    
-//    /**
-//     *
-//     */
-//    @After
-//    public void tearDown() 
-//    {
-//        
-//    }
+
 
     /**
      * Test of getAllProducts method, of class ProductDao.
@@ -141,24 +107,7 @@ public class ProductDaoTest
         
     }
 
-    /**
-     * Test of addProduct method, of class ProductDao.
-     */
-//    @Test
-//    public void testAddProduct() {
-//        System.out.println("addProduct");
-//        String productImageUrl = "";
-//        String productName = "";
-//        double productPrice = 0.0;
-//        int quantityInStock = 0;
-//        String category = "";
-//        ProductDao instance = new ProductDao();
-//        boolean expResult = false;
-//        boolean result = instance.addProduct(productImageUrl, productName, productPrice, quantityInStock, category);
-//        assertEquals(expResult, result);
-//        // TODO review the generated test code and remove the default call to fail.
-//        fail("The test case is a prototype.");
-//    }
+  
 
     /**
      * Test of findProductsByTitle method, of class ProductDao.
@@ -173,6 +122,52 @@ public class ProductDaoTest
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of addProduct method, of class ProductDao.
+     */
+   
+    
+
+    /**
+     * Test of checkQuantityInStock method, of class ProductDao.
+     */
+    @Test
+    public void testCheckQuantityInStock()
+    {
+        System.out.println("checkQuantityInStock");
+        int id = 0;
+        ProductDao instance = new ProductDao();
+        int expResult = 0;
+        int result = instance.checkQuantityInStock(id);
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        //fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of editProductDetails method, of class ProductDao.
+     */
+    @Test
+    public void testEditProductDetails()
+    {
+        System.out.println("editProductDetails");
+        int id = 2;
+        String productImageUrl = "images/IMG_starwars2.jpg";
+        String productName = "STAR WARS COMIC COVER T-SHIRT";
+        double productPrice = 25.0;
+        int quantityInStock = 10;
+        String category = "Star Wars";
+        ProductDao instance = new ProductDao();
+        boolean expResult = true;        
+        boolean result = instance.editProductDetails(id, productImageUrl, productName, productPrice, quantityInStock, category);
+        assertEquals(expResult, result);
+        System.out.println("Test Passed");
+        boolean p= instance.editProductDetails(2,"images/IMG_starwars2.jpg","STAR WARS COMIC COVER T-SHIRT",25.0,10,"Star Wars");
+        instance.editProductDetails(id, productImageUrl, productName, productPrice, quantityInStock, category);
+        // TODO review the generated test code and remove the default call to fail.
+        //fail("The test case is a prototype.");
     }
 
     /**
