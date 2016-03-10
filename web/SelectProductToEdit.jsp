@@ -149,12 +149,8 @@ div#container
                    
                    %>
                    <td><input type="hidden" name="action" value="edit Product" /></td>
-                   <input type="hidden" name="editProduct" value="<%= prod.getProductId()%>"/><% 
-                  
-                
-                
-               
-                     %>
+                   <input type="hidden" name="editProduct" value="<%= prod.getProductId()%>"/> 
+         
                    </form> 
                 
                    <form action="EditProductDetails.jsp" method="post"> 

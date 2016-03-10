@@ -49,7 +49,6 @@ public class RegisterCommand implements Command
              String firstName = request.getParameter("firstName");
              String lastName = request.getParameter("lastName");
              String email = request.getParameter("email");
-             String memberImageUrl = request.getParameter("memberImageUrl");
              String securityQuestionAnswer = request.getParameter("securityQuestionAnswer");
              boolean isAdmin = false;
              
@@ -61,12 +60,12 @@ public class RegisterCommand implements Command
                  emailValid = true;
              }
 
-             if (userValid != false && passValid != false && firstName != null && lastName != null && emailValid != false && memberImageUrl != null && securityQuestionAnswer !=null
-                     && !userName.isEmpty() && !password.isEmpty() && !firstName.isEmpty() && !lastName.isEmpty() && !email.isEmpty() && !memberImageUrl.isEmpty() && securityQuestionAnswer != null)
+             if (userValid != false && passValid != false && firstName != null && lastName != null && emailValid != false && securityQuestionAnswer !=null
+                     && !userName.isEmpty() && !password.isEmpty() && !firstName.isEmpty() && !lastName.isEmpty() && !email.isEmpty() && !securityQuestionAnswer.isEmpty())
              {
-                 Member m = mDao.addMember(userName, password,firstName, lastName,email,memberImageUrl,securityQuestionAnswer,isAdmin);
-
-
+                
+                 Member m = mDao.addMember(userName,password,firstName,lastName,email,securityQuestionAnswer,isAdmin);
+                   
 
                  if (m != null)
                  {
