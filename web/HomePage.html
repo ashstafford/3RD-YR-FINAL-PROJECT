@@ -11,68 +11,16 @@ and open the template in the editor.
         
         <link rel="stylesheet" type="text/css" href="mainCSS.css" >
         <style>
- .navigation {
-  margin: 0;
-  padding: 0;
-  list-style: none;
-  background:#FFFFFF;
-  display: flex;
-  justify-content: flex-end;
-  color: black;
+            
+            div#welcomeBanner img{
+    width: 80%;
+    height: 300px;
+    padding-top: 100px;
+    padding-left: 125px;
 }
 
-.navigation a {
-  display: block;
-  padding: 1em;
-  color:#ffffff;
-  text-decoration: none;
-  color: black;
-  font-family: Arial, Helvetica, sans-serif;
-}
-
-.navigation a:hover {
-  background:#e6e6e6;
-  border-bottom-right-radius   : 10px;
-  border-bottom-left-radius: 10px;
-  border-top-left-radius: 10px;
-  border-top-right-radius: 10px;
-}
-
-/* spreads navigation to "full-width", fills space around child items
-@media all and (max-width: 800px) {
-  .navigation {
-    justify-content: space-around;
-  }
-}
-
-/* collapses navigation into a multi-row navigation on mobile screens
-@media all and (max-width: 600px) {
-  .navigation {
-    padding: 0;
-    flex-direction: column;
-  }
-  
-  .navigation a {
-    padding: 1em;
-    text-align: center;
-    border-top: 1px solid rgba(255, 255, 255, 0.2); 
-    border-bottom: 1px solid rgba(0, 0, 0, 0.2); 
-  }
-    
-  .navigation li:last-of-type a {
-    border-bottom: none;
-  }
-}
-
-
-
-
-
-
-   
-    </style>
+        </style>
         <script>
-     
         </script>
         
         
@@ -81,36 +29,42 @@ and open the template in the editor.
         
         <div id="container">
             
-         
-   
-  
-            <nav class = "topmenu">
-                <!--<ul>
-                    <li><a href="/CA3WebApp/HomePage.html">Home</a>
-                    <li><a href="/CA3WebApp/CategorySelection.html">Shop</a>
-                    <!--<li><a href="/CA3WebApp/About.jsp">About</a>
+        <nav class = "topmenu">
+            <ul class="navigation">
                     <li><a href="MemberActionServlet?action=viewProfile">My Profile</a></li>
-                    <li><a href="MemberActionServlet?action=ViewPreviousOrders">View Orders</a></li>
                     
-                    <!--<li><a href="#">Profile</a>
-                    <ul>    
-                        <li><a href="MemberActionServlet?action=viewProfile">My Profile</a></li>
-                        <li><a href="MemberActionServlet?action=ViewPreviousOrders">View Orders</a></li>
-                    </ul> 
-                        
-                    <li><a href="/CA3WebApp/ContactUs.jsp">Contact Us</a> 
-                    <li><a href="/CA3WebApp/Cart.jsp">Cart</a>
-                    <li><a href="/CA3WebApp/Login.html">Login/Register</a>
-                </ul>-->
-                    
-                <ul class="navigation">
-                    <li><a href="MemberActionServlet?action=viewProfile">My Profile</a></li>
-                    <li><a href="/CA3WebApp/Login.html">Login</a></li>
-                    <li><a href="/CA3WebApp/Login.html">Sign Up</a></li>
-                </ul>
+            
+       
       
-                  </nav>
-
+          
+         <%  Member m = (Member)session.getAttribute("member"); 
+         
+        if(m == null)
+        {
+            
+         %>
+        
+         <li><a href="/CA3WebApp/Login.jsp">Login</a></li>
+           
+            
+        <li><a href="/CA3WebApp/Login.jsp">Sign Up</a></li>
+        
+        <%
+        
+        }
+        else
+        {
+      
+            
+        %>
+            
+           <li><a href="MemberActionServlet?action=logout">Logout</a></li>
+                      
+   </ul>
+     </nav> 
+        <%  
+        }
+        %>
             <div id="banner">
                 <img src="tempBanner.jpg"/>
             </div>
@@ -118,7 +72,7 @@ and open the template in the editor.
        <nav class="menu-1">
     <ul class="menu">
         <li> <a href="/CA3WebApp/HomePage.html">Home</a> </li>
-        <li> <a href="/CA3WebApp/CategorySelection.html">Shop</a> </li>
+        <li> <a href="MemberActionServlet?action=ViewAllProducts">Shop</a> </li>
         <li> <a href="/CA3WebApp/About.jsp">About</a> </li>
         
         <li> <a href="MemberActionServlet?action=ViewPreviousOrders">View Orders</a> </li>
@@ -141,15 +95,11 @@ and open the template in the editor.
 </nav>
             
             
-            <!--<div id="side_bar">
- 	
-            </div>-->
-            
             <div id="pagecontent2">
                 
-                <h1>Welcome</h1>
-                <p> Happy Shopping in a Flash!
-                Enjoy our exclusive range of quality product at a great Price</p>
+                <div id="welcomeBanner">
+			<img src="welBanner.jpg" />
+                </div>
                 
                <ul class="slides">
                 <input type="radio" name="radio-btn" id="img-1" checked />
@@ -166,7 +116,7 @@ and open the template in the editor.
     <input type="radio" name="radio-btn" id="img-2" />
     <li class="slide-container">
         <div class="slide">
-          <img src="starwarsBanner.jpg" />
+          <img src="images/starwarsBanner.jpg" />
         </div>
 		<div class="nav">
 			<label for="img-1" class="prev">&#x2039;</label>
@@ -206,123 +156,9 @@ and open the template in the editor.
       
     </li>
 </ul>
-                
-     <!--<div class="view view-first">  
-     <img src="starwars_homepage.jpg" />  
-     <div class="mask">  
-     <h2>Starwars Merchandise</h2>  
-     <p>Get all your unique Starwars merchandise at a great price!</p>  
-         <a href="/CA3WebApp/CategorySelection.html" class="info">Shop Now</a>  
-     </div> 
-	  </div>
-	 
-	 <div class="view2 view-first">  
-     <img src="deadpool_homepage.jpg" />  
-     <div class="mask">  
-     <h2>Marvel</h2>  
-     <p>This is the most popular movie at the minute, so get your Merch now at a great price</p>  
-         <a href="/CA3WebApp/CategorySelection.html" class="info">Shop Now</a>  
-     </div>
-	 </div>
-                
-            
-        <div class="view3 view-first">  
-     <img src="dc_homepage.jpg" />  
-     <div class="mask">  
-     <h2>DC Comics</h2>  
-     <p>In our store we have a huge range of products at a great price! Shop now!</p>  
-         <a href="/CA3WebApp/CategorySelection.html" class="info">Shop Now</a>  
-     </div> 
-	</div>
-	
-	<div class="view4 view-first">  
-     <img src="disney_homepage.jpg" />  
-     <div class="mask">  
-     <h2>Disney</h2>  
-     <p>This is a very popular theme within our store, we have great quality products so have a look here! Click here</p>  
-         <a href="/CA3WebApp/CategorySelection.html" class="info">Shop Now</a>  
-     </div> 
-	</div>-->
-           
+       
 </div>
-        
- 
-
-    <div id="copyright">
-	
-        
-
-<!--<ul class="social-icons shadow">
-  <li class="tab">
-    <a href="#">
-      <i class="fa fa-facebook circle"></i>
-      <span class="screen-reader">Facebook</span>
-    </a>
-  </li>
-  <li class="tab">
-    <a href="#">
-      <i class="fa fa-twitter circle"></i>
-      <span class="screen-reader">Twitter</span>
-    </a>
-  </li>
-  <li class="tab">
-    <a href="#">
-      <i class="fa fa-google-plus circle"></i>
-      <span class="screen-reader">Google+</span>
-    </a>
-  </li>
-  <li class="tab">
-    <a href="#">
-      <i class="fa fa-linkedin circle"></i>
-      <span class="screen-reader">LinkedIn</span>
-    </a>
-  </li>
-</ul>
-    <div class="social-icons-services">
-    <div class="social-figure">
-        <div class="facebook"> 
-            <h2 class="entypo-facebook"></h2>
-        </div>
-        <div class="social-hover">
-            <h2 class="entypo-facebook"></h2>
             
-        </div>
-    </div>
-    <div class="social-figure">
-        <div class="twitter">
-            <h2 class="entypo-twitter"></h2>
-        </div>
-        <div class="social-hover">
-            <h2 class="entypo-twitter"></h2>
-        </div>
-    </div>
-    <div class="social-figure">
-        <div class="gplus">
-            <h2 class="entypo-gplus"></h2>
-        </div>
-        <div class="social-hover">
-            <h2 class="entypo-gplus"></h2>
-        </div>
-    </div>
-    <div class="social-figure">
-        <div class="pinterest">
-            <h2 class="entypo-pinterest"></h2>
-        </div>
-        <div class="social-hover">
-            <h2 class="entypo-pinterest"></h2>
-        </div>
-    </div>
-    <div class="social-figure">
-        <div class="vimeo">
-            <h2 class="entypo-vimeo"></h2>
-        </div>
-        <div class="social-hover">
-            <h2 class="entypo-vimeo"></h2>
-        </div>
-    </div>
-</div>-->
-</div> 
-        
-        
     </body>
+</html>
 </html>

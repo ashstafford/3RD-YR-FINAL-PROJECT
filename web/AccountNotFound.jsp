@@ -13,5 +13,13 @@
     </head>
     <body>
         <h1>Sorry Account Not Found!</h1>
+        
+        <form action = "Login.jsp" method = "post">
+               
+      
+               <p> 
+                  <input type = "submit" name = "Login" value = "Return to Login"/>
+               </p>
+       </form>
     </body>
 </html>

@@ -33,18 +33,7 @@
       
       <div id="container">
             
-        <nav class = "topmenu">
-            <ul class="navigation">
-                    <li><a href="MemberActionServlet?action=viewProfile">My Profile</a></li>
-          
-         <li><a href="/CA3WebApp/Login.html">Login</a></li>
-            
-            
-        <li><a href="/CA3WebApp/Login.html">Sign Up</a></li>
-         
-                      
-   </ul>
-     </nav> 
+        
         
             <div id="banner">
                 <img src="tempBanner.jpg"/>
@@ -73,7 +62,7 @@
     </ul>
            
            
-</nav>
+</nav> 
 
             <div id="pagecontent2">
                 

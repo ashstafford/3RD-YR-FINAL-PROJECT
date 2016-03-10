@@ -119,6 +119,60 @@ div#copyright
 
 
 
+.navigation2 {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  background:#FFFFFF;
+  display: flex;
+  justify-content: flex-end;
+  color: black;
+}
+
+.navigation2 a {
+  display: block;
+  padding: 1em;
+  color:#ffffff;
+  text-decoration: none;
+  color: black;
+  font-family: Arial, Helvetica, sans-serif;
+  float:left;
+  padding-right:500px;
+}
+
+.navigation2 a:hover {
+  background:#e6e6e6;
+  border-bottom-right-radius   : 10px;
+  border-bottom-left-radius: 10px;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+@media all and (max-width: 800px) {
+  .navigation2 {
+    justify-content: space-around;
+  }
+}
+
+@media all and (max-width: 600px) {
+  .navigation2 {
+    padding: 0;
+    flex-direction: column;
+  }
+  
+  .navigation2 a {
+    padding: 1em;
+    text-align: center;
+    border-top: 1px solid rgba(255, 255, 255, 0.2); 
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2); 
+  }
+    
+  .navigation2 li:last-of-type a {
+    border-bottom: none;
+  }
+}
+
+
 
 
 select#soflow
@@ -285,7 +339,7 @@ html, body { background: #333 url("http://codepen.io/images/classy_fabric.png");
     display: block;
     margin:100px 0 auto;
     position: relative;
-    margin-top: 200px;
+    margin-top: 300px;
     
 }
 
@@ -390,7 +444,6 @@ input#img-5:checked ~ .nav-dots label#img-dot-5,
 input#img-6:checked ~ .nav-dots label#img-dot-6 {
 	background: rgba(0, 0, 0, 0.8);
 }
-
 
 
 
@@ -708,7 +761,28 @@ div#searchbar{
 }
 
 
+div#productImage img{
+    border-style: solid;
+    clear:right;
+}
+div#productImage
+{
+    float:left;
+    clear:right;
+    padding-left: 50px;
+    margin-right: 50px;
+}
+div#productDetails
+{
+    padding-left: 50px;
+    padding-top: 20px;
+    
+}
 
+div#overall
+{
+    padding-top:100px;
+}
 
 //My Prifle
 

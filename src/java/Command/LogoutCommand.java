@@ -31,7 +31,7 @@ public class LogoutCommand implements Command
         session.invalidate();
         
         // Send the user back to the login page
-        String forwardToJsp = "/Login.html";
+        String forwardToJsp = "/Login.jsp";
         
         return forwardToJsp;
     }

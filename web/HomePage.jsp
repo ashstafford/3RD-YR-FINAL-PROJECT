@@ -48,10 +48,10 @@
             
          %>
         
-         <li><a href="/CA3WebApp/Login.html">Login</a></li>
+         <li><a href="/CA3WebApp/Login.jsp">Login</a></li>
            
             
-        <li><a href="/CA3WebApp/Login.html">Sign Up</a></li>
+        <li><a href="/CA3WebApp/Login.jsp">Sign Up</a></li>
         
         <%
         

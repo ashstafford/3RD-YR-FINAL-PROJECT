@@ -10,23 +10,68 @@
     <head>
      
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <style>     
-    body 
-            {
-            background-image: url("IMG_loginBackground.jpg");
-            background-color: #cccccc;
-            color: #ffffff;
-            padding: 150px;
-            margin: 500px;
-            margin-top: 100px;
-            font-size: 20px;
-            }
+        <link rel="stylesheet" type="text/css" href="mainCSS.css" >
+    <style>     
+    
     </style>        
     </head>
     <body>
-        <h1>Login Failed!</h1>
-        <form action="Login.html">
+        
+        <div id="container">
+            
+        <nav class = "topmenu">
+            <ul class="navigation">
+                    <li><a href="MemberActionServlet?action=viewProfile">My Profile</a></li>
+          
+         <li><a href="/CA3WebApp/Login.jsp">Login</a></li>
+            
+            
+        <li><a href="/CA3WebApp/Login.jsp">Sign Up</a></li>
+         
+                      
+   </ul>
+     </nav> 
+        
+            <div id="banner">
+                <img src="tempBanner.jpg"/>
+            </div>
+  
+       <nav class="menu-1">
+    <ul class="menu">
+        <li> <a href="/CA3WebApp/HomePage.jsp">Home</a> </li>
+        <li> <a href="MemberActionServlet?action=ViewAllProducts">Shop</a> </li>
+        <li> <a href="/CA3WebApp/About.jsp">About</a> </li>
+        
+        <li> <a href="MemberActionServlet?action=ViewPreviousOrders">View Orders</a> </li>
+        
+        <li> <a href="/CA3WebApp/ContactUs.jsp">Contact</a> </li>
+        <li> <a href="/CA3WebApp/Cart.jsp">Cart</a> </li>
+        
+        <div id="searchbar">
+        <form  action = "MemberActionServlet" method = "post" >
+               <p><td> <input name="searchName" size=30 type="text" />  
+                 <input type="hidden" name="action" value="searchName" />
+                 <input type="submit" value="Search"/>
+               </p>
+        </form>
+        </div>
+        
+    </ul>
+           
+           
+</nav>
+
+            <div id="pagecontent2">
+                
+                 <h1>Login Failed!</h1>
+        <form action="Login.jsp">
         <input type="submit" value="Return To Login"/>
         </form>
+           
+            </div>
+        
+        
+        
+        
     </body>
 </html>
