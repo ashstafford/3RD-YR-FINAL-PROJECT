@@ -103,8 +103,8 @@ div#container
   </nav>
        <div id="pagecontent">
         <form action = "MemberActionServlet" method = "post">
-               <p>Enter new password name:
-                 <input name="editPassword" size=15 type="text" />
+               <p>Enter new password:
+                 <input name="editPassword" size=15  placeholder="MUST be at least 8 characters " type="password" />
                  <input type="hidden" name="action" value="Edit Password"/>
                  <input type="submit" name="submit" value="Edit Password"/>
                </p>

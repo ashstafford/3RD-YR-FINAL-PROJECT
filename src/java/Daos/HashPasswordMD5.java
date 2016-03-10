@@ -43,6 +43,6 @@ public class HashPasswordMD5
         }
             System.out.println("h password" + generatedPassword);
             
-       return password;
+       return generatedPassword;
     }        
 }

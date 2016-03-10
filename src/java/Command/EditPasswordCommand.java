@@ -5,6 +5,7 @@
  */
 package Command;
 
+import Daos.HashPasswordMD5;
 import Daos.MemberDao;
 import Dtos.Member;
 import javax.servlet.http.HttpServletRequest;
@@ -30,20 +31,31 @@ public class EditPasswordCommand implements Command
            String forwardToJsp = "";
            Member m = (Member) session.getAttribute("member");
            MemberDao mDao = new MemberDao();
-
+           
+           String regexPass = "[a-zA-Z0-9]{8,}";
+           boolean passValid = false;
+           
            String password = request.getParameter("editPassword");
            
-           if(password != null)
+           if(password.matches(regexPass))
            {
-               
-             boolean updated =  mDao.editLastName(m.getPassword(),password);
+               passValid = true;
+           } 
+           
+           if(password != null && passValid != false)
+           {
+             
+             boolean updated =  mDao.editPassword(m.getMemberId(),m.getPassword(),password);
    
                 if(updated == true)
                 {    
-
-                     String passwordEdit = session.getId();
+                    
+                    HashPasswordMD5 hp = new HashPasswordMD5();
+                    String hashedPassword = hp.hashPassword(password);
+                    
+                    String passwordEdit = session.getId();
            
-                     m.setPassword(password);
+                    m.setPassword(hashedPassword);
            
                     forwardToJsp = "/myProfile.jsp";
                }  

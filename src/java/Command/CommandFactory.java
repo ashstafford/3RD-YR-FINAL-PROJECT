@@ -33,6 +33,10 @@ public class CommandFactory
         {
     		command = new RegisterCommand();
     	}
+        if (commandStr.equals("resetPassword")) 
+        {
+    		command = new ResetPasswordCommand();
+    	}
         if (commandStr.equals("filterProducts")) 
         {
     		command = new PriceComparisonCommand();

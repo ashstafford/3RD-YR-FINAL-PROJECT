@@ -54,10 +54,17 @@
                         <td> Last name  : </td><td> <input name="lastName" size=25 type="text" /> </td> 
                     </tr>
                      <tr>
-                        <td> E-Mail  : </td><td> <input name="email" placeholder="" size=25 type="text" /> </td> 
+                        <td> E-Mail  : </td><td> <input name="email" placeholder="must have an '@'" size=25 type="text" /> </td> 
                     </tr>
                      <tr>
                         <td> Profile Image url  : </td><td> <input name="memberImageUrl" size=25 type="text" /> </td> 
+                    </tr>
+                     <tr>
+                        <td></td> 
+                        <td> What was the name of your first pet? </td> 
+                     </tr>
+                     <tr>
+                        <td> Security Question Answer  : </td><td> <input name="securityQuestionAnswer" size=25 type="text" /> </td> 
                     </tr>
                     
                 </table>
