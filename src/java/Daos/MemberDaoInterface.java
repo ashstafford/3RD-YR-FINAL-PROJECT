@@ -79,9 +79,9 @@ public interface MemberDaoInterface
      */
     public Member findMemberByEmailAddress(String eMail); 
     
-    public boolean editEmail(String email, String newEmail);
     
-    public boolean editMemberImageUrl(int memberId, String newMemberImageUrl);
+    
+    
     public boolean editEmail(int id,String email, String newEmail);
             
     public boolean editMemberImageUrl(int id,String memberImageUrl, String newMemberImageUrl);
