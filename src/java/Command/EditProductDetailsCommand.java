@@ -25,8 +25,6 @@ public class EditProductDetailsCommand implements Command
     {
            HttpSession session = request.getSession();
            String forwardToJsp = "";
-           Member m = (Member) session.getAttribute("member");
-           MemberDao mDao = new MemberDao();
 
            String id = request.getParameter("editProduct");
            String productImageUrl = request.getParameter("productImageUrl");
@@ -35,23 +33,64 @@ public class EditProductDetailsCommand implements Command
            String quantityInStock = request.getParameter("quantityInStock");
            String category = request.getParameter("category");
            
-           
-//           if(productName.isEmpty())
-//           {
-//               productName = 
-//           }   
-//                    
-                   int productId = Integer.parseInt(id);
-                   double newPrice = Double.parseDouble(price);
-                   int newQuantity = Integer.parseInt(quantityInStock);
-
+             System.out.println("id " + id );     
+             if(id != null)
+             {    
                    ProductDao pDao = new ProductDao();
-                   Product p = new Product();
-   
+                   
+                   int productId = Integer.parseInt(id);
+                           
+                   Product p = pDao.findProductById(productId);
+                   
+                   System.out.println("haha " + p.toString());
+                   
+                   double newPrice;
+                   int newQuantity;
+                   
+                   if(productName.isEmpty())
+                   {
+                      productName = p.getProductName();
+                   }
+                   
+                   if(productImageUrl.isEmpty())
+                   {
+                       productImageUrl = p.getProductImageUrl();
+                   } 
+                   
+                   if(productName.isEmpty())
+                   {
+                       productName = p.getProductName();
+                   }
+                   
+                   if(price.isEmpty())
+                   {
+                       newPrice = p.getProductPrice();
+                   }
+                   else
+                   {
+                      newPrice = Double.parseDouble(price);
+                   } 
+                   
+                   if(quantityInStock.isEmpty())
+                   {
+                       newQuantity = p.getQuantityInStock();
+                   } 
+                   else
+                   {
+                       newQuantity = Integer.parseInt(quantityInStock);
+                   }     
+                   
+                   if(category.isEmpty())
+                   {
+                       category = p.getCategory();
+                   }
+                   
+                   System.out.println("new " + p.toString());
+                   
                    boolean updated = pDao.editProductDetails(productId,productImageUrl, productName, newPrice, newQuantity, category);
                    
-                
-   
+               
+                   
                 if(updated == true)
                 {    
 
@@ -62,16 +101,16 @@ public class EditProductDetailsCommand implements Command
                      p.setProductPrice(newPrice);
                      p.setQuantityInStock(newQuantity);
                      p.setCategory(category);
-           
+                     
+                    System.out.println("final " + p.toString());
                     forwardToJsp = "/ViewAllProducts.jsp";
                }  
-
-           
-             
-          
-           
-     return forwardToJsp;       
-    }
-}
+ 
+        }      
+      
+       return forwardToJsp;       
+    
+   }
+}    
     
 

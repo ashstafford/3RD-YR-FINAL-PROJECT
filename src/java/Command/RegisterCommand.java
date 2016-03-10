@@ -61,10 +61,10 @@ public class RegisterCommand implements Command
              }
 
              if (userValid != false && passValid != false && firstName != null && lastName != null && emailValid != false && securityQuestionAnswer !=null
-                     && !userName.isEmpty() && !password.isEmpty() && !firstName.isEmpty() && !lastName.isEmpty() && !email.isEmpty() && securityQuestionAnswer != null)
+                     && !userName.isEmpty() && !password.isEmpty() && !firstName.isEmpty() && !lastName.isEmpty() && !email.isEmpty() && !securityQuestionAnswer.isEmpty())
              {
-                 //Member m = mDao.addMember(userName, password,firstName, lastName,email,securityQuestionAnswer,isAdmin);
-
+                
+                 Member m = mDao.addMember(userName,password,firstName,lastName,email,securityQuestionAnswer,isAdmin);
                    
 
                  if (m != null)

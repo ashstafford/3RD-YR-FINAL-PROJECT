@@ -33,12 +33,11 @@ public class Member
         firstName = "Ben";
         lastName = "VanRhee";
         email = "ben@gmail.com";
-        memberImageUrl = "IMG_TWD1.jpg";
         securtiyQuestionAnswer = "spot";
         admin = false;
     }   
 
-    public Member(int memberId, String userName, String password, String firstName, String lastName, String email, String memberImageUrl, String securtiyQuestionAnswer, boolean admin)
+    public Member(int memberId, String userName, String password, String firstName, String lastName, String email,String securtiyQuestionAnswer, boolean admin)
     {
         this.memberId = memberId;
         this.userName = userName;
