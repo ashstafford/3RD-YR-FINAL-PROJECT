@@ -38,7 +38,7 @@ div#banner img
 
 div#side_bar
 {
-  width  : 250px;
+  width  : 200px;
   min-height : 1300px;
   float  : left;
   clear:left;
@@ -48,7 +48,7 @@ div#pagecontent
 {
     position: relative;
     border : black thin solid;
-    margin-left: 250px;
+    margin-left: 200px;
     min-height: 1300px;
     background-color: white;
   
