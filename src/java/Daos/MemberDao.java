@@ -358,7 +358,6 @@ public class MemberDao extends Dao implements MemberDaoInterface
 
         try
         {
-           
             con = this.getConnection();
             
              HashPasswordMD5 hp = new HashPasswordMD5();
@@ -369,10 +368,14 @@ public class MemberDao extends Dao implements MemberDaoInterface
             ps = con.prepareStatement(query);
             ps.setString(1, userName);
             ps.setString(2, hashedPassword);
-
+ 
+            System.out.println("hp "+ hashedPassword);
+            
             rs = ps.executeQuery();
+            int i =0;
             if (rs.next())
             {
+                System.out.println("How many loops can ya go: " + i++ + " Appartenly ");
                 int memberId = rs.getInt("memberId"); //changed
                 String username = rs.getString("userName");
                 String password = rs.getString("password");
@@ -383,11 +386,14 @@ public class MemberDao extends Dao implements MemberDaoInterface
                 String securityQuestionAnswer = rs.getString("securityQuestionAnswer");
                 boolean isAdmin = rs.getBoolean("isAdmin");
             
+                System.out.println("ghhjhj "+ hashedPassword);
+                System.out.println("pp " + password);
+                
                if(hashedPassword.equals(password))
                {    
 
-                m = new Member(memberId,username, password, firstname, lastname, email,memberImageUrl,securityQuestionAnswer,isAdmin);
-     
+                  m = new Member(memberId,username, password, firstname, lastname, email,memberImageUrl,securityQuestionAnswer,isAdmin);
+                  
                }
 
             }

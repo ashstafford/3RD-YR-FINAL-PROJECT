@@ -46,7 +46,6 @@ public class Member
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
-        this.memberImageUrl = memberImageUrl;
         this.securtiyQuestionAnswer = securtiyQuestionAnswer;
         this.admin = admin;
     }

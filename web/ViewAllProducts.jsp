@@ -110,6 +110,8 @@ div#filterButton
 }
 
 
+
+
 /*#wrap{
 	width: 100%;
 	max-width: 1100px;
@@ -207,7 +209,28 @@ a.button:hover{
 }
 */
 
+div#productImage img{
+    border-style: solid;
+    clear:right;
+}
+div#productImage
+{
+    float:left;
+    clear:right;
+    padding-left: 50px;
+    margin-right: 50px;
+}
+div#productDetails
+{
+    padding-left: 50px;
+    padding-top: 20px;
+    
+}
 
+div#overall
+{
+    padding-top:100px;
+}
 
         </style>
     </head>   
@@ -320,6 +343,7 @@ a.button:hover{
              
                </p>
          </form>
+        
     </div>
         
       <div id="pagecontent">
@@ -352,57 +376,28 @@ a.button:hover{
                         for (Product prod : products) 
                         {
                 %>
-           <form action="MemberActionServlet" method="post">
-               
-        <!--<div id="cf">
-	<div id="wrap">
-	<div id="columns" class="columns_4">
-            <figure>
-            <img src="<%=prod.getProductImageUrl()%>" style="width: 300px; height: 250px;">
-                  <figcaption><%=prod.getProductName()%></figcaption>
-              <span class="price">Price: €<%=prod.getProductPrice()%></span>
-              <td>Quantity: <input name="quantity" size=15 type="text" /></td>
-              <td><input type="hidden" name="action" value="Add To Cart" /></td>
-              <input type="hidden" name="addToCart" value="<%= prod.getProductId()%>" />
-              <td><input type="submit" class="button" value="Add To Cart" /></td>
-              </figure>
-        </div>
-        </div>
-        </div>-->
-        
-        
- 
-                 
-            <tr>
-                
-                
-                <td><img src="<%=prod.getProductImageUrl()%>" style="width: 300px; height: 250px;"></td>
-                <td><%=prod.getProductName()%></td>
-                <td><% out.println("\t\t"); %></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td>Quantity in stock: <%=prod.getQuantityInStock()%></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td><p>Price: €<%=prod.getProductPrice()%></p></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-            
-           
-                <td>Quantity: <input name="quantity" size=15 type="text" /></td>
-                <td><input type="hidden" name="action" value="Add To Cart" /></td>
-                <input type="hidden" name="addToCart" value="<%= prod.getProductId()%>" />
-                <td><input type="submit" value="Add To Cart" /></td>
-             </tr>
+         <form action="MemberActionServlet" method="post">
+            <div id="overall">
+                      </div>
 
+        <tr>
+                
+        <div id="productImage">   
+       <img src="<%=prod.getProductImageUrl()%>" style="width: 300px; height: 250px;">     
+        </div>   
+            
+        <div id ="productDetails">
+            <p><%=prod.getProductName()%></p>
+                <p>Quantity in stock: <%=prod.getQuantityInStock()%></p>
+                <p>Price: €<%=prod.getProductPrice()%></p>
+                
+                
+                <p>Quantity: <input name="quantity" size=15 type="text" /></p>
+                <p><input type="hidden" name="action" value="Add To Cart" /></p>
+                <input type="hidden" name="addToCart" value="<%= prod.getProductId()%>" />
+                <p><input type="submit" value="Add To Cart" /></p>
+        </div>
+           </tr>
       </form>
             <%
                     }
