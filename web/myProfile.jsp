@@ -16,17 +16,28 @@
         
             <style>
     
+div#adminChanges h2
+{
+    padding-left: 830px;
+    padding-top:12px;
+    
+}
+                
+    
 div#otherButtons
 {
      left: 69%;
      font-family: serif;
      color:#FFFFFF;
-     padding-bottom: 300px;
+     padding-top: 30px;
+     padding-left:800px;
 }                
 div#editButtons
 {
      padding-left: 100px;
      padding-top: 30px;
+     float:left;
+     clear:left;
 }
 div#profilePicture
 {
@@ -55,17 +66,20 @@ div#profilePicButton
     
 }
 
-h1
+div#welcomeTitle h1
 {
     padding-top: 30px;
     padding-left: 500px;
 }
 
-h2
+div#changePersonal h2
 {
-    padding-left: 100px;
+    padding-left: 70px;
+    padding-top:50px;
+    float :left;
+    clear: left;
 }
-h3
+div#personalDetailsTitle h3
 {
     padding-left: 500px;
 }
@@ -180,13 +194,13 @@ h3
      </nav> 
         
         <div id="banner">
-                <img src="bannerTemp.gif"/>
+                <img src="tempBanner.jpg"/>
             </div>
   
        <nav class="menu-1">
     <ul class="menu">
-        <li> <a href="/CA3WebApp/HomePage.html">Home</a> </li>
-        <li> <a href="/CA3WebApp/ViewAllProducts.jsp">Shop</a> </li>
+        <li> <a href="/CA3WebApp/HomePage.jsp">Home</a> </li>
+        <li> <a href="/CA3WebApp/CategorySelection.html">Shop</a> </li>
         <li> <a href="/CA3WebApp/About.jsp">About</a> </li>
         
         <li> <a href="MemberActionServlet?action=ViewPreviousOrders">View Orders</a> </li>
@@ -216,11 +230,14 @@ h3
         </div>
         
         
-        
+        <div id="welcomeTitle">
         <h1> WELCOME <%= m.getFirstName().toUpperCase() %>! </h1>
+        </div>
         
-        
+        <div id="personalDetailsTitle">
         <h3> Personal Details </h3>
+        </div>
+        
         <div id="profileDetails">
         <p> First Name : <%= "   " +m.getFirstName() %></p>
         <p> Last Name  : <%= "   " +m.getLastName() %>
@@ -238,7 +255,10 @@ h3
         <br>
         <br>
         
+        
+        <div id="changePersonal">
         <h2>CHANGE YOUR PERSONAL DETAILS </h2>
+        </div>
         
         <div id="editButtons">
         <td><form action = "editFirstName.jsp" method = "post"> <p><input type = "submit" style="width:300px; height: 35px;" value = "Change First Name" /></p></form></td>
@@ -255,6 +275,9 @@ h3
         <br>
         <br>
         
+        <div id="adminChanges">
+            <h2>ADMIN CHANGES</h2>
+        </div>
         
         <div id ="otherButtons"> 
               
@@ -263,9 +286,9 @@ h3
                
             if(m.isAdmin())
             {
-                %><td><form action = "AddProduct.jsp" method = "post"> <p><input type = "submit" name="action" value = "Add Product" /></p></form></td
-                  <td><form action = "SelectProductToEdit.jsp" method = "post"> <p><input type = "submit" name="action" value = "Remove Product" /></p></form></td>
-                  <td><form action = "SelectProductToEdit.jsp" method = "post"> <p><input type = "submit" name="action" value = "Edit Product" /></p></form></td>
+                %><td><form action = "AddProduct.jsp" method = "post"> <p><input type = "submit" style="width:300px; height: 35px;" name="action" value = "Add Product" /></p></form></td
+                  <td><form action = "SelectProductToEdit.jsp" method = "post"> <p><input type = "submit" style="width:300px; height: 35px;" name="action" value = "Remove Product" /></p></form></td>
+                  <td><form action = "SelectProductToEdit.jsp" method = "post"> <p><input type = "submit" style="width:300px; height: 35px;" name="action" value = "Edit Product" /></p></form></td>
                 
                 <%
             }
