@@ -16,7 +16,7 @@ import static org.junit.Assert.*;
 
 /**
  *
- * @author Natalia
+ * @author Benjamin
  */
 public class ProductDaoTest 
 {
@@ -29,21 +29,9 @@ public class ProductDaoTest
         
     }
 
-    @BeforeClass
-    public static void setUpClass() throws Exception {
-    }
+   
 
-    @AfterClass
-    public static void tearDownClass() throws Exception {
-    }
-
-    @Before
-    public void setUp() throws Exception {
-    }
-
-    @After
-    public void tearDown() throws Exception {
-    }
+  
     
 
 
@@ -81,7 +69,7 @@ public class ProductDaoTest
      */
     @Test
     public void testFindProductByTitle() {
-        System.out.println("findProductByTitle");
+        System.out.println("findProductByTitle");        
         String title = "DOCTOR WHO TARDIS HOODY";
         ProductDao instance = new ProductDao();
         ArrayList<Product> expResult = instance.findProductsByTitle(title);
@@ -115,13 +103,13 @@ public class ProductDaoTest
     @Test
     public void testFindProductsByTitle() {
         System.out.println("findProductsByTitle");
-        String title = "";
+        String title = "GAME OF THRONES 4-PIECE HOLIDAY ORNAMENT SET";
         ProductDao instance = new ProductDao();
-        ArrayList<Product> expResult = null;
+        ArrayList<Product> expResult = instance.findProductsByTitle(title);
         ArrayList<Product> result = instance.findProductsByTitle(title);
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        //fail("The test case is a prototype.");
     }
 
     /**
@@ -137,9 +125,9 @@ public class ProductDaoTest
     public void testCheckQuantityInStock()
     {
         System.out.println("checkQuantityInStock");
-        int id = 0;
+        int id = 2;
         ProductDao instance = new ProductDao();
-        int expResult = 0;
+        int expResult = 2;
         int result = instance.checkQuantityInStock(id);
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
@@ -149,23 +137,43 @@ public class ProductDaoTest
     /**
      * Test of editProductDetails method, of class ProductDao.
      */
+//    @Test
+//    public void testEditProductDetails()
+//    {
+//        System.out.println("editProductDetails");
+//        int id = 2;
+//        String productImageUrl = "images/IMG_starwars2.jpg";
+//        String productName = "STAR WARS COMIC COVER T-SHIRT";
+//        double productPrice = 25.0;
+//        int quantityInStock = 10;
+//        String category = "Star Wars";
+//        ProductDao instance = new ProductDao();
+//        boolean expResult = instance.editProductDetails(id, productImageUrl, productName, productPrice, quantityInStock, category);    
+//        boolean result = instance.editProductDetails(id, productImageUrl, productName, productPrice, quantityInStock, category);
+//        assertEquals(expResult, result);
+//        System.out.println("Test Passed");
+//        boolean p= instance.editProductDetails(2,"images/IMG_starwars2.jpg","STAR WARS COMIC COVER T-SHIRT",25.0,10,"Star Wars");
+//        instance.editProductDetails(id, productImageUrl, productName, productPrice, quantityInStock, category);
+//        // TODO review the generated test code and remove the default call to fail.
+//        //fail("The test case is a prototype.");
+//    }
+
+   
+    
+
+    
+    /**
+     * Test of removeProduct method, of class ProductDao.
+     */
     @Test
-    public void testEditProductDetails()
+    public void testRemoveProduct()
     {
-        System.out.println("editProductDetails");
-        int id = 2;
-        String productImageUrl = "images/IMG_starwars2.jpg";
-        String productName = "STAR WARS COMIC COVER T-SHIRT";
-        double productPrice = 25.0;
-        int quantityInStock = 10;
-        String category = "Star Wars";
+        System.out.println("removeProduct");
+        int productId = 1;
         ProductDao instance = new ProductDao();
-        boolean expResult = true;        
-        boolean result = instance.editProductDetails(id, productImageUrl, productName, productPrice, quantityInStock, category);
+        boolean expResult = true;
+        boolean result = instance.removeProduct(productId);
         assertEquals(expResult, result);
-        System.out.println("Test Passed");
-        boolean p= instance.editProductDetails(2,"images/IMG_starwars2.jpg","STAR WARS COMIC COVER T-SHIRT",25.0,10,"Star Wars");
-        instance.editProductDetails(id, productImageUrl, productName, productPrice, quantityInStock, category);
         // TODO review the generated test code and remove the default call to fail.
         //fail("The test case is a prototype.");
     }
@@ -173,20 +181,20 @@ public class ProductDaoTest
     /**
      * Test of addProduct method, of class ProductDao.
      */
-//    @Test
-//    public void testAddProduct() {
-//        System.out.println("addProduct");
-//        String productImageUrl = "";
-//        String productName = "red top";
-//        double productPrice = 20.0;
-//        int quantityInStock = 10;
-//        String category = "The Walking Dead";
-//        ProductDao instance = new ProductDao();
-//        boolean expResult = true;
-//        boolean result = instance.addProduct(productImageUrl, productName, productPrice, quantityInStock, category);
-//        assertEquals(expResult, result);
-//        System.out.println("Test Passed");
-//        ArrayList<Product> p = instance.findProductsByTitle("red top");
-//    }
+    @Test
+    public void testAddProduct() {
+        System.out.println("addProduct");
+        String productImageUrl = "images/IMG_GOT1.jpg";
+        String productName = "red top";
+        double productPrice = 20.0;
+        int quantityInStock = 10;
+        String category = "The Walking Dead";
+        ProductDao instance = new ProductDao();
+        boolean expResult = instance.addProduct(productImageUrl, productName, productPrice, quantityInStock, category);
+        boolean result = instance.addProduct(productImageUrl, productName, productPrice, quantityInStock, category);
+        assertEquals(expResult, result);
+        System.out.println("Test Passed");
+        ArrayList<Product> p = instance.findProductsByTitle("red top");
+    }
     
 }
