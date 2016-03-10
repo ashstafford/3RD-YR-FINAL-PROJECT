@@ -49,10 +49,12 @@
          %>
         
          <li><a href="/CA3WebApp/Login.html">Login</a></li>
-            
+            <meta http-equiv="refresh" 
+            content="0; url=Login.html">
             
         <li><a href="/CA3WebApp/Login.html">Sign Up</a></li>
-       
+        <meta http-equiv="refresh" 
+        content="0; url=Login.html">
         <%
         
         }
