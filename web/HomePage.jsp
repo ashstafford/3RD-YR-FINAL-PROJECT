@@ -49,12 +49,10 @@
          %>
         
          <li><a href="/CA3WebApp/Login.html">Login</a></li>
-            <meta http-equiv="refresh" 
-            content="0; url=Login.html">
+           
             
         <li><a href="/CA3WebApp/Login.html">Sign Up</a></li>
-        <meta http-equiv="refresh" 
-        content="0; url=Login.html">
+        
         <%
         
         }
@@ -100,10 +98,6 @@
            
 </nav>
             
-            
-            <!--<div id="side_bar">
- 	
-            </div>-->
             
             <div id="pagecontent2">
                 
@@ -166,48 +160,8 @@
       
     </li>
 </ul>
-                
-     <!--<div class="view view-first">  
-     <img src="starwars_homepage.jpg" />  
-     <div class="mask">  
-     <h2>Starwars Merchandise</h2>  
-     <p>Get all your unique Starwars merchandise at a great price!</p>  
-         <a href="/CA3WebApp/CategorySelection.html" class="info">Shop Now</a>  
-     </div> 
-	  </div>
-	 
-	 <div class="view2 view-first">  
-     <img src="deadpool_homepage.jpg" />  
-     <div class="mask">  
-     <h2>Marvel</h2>  
-     <p>This is the most popular movie at the minute, so get your Merch now at a great price</p>  
-         <a href="/CA3WebApp/CategorySelection.html" class="info">Shop Now</a>  
-     </div>
-	 </div>
-                
-            
-        <div class="view3 view-first">  
-     <img src="dc_homepage.jpg" />  
-     <div class="mask">  
-     <h2>DC Comics</h2>  
-     <p>In our store we have a huge range of products at a great price! Shop now!</p>  
-         <a href="/CA3WebApp/CategorySelection.html" class="info">Shop Now</a>  
-     </div> 
-	</div>
-	
-	<div class="view4 view-first">  
-     <img src="disney_homepage.jpg" />  
-     <div class="mask">  
-     <h2>Disney</h2>  
-     <p>This is a very popular theme within our store, we have great quality products so have a look here! Click here</p>  
-         <a href="/CA3WebApp/CategorySelection.html" class="info">Shop Now</a>  
-     </div> 
-	</div>-->
-           
+       
 </div>
-        
-
-        
-        
+            
     </body>
 </html>

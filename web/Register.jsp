@@ -7,7 +7,23 @@
         <title>Register</title>
         
         <style>  
-        
+            div#register{
+                 padding-left:400px;
+                 padding-top:50px;
+                 font-family: Arial, Helvetica, sans-serif;
+                 
+             }
+             div#registerTitle
+             {
+                padding-left:540px;
+                padding-top:10px;
+             }
+             
+             div#ad img{
+                 padding-left:50px;
+                 padding-top:70px;
+                 width:92%
+             }
        </style> 
       
     </head>
@@ -61,8 +77,12 @@
 
             <div id="pagecontent2">
                 
+                <div id="registerTitle">
+                <h1> Register </h1> 
+                </div>
+                
                  <div id="register">  
-        <h1> Register </h1>   
+           
     <form action="MemberActionServlet" method="post">
                 <table>
                     <tr>
@@ -100,7 +120,10 @@
                 <input type="submit" value="Register"  />
       </form>
     </div>
-           
+           <div id="ad">
+			<img src="harryPotterAd.jpg" />
+                </div>
+                
             </div>
         
       
