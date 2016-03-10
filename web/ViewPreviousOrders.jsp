@@ -109,7 +109,7 @@ div#container
        
          <table>
 
-            <tr> <th>Receipt ID</th><th>Date Ordered</th><th>Product Name</th><th>Product Price</th><th>Quantity</th><th>Member ID</th>
+            <tr> <th>Receipt ID</th><th>Date Ordered</th><th>Total Price</th><th>Member ID</th><th>Payment Type</th>
 
          <%
                     List<SalesReceipt> orders;
@@ -121,14 +121,14 @@ div#container
                         for (SalesReceipt sr : orders) 
                         {
                 %>
-                
+            
              <tr>
                 <td><%=sr.getReceiptId()%></td>
                 <td><%=sr.getDateOrdered()%></td>
-                <td><%=sr.getProductName()%></td>
-                <td><%=sr.getProductPrice()%></td>
-                <td><%=sr.getQuantity()%></td>
+                <td><%=sr.getTotalPrice()%></td>
                 <td><%=sr.getMemberId()%></td>
+                <td><%=sr.getPaymentType()%></td>
+                
             </tr>
                 
                 

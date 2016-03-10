@@ -9,10 +9,13 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Delete Success!</title>
     </head>
     <body>
         <h1> Product Deleted Successfully!! </h1>
-        
+          
+        <form action="ViewAllProducts.html">
+        <input type="submit" value="Return To Shop"/>
+        </form>
     </body>
 </html>

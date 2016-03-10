@@ -13,7 +13,7 @@ import javax.servlet.http.HttpSession;
 
 /**
  *
- * @author Aisling
+ * @author Benjamin
  */
 public class EditLastNameCommand implements Command
 {

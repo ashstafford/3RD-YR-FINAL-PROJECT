@@ -38,7 +38,7 @@ public interface MemberDaoInterface
      */
     public Member findMemberByUsername(String username);
 
-   public Member addMember(String firstName, String lastName, String userName, String password,String email,String memberImageUrl,String securityQuestionAnswer,boolean isAdmin);
+   public Member addMember(String firstName, String lastName, String userName, String password,String email,String securityQuestionAnswer,boolean isAdmin);
 
     /**
      *
@@ -78,6 +78,9 @@ public interface MemberDaoInterface
      * @return
      */
     public Member findMemberByEmailAddress(String eMail); 
+    
+    
+    
     
     public boolean editEmail(int id,String email, String newEmail);
             

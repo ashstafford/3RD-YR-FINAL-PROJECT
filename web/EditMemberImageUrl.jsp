@@ -100,7 +100,7 @@ div#container
         <li><a href="MemberActionServlet?action=logout">Logout</a></li>
 </ul>
   </nav>
-       <div id="pagecontent">
+      <div id="pagecontent">
            
         <form action = "MemberActionServlet" method = "post">
                <p>Enter new Member Image URL:
@@ -110,8 +110,8 @@ div#container
                </p>
          </form>
        </div>
-   </div>  
-    </body>
+       
+       
 </html>
 
 

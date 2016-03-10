@@ -199,8 +199,8 @@ div#personalDetailsTitle h3
   
        <nav class="menu-1">
     <ul class="menu">
-        <li> <a href="/CA3WebApp/HomePage.jsp">Home</a> </li>
-        <li> <a href="/CA3WebApp/CategorySelection.html">Shop</a> </li>
+        <li> <a href="/CA3WebApp/HomePage.html">Home</a> </li>
+        <li> <a href="MemberActionServlet?action=ViewAllProducts">Shop</a> </li>
         <li> <a href="/CA3WebApp/About.jsp">About</a> </li>
         
         <li> <a href="MemberActionServlet?action=ViewPreviousOrders">View Orders</a> </li>
