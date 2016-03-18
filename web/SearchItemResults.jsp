@@ -39,10 +39,10 @@
           
          <%  Member m = (Member)session.getAttribute("member"); 
          
-        if(m == null)
-        {
+     //   if(m == null)
+       // {
             
-         %>
+         //%>
         
          <li><a href="/CA3WebApp/Login.html">Login</a></li>
            
@@ -51,9 +51,9 @@
         
         <%
         
-        }
-        else
-        {
+       // }
+       // else
+       // {
       
             
         %>
@@ -62,7 +62,7 @@
                       
    </ul>
      </nav> 
-          <% } %>
+          <% //} %>
 
             <div id="banner">
                 <img src="tempBanner.jpg"/>
@@ -70,14 +70,14 @@
   
        <nav class="menu-1">
     <ul class="menu">
-        <li> <a href="/CA3WebApp/HomePage.jsp">Home</a> </li>
+        <li> <a href="/Login.html/HomePage.jsp">Home</a> </li>
         <li> <a href="MemberActionServlet?action=ViewAllProducts">Shop</a> </li>
-        <li> <a href="/CA3WebApp/About.jsp">About</a> </li>
+        <li> <a href="/Login.html/About.jsp">About</a> </li>
         
         <li> <a href="MemberActionServlet?action=ViewPreviousOrders">View Orders</a> </li>
         
-        <li> <a href="/CA3WebApp/ContactUs.jsp">Contact</a> </li>
-        <li> <a href="/CA3WebApp/Cart.jsp">Cart</a> </li>
+        <li> <a href="/Login.html/ContactUs.jsp">Contact</a> </li>
+        <li> <a href="/Login.html/Cart.jsp">Cart</a> </li>
         
         <div id="searchbar">
         <form  action = "MemberActionServlet" method = "post" >

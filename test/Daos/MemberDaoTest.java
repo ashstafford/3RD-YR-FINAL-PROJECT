@@ -71,7 +71,7 @@ public class MemberDaoTest
     public void testAddMember()
     {
         System.out.println("addMember");
-         Member m = new Member(5,"bennyboyvr", "password", "Ben", "Van Rhee", "ben@gmail.com", "IMG_StarWars1.jpg", "trio",false); 
+         Member m = new Member(5,"bennyboyvr", "password", "Ben", "Van Rhee", "ben@gmail.com", "trio",false); 
         String userName = "bennyboyvr";
         String password = "password";
         String firstName = "Ben";
@@ -82,10 +82,10 @@ public class MemberDaoTest
         boolean isAdmin = false ;      
         MemberDao instance = new MemberDao();
         //boolean expResult = true;
-        Member result = instance.addMember(userName, password,firstName, lastName,  email, memberImageUrl, securityQuestionAnswer,isAdmin);
+        Member result = instance.addMember(userName, password,firstName, lastName,  email, securityQuestionAnswer,isAdmin);
         assertEquals(m, result);
         System.out.println("addMember Test Passed");
-        instance.addMember(userName, password,firstName, lastName,  email, memberImageUrl, securityQuestionAnswer,isAdmin);
+        instance.addMember(userName, password,firstName, lastName,  email, securityQuestionAnswer,isAdmin);
         
     }
 
@@ -96,7 +96,7 @@ public class MemberDaoTest
     @Test
     public void testFindMemberByUserNamePassword() throws Exception {
         System.out.println("findMemberByUserNamePassword");
-        Member m = new Member(1, "bob123", "5f4dcc3b5aa765d61d8327deb882cf99", "Bob", "McGinty", "ash@yahoo.net", "IMG_TWD1.jpg", "spot",true);        
+        Member m = new Member(1, "bob123", "5f4dcc3b5aa765d61d8327deb882cf99", "Bob", "McGinty", "ash@yahoo.net",  "spot",true);        
         String userName = "bob123";
         String passWord = "password";
         MemberDao instance = new MemberDao();
