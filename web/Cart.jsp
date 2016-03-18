@@ -139,7 +139,10 @@ div#container
                 <td><p>Quantity: <%= prod.getQuantityInStock()%></p></td>
             </tr>
             
-            
+           
+                
+                <td><input type="hidden" name="action" value="RemoveProduct"</td>
+                <td><input type="submit" value="Remove Product"</td>
         
            </form>   
                 
