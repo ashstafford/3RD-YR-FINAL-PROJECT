@@ -21,21 +21,43 @@
 </script>
          <style>
              div#login{
-                 padding-left:500px;
+                 padding-left:580px;
                  padding-top:50px;
+                 max-width: 600px;
                  font-family: Arial, Helvetica, sans-serif;
                  
              }
              div#loginTitle
              {
-                padding-left:540px;
+                padding-left:70px;
                 padding-top:10px;
+                font-family: Arial, Helvetica, sans-serif;
              }
+             div#NewCustomersTitle
+             {
+                padding-left:70px;
+                padding-top:50px;
+                max-width: 400px;
+                font-family: Arial, Helvetica, sans-serif;
+                float:left;
+                clear:left;
+             }
+             
+             div#PasswordTable
+             {
+                 padding-top: 6px;
+             }
+             
+             label { font-weight: bold; }
+             
+             
              div#ad img{
                  padding-left:50px;
-                 padding-top:50px;
+                 padding-top:80px;
+                 padding-bottom: 70px;
                  width:92%
              }
+             
 
         </style>
         
@@ -52,14 +74,14 @@
   
        <nav class="menu-1">
     <ul class="menu">
-        <li> <a href="/CA3WebApp/HomePage.html">Home</a> </li>
+        <li> <a href="/Login.html/HomePage.jsp">Home</a> </li>
         <li> <a href="MemberActionServlet?action=ViewAllProducts">Shop</a> </li>
-        <li> <a href="/CA3WebApp/About.jsp">About</a> </li>
+        <li> <a href="/Login.html/About.jsp">About</a> </li>
         
         <li> <a href="MemberActionServlet?action=ViewPreviousOrders">View Orders</a> </li>
         
-        <li> <a href="/CA3WebApp/ContactUs.jsp">Contact</a> </li>
-        <li> <a href="/CA3WebApp/Cart.jsp">Cart</a> </li>
+        <li> <a href="/Login.html/ContactUs.jsp">Contact</a> </li>
+        <li> <a href="/Login.html/Cart.jsp">Cart</a> </li>
         
         <div id="searchbar">
         <form  action = "MemberActionServlet" method = "post" >
@@ -80,92 +102,91 @@
  	
             </div>-->
             
-            <div id="pagecontent2">
+            <div id="pagecontent3">
                 
                 <div id="loginTitle">
-                <h1> Login </h1> 
+                <h1> Login or Create an Account </h1> 
                 </div>
                 
+                <div id ="NewCustomersTitle">
+                    <h2>NEW CUSTOMERS</h2>
+                    <hr>
+                    <br>
+                    <p>
+                        Creating a login profile with our store allows you to shop faster, track the status of your cart and review your previous orders.
+                    </p>
+                    
+                    <br>
+                    
+                    <form action = "Register.jsp" method = "post">
+                        <p> 
+                            <input type = "submit" class="resizedButton" name = "Register" value = "Create an Account" />
+                        </p>
+                    </form>
+                </div>
+                
+                
                 <div id="login">
-        <form action="MemberActionServlet" method="post">
+                    
+                    
+                    <h2>REGISTERED CUSTOMERS</h2>
+                    <hr>
+                    <br>
+                    <p>
+                        If you have an account with us, please log in below.
+                    </p>
+                    
+                    <br>
+                    
+                <form action="MemberActionServlet" method="post">
+            
                 <table>
                     <tr>
-                        <td>Username: </td><td> <input name="username" size=15 type="text" /> </td> 
+                        <div id="UsernameLabel">
+                            <label for="exampleInputUsername2">Username: <span style="color:red;">*</span></label>
+                        </div>
                     </tr>
                     <tr>
-                        <td>Password: </td><td><input name="password" size=15 type="password" /> </td> 
+                            <td> <input  name="username" class="resizedTextBox"  type="text" required  size="35"  /> </td>
                     </tr>
                 </table>
                 
-                <input type="hidden" name="action" value="login" />
-                <input type="submit" value="login" />
+                    <div id="PasswordTable">
+                <table>
+                    <tr>
+                        <label for="exampleInputPassword">Password: <span style="color:red;">*</span></label> 
+                    </tr>
+                    <tr>
+                        <td><input name="password" class="resizedTextBox" size="35" type="password" required /> </td>
+                    </tr>
+                </table>
+                    </div>
+                
+                    <br>
+                <input type="hidden"  name="action" value="login" />
+                <input type="submit" class="resizedButton"  name="Login" value="Login"  />
+            
             </form>
 
-        <p> Not a member? Register! </p>
-        
-         <form action = "Register.jsp" method = "post">
-             
-               <p> 
-                  <input type = "submit" name = "Register" value = "Register" />
-               </p>
-            </form>
-         
-         <p> Forgot password?</p>
+                    <br>
+                    <br>
+         <p> Forgot your Password</p>
         
          <form action = "ForgotPassword.jsp" method = "post">
                
       
                <p> 
-                  <input type = "submit" name = "forgot Password" value = "forgot Password" />
+                  <input type = "submit" class="resizedButton"  name = "forgot Password"  value = "Click Here" />
                </p>
             </form>
        </div>
            
                 <div id="ad">
-			<img src="harryPotterAd.jpg" />
+                    <a href="MemberActionServlet?action=ViewAllProducts"><IMG BORDER="0" src="harryPotterAd.jpg"></A>	
                 </div>
                 
                 
             </div>
-        
-       
-       <!--<section class="container">
-        <div class="login">
-        <h1>Login</h1>
-        
-        <form method="post" action="MemberActionServlet">
-            <p><input type="text" name="username" value="" placeholder="Username"></p>
-            <p><input type="password" name="password" value="" placeholder="Password"></p>
-            
-            <p class="remember_me">
-                <label>
-                    <input type="checkbox" name="remember_me" id="remember_me">
-                    Remember me on this computer
-                </label>
-            </p>
-            
-            <p class="submit"><input type="submit" name="commit" value="Login"></p>
-      </form>
-    </div>
-
-    <!--<div class="login-help">
-      <p>Forgot your password? <a href="index.html">Click here to reset it</a>.</p>
-    </div>
-  </section>
-    
-   <!-- <div class="login">
-  <div class="login-triangle"></div>
-  
-  <h2 class="login-header">Log in</h2>
-
-  <form class="login-container">
-    <p><input type="email" placeholder="Email"></p>
-    <p><input type="password" placeholder="Password"></p>
-    <p><input type="submit" value="Log in"></p>
-  </form>
-</div> -->
-        
-       <button onclick="goBack()">Go Back</button>
         
     </body>
 </html>

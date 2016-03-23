@@ -20,7 +20,6 @@ div#adminChanges h2
 {
     padding-left: 830px;
     padding-top:12px;
-    
 }
                 
     
