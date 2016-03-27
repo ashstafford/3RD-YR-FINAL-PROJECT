@@ -104,7 +104,7 @@ div#container
            
         <form action = "MemberActionServlet" method = "post">
                <p>Enter new Member Image URL:
-                 <input name="editMemberImageUrl" size=15 type="text" />
+                 <input name="editMemberImageUrl" size=15 type="url" />
                  <input type="hidden" name="action" value="Edit MemberImageUrl"/>
                  <input type="submit" name="submit" value="Edit Profile Image"/>
                </p>

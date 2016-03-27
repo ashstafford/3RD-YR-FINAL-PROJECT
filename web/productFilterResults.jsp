@@ -6,7 +6,10 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <link rel="stylesheet" type="text/css" href="mainCSS.css" >
+        <link rel="stylesheet" type="text/css" href="mainCSS.css" >#<script src="js/jquery_1.js"></script>
+        <script src="js/paginate.js"></script>
+        <script src="js/custom.js"></script>
+        <script type="text/javascript" src="js/modernizr-1.5.min.js"></script>
         <title>JSP Page</title>
   
         <style>         
@@ -17,7 +20,7 @@
         
    <div id="container">  
           <nav class = "topmenu">
-            <ul class="navigation">
+             <ul class="navigation">
                     <li><a href="MemberActionServlet?action=viewProfile">My Profile</a></li>
                     
             
@@ -26,15 +29,15 @@
           
          <%  Member m = (Member)session.getAttribute("member"); 
          
-    //    if(m == null)
-      //  {
+       // if(m == null)
+        //{
             
          %>
         
-         <li><a href="/Login.html/Login.html">Login</a></li>
+         <li><a href="/Login.html/Login.jsp">Login</a></li>
             
             
-        <li><a href="/Login.html/Login.html">Sign Up</a></li>
+        <li><a href="/Login.html/Login.jsp">Sign Up</a></li>
         
         <%
         
@@ -50,6 +53,7 @@
    </ul>
      </nav> 
           <%// } %>
+     
 
             <div id="banner">
                 <img src="tempBanner.jpg"/>
@@ -150,21 +154,51 @@
                </p>
          </form>
         
+        <form action = "MemberActionServlet" method = "post">
+               <p> 
+                  <input type="hidden" name="action" value ="Harry Potter">
+                  <input type="image" src="images/HarryPotterlogo.jpg" alt="Submit" width="200px" height="70px"/> 
+             
+               </p>
+         </form>
+        
+        <form action = "MemberActionServlet" method = "post">
+               <p> 
+                  <input type="hidden" name="action" value ="Hunger Games">
+                  <input type="image" src="images/HungerGameslogo.jpg" alt="Submit" width="200px" height="70px"/> 
+             
+               </p>
+         </form>
+        
     </div>
-         <div id="pagecontent">
+        
+      
+        
+      <div id="pagecontent">
         
         <table>
-         <form action="MemberActionServlet" method="post">  
-             <select name="filterComboBox" id="soflow"> 
-               
-               <option value="1">Select an Option</option>
-               <option value="2">Price - Lowest To Highest</option> 
-               <option value="3">Price - Highest To Lowest</option>
+        <form action="MemberActionServlet" method="post">
+             <select name="filterComboBox" id="soflow">
+                <div id="filterCombo"></div>
+
+
+                  <option value="1">Select an Option</option>
+                  <option value="2">Price - Lowest To Highest</option> 
+                  <option value="3">Price - Highest To Lowest</option>
+
+                
+
+                  <div class="sortButton"> </div>
+                   <td><input type="hidden" name="action" style="width: 350px; height: 300px;" value="filterProducts" /></td>
+                   <td><input type="submit" class="sortButtonSize" value="Sort" /></td>
+                
              </select>
-                <td><input type="hidden" name="action" value="filterProducts" /></td>
-                <td><input type="submit" value="Filter" /></td>
          </form>  
-  
+            
+            <form action="MemberActionServlet" method="post"> 
+                
+                
+                    <table>
                 <%
                     List<Product> products;
                     products = (List) (request.getSession().getAttribute("fileredProducts"));
@@ -180,17 +214,17 @@
   
                 
          <form action="MemberActionServlet" method="post">
-            <div id="overall">
+            <div id="all">
+             <div id="overall">
                       </div>
-
-        <tr>
-                
         <div id="productImage">   
-       <img src="<%=prod.getProductImageUrl()%>" style="width: 300px; height: 250px;">     
+       <img src="<%=prod.getProductImageUrl()%>" style="width: 280px; height: 230px;">     
         </div>   
             
         <div id ="productDetails">
+            <div class="ProductName">
             <p><%=prod.getProductName()%></p>
+            </div>
                 <p>Quantity in stock: <%=prod.getQuantityInStock()%></p>
                 <p>Price: €<%=prod.getProductPrice()%></p>
                 
@@ -200,29 +234,33 @@
                 <input type="hidden" name="addToCart" value="<%= prod.getProductId()%>" />
                 <p><input type="submit" value="Add To Cart" /></p>
         </div>
-           </tr>
+                
+         </div> 
+           
            
            
            <%
                     }
                 }
-                else
-                    {
-                        out.println("Sorry not Found!!");
-                    }        
+                        
             %>
+            </table>
+                
+            <div class="pagination">
+            </div>
+                
       </form>
             
 
 
         </table>
 
-        
+        </div>
 
       </div>
-</div>  
+
         
-      
+
         
     </body>
 </html>

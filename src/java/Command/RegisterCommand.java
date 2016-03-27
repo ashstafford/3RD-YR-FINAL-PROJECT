@@ -29,7 +29,7 @@ public class RegisterCommand implements Command
 
              HttpSession session = request.getSession();
              
-             String forwardToJsp;
+             String forwardToJsp = null;
 
              MemberDao mDao = new MemberDao();
              
@@ -39,9 +39,9 @@ public class RegisterCommand implements Command
 		+ "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";  
           
          
-             boolean passValid = false;
-             boolean userValid = false;
-             boolean emailValid = false;
+             //boolean passValid = false;
+             //boolean userValid = false;
+             //boolean emailValid = false;
           
             
              String userName = request.getParameter("userName");
@@ -53,40 +53,40 @@ public class RegisterCommand implements Command
              boolean isAdmin = false;
              
              
-             if(userName.matches(regexUsername) && password.matches(regexPass) && email.matches(regexEmail))
-             {
-                 userValid = true;
-                 passValid = true;
-                 emailValid = true;
-             }
+             
 
-             if (userValid != false && passValid != false && firstName != null && lastName != null && emailValid != false && securityQuestionAnswer !=null
+             if (userName != null && password != null && firstName != null && lastName != null && email != null && securityQuestionAnswer !=null
                      && !userName.isEmpty() && !password.isEmpty() && !firstName.isEmpty() && !lastName.isEmpty() && !email.isEmpty() && !securityQuestionAnswer.isEmpty())
              {
+                if(userName.matches(regexUsername) && password.matches(regexPass) && email.matches(regexEmail))
+                {
+                    
                 
-                 Member m = mDao.addMember(userName,password,firstName,lastName,email,securityQuestionAnswer,isAdmin);
-                   
+                    Member m = mDao.addMember(userName,password,firstName,lastName,email,securityQuestionAnswer,isAdmin);
 
-                 if (m != null)
-                 {
-                     session = request.getSession();
-                     String clientSessionId = session.getId();
-                     session.setAttribute("loggedSessionId", clientSessionId);
 
-                     session.setAttribute("register", m);
+                    if (m != null)
+                    {
+                        session = request.getSession();
+                        String clientSessionId = session.getId();
+                        session.setAttribute("loggedSessionId", clientSessionId);
 
-                     forwardToJsp = "/RegisterSuccess.html";
-                 } 
-                 else
-                 {
-                     forwardToJsp = "/RegisterFailure.jsp";
-                 }
-             } 
-             else
-             {
-                 forwardToJsp = "/RegisterFailure.jsp";
+                        session.setAttribute("register", m);
+
+                        forwardToJsp = "/RegisterSuccess.html";
+                    } 
+                    
+                }
+                else
+                {
+                    forwardToJsp = "/RegisterFailure.jsp";
+                }
              }
-             
-     return forwardToJsp;        
+            else
+            {
+                forwardToJsp = "/RegisterFailure.jsp";
+            }
+        return forwardToJsp;
+   
     }
 }

@@ -13,10 +13,14 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" type="text/css" href="mainCSS.css" >
+        <script src="js/jquery_1.js"></script>
+        <script src="js/paginate.js"></script>
+        <script src="js/custom.js"></script>
+        <script type="text/javascript" src="js/modernizr-1.5.min.js"></script>
         <title>JSP Page</title>
   
         <style>   
-
+           
         </style>
     </head>   
     <body>
@@ -156,50 +160,81 @@
                </p>
          </form>
         
+        <form action = "MemberActionServlet" method = "post">
+               <p> 
+                  <input type="hidden" name="action" value ="Harry Potter">
+                  <input type="image" src="images/HarryPotterlogo.jpg" alt="Submit" width="200px" height="70px"/> 
+             
+               </p>
+         </form>
+        
+        <form action = "MemberActionServlet" method = "post">
+               <p> 
+                  <input type="hidden" name="action" value ="Hunger Games">
+                  <input type="image" src="images/HungerGameslogo.jpg" alt="Submit" width="200px" height="70px"/> 
+             
+               </p>
+         </form>
+        
     </div>
         
-      <div id="pagecontent">
+      
         
-        <table>
-         <form action="MemberActionServlet" method="post">  
+        <div id="pagecontent"> 
+         <form action="MemberActionServlet" method="post">
              <select name="filterComboBox" id="soflow">
-  <!-- This method is nice because it doesn't require extra div tags, but it also doesn't retain the style across all browsers. -->
-               <option value="1">Select an Option</option>
-               <option value="2">Price - Lowest To Highest</option> 
-               <option value="3">Price - Highest To Lowest</option>
+                <div id="filterCombo"></div>
+
+
+                  <option value="1">Select an Option</option>
+                  <option value="2">Price - Lowest To Highest</option> 
+                  <option value="3">Price - Highest To Lowest</option>
+
+                
+
+                  <div class="sortButton"> </div>
+                   <td><input type="hidden" name="action" style="width: 350px; height: 300px;" value="filterProducts" /></td>
+                   <td><input type="submit" class="sortButtonSize" value="Sort" /></td>
+                
              </select>
-             
-             <div id="filterButton">
-                <td><input type="hidden" name="action" style="width: 350px; height: 300px;" value="filterProducts" /></td>
-                <td><input type="submit" value="Filter" /></td>
-             </div>
-             
-             
-         </form>  
+         </form>
+        
             
-  
+        <form action="MemberActionServlet" method="post">
+            
+             <div class="list-of-posts">
+                 
+                    
                 <%
                     List<Product> products;
                     products = (List) (request.getSession().getAttribute("AllProducts"));
 
                     if (products != null) 
                     { 
-                        
-                        for (Product prod : products) 
-                        {
-                %>
-         <form action="MemberActionServlet" method="post">
-            <div id="overall">
-                      </div>
-
-        <tr>
+                %>        
                 
+                <table>    
+                    <%
+                    for (Product prod : products) 
+                        {
+                            
+                    %>
+                
+         
+            
+
+        
+         <div id="all">
+             <div id="overall">
+                      </div>
         <div id="productImage">   
-       <img src="<%=prod.getProductImageUrl()%>" style="width: 300px; height: 250px;">     
+       <img src="<%=prod.getProductImageUrl()%>" style="width: 280px; height: 230px;">     
         </div>   
             
         <div id ="productDetails">
+            <div class="ProductName">
             <p><%=prod.getProductName()%></p>
+            </div>
                 <p>Quantity in stock: <%=prod.getQuantityInStock()%></p>
                 <p>Price: €<%=prod.getProductPrice()%></p>
                 
@@ -209,24 +244,30 @@
                 <input type="hidden" name="addToCart" value="<%= prod.getProductId()%>" />
                 <p><input type="submit" value="Add To Cart" /></p>
         </div>
-           </tr>
-      </form>
+                
+         </div> 
+               
             <%
                     }
                 }
-                else
-                    {
-                        out.println("sorry not found!!");
-                    }        
+                       
             %>
-
-
-        </table>
-
+             
+            </table>
+           <div class="pagination">
+            </div>
+           </div>
+           
+           
+      </form>
+           
+      </div>  
+            
+            </div>
         
 
-      </div>
-</div>
+      
+            
         
     </body>
 </html>

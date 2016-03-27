@@ -25,7 +25,7 @@
         
            <div id="container">  
           <nav class = "topmenu">
-            <ul class="navigation">
+             <ul class="navigation">
                     <li><a href="MemberActionServlet?action=viewProfile">My Profile</a></li>
                     
             
@@ -34,21 +34,21 @@
           
          <%  Member m = (Member)session.getAttribute("member"); 
          
-        if(m == null)
-        {
+       // if(m == null)
+        //{
             
          %>
         
-         <li><a href="/CA3WebApp/Login.jsp">Login</a></li>
+         <li><a href="/Login.html/Login.jsp">Login</a></li>
             
             
-        <li><a href="/CA3WebApp/Login.jsp">Sign Up</a></li>
+        <li><a href="/Login.html/Login.jsp">Sign Up</a></li>
         
         <%
         
-        }
-        else
-        {
+       // }
+       // else
+        //{
       
             
         %>
@@ -57,22 +57,22 @@
                       
    </ul>
      </nav> 
-          <% } %>
-
+          <%// } %>
+          
             <div id="banner">
                 <img src="tempBanner.jpg"/>
             </div>
   
-       <nav class="menu-1">
+      <nav class="menu-1">
     <ul class="menu">
-        <li> <a href="/CA3WebApp/HomePage.jsp">Home</a> </li>
+        <li> <a href="/Login.html/HomePage.jsp">Home</a> </li>
         <li> <a href="MemberActionServlet?action=ViewAllProducts">Shop</a> </li>
-        <li> <a href="/CA3WebApp/About.jsp">About</a> </li>
+        <li> <a href="/Login.html/About.jsp">About</a> </li>
         
         <li> <a href="MemberActionServlet?action=ViewPreviousOrders">View Orders</a> </li>
         
-        <li> <a href="/CA3WebApp/ContactUs.jsp">Contact</a> </li>
-        <li> <a href="/CA3WebApp/Cart.jsp">Cart</a> </li>
+        <li> <a href="/Login.html/ContactUs.jsp">Contact</a> </li>
+        <li> <a href="/Login.html/Cart.jsp">Cart</a> </li>
         
         <div id="searchbar">
         <form  action = "MemberActionServlet" method = "post" >
@@ -158,6 +158,22 @@
                </p>
          </form>
         
+        <form action = "MemberActionServlet" method = "post">
+               <p> 
+                  <input type="hidden" name="action" value ="Harry Potter">
+                  <input type="image" src="images/HarryPotterlogo.jpg" alt="Submit" width="200px" height="70px"/> 
+             
+               </p>
+         </form>
+        
+        <form action = "MemberActionServlet" method = "post">
+               <p> 
+                  <input type="hidden" name="action" value ="Hunger Games">
+                  <input type="image" src="images/HungerGameslogo.jpg" alt="Submit" width="200px" height="70px"/> 
+             
+               </p>
+         </form>
+        
     </div>
         
       <div id="pagecontent">
@@ -190,7 +206,9 @@
         </div>   
             
         <div id ="productDetails">
+            <div class="ProductName">
             <p><%=prod.getProductName()%></p>
+            </div>
                 <p>Quantity in stock: <%=prod.getQuantityInStock()%></p>
                 <p>Price: €<%=prod.getProductPrice()%></p>
                 

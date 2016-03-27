@@ -182,15 +182,25 @@ div#copyright
 }
 
 
+div#filterCombo{   
+}
 
-
+.sortButton
+{    
+}
+.sortButtonSize
+{
+    padding-left: 10px;
+    width:60px; height: 30px;
+    font-family: Arial, Helvetica, sans-serif;
+    
+}
 select#soflow
 {
-    padding-right: 150px;
+    margin-left:650px;
     margin-top: 40px;
-    margin-right: 150px;
-    float:right;
-    clear:right;
+    
+    
 }
 select#soflow, select#soflow-color {
    -webkit-appearance: button;
@@ -225,11 +235,7 @@ select#soflow-color {
    padding-left: 15px;
 }
 
-div#sortButton
-{
-   
-    
-}
+
 
 body {
   background: #e6e6e6;
@@ -340,7 +346,7 @@ ul.menu ul.submenu li:last-child { border: none; }
 
 html, body { background: #333 url("http://codepen.io/images/classy_fabric.png"); }
 
-.slides {
+/*.slides {
     
     padding: 0;
     width: 100%;
@@ -452,7 +458,7 @@ input#img-4:checked ~ .nav-dots label#img-dot-4,
 input#img-5:checked ~ .nav-dots label#img-dot-5,
 input#img-6:checked ~ .nav-dots label#img-dot-6 {
 	background: rgba(0, 0, 0, 0.8);
-}
+}*/
 
 
 
@@ -771,8 +777,9 @@ div#searchbar{
 
 
 div#productImage img{
-    border-style: solid;
+    
     clear:right;
+    border    : thin  black   solid;
 }
 div#productImage
 {
@@ -785,12 +792,18 @@ div#productDetails
 {
     padding-left: 50px;
     padding-top: 20px;
+    font-family: Arial, Helvetica, sans-serif;
     
+}
+.ProductName
+{
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
 }
 
 div#overall
 {
-    padding-top:100px;
+    padding-top:60px;
 }
 
 
@@ -811,4 +824,68 @@ div#overall
 {
     box-shadow: 0  0 3px rgba(255,0,0,0.5); 
 }
+
+
+
+
+
+.page
+{
+    width: 960px;
+    margin: 0px auto;
+    margin-top:150px;
+}
+
+.list-of-posts
+{
+    min-height:100px;  
+}
+
+
+.pagination li
+{
+    list-style:none;  
+    float:left;
+    width : 20px;
+    height:20px;
+    border: 1px solid black;
+    background-color:white;
+    color:black;
+    text-align:center;
+    cursor:pointer;
+    
+}
+
+.pagination li:hover
+{
+    background-color: #E5E5E5;
+    border:1px solid black;
+    color: black;
+}
+
+.pagination ul
+{
+    border: 0px;
+    padding: 0px;
+    
+}
+
+.pagination ul li{
+    border: 1px solid black;
+    background-color:white;
+    color:black;
+    margin-top:50px;
+    margin-right:5px;
+}
+
+
+
+
+
+
+
+
+
+
+
 

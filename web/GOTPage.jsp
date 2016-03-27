@@ -29,21 +29,21 @@
           
          <%  Member m = (Member)session.getAttribute("member"); 
          
-        if(m == null)
-        {
+       // if(m == null)
+       // {
             
          %>
         
-         <li><a href="/CA3WebApp/Login.jsp">Login</a></li>
+         <li><a href="/Login.html/Login.jsp">Login</a></li>
+           
             
-            
-        <li><a href="/CA3WebApp/Login.jsp">Sign Up</a></li>
-       
+        <li><a href="/Login.html/Login.jsp">Sign Up</a></li>
+        
         <%
         
-        }
-        else
-        {
+        //}
+       // else
+       // {
       
             
         %>
@@ -52,7 +52,7 @@
                       
    </ul>
      </nav> 
-          <% } %>
+          <% //} %>
 
             <div id="banner">
                 <img src="tempBanner.jpg"/>
@@ -153,6 +153,22 @@
                </p>
          </form>
         
+        <form action = "MemberActionServlet" method = "post">
+               <p> 
+                  <input type="hidden" name="action" value ="Harry Potter">
+                  <input type="image" src="images/HarryPotterlogo.jpg" alt="Submit" width="200px" height="70px"/> 
+             
+               </p>
+         </form>
+        
+        <form action = "MemberActionServlet" method = "post">
+               <p> 
+                  <input type="hidden" name="action" value ="Hunger Games">
+                  <input type="image" src="images/HungerGameslogo.jpg" alt="Submit" width="200px" height="70px"/> 
+             
+               </p>
+         </form>
+        
     </div>
         
       <div id="pagecontent">
@@ -185,7 +201,9 @@
         </div>   
             
         <div id ="productDetails">
+            <div class="ProductName">
             <p><%=prod.getProductName()%></p>
+            </div>
                 <p>Quantity in stock: <%=prod.getQuantityInStock()%></p>
                 <p>Price: €<%=prod.getProductPrice()%></p>
                 
