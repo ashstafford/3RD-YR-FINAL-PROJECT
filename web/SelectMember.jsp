@@ -124,21 +124,46 @@
                 <p>First Name: <%=m.getFirstName()%></p>
                 <p>Last Name: <%=m.getLastName()%></p>
                 
-                
+                <%  
+               String action = request.getParameter("action");
                
-                <p><input type="hidden" name="action" value="AddAdmin" /></p>
-                <input type="hidden" name="AddAdmin" value="<%= m.getMemberId()%>" />
-                <p><input type="submit" value="Make Admin" /></p>
-        </div>
-           </tr>
-      </form>
+               if(action.equals("Add Admin"))
+               {
+                   
+                   %>
+                   
+                           <p><input type="hidden" name="action" value="AddAdmin" /></p>
+                           <input type="hidden" name="AddAdmin" value="<%= m.getMemberId()%>" />
+                           
+                           <form action="MemberActionServlet" method="post"> 
+                           
+                           <p><input type="submit" value="Make Admin" /></p>
+                           
+                           </form> 
+                 
             <%
-                    }
-                }
-                else
-                    {
-                        out.println("sorry not found!!");
-                    }        
+                 } 
+                 else
+                 {
+        
+           %>
+             <td><input type="hidden" name="action" value="Remove Member" /></td>
+             <input type="hidden" name="removeMember" value="<%= m.getMemberId()%>"/>
+              
+                   <form action="MemberActionServlet" method="post"> 
+             
+                <td><input type="submit" value="Remove Member" /></td>
+             </tr>
+           </form> 
+    
+        <%       } 
+               
+              }
+           }
+          else
+          {
+            out.println("sorry not found!!");
+          }        
             %>
 
 

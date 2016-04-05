@@ -289,6 +289,7 @@ div#personalDetailsTitle h3
                   <td><form action = "SelectProductToEdit.jsp" method = "post"> <p><input type = "submit" style="width:300px; height: 35px;" name="action" value = "Remove Product" /></p></form></td>
                   <td><form action = "SelectProductToEdit.jsp" method = "post"> <p><input type = "submit" style="width:300px; height: 35px;" name="action" value = "Edit Product" /></p></form></td>
                   <td><form action = "MemberActionServlet" method = "post"> <p><input type = "hidden" name="action" value = "ViewAllMembers"/><input type = "submit" style="width:300px; height: 35px;" value="Add Admin" /></p></form></td>
+                  <td><form action = "MemberActionServlet" method = "post"> <p><input type = "hidden" name="action" value = "ViewAllMembers"/><input type = "submit" style="width:300px; height: 35px;" value="Remove Member" /></p></form></td>
                 <%
             }
             

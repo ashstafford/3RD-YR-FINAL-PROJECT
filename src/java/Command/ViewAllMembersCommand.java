@@ -35,15 +35,7 @@ public class ViewAllMembersCommand implements Command
                
                 List<Member> Members = new ArrayList<>();
                 Members = mDao.getAllMembers();
-                   
-//                for(Member m : Members)
-//                {
-//                    if(m.isAdmin() == true)
-//                    {
-//                        Members.remove(m);
-//                    }    
-//                }  
-//                
+                                  
                 session.setAttribute("AllMembers", Members);
                 
                 

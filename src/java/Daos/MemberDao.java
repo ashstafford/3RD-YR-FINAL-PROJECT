@@ -185,7 +185,7 @@ public class MemberDao extends Dao implements MemberDaoInterface
         try
         {
             con = this.getConnection();
- System.out.println("admin " + admin);
+
             String query = "update member set isAdmin = ? where memberId = ?";
             ps = con.prepareStatement(query);
             ps.setBoolean(1, admin);
@@ -194,7 +194,7 @@ public class MemberDao extends Dao implements MemberDaoInterface
 
             ps.executeUpdate();
 
-           System.out.println("admin now " + admin);
+          
 
         } 
         
@@ -468,6 +468,69 @@ public class MemberDao extends Dao implements MemberDaoInterface
         return m;
     }
     
+    
+    
+      @Override
+        public boolean removeMember(int memberId) 
+        {
+         
+            Connection conn = null;
+            PreparedStatement ps = null;
+            ResultSet rs = null;
+            
+            
+            try
+            {
+
+                conn = getConnection();
+                String query = "delete from member where memberId= ?"; 
+                ps = conn.prepareStatement(query);
+                ps.setInt(1, memberId);
+
+                ps.executeUpdate();
+
+                
+
+            }
+            
+            catch (SQLException e) 
+            {
+                System.out.println("Exception happened in delete member method");
+                e.getMessage();
+                return false;
+            } 
+            
+            
+            finally
+            {
+                try 
+                {
+                    if (rs != null)
+                    {
+                        rs.close();
+                    }
+                    
+                    if (ps != null) 
+                    {
+                        ps.close();
+                    }
+                    
+                    if (conn != null) 
+                    {
+                        conn.close();
+                    }
+
+                } 
+                
+                catch (SQLException e) 
+                {
+                    System.out.println("Exception happened in 'finally' part of the delete member method");
+                    e.getMessage();
+                    return false;
+                }
+            }
+          return true;  
+        }
     /**
      *
      * @param userName
