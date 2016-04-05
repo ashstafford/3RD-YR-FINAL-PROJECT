@@ -98,6 +98,137 @@ public class MemberDao extends Dao implements MemberDaoInterface
 
         return member;
     }
+    
+    @Override
+ public Member findMemberById(int id)  //takes in id and returns all details about that member
+ {
+            Connection conn = null;
+            PreparedStatement ps = null;
+            ResultSet rs = null;
+            
+            Member m = new Member();
+            
+            m = null; 
+            
+            try 
+            {
+                     
+                conn = getConnection();
+                String query = "select * from member where memberId=?";
+                ps = conn.prepareStatement(query);
+                
+                ps.setInt(1, id);
+
+                rs = ps.executeQuery();
+                
+             while (rs.next()) 
+             {
+                 m = new Member(
+                 rs.getInt("MemberId"),
+                 rs.getString("userName"),        
+                 rs.getString("password"),
+                 rs.getString("firstName"),
+                 rs.getString("lastName"),        
+                 rs.getString("email"),
+                 rs.getString("securityQuestionAnswer"),
+                 rs.getBoolean("isAdmin"));
+                  
+            }
+            
+          } 
+            
+            
+            catch (SQLException e) 
+            {
+                 e.printStackTrace();
+
+            } 
+            
+            finally
+            {
+                try 
+                {
+                    if (rs != null) 
+                    {
+                        rs.close();
+                    }
+                    
+                    if (ps != null) 
+                    {
+                        ps.close();
+                    }
+                    
+                    if (conn != null)
+                    {
+                        conn.close();
+                    }
+
+                }
+                
+                catch (SQLException e) 
+                {
+                    e.printStackTrace();
+                }
+            }
+            
+        return m;    
+    }
+ 
+    @Override
+    public boolean addAdmin(Member m) 
+    {
+        Connection con = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        boolean admin = true;
+
+        try
+        {
+            con = this.getConnection();
+ System.out.println("admin " + admin);
+            String query = "update member set isAdmin = ? where memberId = ?";
+            ps = con.prepareStatement(query);
+            ps.setBoolean(1, admin);
+            ps.setInt(2,m.getMemberId());
+           
+
+            ps.executeUpdate();
+
+           System.out.println("admin now " + admin);
+
+        } 
+        
+        catch (SQLException e)   
+        {
+          e.printStackTrace();
+          return false;
+        } 
+        finally
+        {
+            try
+            {
+                if (rs != null)
+                {
+                    rs.close();
+                }
+                if (ps != null)
+                {
+                    ps.close();
+                }
+                if (con != null)
+                {
+                    freeConnection(con);
+                }
+            }
+            catch (SQLException e)
+            {
+               e.printStackTrace();
+               return false;
+             
+            }
+        }
+        return true;    
+    }
 
     /**The method takes in a username parameter and searches the database for 
      * a matching member based on their username.

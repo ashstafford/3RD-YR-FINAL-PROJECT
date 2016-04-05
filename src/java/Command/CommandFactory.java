@@ -53,9 +53,17 @@ public class CommandFactory
         {
     		command = new RemoveProductCommand();
     	}
+        if (commandStr.equals("AddAdmin")) 
+        {
+    		command = new AddAdminCommand();
+    	}
         if (commandStr.equals("ViewAllProducts")) 
         {
     		command = new ViewAllProductsCommand();
+    	}
+        if (commandStr.equals("ViewAllMembers")) 
+        {
+    		command = new ViewAllMembersCommand();
     	}
         if (commandStr.equals("StarWars")) 
         {
