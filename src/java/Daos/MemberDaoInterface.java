@@ -86,6 +86,10 @@ public interface MemberDaoInterface
             
     public boolean editMemberImageUrl(int id,String memberImageUrl, String newMemberImageUrl);
     
+    public Member findMemberById(int id);
     
+    public boolean addAdmin(Member m);
+    
+    public boolean removeMember(int memberId);
     
 }
