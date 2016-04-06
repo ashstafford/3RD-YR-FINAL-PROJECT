@@ -1,28 +1,22 @@
 <%-- 
-    Document   : EditMemberImageUrl
-    Created on : 25-Feb-2016, 10:20:55
-    Author     : d00153612
+    Document   : AddAdminSuccess
+    Created on : Mar 22, 2016, 10:15:37 PM
+    Author     : Ash
 --%>
 
-<%@page import="Dtos.Member"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
-    <head>
-            <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-            <title>Edit Member Image URL</title>
-            <link rel="stylesheet" type="text/css" href="mainCSS.css" >
-            <style>
-
-            </style>
+     <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link rel="stylesheet" type="text/css" href="mainCSS.css" >
+        <title>Select Member</title>
     </head>
-     
-    
+     </head>   
     <body>
         
-   <div id="container">
-            
-        <nav class = "topmenu">
+   <div id="container">  
+          <nav class = "topmenu">
             <ul class="navigation">
                     <li><a href="MemberActionServlet?action=viewProfile">My Profile</a></li>
                     
@@ -30,7 +24,7 @@
        
       
           
-         <%  Member m = (Member)session.getAttribute("member"); 
+         <%  //Member m = (Member)session.getAttribute("member"); 
          
        // if(m == null)
         //{
@@ -84,26 +78,10 @@
     </ul>
            
            
-</nav> 
-      <div id="pagecontent2">
-           
-        <form action = "MemberActionServlet" method = "post">
-            
-            <div id="EditslabelPosition">   
-            <label for="exampleInputPassword">Enter new Member Image URL: <span style="color:red;">*</span></label>
-            </div>
-               
-            <div id="EditsTextboxandButtonPosition">  
-               <input name="editMemberImageUrl" class="resizedTextBox" size=15 type="url" />
-                 
-               <input type = "hidden" name="action" value="Edit MemberImageUrl"/>
-               <input type="submit" class="resizedButton" name="submit" value="Edit Profile Image"/>
-            </div>
-               
-         </form>
-       </div>
-       
-       
+</nav>
+          
+          <div id="pagecontent">
+              <h1> Admin Successfully Added! </h1>
+          </div>
+   </body>
 </html>
-
-
