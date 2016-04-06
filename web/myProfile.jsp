@@ -20,16 +20,18 @@ div#adminChanges h2
 {
     padding-left: 830px;
     padding-top:12px;
+    font-family: Arial, Helvetica, sans-serif;
 }
                 
     
 div#otherButtons
 {
      left: 69%;
-     font-family: serif;
      color:#FFFFFF;
      padding-top: 30px;
      padding-left:800px;
+     font-family: Arial, Helvetica, sans-serif;
+     font-weight: bold;
 }                
 div#editButtons
 {
@@ -37,6 +39,8 @@ div#editButtons
      padding-top: 30px;
      float:left;
      clear:left;
+     font-family: Arial, Helvetica, sans-serif;
+     font-weight: bold;
 }
 div#profilePicture
 {
@@ -49,6 +53,7 @@ div#profilePicture
 div#profileDetails
 {
     padding-left: 500px;
+    font-family: Arial, Helvetica, sans-serif;
     
 }
 
@@ -61,7 +66,9 @@ div#profileDetails
 div#profilePicButton
 {
     padding-left: 500px;
-    padding-top: 22px;
+    padding-top: 18px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
     
 }
 
@@ -69,6 +76,7 @@ div#welcomeTitle h1
 {
     padding-top: 30px;
     padding-left: 500px;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 div#changePersonal h2
@@ -77,10 +85,12 @@ div#changePersonal h2
     padding-top:50px;
     float :left;
     clear: left;
+    font-family: Arial, Helvetica, sans-serif;
 }
 div#personalDetailsTitle h3
 {
     padding-left: 500px;
+    font-family: Arial, Helvetica, sans-serif;
 }
  .navigation 
  {
@@ -198,14 +208,14 @@ div#personalDetailsTitle h3
   
        <nav class="menu-1">
     <ul class="menu">
-        <li> <a href="/CA3WebApp/HomePage.html">Home</a> </li>
+        <li> <a href="/Login.html/HomePage.jsp">Home</a> </li>
         <li> <a href="MemberActionServlet?action=ViewAllProducts">Shop</a> </li>
-        <li> <a href="/CA3WebApp/About.jsp">About</a> </li>
+        <li> <a href="/Login.html/About.jsp">About</a> </li>
         
         <li> <a href="MemberActionServlet?action=ViewPreviousOrders">View Orders</a> </li>
         
-        <li> <a href="/CA3WebApp/ContactUs.jsp">Contact</a> </li>
-        <li> <a href="/CA3WebApp/Cart.jsp">Cart</a> </li>
+        <li> <a href="/Login.html/ContactUs.jsp">Contact</a> </li>
+        <li> <a href="/Login.html/Cart.jsp">Cart</a> </li>
         
         <div id="searchbar">
         <form  action = "MemberActionServlet" method = "post" >
@@ -241,11 +251,11 @@ div#personalDetailsTitle h3
         <p> First Name : <%= "   " +m.getFirstName() %></p>
         <p> Last Name  : <%= "   " +m.getLastName() %>
         <p> Username   : <%= "   " +m.getUserName() %></p>
-        <p> Email      : <%= "   " +m.getEmail() %></p>
+        <p> Email Address      : <%= "   " +m.getEmail() %></p>
         </div>
         
         <div id="profilePicButton">
-        <form action = "EditMemberImageUrl.jsp" method = "post"> <p><input type = "submit"  value = "Change Profile Picture" /></p></form>
+        <form action = "EditMemberImageUrl.jsp" method = "post"> <p><input type = "submit" style="width:300px; height: 35px;"  value = "Change Profile Picture" /></p></form>
         </div>
         
         <br>
@@ -274,9 +284,7 @@ div#personalDetailsTitle h3
         <br>
         <br>
         
-        <div id="adminChanges">
-            <h2>ADMIN CHANGES</h2>
-        </div>
+        
         
         <div id ="otherButtons"> 
               
@@ -285,10 +293,15 @@ div#personalDetailsTitle h3
                
             if(m.isAdmin())
             {
-                %><td><form action = "AddProduct.jsp" method = "post"> <p><input type = "submit" style="width:300px; height: 35px;" name="action" value = "Add Product" /></p></form></td
-                  <td><form action = "SelectProductToEdit.jsp" method = "post"> <p><input type = "submit" style="width:300px; height: 35px;" name="action" value = "Remove Product" /></p></form></td>
-                  <td><form action = "SelectProductToEdit.jsp" method = "post"> <p><input type = "submit" style="width:300px; height: 35px;" name="action" value = "Edit Product" /></p></form></td>
+                %>
+                <div id="adminChanges">
+                    <h2>ADMIN CHANGES</h2>
+                </div>
                 
+                <td><form action = "AddProduct.jsp" method = "post"> <p><input type = "submit" style="width:300px; height: 35px;" name="action" value = "Add Product" /></p></form></td
+                <td><form action = "SelectProductToEdit.jsp" method = "post"> <p><input type = "submit" style="width:300px; height: 35px;" name="action" value = "Remove Product" /></p></form></td>
+                <td><form action = "SelectProductToEdit.jsp" method = "post"> <p><input type = "submit" style="width:300px; height: 35px;" name="action" value = "Edit Product" /></p></form></td>
+
                 <%
             }
             
