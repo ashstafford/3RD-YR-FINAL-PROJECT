@@ -16,7 +16,9 @@
         <link rel="stylesheet" type="text/css" href="mainCSS.css" >
         <script type="text/javascript" src="HomepageImageSliderScript.js"></script>
         <style>
-            /* *** homepage SlideShow *** */
+            
+
+/* *** homepage SlideShow *** */
 
 *
 { margin: 0; 
@@ -105,15 +107,6 @@ h2
   text-transform: 
   uppercase; z-index: 1000;
   font-family: Arial, Helvetica, sans-serif;
-}
-								  
-
-            
-            div#welcomeBanner img{
-    width: 90%;
-    height: 250px;
-    padding-top: 100px;
-    padding-left: 100px;
 }
 
         </style>
@@ -292,9 +285,7 @@ h2
 		</div>
                 
                 
-                <div id="welcomeBanner">
-			<img src="welBanner.jpg" />
-                </div>
+                
        
 </div>
             

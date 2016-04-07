@@ -8,6 +8,9 @@ and open the template in the editor.
     Author     : D00154410
 */
 
+/**********************************************************/
+
+/* General for every page */
 div#container
 {
   position     : relative;
@@ -33,6 +36,8 @@ div#pagecontent3
     border : black thin solid;
     background-color: white;
 }
+
+
 
 div#banner 
 {
@@ -63,6 +68,17 @@ div#pagecontent
   
 } 
 
+div#searchbar
+{
+    float: right;
+    padding-right:10px;
+    text-decoration: none;
+    color: black;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size:16px;
+}
+
+
 div#copyright
 {
   clear  : both;
@@ -73,6 +89,27 @@ div#copyright
 
 
 
+/* General CSS for textboxs, buttons and labels */
+.resizedTextBox
+{
+    width:310px; height: 27px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.resizedButton
+{
+    width:200px; height: 30px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+}
+
+:required:focus 
+{
+    box-shadow: 0  0 3px rgba(255,0,0,0.5); 
+}
+
+label { font-weight: bold; }
+
+/* Top Menu */
 
 .navigation {
   margin: 0;
@@ -125,69 +162,7 @@ div#copyright
   }
 }
 
-
-
-
-.navigation2 {
-  margin: 0;
-  padding: 0;
-  list-style: none;
-  background:#FFFFFF;
-  display: flex;
-  justify-content: flex-end;
-  color: black;
-}
-
-.navigation2 a {
-  display: block;
-  padding: 1em;
-  color:#ffffff;
-  text-decoration: none;
-  color: black;
-  font-family: Arial, Helvetica, sans-serif;
-  float:left;
-  padding-right:500px;
-}
-
-.navigation2 a:hover {
-  background:#e6e6e6;
-  border-bottom-right-radius   : 10px;
-  border-bottom-left-radius: 10px;
-  border-top-left-radius: 10px;
-  border-top-right-radius: 10px;
-}
-
-@media all and (max-width: 800px) {
-  .navigation2 {
-    justify-content: space-around;
-  }
-}
-
-@media all and (max-width: 600px) {
-  .navigation2 {
-    padding: 0;
-    flex-direction: column;
-  }
-  
-  .navigation2 a {
-    padding: 1em;
-    text-align: center;
-    border-top: 1px solid rgba(255, 255, 255, 0.2); 
-    border-bottom: 1px solid rgba(0, 0, 0, 0.2); 
-  }
-    
-  .navigation2 li:last-of-type a {
-    border-bottom: none;
-  }
-}
-
-
-div#filterCombo{   
-}
-
-.sortButton
-{    
-}
+/* Sort by Price Combo box and button CSS */
 .sortButtonSize
 {
     padding-left: 10px;
@@ -199,8 +174,6 @@ select#soflow
 {
     margin-left:650px;
     margin-top: 40px;
-    
-    
 }
 select#soflow, select#soflow-color {
    -webkit-appearance: button;
@@ -220,9 +193,7 @@ select#soflow, select#soflow-color {
    text-overflow: ellipsis;
    white-space: nowrap;
    width: 300px;
-   
-   
-   
+ 
 }
 
 select#soflow-color {
@@ -236,7 +207,7 @@ select#soflow-color {
 }
 
 
-
+/* Menu under Banner on main template */
 body {
   background: #e6e6e6;
   box-sizing: border-box;
@@ -279,205 +250,9 @@ ul.menu ul.submenu li:last-child { border: none; }
 
 .menu li:hover > ul { display: block; }
 .menu ul li:hover > ul { display: block; }
-/*body {
-  background: #e6e6e6;
-  box-sizing: border-box;
-}
-
-ul.menu {
-  margin: 10px auto 0px 0px;
-  margin-bottom: 10px;
-  padding: 0px;
-  height: 50px;
-  background: white;
-  width: 100%;
-
-  
-}
-
-ul.menu li {
-  position: relative;
-  float: left;
-  display: block;
-  line-height: 50px;
-  margin-right: 60px;
-
-}
-
-ul.menu li a {
-  color: #777;
-  display: block;
-  padding-left: 10px;
-  text-decoration: none;
-  color:black;
-  font-size:16px;
-  font-family: Arial, Helvetica, sans-serif;
-   
-  
-}
-
-ul.menu li a:hover { 
-  background:#e6e6e6;
-  border-bottom-right-radius   : 10px;
-  border-bottom-left-radius: 10px;
-  border-top-left-radius: 10px;
-  border-top-right-radius: 10px;
-}
-
-
-ul.menu ul.submenu li:last-child { border: none; }
-
-.menu li:hover > ul { display: block; }
-.menu ul li:hover > ul { display: block; }*/
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 html, body { background: #333 url("http://codepen.io/images/classy_fabric.png"); }
-
-/*.slides {
-    
-    padding: 0;
-    width: 100%;
-    height: 420px;
-    display: block;
-    margin:100px 0 auto;
-    position: relative;
-    margin-top: 300px;
-    
-}
-
-.slides * {
-    user-select: none;
-    -ms-user-select: none;
-    -moz-user-select: none;
-    -khtml-user-select: none;
-    -webkit-user-select: none;
-    -webkit-touch-callout: none;
-}
-
-.slides input { display: none; }
-
-.slide-container { display: block; }
-
-.slide {
-    top: 0;
-    opacity: 0;
-    width: 100%;
-    height: 420px;
-    display: block;
-    position: absolute;
-
-    transform: scale(0);
-
-    transition: all .7s ease-in-out;
-}
-
-.slide img {
-    width: 100%;
-    height: 100%;
-}
-
-.nav label {
-    width: 200px;
-    height: 100%;
-    display: none;
-    position: absolute;
-
-	  opacity: 0;
-    z-index: 9;
-    cursor: pointer;
-
-    transition: opacity .2s;
-
-    color: #FFF;
-    font-size: 156pt;
-    text-align: center;
-    line-height: 380px;
-    font-family: "Varela Round", sans-serif;
-    background-color: rgba(255, 255, 255, .3);
-    text-shadow: 0px 0px 15px rgb(119, 119, 119);
-}
-
-.slide:hover + .nav label { opacity: 0.5; }
-
-.nav label:hover { opacity: 1; }
-
-.nav .next { right: 0; }
-
-input:checked + .slide-container  .slide {
-    opacity: 1;
-
-    transform: scale(1);
-
-    transition: opacity 1s ease-in-out;
-}
-
-input:checked + .slide-container .nav label { display: block; }
-
-.nav-dots {
-	width: 100%;
-	bottom: 9px;
-	height: 11px;
-	display: block;
-	position: absolute;
-	text-align: center;
-}
-
-.nav-dots .nav-dot {
-	top: -5px;
-	width: 11px;
-	height: 11px;
-	margin: 0 4px;
-	position: relative;
-	border-radius: 100%;
-	display: inline-block;
-	background-color: rgba(0, 0, 0, 0.6);
-}
-
-.nav-dots .nav-dot:hover {
-	cursor: pointer;
-	background-color: rgba(0, 0, 0, 0.8);
-}
-
-input#img-1:checked ~ .nav-dots label#img-dot-1,
-input#img-2:checked ~ .nav-dots label#img-dot-2,
-input#img-3:checked ~ .nav-dots label#img-dot-3,
-input#img-4:checked ~ .nav-dots label#img-dot-4,
-input#img-5:checked ~ .nav-dots label#img-dot-5,
-input#img-6:checked ~ .nav-dots label#img-dot-6 {
-	background: rgba(0, 0, 0, 0.8);
-}*/
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-.view {
+/*.view {
     width: 360px;
     height: 260px;
     margin-top: 100px;
@@ -762,24 +537,16 @@ input#img-6:checked ~ .nav-dots label#img-dot-6 {
 .view4 a.info:hover 
 {
     box-shadow: 0 0 5px #000
-}
+}*/
 
 
-
-div#searchbar{
-    float: right;
-    padding-right:10px;
-    text-decoration: none;
-  color: black;
-  font-family: Arial, Helvetica, sans-serif;
-  font-size:16px;
-}
-
-
+/* CSS for displaying the products */
 div#productImage img{
     
     clear:right;
     border    : thin  black   solid;
+    width: 260px; 
+    height: 220px;
 }
 div#productImage
 {
@@ -803,32 +570,11 @@ div#productDetails
 
 div#overall
 {
-    padding-top:60px;
+    padding-top:50px;
 }
 
 
-
-.resizedTextBox
-{
-    width:310px; height: 27px;
-    font-family: Arial, Helvetica, sans-serif;
-}
-.resizedButton
-{
-    width:200px; height: 30px;
-    font-family: Arial, Helvetica, sans-serif;
-    font-weight: bold;
-}
-
-:required:focus 
-{
-    box-shadow: 0  0 3px rgba(255,0,0,0.5); 
-}
-
-
-
-
-
+/* CSS for displaying products on different pages */
 .page
 {
     width: 960px;
@@ -840,7 +586,6 @@ div#overall
 {
     min-height:100px;  
 }
-
 
 .pagination li
 {
@@ -878,14 +623,57 @@ div#overall
     margin-right:5px;
 }
 
+/* Edit Pages CSS  */
 
+div#EditslabelPosition
+{
+    padding-left:70px;
+    padding-top:40px;
+}
+div#EditsTextboxandButtonPosition
+{
+    padding-left:70px;
+    padding-top:30px;
+}
 
+/* Cart CSS */
+div#productImage2 img{
+    
+    clear:right;
+    border    : thin  black   solid;
+    width: 260px; 
+    height: 220px;
+}
+div#productImage2
+{
+    float:left;
+    clear:right;
+    padding-left: 50px;
+    margin-right: 50px;
+}
+div#productDetails2
+{
+    padding-left: 50px;
+    padding-top: 20px;
+    font-family: Arial, Helvetica, sans-serif;
+    
+}
+.ProductName2
+{
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+}
 
+div#overall2
+{
+    padding-top:50px;
+}
 
-
-
-
-
-
-
-
+div#Total
+{
+    padding-top: 100px;
+}
+div#all2
+{
+    padding-left: 10px;
+}

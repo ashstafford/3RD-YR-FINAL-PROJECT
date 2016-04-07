@@ -4,6 +4,7 @@
     Author     : d00155224
 --%>
 
+<%@page import="Dtos.Member"%>
 <%@page import="java.util.List"%>
 <%@page import="Dtos.Product"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -11,110 +12,177 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Cart</title>
-        
-<script>
-    function goBack()
-    {             
-
-
-        window.history.back();
-    }
-</script>
-
-<style>
-body 
-  {
-   
-        background:  url("IMG_cartBackground.jpg") no-repeat center center fixed; 
-        -webkit-background-size: cover;
-        -moz-background-size: cover;
-        -o-background-size: cover;
-        background-size: cover;
-    }      
-    
-    ul {
-    position: relative;
-    list-style-type: none;
-    margin: 10px;
-    padding: 0;
-    overflow: hidden;	
-    left:10%;
-	
-	
-}
-
-
-.topmenu li
-
-{
-	float :left;
-        position: relative;
-	padding: 0;
-	width: 200px;
-	line-height: 250%;
-	z-index: 1000;
-	
-}
-
-
-
-a:link, a:visited {
-    display: block;
-    width: 200px;
-    font-weight: bold;
-    color: #FFFFFF;
-    background-color:#000000;
-    text-align: center;
-    padding: 4px;
-    text-decoration: none;
-    text-transform: uppercase;
-}
-
-a:hover, a:active {
-    background-color:#666666
-	
-}
-
-div#pagecontent
-{
-    
-  min-height: 1500px;
-  padding: 50px;
-  left: 20%;
-  bottom: 50%;
-  font-family: serif;
- 
-}
-
-div#container
-{
-  position     : relative;
-  width        : 85%;
-  margin-left  : auto;
-  margin-right : auto;
-}
-    </style>
-
-    </head>
+        <link rel="stylesheet" type="text/css" href="mainCSS.css" >
+        <script src="js/jquery_1.js"></script>
+        <script src="js/paginate.js"></script>
+        <script src="js/custom.js"></script>
+        <script type="text/javascript" src="js/modernizr-1.5.min.js"></script>
+        <title>JSP Page</title>
+  
+        <style>   
+           
+        </style>
+    </head>   
     <body>
         
-     
+   <div id="container">  
           <nav class = "topmenu">
- <ul>
+            <ul class="navigation">
+                    <li><a href="MemberActionServlet?action=viewProfile">My Profile</a></li>
+                    
+            
+       
       
-	<li><a href="MemberActionServlet?action=ViewAllProducts">Shop</a>
-	<li><a href="/CA3WebApp/Cart.jsp">Cart</a>
-	<li><a href="/CA3WebApp/Login.jsp">Login/Register</a>
-        <li><a href="MemberActionServlet?action=viewProfile">My Profile</a> 
-        <li><a href="MemberActionServlet?action=ViewPreviousOrders">View Orders</a>       
-        <li><a href="MemberActionServlet?action=logout">Logout</a></li>
-</ul>
-  </nav>
+          
+         <%  Member m = (Member)session.getAttribute("member"); 
+         
+       // if(m == null)
+        //{
+            
+         %>
+        
+         <li><a href="/Login.html/Login.jsp">Login</a></li>
+            
+            
+        <li><a href="/Login.html/Login.jsp">Sign Up</a></li>
+        
+        <%
+        
+       // }
+       // else
+        //{
+      
+            
+        %>
+            
+           <li><a href="MemberActionServlet?action=logout">Logout</a></li>
+                      
+   </ul>
+     </nav> 
+          <%// } %>
+
+            <div id="banner">
+                <img src="tempBanner.jpg"/>
+            </div>
+  
+       <nav class="menu-1">
+    <ul class="menu">
+        <li> <a href="/Login.html/HomePage.jsp">Home</a> </li>
+        <li> <a href="MemberActionServlet?action=ViewAllProducts">Shop</a> </li>
+        <li> <a href="/Login.html/About.jsp">About</a> </li>
+        
+        <li> <a href="MemberActionServlet?action=ViewPreviousOrders">View Orders</a> </li>
+        
+        <li> <a href="/Login.html/ContactUs.jsp">Contact</a> </li>
+        <li> <a href="/Login.html/Cart.jsp">Cart</a> </li>
+        
+        <div id="searchbar">
+        <form  action = "MemberActionServlet" method = "post" >
+               <p><td> <input name="searchName" size=30 type="text" />  
+                 <input type="hidden" name="action" value="searchName" />
+                 <input type="submit" value="Search"/>
+               </p>
+        </form>
+        </div>
+        
+    </ul>
+           
+           
+</nav>
+                  
+    <div id="side_bar">
+        <form action = "MemberActionServlet" method = "post">
+            
+            <p>
+                 <input type="hidden" name="action" value ="ViewAllProducts">
+                 <input type="image" src="IMG_viewAllProductsLogo.jpg" alt="Submit" width="200px" height="70px"/>
+                
+            </p>
+        </form>
+        
+        <form action = "MemberActionServlet" method = "post">
+            
+            <p>
+                 <input type="hidden" name="action" value ="StarWars">
+                 <input type="image" src="swLogo.png" alt="Submit" width="200px" height="70px"/>
+                
+            </p>
+        </form>
+        
+         <form action = "MemberActionServlet" method = "post">
+               <p> 
+                   
+                 <input type="hidden" name="action" value ="Marvel">
+                 <input type="image" src="IMG_mLogo.jpeg" alt="Submit" width="200px" height="70px"/>
+                 
+               </p>
+         </form>
+        
+         <form action = "MemberActionServlet" method = "post">
+               <p> 
+                 <input type="hidden" name="action" value ="DC">
+                 <input type="image" src="IMG_dcLogo.jpg" alt="Submit" width="200px" height="70px"/>
+              
+               </p>
+         </form>
+        
+         <form action = "MemberActionServlet" method = "post">
+               <p> 
+                   
+                 <input type="hidden" name="action" value ="Disney">
+                 <input type="image" src="IMG_dLogo.jpg" alt="Submit" width="200px" height="70px"/>
+               
+               </p>
+         </form>
+        
+        <form action = "MemberActionServlet" method = "post">
+               <p> 
+                   
+                 <input type="hidden" name="action" value ="The Walking Dead">
+                 <input type="image" src="IMG_twdLogo.jpg" alt="Submit" width="200px" height="70px"/>
+                  
+               </p>
+         </form>
+        
+        <form action = "MemberActionServlet" method = "post">
+               <p> 
+                 <input type="hidden" name="action" value ="Doctor Who">
+                 <input type="image" src="IMG_dwLogo.jpg" alt="Submit" width="200px" height="70px"/>
+                  
+               </p>
+         </form>
+        
+        <form action = "MemberActionServlet" method = "post">
+               <p> 
+                  <input type="hidden" name="action" value ="Game Of Thrones">
+                  <input type="image" src="IMG_gotLogo.jpg" alt="Submit" width="200px" height="70px"/> 
+             
+               </p>
+         </form>
+        
+        <form action = "MemberActionServlet" method = "post">
+               <p> 
+                  <input type="hidden" name="action" value ="Harry Potter">
+                  <input type="image" src="images/HarryPotterlogo.jpg" alt="Submit" width="200px" height="70px"/> 
+             
+               </p>
+         </form>
+        
+        <form action = "MemberActionServlet" method = "post">
+               <p> 
+                  <input type="hidden" name="action" value ="Hunger Games">
+                  <input type="image" src="images/HungerGameslogo.jpg" alt="Submit" width="200px" height="70px"/> 
+             
+               </p>
+         </form>
+        
+    </div>
         
       
-             
-      <%
+        
+        <div id="pagecontent2"> 
+         
+         <%
           
                     List<Product> cart;
                     cart = (List) (request.getSession().getAttribute("cart"));
@@ -130,23 +198,43 @@ div#container
                          
                 %>
              
-           <form action="MemberActionServlet" method="post">  
-            <tr>
+           <form action="MemberActionServlet" method="post"> 
+               
+               <div id="all2">
+             <div id="overall2">
+             </div>
+        <div id="productImage2">   
+       <img src="<%=prod.getProductImageUrl()%>" style="width: 280px; height: 230px;">     
+        </div>   
+            
+        <div id ="productDetails2">
+            <div class="ProductName2">
+            <p><%=prod.getProductName()%></p>
+            </div>
+                <p>Quantity in stock: <%=prod.getQuantityInStock()%></p>
+                <p>Price: €<%=prod.getProductPrice()%></p>
+                
+        </div>
+                
+          
+            <!--<tr>
                 <td><img src="<%=prod.getProductImageUrl()%>" style="width: 300px; height: 300px;"></td>
                 <td><%=prod.getProductName()%></td>
                 <td><% out.println("\t\t"); %><td>
                 <td><p>Price: €<%=prod.getProductPrice()%></p></td>
                 <td><p>Quantity: <%= prod.getQuantityInStock()%></p></td>
-            </tr>
+            </tr>-->
             
            
                 
-                <td><input type="hidden" name="action" value="RemoveProductFromCart"</td>
-                <input type="hidden" name="removeFromCart" value="<%= prod.getProductId()%>"/>
-                <td><input type="submit" value="Remove Product"</td>
+                <td><input type="hidden" name="action" value="RemoveProduct"</td>
+                <td><input type="submit" value="Remove" </td>
+                
+         </div>
         
            </form>   
-                
+            
+            <div id ="Total">
             
             <%         total = total + prod.getProductPrice() * prod.getQuantityInStock();
                      
@@ -156,30 +244,43 @@ div#container
                 }
                 else
                 {
-                    %><h1> There are currently no items in the cart!</h1> <%
+                    %><h1> There are Currently No items in the cart!</h1> <%
                 }        
             %>
            
-            <form action="MemberActionServlet" method="post">
-                <td><input type="hidden" name="action" value="EmptyCart"</td>
-                <td><input type="submit" value="Empty Cart"</td>
-            </form>
+            </div>
             
-            <form action="PaymentInformation.jsp">
-                
-              <td><input type="hidden" name="action" value="BuyItems" /></td>
-               
-              <td><input type="submit" value="Purchase Items" /></td
+            <div id ="EmptyCartButton">
+                <form action="MemberActionServlet" method="post">
+                    <td><input type="hidden" name="action" value="EmptyCart"</td>
+                    <td><input type="submit" value="Empty Cart"</td>
+                </form>
+            </div>
+            
+            <div id ="PurchaseItemButton">
+                <form action="PaymentInformation.jsp">  
+                    <td><input type="hidden" name="action" value="BuyItems" /></td>
+                    <td><input type="submit" value="Purchase Items" /></td
+                </form>
+            </div>
+            
+            
+            
            
-            </form>
-            
-            
-            
-           <button onclick="goBack()">Go Back</button>
            
         </table>
     
+      <p id="formbuttons">
+         			<input type="button" name="prevb" id="prevb" value="Previous" onclick="history.back()" />
+                        </p>
+       
+            
+            </div>
+        
+
       
-    
+            
+        
     </body>
 </html>
+
