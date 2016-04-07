@@ -28,19 +28,18 @@ public class ViewProfileCommand implements Command
        
             HttpSession session = request.getSession();
 
-            //User not logged in...            else
-//
-//            if ( session.getId() != session.getAttribute("loggedSessionId") )   
-//            {
-//                forwardToJsp = "/Login.html";
-//            }
-//            else
-//            {	
+
+            if ( session.getId() != session.getAttribute("loggedSessionId") )   
+            {
+                forwardToJsp = "/Login.jsp";
+            }
+            else
+            {	
                 //User is logged in...
                 //We already have the User object stored in the session...
                 //Just forward to the view (viewProfile.jsp)...
                 forwardToJsp = "/myProfile.jsp";	
-//            }
+            }
             
      return forwardToJsp;       
     }

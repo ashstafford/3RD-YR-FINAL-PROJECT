@@ -109,14 +109,15 @@ div#container
               
           <%
 
-            List<Product> products;
-            products = (List) (request.getSession().getAttribute("AllProducts"));
+               List<Product> products;
+               products = (List) (request.getSession().getAttribute("AllProducts"));
 
-            if (products != null) 
-            { 
-                        
-              for (Product prod : products) 
-              {
+                if (products != null) 
+                { 
+ 
+                  for(Product prod : products) 
+                  {
+           
            %>
             <form action="MemberActionServlet" method="post">
                  

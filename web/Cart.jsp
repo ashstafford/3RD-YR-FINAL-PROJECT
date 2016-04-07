@@ -103,9 +103,9 @@ div#container
           <nav class = "topmenu">
  <ul>
       
-	<li><a href="/CA3WebApp/CategorySelection.html">Shop</a>
+	<li><a href="MemberActionServlet?action=ViewAllProducts">Shop</a>
 	<li><a href="/CA3WebApp/Cart.jsp">Cart</a>
-	<li><a href="/CA3WebApp/Login.html">Login/Register</a>
+	<li><a href="/CA3WebApp/Login.jsp">Login/Register</a>
         <li><a href="MemberActionServlet?action=viewProfile">My Profile</a> 
         <li><a href="MemberActionServlet?action=ViewPreviousOrders">View Orders</a>       
         <li><a href="MemberActionServlet?action=logout">Logout</a></li>
@@ -141,7 +141,8 @@ div#container
             
            
                 
-                <td><input type="hidden" name="action" value="RemoveProduct"</td>
+                <td><input type="hidden" name="action" value="RemoveProductFromCart"</td>
+                <input type="hidden" name="removeFromCart" value="<%= prod.getProductId()%>"/>
                 <td><input type="submit" value="Remove Product"</td>
         
            </form>   

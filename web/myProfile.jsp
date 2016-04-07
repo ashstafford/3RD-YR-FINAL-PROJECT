@@ -171,13 +171,13 @@ div#personalDetailsTitle h3
             
          %>
         
-         <li><a href="/CA3WebApp/Login.html">Login</a></li>
+         <li><a href="/CA3WebApp/Login.jsp">Login</a></li>
             <meta http-equiv="refresh" 
-            content="0; url=Login.html">
+            content="0; url=Login.jsp">
             
-        <li><a href="/CA3WebApp/Login.html">Sign Up</a></li>
+        <li><a href="/CA3WebApp/Login.jsp">Sign Up</a></li>
         <meta http-equiv="refresh" 
-        content="0; url=Login.html">
+        content="0; url=Login.jsp">
         <%
         
         }
@@ -198,7 +198,7 @@ div#personalDetailsTitle h3
   
        <nav class="menu-1">
     <ul class="menu">
-        <li> <a href="/CA3WebApp/HomePage.html">Home</a> </li>
+        <li> <a href="/CA3WebApp/HomePage.jsp">Home</a> </li>
         <li> <a href="MemberActionServlet?action=ViewAllProducts">Shop</a> </li>
         <li> <a href="/CA3WebApp/About.jsp">About</a> </li>
         

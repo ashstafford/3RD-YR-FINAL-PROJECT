@@ -17,7 +17,7 @@
         <script src="js/paginate.js"></script>
         <script src="js/custom.js"></script>
         <script type="text/javascript" src="js/modernizr-1.5.min.js"></script>
-        <title>JSP Page</title>
+        <title>View all products</title>
   
         <style>   
            
@@ -41,10 +41,10 @@
             
          %>
         
-         <li><a href="/Login.html/Login.jsp">Login</a></li>
+         <li><a href="/CA3WebApp/Login.jsp">Login</a></li>
             
             
-        <li><a href="/Login.html/Login.jsp">Sign Up</a></li>
+        <li><a href="/CA3WebApp/Login.jsp">Sign Up</a></li>
         
         <%
         
@@ -67,14 +67,14 @@
   
        <nav class="menu-1">
     <ul class="menu">
-        <li> <a href="/Login.html/HomePage.jsp">Home</a> </li>
+        <li> <a href="/CA3WebApp/HomePage.jsp">Home</a> </li>
         <li> <a href="MemberActionServlet?action=ViewAllProducts">Shop</a> </li>
-        <li> <a href="/Login.html/About.jsp">About</a> </li>
+        <li> <a href="/CA3WebApp/About.jsp">About</a> </li>
         
         <li> <a href="MemberActionServlet?action=ViewPreviousOrders">View Orders</a> </li>
         
-        <li> <a href="/Login.html/ContactUs.jsp">Contact</a> </li>
-        <li> <a href="/Login.html/Cart.jsp">Cart</a> </li>
+        <li> <a href="/CA3WebApp/ContactUs.jsp">Contact</a> </li>
+        <li> <a href="/CA3WebApp/Cart.jsp">Cart</a> </li>
         
         <div id="searchbar">
         <form  action = "MemberActionServlet" method = "post" >
@@ -200,7 +200,7 @@
          </form>
         
             
-        <form action="MemberActionServlet" method="post">
+        
             
              <div class="list-of-posts">
                  
@@ -220,7 +220,7 @@
                             
                     %>
                 
-         
+         <form action="MemberActionServlet" method="post">
             
 
         
@@ -241,11 +241,13 @@
                 
                 <p>Quantity: <input name="quantity" size=15 type="text" /></p>
                 <p><input type="hidden" name="action" value="Add To Cart" /></p>
-                <input type="hidden" name="addToCart" value="<%= prod.getProductId()%>" />
+                <input type="hidden" name="addToCart" value="<%=prod.getProductId()%>" />
                 <p><input type="submit" value="Add To Cart" /></p>
         </div>
                 
          </div> 
+                
+  </form>
                
             <%
                     }
@@ -259,7 +261,7 @@
            </div>
            
            
-      </form>
+   
            
       </div>  
             
