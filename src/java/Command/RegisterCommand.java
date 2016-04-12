@@ -39,10 +39,6 @@ public class RegisterCommand implements Command
 		+ "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";  
           
          
-             //boolean passValid = false;
-             //boolean userValid = false;
-             //boolean emailValid = false;
-          
             
              String userName = request.getParameter("userName");
              String password = request.getParameter("password");
@@ -55,14 +51,17 @@ public class RegisterCommand implements Command
              
              
 
-             if (userName != null && password != null && firstName != null && lastName != null && email != null && securityQuestionAnswer !=null
+            if (userName != null && password != null && firstName != null && lastName != null && email != null && securityQuestionAnswer !=null
                      && !userName.isEmpty() && !password.isEmpty() && !firstName.isEmpty() && !lastName.isEmpty() && !email.isEmpty() && !securityQuestionAnswer.isEmpty())
-             {
-                if(userName.matches(regexUsername) && password.matches(regexPass) && email.matches(regexEmail))
-                {
+            {
+               if(userName.matches(regexUsername) && password.matches(regexPass) && email.matches(regexEmail))
+               {
                     
-                
-                    Member m = mDao.addMember(userName,password,firstName,lastName,email,securityQuestionAnswer,isAdmin);
+                 Member m = mDao.findMemberByEmailAddress(email);
+             
+                if(m == null)
+                {
+                     m = mDao.addMember(userName,password,firstName,lastName,email,securityQuestionAnswer,isAdmin);
 
 
                     if (m != null)
@@ -73,20 +72,26 @@ public class RegisterCommand implements Command
 
                         session.setAttribute("register", m);
 
-                        forwardToJsp = "/RegisterSuccess.html";
-                    } 
-                    
-                }
-                else
-                {
-                    forwardToJsp = "/RegisterFailure.jsp";
-                }
-             }
-            else
-            {
-                forwardToJsp = "/RegisterFailure.jsp";
-            }
+                        forwardToJsp = "/myProfile.jsp";
+                    }       
+                    else
+                    {
+                      forwardToJsp = "/Register.jsp";
+                    }
+                
+               }
+               else
+               {
+                  forwardToJsp = "/Register.jsp";
+                  System.out.println("email address already exists!");
+               }      
+           }
+           else
+           {
+              forwardToJsp = "/Registerjsp";
+           }
+       }
+            
         return forwardToJsp;
-   
     }
 }

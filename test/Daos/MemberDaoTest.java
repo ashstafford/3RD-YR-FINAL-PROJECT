@@ -23,19 +23,14 @@ import static org.junit.Assert.*;
 public class MemberDaoTest 
 {
     
-    /**
-     *
-     */
+    
+    
     public MemberDaoTest() 
     {
         
     }
-    
-    
-    /**
-     * Test of getAllMembers method, of class MemberDao.
-     * @throws java.lang.Exception
-     */
+
+   
     @Test
     public void testGetAllMembers() throws Exception {
         System.out.println("getAllMembers");
@@ -43,14 +38,11 @@ public class MemberDaoTest
         ArrayList<Member> expResult = instance.getAllMembers();
         ArrayList<Member> result = instance.getAllMembers();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
+       
       
     }
 
-    /**
-     * Test of findMemberByUsername method, of class MemberDao.
-     * @throws java.lang.Exception
-     */
+ 
     @Test
     public void testFindMemberByUsername() throws Exception {
         System.out.println("findMemberByUsername");
@@ -59,14 +51,11 @@ public class MemberDaoTest
         Member expResult = instance.findMemberByUsername(username);
         Member result = instance.findMemberByUsername(username);
         assertEquals(expResult, result);
-        
-        // TODO review the generated test code and remove the default call to fail.
+      
         
     }
 
-    /**
-     * Test of addMember method, of class MemberDao.
-     */
+    
     @Test
     public void testAddMember()
     {
@@ -89,10 +78,6 @@ public class MemberDaoTest
         
     }
 
-    /**
-     * Test of findMemberByUserNamePassword method, of class MemberDao.
-     * @throws java.lang.Exception
-     */
     @Test
     public void testFindMemberByUserNamePassword() throws Exception {
         System.out.println("findMemberByUserNamePassword");
@@ -102,14 +87,11 @@ public class MemberDaoTest
         MemberDao instance = new MemberDao();
         Member result = instance.findMemberByUserNamePassword(userName, passWord);
         assertEquals(m, result);
-        // TODO review the generated test code and remove the default call to fail.
+        
       
     }
 
 
-    /**
-     * Test of editUserName method, of class MemberDao.
-     */
     @Test
     public void testEditUserName() {
         System.out.println("editUserName");
@@ -142,13 +124,11 @@ public class MemberDaoTest
         System.out.println("editPassword Test Passed");
         boolean m = instance.editPassword(2,"password", "pass");
         instance.editPassword(id,newPassword, password);
-        // TODO review the generated test code and remove the default call to fail.
+       
   
     }
 
-    /**
-     * Test of editFirstName method, of class MemberDao.
-     */
+  
     @Test
     public void testEditFirstName() {
         System.out.println("editFirstName");
@@ -166,9 +146,7 @@ public class MemberDaoTest
     
     }
 
-    /**
-     * Test of editLastName method, of class MemberDao.
-     */
+    
     @Test
     public void testEditLastName() {
         System.out.println("editLastName");
@@ -182,8 +160,92 @@ public class MemberDaoTest
         System.out.println("editLastName Test Passed");
          boolean m = instance.editLastName(4,"stafford", "aungier");
         instance.editLastName(id,newLastName, lastName);
-        // TODO review the generated test code and remove the default call to fail.
+       
+    }
+
+  
+    @Test
+    public void testFindMemberById()
+    {
+        System.out.println("findMemberById");
+        int id = 0;
+        MemberDao instance = new MemberDao();
+        Member expResult = null;
+        Member result = instance.findMemberById(id);
+        assertEquals(expResult, result);
     
+    }
+
+  
+    @Test
+    public void testAddAdmin()
+    {
+        System.out.println("addAdmin");
+        Member m = new Member(3,"ashstaff", "5f4dcc3b5aa765d61d8327deb882cf99", "Aisling", "Stafford", "ash@yahoo.com", "reilly",true);
+        MemberDao instance = new MemberDao();
+        Member expResult = m;
+        boolean result = instance.addAdmin(m);
+        assertEquals(m, expResult);
+        System.out.println("addMember Test Passed");
+        instance.addAdmin(m);
+      
+    }
+
+    
+    @Test
+    public void testFindMemberByEmailAddress()
+    {
+        System.out.println("findMemberByEmailAddress");
+        String eMail = "";
+        MemberDao instance = new MemberDao();
+        Member expResult = null;
+        Member result = instance.findMemberByEmailAddress(eMail);
+        assertEquals(expResult, result);
+        
+        
+    }
+
+   
+    @Test
+    public void testRemoveMember()
+    {
+        System.out.println("removeMember");
+        int memberId = 0;
+        MemberDao instance = new MemberDao();
+        boolean expResult = false;
+        boolean result = instance.removeMember(memberId);
+        assertEquals(expResult, result);
+        
+    }
+
+    
+    @Test
+    public void testEditEmail()
+    {
+        System.out.println("editEmail");
+        int id = 0;
+        String email = "";
+        String newEmail = "";
+        MemberDao instance = new MemberDao();
+        boolean expResult = false;
+        boolean result = instance.editEmail(id, email, newEmail);
+        assertEquals(expResult, result);
+        
+    }
+
+  
+    @Test
+    public void testEditMemberImageUrl()
+    {
+        System.out.println("editMemberImageUrl");
+        int id = 0;
+        String memberImageUrl = "";
+        String newMemberImageUrl = "";
+        MemberDao instance = new MemberDao();
+        boolean expResult = false;
+        boolean result = instance.editMemberImageUrl(id, memberImageUrl, newMemberImageUrl);
+        assertEquals(expResult, result);
+        
     }
 
   

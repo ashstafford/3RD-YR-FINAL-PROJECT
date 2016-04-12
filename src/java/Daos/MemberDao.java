@@ -57,10 +57,11 @@ public class MemberDao extends Dao implements MemberDaoInterface
                 String firstName = rs.getString("firstName");
                 String lastName = rs.getString("lastName");
                 String email = rs.getString("email");
+                String memberImageUrl = rs.getString("memberImageUrl");
                 String securityQuestionAnswer = rs.getString("securityQuestionAnswer");
                 boolean isAdmin = rs.getBoolean("isAdmin");
 
-                Member m = new Member(memberId,userName, password, firstName, lastName,email,securityQuestionAnswer,isAdmin);
+                Member m = new Member(memberId,userName, password, firstName, lastName,email,memberImageUrl,securityQuestionAnswer,isAdmin);
                 member.add(m);
             }
 
@@ -71,7 +72,8 @@ public class MemberDao extends Dao implements MemberDaoInterface
 
             e.printStackTrace();
             
-        } finally
+        } 
+        finally
         {
             try
             {
@@ -130,6 +132,7 @@ public class MemberDao extends Dao implements MemberDaoInterface
                  rs.getString("firstName"),
                  rs.getString("lastName"),        
                  rs.getString("email"),
+                 rs.getString("memberimageUrl"),      
                  rs.getString("securityQuestionAnswer"),
                  rs.getBoolean("isAdmin"));
                   
@@ -262,10 +265,11 @@ public class MemberDao extends Dao implements MemberDaoInterface
                 String firstName = rs.getString("firstName");
                 String lastName = rs.getString("lastName");
                 String email = rs.getString("email");
+                String memberImageUrl = rs.getString("memberImageUrl");
                 String securityQuestionAnswer = rs.getString("securityQuestionAnswer");
                 boolean isAdmin = rs.getBoolean("isAdmin");
                 
-                m = new Member(memberId, firstName, lastName, username, password,email,securityQuestionAnswer,isAdmin);
+                m = new Member(memberId, firstName, lastName, username, password,email,memberImageUrl,securityQuestionAnswer,isAdmin);
             }
         } 
         
@@ -333,10 +337,11 @@ public class MemberDao extends Dao implements MemberDaoInterface
                 String userName = rs.getString("username");
                 String password = rs.getString("password");
                 String email = rs.getString("email");
+                String memberImageUrl = rs.getString("memberImageUrl");
                 String securityQuestionAnswer = rs.getString("securityQuestionAnswer");
                 boolean isAdmin = rs.getBoolean("isAdmin");
                 
-                m = new Member(memberId,userName, password,firstName, lastName, email,securityQuestionAnswer,isAdmin);
+                m = new Member(memberId,userName, password,firstName, lastName, email,memberImageUrl,securityQuestionAnswer,isAdmin);
             }
         } 
         
@@ -571,6 +576,7 @@ public class MemberDao extends Dao implements MemberDaoInterface
                 String firstname = rs.getString("firstName");
                 String lastname = rs.getString("lastName");
                 String email = rs.getString("email");
+                String memberImageUrl = rs.getString("memberImageUrl");
                 String securityQuestionAnswer = rs.getString("securityQuestionAnswer");
                 boolean isAdmin = rs.getBoolean("isAdmin");
             
@@ -578,7 +584,7 @@ public class MemberDao extends Dao implements MemberDaoInterface
                if(hashedPassword.equals(password))
                {    
 
-                  m = new Member(memberId,username, password, firstname, lastname, email,securityQuestionAnswer,isAdmin);
+                  m = new Member(memberId,username, password, firstname, lastname, email,memberImageUrl,securityQuestionAnswer,isAdmin);
                   
                }
 
@@ -755,7 +761,7 @@ public class MemberDao extends Dao implements MemberDaoInterface
             String query = "update member set firstName =? where firstName=? and memberId=?";
             ps = conn.prepareStatement(query);
             
-            ps.setString(1,newFirstName); //sets newUserName as the new userName
+            ps.setString(1,newFirstName); //sets newFirstName as the new firstName
             ps.setString(2,firstName);
             ps.setInt(3,id);
 
