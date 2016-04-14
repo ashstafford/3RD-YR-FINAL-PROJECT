@@ -205,55 +205,54 @@
              <div class="list-of-posts">
                  
                     
-                <%
+<%
                     List<Product> products;
                     products = (List) (request.getSession().getAttribute("AllProducts"));
 
-                    if (products != null) 
-                    { 
-                %>        
+              if (products != null) 
+              { 
+%>        
                 
                 <table>    
-                    <%
+<%
                     for (Product prod : products) 
-                        {
-                            
-                    %>
+                    {
+%>
                 
-         <form action="MemberActionServlet" method="post">
-            
+                    <form action="MemberActionServlet" method="post">
 
-        
-         <div id="all">
-             <div id="overall">
-                      </div>
-        <div id="productImage">   
-       <img src="<%=prod.getProductImageUrl()%>" style="width: 280px; height: 230px;">     
-        </div>   
-            
-        <div id ="productDetails">
-            <div class="ProductName">
-            <p><%=prod.getProductName()%></p>
-            </div>
-                <p>Quantity in stock: <%=prod.getQuantityInStock()%></p>
-                <p>Price: €<%=prod.getProductPrice()%></p>
-                
-                
-                <p>Quantity: <input name="quantity" size=15 type="text" /></p>
-                <p><input type="hidden" name="action" value="Add To Cart" /></p>
-                <input type="hidden" name="addToCart" value="<%=prod.getProductId()%>" />
-                <p><input type="submit" value="Add To Cart" /></p>
-        </div>
-                
-         </div> 
-                
-  </form>
-               
-            <%
-                    }
-                }
+
+
+                    <div id="all">
+                        <div id="overall">
+                                 </div>
+                   <div id="productImage">   
+                  <img src="<%=prod.getProductImageUrl()%>" style="width: 280px; height: 230px;">     
+                   </div>   
+
+                   <div id ="productDetails">
+                       <div class="ProductName">
+                       <p><%=prod.getProductName()%></p>
+                       </div>
+                           <p>Quantity in stock: <%=prod.getQuantityInStock()%></p>
+                           <p>Price: €<%=prod.getProductPrice()%></p>
+
+
+                           <p>Quantity: <input name="quantity" size=15 type="text" /></p>
+                           <p><input type="hidden" name="action" value="Add To Cart" /></p>
+                           <input type="hidden" name="addToCart" value="<%=prod.getProductId()%>" />
+                           <p><input type="submit" value="Add To Cart" /></p>
+                   </div>
+
+                    </div> 
+
+             </form>
+
+<%
+               }
+          }
                        
-            %>
+%>
              
             </table>
            <div class="pagination">

@@ -35,31 +35,14 @@ public class ViewAllProductsCommand implements Command
                 HttpSession session = request.getSession();
 			
                 ProductDao pDao = new ProductDao();
-                
-                ProductPriceHighToLowComparator prodHighToLow = new ProductPriceHighToLowComparator();
-                ProductPriceLowToHighComparator prodLowToHigh = new ProductPriceLowToHighComparator();
                
-                List<Product> products = new ArrayList<>();
-                products = pDao.getAllProducts();
- 
-////                 String referer = request.getHeader("Referer");
-                //response.sendRedirect(referer);
-//                System.out.println("refeerer" + referer);
-//                String selectedOption = request.getParameter("selectOrderPrice");
-//           
-//
-//                System.out.println("hahah" + selectedOption);
-//                
-//                if(selectedOption.equals("lowToHigh"))
-//                {
-//                    Collections.sort(products,prodLowToHigh);
-//                }
-//                
-//                if(selectedOption.equals("highToLow"))
-//                {
-//                     Collections.sort(products,prodHighToLow);
-//                }
-                    
+                List<Product> products =  pDao.getAllProducts();
+                
+                for(Product p : products)
+                {
+                    System.out.println("command : " + p.getProductName());
+                }
+           
                 //Put the list of products into the session so that JSP(the View) can display them...
                 session.setAttribute("AllProducts", products);
                 
@@ -67,7 +50,7 @@ public class ViewAllProductsCommand implements Command
                forwardToJsp = "/ViewAllProducts.jsp";	
               
                 
-      return forwardToJsp;                
+        return forwardToJsp;                
      } 
 }
 
