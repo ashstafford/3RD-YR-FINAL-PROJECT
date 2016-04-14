@@ -39,9 +39,6 @@ public class ProductDaoTest
     
 
 
-    /**
-     * Test of getAllProducts method, of class ProductDao.
-     */
     @Test
     public void testGetAllProducts() {
         System.out.println("getAllProducts");
@@ -49,13 +46,11 @@ public class ProductDaoTest
         ArrayList<Product> expResult = instance.getAllProducts();;
         ArrayList<Product> result = instance.getAllProducts();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
+        
        
     }
 
-    /**
-     * Test of getProductsByCategory method, of class ProductDao.
-     */
+    
     @Test
     public void testGetProductsByCategory() {
         System.out.println("getProductsByCategory");
@@ -64,15 +59,13 @@ public class ProductDaoTest
         ArrayList<Product> expResult = instance.getProductsByCategory(category);
         ArrayList<Product> result = instance.getProductsByCategory("Star Wars");        
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
+        
         
     }
 
     
 
-    /**
-     * Test of findProductById method, of class ProductDao.
-     */
+    
     @Test
     public void testFindProductById() 
     {
@@ -89,9 +82,7 @@ public class ProductDaoTest
 
   
 
-    /**
-     * Test of findProductsByTitle method, of class ProductDao.
-     */
+    
     @Test
     public void testFindProductsByTitle() {
         System.out.println("findProductsByTitle");
@@ -100,8 +91,7 @@ public class ProductDaoTest
         ArrayList<Product> expResult = instance.findProductsByTitle(title);
         ArrayList<Product> result = instance.findProductsByTitle("GAME OF THRONES 4-PIECE HOLIDAY ORNAMENT SET");
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        //fail("The test case is a prototype.");
+       
     }
 
     
@@ -109,9 +99,6 @@ public class ProductDaoTest
     
 
    
-    /**
-     * Test of checkQuantityInStock method, of class ProductDao.
-     */
     @Test
     public void testCheckQuantityInStock()
     {
@@ -150,9 +137,7 @@ public class ProductDaoTest
     
 
     
-    /**
-     * Test of removeProduct method, of class ProductDao.
-     */
+    
     @Test
     public void testRemoveProduct()
     {
@@ -162,13 +147,10 @@ public class ProductDaoTest
         boolean expResult = true;
         boolean result = instance.removeProduct(productId);
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        //fail("The test case is a prototype.");
+       
     }
 
-    /**
-     * Test of addProduct method, of class ProductDao.
-     */
+   
     @Test
     public void testAddProduct() {
         System.out.println("addProduct");
@@ -182,7 +164,7 @@ public class ProductDaoTest
         boolean result = instance.addProduct(productImageUrl, productName, productPrice, quantityInStock, category);
         assertEquals(expResult, result);
         System.out.println("Test Passed");
-        ArrayList<Product> p = instance.findProductsByTitle("red top");
+        //ArrayList<Product> p = instance.findProductsByTitle("red top");
     }
 
    

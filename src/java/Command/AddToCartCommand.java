@@ -33,7 +33,7 @@ public class AddToCartCommand implements Command
 
             if ( session.getId() != session.getAttribute("loggedSessionId") )
             {
-                forwardToJsp = "/LoginFailure.jsp";
+                forwardToJsp = "/Login.jsp";
             }
             else
             {

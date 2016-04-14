@@ -1,29 +1,25 @@
 <%-- 
-    Document   : DisneyPage
-    Created on : 12-Dec-2015, 19:50:44
-    Author     : Aisling
+    Document   : SupernaturalPage
+    Created on : 12-Apr-2016, 15:31:58
+    Author     : Benjamin
 --%>
 
 <%@page import="Dtos.Member"%>
-<%@page import="java.util.List"%>
 <%@page import="Dtos.Product"%>
+<%@page import="java.util.List"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" type="text/css" href="mainCSS.css" >
-        <title>Disney</title>
-        
-        <style>
-
-   
-        </style>
-        
+        <title>Supernatural Page</title>
     </head>
+    <style>   
+    </style>
     <body>
         
-           <div id="container">  
+    <div id="container">  
           <nav class = "topmenu">
              <ul class="navigation">
                     <li><a href="MemberActionServlet?action=viewProfile">My Profile</a></li>
@@ -58,12 +54,12 @@
    </ul>
      </nav> 
           <%// } %>
-          
+
             <div id="banner">
                 <img src="tempBanner.jpg"/>
             </div>
   
-      <nav class="menu-1">
+       <nav class="menu-1">
     <ul class="menu">
         <li> <a href="/Login.html/HomePage.jsp">Home</a> </li>
         <li> <a href="MemberActionServlet?action=ViewAllProducts">Shop</a> </li>
@@ -198,9 +194,9 @@
         
          <table>
 
-               <%
+                <%
                     List<Product> products;
-                    products = (List) (request.getSession().getAttribute("DProducts"));
+                    products = (List) (request.getSession().getAttribute("SNProducts"));
 
                     if (products != null) 
                     {
@@ -252,8 +248,6 @@
 
       </div>
 </div>  
-          
-       
-  
+        
     </body>
 </html>

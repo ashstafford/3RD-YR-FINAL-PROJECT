@@ -97,6 +97,22 @@ public class CommandFactory
         {
     		command = new ViewGOTCommand();
     	}
+        if (commandStr.equals("Harry Potter")) 
+        {
+    		command = new ViewHarryPotterCommand();
+    	}
+        if (commandStr.equals("Hunger Games")) 
+        {
+    		command = new ViewHungerGamesCommand();
+    	}
+         if (commandStr.equals("Pokemon")) 
+        {
+    		command = new ViewPokemonCommand();
+    	}
+          if (commandStr.equals("SuperNatural")) 
+        {
+    		command = new ViewSupernaturalCommand();
+    	}
         if (commandStr.equals("Add To Cart")) 
         {
     		command = new AddToCartCommand();
