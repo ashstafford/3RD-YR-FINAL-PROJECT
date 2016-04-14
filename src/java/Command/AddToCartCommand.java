@@ -43,7 +43,7 @@ public class AddToCartCommand implements Command
 
                 if(id != null && !quantity.isEmpty())
                 {   
-                    
+            
                    int productId = Integer.parseInt(id);
                    int qty = Integer.parseInt(quantity);
 
@@ -61,7 +61,7 @@ public class AddToCartCommand implements Command
                    
                   int quantityInStockCount = pDao.checkQuantityInStock(p.getProductId());
                     
-                    System.out.println("haha " + quantityInStockCount);
+                  System.out.println("haha " + quantityInStockCount);
                   if(quantityInStockCount > 0) 
                    {
                        p.setQuantityInStock(qty);
@@ -79,6 +79,10 @@ public class AddToCartCommand implements Command
 
                    	
                 }
+                else
+                {
+                    System.out.println("id null");
+                }    
                   
            }
              

@@ -58,21 +58,53 @@
            
 </nav>
 
-            <div id="pagecontent2">
+            <div id="pagecontent3">
                 
                  <form action="MemberActionServlet" method="post">
-                <table>
-                    <tr>
-                        <td>Enter your Email Address: </td><td> <input name="email" size=15 type="text" /> </td> 
-                    </tr>
-                    <tr>
-                        <td>What was the Name of your first pet? </td><td><input name="securityQuestionAnswer" size=15 type="text" /> </td> 
-                    </tr>
-                </table>
+                     
+                     <div id="ForgotPasswordTitle">
+                         <h1> Forgot your Password </h1>
+                         <br>
+                         <hr>
+                     </div>
+                     
+                     <div id="ForgotPasswordMain">
+                        <div id="ForgotPassword">
+                               <table>
+                                   <tr>
+                                       <label for="forgetPasswordEmail">Enter your Email Address: <span style="color:red;">*</span></label> 
+                                  </tr>
+                                  <tr>
+                                      <td> <input name="userName" class="resizedTextBox" placeholder="MUST have an @" size=25 type="text" required /> </td>
+                                  </tr>
+                               </table>
+                           </div>
+
+                           <div id="ForgotPassword">
+                               <table>
+                                   <tr>
+                                       <label for="forgetPasswordPet">What was the Name of your first pet? <span style="color:red;">*</span></label>
+                                   </tr>
+                                   <tr>
+                                       <td> <input name="password" class="resizedTextBox" size=25 type="password" required /> </td> 
+                                   </tr>
+                               </table>
+                           </div>
+               
+                <div id="ForgotPasswordButtonNext">
+                    <input type="hidden" name="action" value="resetPassword" />
+                    <input type="submit" class="resizedButton" value="Next" />
+                </div>
                 
-                <input type="hidden" name="action" value="resetPassword" />
-                <input type="submit" value="Next" />
+                <div id ="ForgotPasswordButtonBack">
+                    <form action = "Login.jsp" method = "post">
+                        <p> 
+                           <input type = "submit" class="resizedButton" name = "Login" value = "Return to Login"/>
+                        </p>
+                    </form>  
+                </div>
             </form>
+                </div>
            
             </div>
         

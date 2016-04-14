@@ -26,14 +26,14 @@
   
        <nav class="menu-1">
     <ul class="menu">
-        <li> <a href="/Login.html/HomePage.jsp">Home</a> </li>
+        <li> <a href="/CA3WebApp/HomePage.jsp">Home</a> </li>
         <li> <a href="MemberActionServlet?action=ViewAllProducts">Shop</a> </li>
-        <li> <a href="/Login.html/About.jsp">About</a> </li>
+        <li> <a href="/CA3WebApp/About.jsp">About</a> </li>
         
         <li> <a href="MemberActionServlet?action=ViewPreviousOrders">View Orders</a> </li>
         
-        <li> <a href="/Login.html/ContactUs.jsp">Contact</a> </li>
-        <li> <a href="/Login.htmlCart.jsp">Cart</a> </li>
+        <li> <a href="/CA3WebApp/ContactUs.jsp">Contact</a> </li>
+        <li> <a href="/CA3WebApp/Cart.jsp">Cart</a> </li>
         
         <div id="searchbar">
         <form  action = "MemberActionServlet" method = "post" >
@@ -50,10 +50,12 @@
 </nav>
             
             
-            <div id="pagecontent2">
+            <div id="pagecontent3">
  
-        <div id="addProduct">  
-        <h1> Add Product </h1>   
+        <div id="addProductMain"> 
+            <div id="addProductTitle">
+                <h1> Add Product </h1>
+            </div>
         
         <%  // boolean productAdded = (boolean) session.getAttribute("fileredProducts");
         
@@ -64,35 +66,82 @@
             //   else
           //     {
         %>
+    
+        
     <form action="MemberActionServlet" method="post">
-                <table>
-                    <tr>
-                        <td> Product Name  : </td><td> <input name="productName" placeholder="MUST be at least 4 characters" size=25 type="text" /> </td> 
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td> Price  : </td><td> <input name="productPrice" placeholder="0.00" size=25 type="text" /> </td> 
-                    </tr>
-                     <tr>
-                        <td> Quantity in Stock  : </td><td> <input name="quantityInStock" size=25 type="text" /> </td> 
-                    </tr>
-                     <tr>
-                        <td> Category  : </td><td> <input name="category" size=25 type="text" /> </td> 
-                    </tr>
-                     <tr>
-                        <td> Product image url  : </td><td> <input name="productImageUrl" placeholder="" size=25 type="text" /> </td> 
-                    </tr>
+        <form>
                     
-                </table>
-                
-                <input type="hidden" name="action" value="AddProduct"/>
-                <input type="submit" value="Add Product"  />
+                    
+                    <div id ="AddProduct">
+                        <table>
+                            <tr>
+                                <label for="exampleInputPassword" style="font-size:20px;">Product Name: </label> 
+                            </tr>
+                            <tr>
+                                <td><input name="productName" class="resizedTextBox" style="border:0.5px solid black;" size="35" type="text" /> </td>
+                            </tr>
+                        </table>
+                        <!--<tr>
+                            <td> Product Name  : </td><td> <input name="productName" placeholder="MUST be at least 4 characters" size=25 type="text" /> </td> 
+                        </tr>-->
+                    </div>
+                    
+                    <div id ="AddProduct">
+                        <table>
+                            <tr>
+                                <label for="exampleInputPassword" style="font-size:20px;">Price: </label> 
+                            </tr>
+                            <tr>
+                                <td><input name="productPrice" class="resizedTextBox" style="border:0.5px solid black;" size="35"/> </td>
+                            </tr>
+                        </table>
+                    </div>
+                    
+                    <div id ="AddProduct">
+                        <table>
+                            <tr>
+                                <label for="exampleInputPassword" style="font-size:20px;">Quantity in Stock: </label> 
+                            </tr>
+                            <tr>
+                                <td><input name="productQuanityInStock" class="resizedTextBox" style="border:0.5px solid black;" size="35"/> </td>
+                            </tr>
+                        </table>
+                    </div>
+                    
+                    <div id="AddProduct">
+                        <table>
+                            <tr>
+                                <label for="exampleInputPassword" style="font-size:20px;">Category: </label> 
+                            </tr>
+                            <tr>
+                                <td><input name="productQuanityInStock" class="resizedTextBox" style="border:0.5px solid black;" size="35" type="text"/> </td>
+                            </tr>
+                        </table>
+                    </div>
+                    
+                    <div id="AddProduct">
+                        <table>
+                            <tr>
+                                <label for="exampleInputPassword" style="font-size:20px;">Product Image Url: </label> 
+                            </tr>
+                            <tr>
+                                <td><input name="productImageUrl" class="resizedTextBox" style="border:0.5px solid black;" size="35" type="url"/> </td>
+                            </tr>
+                        </table>
+                    </div>
+                    
+               
+                <div id="AddProductButton">
+                    <input type="hidden" name="action" value="AddProduct"/>
+                    <input type="submit" class="resizedButton"  value="Add Product"  />
+                </div>
       </form>
+        
     </div>
            <%// } 
                  %>
+                 
+                
             </div>
     </body>
 </html>

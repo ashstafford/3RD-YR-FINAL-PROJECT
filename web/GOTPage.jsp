@@ -34,10 +34,10 @@
             
          %>
         
-         <li><a href="/Login.html/Login.jsp">Login</a></li>
+         <li><a href="/CA3WebApp/Login.jsp">Login</a></li>
            
             
-        <li><a href="/Login.html/Login.jsp">Sign Up</a></li>
+        <li><a href="/CA3WebApp/Login.jsp">Sign Up</a></li>
         
         <%
         

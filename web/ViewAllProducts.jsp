@@ -17,7 +17,7 @@
         <script src="js/paginate.js"></script>
         <script src="js/custom.js"></script>
         <script type="text/javascript" src="js/modernizr-1.5.min.js"></script>
-        <title>JSP Page</title>
+        <title>View all products</title>
   
         <style>   
            
@@ -41,10 +41,10 @@
             
          %>
         
-         <li><a href="/Login.html/Login.jsp">Login</a></li>
+         <li><a href="/CA3WebApp/Login.jsp">Login</a></li>
             
             
-        <li><a href="/Login.html/Login.jsp">Sign Up</a></li>
+        <li><a href="/CA3WebApp/Login.jsp">Sign Up</a></li>
         
         <%
         
@@ -67,14 +67,14 @@
   
        <nav class="menu-1">
     <ul class="menu">
-        <li> <a href="/Login.html/HomePage.jsp">Home</a> </li>
+        <li> <a href="/CA3WebApp/HomePage.jsp">Home</a> </li>
         <li> <a href="MemberActionServlet?action=ViewAllProducts">Shop</a> </li>
-        <li> <a href="/Login.html/About.jsp">About</a> </li>
+        <li> <a href="/CA3WebApp/About.jsp">About</a> </li>
         
         <li> <a href="MemberActionServlet?action=ViewPreviousOrders">View Orders</a> </li>
         
-        <li> <a href="/Login.html/ContactUs.jsp">Contact</a> </li>
-        <li> <a href="/Login.html/Cart.jsp">Cart</a> </li>
+        <li> <a href="/CA3WebApp/ContactUs.jsp">Contact</a> </li>
+        <li> <a href="/CA3WebApp/Cart.jsp">Cart</a> </li>
         
         <div id="searchbar">
         <form  action = "MemberActionServlet" method = "post" >
@@ -95,7 +95,7 @@
             
             <p>
                  <input type="hidden" name="action" value ="ViewAllProducts">
-                 <input type="image" src="IMG_viewAllProductsLogo.jpg" alt="Submit" width="200px" height="70px"/>
+                 <input type="image" src="images/IMG_viewAllProductsLogo.jpg" alt="Submit" width="200px" height="70px"/>
                 
             </p>
         </form>
@@ -104,7 +104,7 @@
             
             <p>
                  <input type="hidden" name="action" value ="StarWars">
-                 <input type="image" src="swLogo.png" alt="Submit" width="200px" height="70px"/>
+                 <input type="image" src="images/swLogo.png" alt="Submit" width="200px" height="70px"/>
                 
             </p>
         </form>
@@ -113,7 +113,7 @@
                <p> 
                    
                  <input type="hidden" name="action" value ="Marvel">
-                 <input type="image" src="IMG_mLogo.jpeg" alt="Submit" width="200px" height="70px"/>
+                 <input type="image" src="images/IMG_mLogo.jpeg" alt="Submit" width="200px" height="70px"/>
                  
                </p>
          </form>
@@ -121,7 +121,7 @@
          <form action = "MemberActionServlet" method = "post">
                <p> 
                  <input type="hidden" name="action" value ="DC">
-                 <input type="image" src="IMG_dcLogo.jpg" alt="Submit" width="200px" height="70px"/>
+                 <input type="image" src="images/IMG_dcLogo.jpg" alt="Submit" width="200px" height="70px"/>
               
                </p>
          </form>
@@ -130,7 +130,7 @@
                <p> 
                    
                  <input type="hidden" name="action" value ="Disney">
-                 <input type="image" src="IMG_dLogo.jpg" alt="Submit" width="200px" height="70px"/>
+                 <input type="image" src="images/IMG_dLogo.jpg" alt="Submit" width="200px" height="70px"/>
                
                </p>
          </form>
@@ -139,7 +139,7 @@
                <p> 
                    
                  <input type="hidden" name="action" value ="The Walking Dead">
-                 <input type="image" src="IMG_twdLogo.jpg" alt="Submit" width="200px" height="70px"/>
+                 <input type="image" src="images/IMG_twdLogo.jpg" alt="Submit" width="200px" height="70px"/>
                   
                </p>
          </form>
@@ -147,7 +147,7 @@
         <form action = "MemberActionServlet" method = "post">
                <p> 
                  <input type="hidden" name="action" value ="Doctor Who">
-                 <input type="image" src="IMG_dwLogo.jpg" alt="Submit" width="200px" height="70px"/>
+                 <input type="image" src="images/IMG_dwLogo.jpg" alt="Submit" width="200px" height="70px"/>
                   
                </p>
          </form>
@@ -155,7 +155,7 @@
         <form action = "MemberActionServlet" method = "post">
                <p> 
                   <input type="hidden" name="action" value ="Game Of Thrones">
-                  <input type="image" src="IMG_gotLogo.jpg" alt="Submit" width="200px" height="70px"/> 
+                  <input type="image" src="images/IMG_gotLogo.jpg" alt="Submit" width="200px" height="70px"/> 
              
                </p>
          </form>
@@ -172,6 +172,22 @@
                <p> 
                   <input type="hidden" name="action" value ="Hunger Games">
                   <input type="image" src="images/HungerGameslogo.jpg" alt="Submit" width="200px" height="70px"/> 
+             
+               </p>
+         </form>
+        
+        <form action = "MemberActionServlet" method = "post">
+               <p> 
+                  <input type="hidden" name="action" value ="Pokemon">
+                  <input type="image" src="images/pokemonLogo.png" alt="Submit" width="200px" height="70px"/> 
+             
+               </p>
+         </form>
+        
+        <form action = "MemberActionServlet" method = "post">
+               <p> 
+                  <input type="hidden" name="action" value ="Supernatural">
+                  <input type="image" src="images/supernaturalLogo.jpg" alt="Submit" width="200px" height="70px"/> 
              
                </p>
          </form>
@@ -218,7 +234,7 @@
          </form>
         
             
-        <form action="MemberActionServlet" method="post">
+        
             
              <div class="list-of-posts">
                  
@@ -238,7 +254,7 @@
                             
                     %>
                 
-         
+         <form action="MemberActionServlet" method="post">
             
 
         
@@ -259,11 +275,13 @@
                 
                 <p>Quantity: <input name="quantity" size=15 type="text" /></p>
                 <p><input type="hidden" name="action" value="Add To Cart" /></p>
-                <input type="hidden" name="addToCart" value="<%= prod.getProductId()%>" />
+                <input type="hidden" name="addToCart" value="<%=prod.getProductId()%>" />
                 <p><input type="submit" value="Add To Cart" /></p>
         </div>
                 
          </div> 
+                
+  </form>
                
             <%
                     }
@@ -277,7 +295,7 @@
            </div>
            
            
-      </form>
+   
            
       </div>  
             

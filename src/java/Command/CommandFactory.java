@@ -56,7 +56,11 @@ public class CommandFactory
         if (commandStr.equals("Remove Member")) 
         {
     		command = new RemoveMemberCommand();
-    	}        
+    	}
+        if (commandStr.equals("RemoveProductFromCart")) 
+        {
+    		command = new RemoveProductFromCartCommand();
+    	}
         if (commandStr.equals("AddAdmin")) 
         {
     		command = new AddAdminCommand();

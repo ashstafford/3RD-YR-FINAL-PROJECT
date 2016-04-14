@@ -49,6 +49,21 @@ public class Member
         this.admin = admin;
     }
 
+    public Member(int memberId, String userName, String password, String firstName, String lastName, String email, String memberImageUrl, String securtiyQuestionAnswer, boolean admin)
+    {
+        this.memberId = memberId;
+        this.userName = userName;
+        this.password = password;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.memberImageUrl = memberImageUrl;
+        this.securtiyQuestionAnswer = securtiyQuestionAnswer;
+        this.admin = admin;
+    }
+    
+    
+
     /**
      *
      * @return

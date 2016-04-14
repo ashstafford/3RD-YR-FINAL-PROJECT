@@ -101,6 +101,11 @@ div#copyright
     font-family: Arial, Helvetica, sans-serif;
     font-weight: bold;
 }
+.resizedButton:active,
+.resizedButton:hover
+{
+    background-color: #C1E6E5;
+}
 
 :required:focus 
 {
@@ -677,3 +682,111 @@ div#all2
 {
     padding-left: 10px;
 }
+
+/* Add Product*/
+
+div#AddProduct
+{
+    padding-left: 220px;
+    padding-top: 40px;
+    color:black;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+div#addProductTitle
+{
+    padding-top: 10px;
+    padding-left: 265px;
+    font-size: 16px;
+    font-family: Arial, Helvetica, sans-serif;
+    border-bottom: 3px solid gray;
+    color:black;
+    margin-bottom: 3%;
+}
+div#addProductMain
+{
+    margin-top: 40px;
+    margin-left: 20%;
+    margin-right:20%;
+    margin-bottom: 70px;
+}
+div#AddProductButton
+{
+    padding-top:50px;
+    padding-left:275px;
+    margin-bottom:70px;
+}
+
+/*Select Member CSS */
+div#overall2
+{
+    padding-top:100px;
+}
+
+div#overallMain
+{
+    padding-left: 150px;
+    float:left;
+    clear:right;
+}
+
+div#profileImage img{
+    float:left;
+    clear:right;
+    border : thin  black   solid;
+    width: 260px; 
+    height: 220px;
+}
+
+div#profileInfo
+{
+   padding-left:160px;
+   padding-right:50px;
+   clear:right;
+}
+
+div#MemberButton
+{
+    padding-left: 160px;
+}
+
+div#SelectMemberMain
+{
+    padding-top: 50px;
+}
+
+
+/* Forgot Pass */
+div#ForgotPasswordTitle
+{
+    padding-left: 70px;
+    padding-top: 50px;
+    margin-right: 70px;
+    margin-bottom:0px;
+}
+div#ForgotPasswordMain
+{
+    margin-bottom: 200px;
+}
+div#ForgotPassword
+{
+    padding-left:70px;
+    padding-top:50px;
+}
+div#ForgotPasswordButtonNext
+{
+    padding-top:66px;
+    padding-right: 120px;
+    float:right;
+    clear:right;
+}
+div#ForgotPasswordButtonBack
+{
+    margin-bottom: 200px;
+    padding-top:50px;
+    padding-right:15px;
+    float:right ;
+    clear:left;   
+}
+
+/* Home Page CSS */
