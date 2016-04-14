@@ -84,8 +84,10 @@
 </nav>
                   
         
-      <div id="pagecontent">
+      <div id="pagecontent2">
         
+          <div id="overall2"></div>
+          
         <table>
    
   
@@ -109,35 +111,35 @@
                         {
                            
                 %>
-         <form action="MemberActionServlet" method="post">
-            <div id="overall">
-                      </div>
+            <form action="MemberActionServlet" method="post">
+              
+           
+           <tr>
+               <div id="overallMain">
+           <div id="profileImage">   
+                <img src="<%=m.getMemberImageUrl()%>" style="width: 300px; height: 250px;">     
+           </div>
 
-        <tr>
-                
-        <div id="productImage">   
-       <img src="<%=m.getMemberImageUrl()%>" style="width: 300px; height: 250px;">     
-        </div>   
-            
-        <div id ="productDetails">
-            <p>Username: <%=m.getUserName()%></p>
-                <p>First Name: <%=m.getFirstName()%></p>
-                <p>Last Name: <%=m.getLastName()%></p>
-                
-                <%  
-               String action = request.getParameter("action");
-               
-               if(action.equals("Add Admin"))
-               {
+           <div id ="profileInfo">
+               <p>Username: <%=m.getUserName()%></p>
+                   <p>First Name: <%=m.getFirstName()%></p>
+                   <p>Last Name: <%=m.getLastName()%></p>
+           </div>
+                   <%  
+                  String action = request.getParameter("action");
+
+                  if(action.equals("Add Admin"))
+                  {
                    
                    %>
                    
+                   <div id="MemberButton">
                            <p><input type="hidden" name="action" value="AddAdmin" /></p>
                            <input type="hidden" name="AddAdmin" value="<%= m.getMemberId()%>" />
                            
                            <form action="MemberActionServlet" method="post"> 
                            
-                           <p><input type="submit" value="Make Admin" /></p>
+                                <p><input type="submit" value="Make Admin" /></p>
                            
                            </form> 
                  
@@ -147,14 +149,19 @@
                  {
         
            %>
-             <td><input type="hidden" name="action" value="Remove Member" /></td>
-             <input type="hidden" name="removeMember" value="<%= m.getMemberId()%>"/>
-              
-                   <form action="MemberActionServlet" method="post"> 
+                    <td><input type="hidden" name="action" value="Remove Member" /></td>
+                    <input type="hidden" name="removeMember" value="<%= m.getMemberId()%>"/>
+                    <form action="MemberActionServlet" method="post"> 
+                        <td><input type="submit" value="Remove Member" /></td>
+                    </form>     </div>     
+
+                
              
-                <td><input type="submit" value="Remove Member" /></td>
-             </tr>
-           </form> 
+           </div>
+               </div>
+                    </tr>
+                    </table>
+            </form>
     
         <%       } 
                
@@ -167,11 +174,11 @@
             %>
 
 
-        </table>
-
         
-
-      </div>
+          
+        
+        
+      
 </div>
         
     </body>

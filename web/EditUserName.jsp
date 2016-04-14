@@ -18,7 +18,7 @@
             
             <script>
                 
-                function validateForm() {
+               function validateForm() {
                var x = document.forms["myForm"]["editUsername"].value;
                 if (x === null || x === "") {
                     alert("User Name must be filled out");

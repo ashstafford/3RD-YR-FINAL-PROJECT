@@ -1,24 +1,23 @@
 <%-- 
-    Document   : MarvelPage
-    Created on : 15-Dec-2015, 01:03:30
-    Author     : Aisling
+    Document   : PokemonPage
+    Created on : 12-Apr-2016, 15:23:38
+    Author     : Benjamin
 --%>
 
 <%@page import="Dtos.Member"%>
-<%@page import="java.util.List"%>
 <%@page import="Dtos.Product"%>
+<%@page import="java.util.List"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" type="text/css" href="mainCSS.css" >
-        <title>Marvel Page</title>
-        <style>      
-        </style>
-
+        <title>Pokemon Page</title>
     </head>
-     <body>
+    <style>   
+    </style>
+    <body>
         
     <div id="container">  
           <nav class = "topmenu">
@@ -36,10 +35,10 @@
             
          %>
         
-         <li><a href="/CA3WebApp/Login.jsp">Login</a></li>
+         <li><a href="/Login.html/Login.jsp">Login</a></li>
             
             
-        <li><a href="/CA3WebApp/Login.jsp">Sign Up</a></li>
+        <li><a href="/Login.html/Login.jsp">Sign Up</a></li>
         
         <%
         
@@ -60,16 +59,16 @@
                 <img src="tempBanner.jpg"/>
             </div>
   
-      <nav class="menu-1">
+       <nav class="menu-1">
     <ul class="menu">
-        <li> <a href="/CA3WebApp/HomePage.jsp">Home</a> </li>
+        <li> <a href="/Login.html/HomePage.jsp">Home</a> </li>
         <li> <a href="MemberActionServlet?action=ViewAllProducts">Shop</a> </li>
-        <li> <a href="/CA3WebApp/About.jsp">About</a> </li>
+        <li> <a href="/Login.html/About.jsp">About</a> </li>
         
         <li> <a href="MemberActionServlet?action=ViewPreviousOrders">View Orders</a> </li>
         
-        <li> <a href="/CA3WebApp/ContactUs.jsp">Contact</a> </li>
-        <li> <a href="/CA3WebApp/Cart.jsp">Cart</a> </li>
+        <li> <a href="/Login.html/ContactUs.jsp">Contact</a> </li>
+        <li> <a href="/Login.html/Cart.jsp">Cart</a> </li>
         
         <div id="searchbar">
         <form  action = "MemberActionServlet" method = "post" >
@@ -171,7 +170,7 @@
                </p>
          </form>
         
-        <form action = "MemberActionServlet" method = "post">
+         <form action = "MemberActionServlet" method = "post">
                <p> 
                   <input type="hidden" name="action" value ="Pokemon">
                   <input type="image" src="images/pokemonLogo.jpg" alt="Submit" width="200px" height="70px"/> 
@@ -195,9 +194,9 @@
         
          <table>
 
-               <%
+                <%
                     List<Product> products;
-                    products = (List) (request.getSession().getAttribute("MProducts"));
+                    products = (List) (request.getSession().getAttribute("pokemonProducts"));
 
                     if (products != null) 
                     {
@@ -249,6 +248,6 @@
 
       </div>
 </div>  
-          
+        
     </body>
 </html>
