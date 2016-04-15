@@ -4,6 +4,8 @@
     Author     : Karen.Aungier
 --%>
 
+<%@page import="java.util.ResourceBundle"%>
+<%@page import="java.util.Locale"%>
 <%@page import="Dtos.Member"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -13,6 +15,19 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" type="text/css" href="mainCSS.css" >
+        
+<% 
+   
+        Locale userSetting = (Locale) session.getAttribute("locale");
+       
+        if(userSetting == null)
+        {
+            userSetting = request.getLocale();
+        }
+   
+    ResourceBundle messages = ResourceBundle.getBundle("properties.text", userSetting);
+%>
+
  <script>
     function goBack()
     {            
@@ -74,20 +89,20 @@
   
        <nav class="menu-1">
     <ul class="menu">
-        <li> <a href="/CA3WebApp/HomePage.jsp">Home</a> </li>
-        <li> <a href="MemberActionServlet?action=ViewAllProducts">Shop</a> </li>
-        <li> <a href="/CA3WebApp/About.jsp">About</a> </li>
+        <li> <a href="/CA3WebApp/HomePage.jsp"><%=messages.getString("MenuHomeButton")%></a> </li>
+        <li> <a href="MemberActionServlet?action=ViewAllProducts"><%=messages.getString("MenuShopButton")%></a> </li>
+        <li> <a href="/CA3WebApp/About.jsp"><%=messages.getString("MenuAboutButton")%></a> </li>
         
-        <li> <a href="MemberActionServlet?action=ViewPreviousOrders">View Orders</a> </li>
+        <li> <a href="MemberActionServlet?action=ViewPreviousOrders"><%=messages.getString("MenuViewOrdersButton")%></a> </li>
         
-        <li> <a href="/CA3WebApp/ContactUs.jsp">Contact</a> </li>
-        <li> <a href="/CA3WebApp/Cart.jsp">Cart</a> </li>
-        
+        <li> <a href="/CA3WebApp/ContactUs.jsp"><%=messages.getString("MenuContactUsButton")%></a> </li>
+        <li> <a href="/CA3WebApp/Cart.jsp"><%=messages.getString("MenuCartButton")%></a> </li>
+       
         <div id="searchbar">
         <form  action = "MemberActionServlet" method = "post" >
                <p><td> <input name="searchName" size=30 type="text" />  
                  <input type="hidden" name="action" value="searchName" />
-                 <input type="submit" value="Search"/>
+                 <input type="submit" value="<%=messages.getString("SearchBarButton")%>"/>
                </p>
         </form>
         </div>
@@ -105,11 +120,11 @@
             <div id="pagecontent3">
                 
                 <div id="loginTitle">
-                <h1> Login or Create an Account </h1> 
+                <h1><%=messages.getString("LoginTitle")%></h1> 
                 </div>
                 
                 <div id ="NewCustomersTitle">
-                    <h2>NEW CUSTOMERS</h2>
+                    <h2><%=messages.getString("NewCustomersTitle")%></h2>
                     <hr>
                     <br>
                     <p>
@@ -120,7 +135,7 @@
                     
                     <form action = "Register.jsp" method = "post">
                         <p> 
-                            <input type = "submit" class="resizedButton" name = "Register" value = "Create an Account" />
+                            <input type = "submit" class="resizedButton" name = "Register" value = "<%=messages.getString("RegisterButton")%>" />
                         </p>
                     </form>
                 </div>
@@ -129,7 +144,7 @@
                 <div id="login">
                     
                     
-                    <h2>REGISTERED CUSTOMERS</h2>
+                    <h2><%=messages.getString("registeredUserTitle")%></h2>
                     <hr>
                     <br>
                     <p>
@@ -143,7 +158,7 @@
                 <table>
                     <tr>
                         <div id="UsernameLabel">
-                            <label for="exampleInputUsername2">Username: <span style="color:red;">*</span></label>
+                            <label for="exampleInputUsername2"><%=messages.getString("UsernameLabel")%>: <span style="color:red;">*</span></label>
                         </div>
                     </tr>
                     <tr>
@@ -154,7 +169,7 @@
                     <div id="PasswordTable">
                 <table>
                     <tr>
-                        <label for="exampleInputPassword">Password: <span style="color:red;">*</span></label> 
+                        <label for="exampleInputPassword"><%=messages.getString("PasswordLabel")%>: <span style="color:red;">*</span></label> 
                     </tr>
                     <tr>
                         <td><input name="password" class="resizedTextBox" size="35" type="password" required /> </td>
@@ -164,19 +179,19 @@
                 
                     <br>
                 <input type="hidden"  name="action" value="login" />
-                <input type="submit" class="resizedButton"  name="Login" value="Login"  />
+                <input type="submit" class="resizedButton"  name="Login" value="<%=messages.getString("LoginButton")%>"  />
             
             </form>
 
                     <br>
                     <br>
-         <p> Forgot your Password</p>
+         <p> <%=messages.getString("forgotPasswordTitle")%></p>
         
          <form action = "ForgotPassword.jsp" method = "post">
                
       
                <p> 
-                  <input type = "submit" class="resizedButton"  name = "forgot Password"  value = "Click Here" />
+                  <input type = "submit" class="resizedButton"  name = "forgot Password"  value = "<%=messages.getString("forgotPasswordButton")%>" />
                </p>
             </form>
        </div>

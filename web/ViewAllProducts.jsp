@@ -193,6 +193,24 @@
                </p>
          </form>
         
+          <form action = "MemberActionServlet" method = "post">
+               <p> 
+                  <input type="hidden" name="action" value ="Pokemon">
+                  <input type="image" src="images/pokemonLogo.jpg" alt="Submit" width="200px" height="70px"/> 
+             
+               </p>
+         </form>
+        
+        
+          <form action = "MemberActionServlet" method = "post">
+               <p> 
+                  <input type="hidden" name="action" value ="SuperNatural">
+                  <input type="image" src="images/supernaturalLogo.jpg" alt="Submit" width="200px" height="70px"/> 
+             
+               </p>
+         </form>
+        
+        
     </div>
         
       
@@ -222,7 +240,7 @@
              <div class="list-of-posts">
                  
                     
-                <%
+<%
                     List<Product> products;
                     products = (List) (request.getSession().getAttribute("AllProducts"));
                     DecimalFormat decFor = new DecimalFormat("####0.00");
@@ -232,14 +250,12 @@
                 %>        
                 
                 <table>    
-                    <%
+<%
                     for (Product prod : products) 
-                        {
-                            
-                    %>
+                    {
+%>
                 
-         <form action="MemberActionServlet" method="post">
-            
+                    <form action="MemberActionServlet" method="post">
 
         
          <div id="all">
@@ -271,7 +287,7 @@
                     }
                 }
                        
-            %>
+%>
              
             </table>
            <div class="pagination">

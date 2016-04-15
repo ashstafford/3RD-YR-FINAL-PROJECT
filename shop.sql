@@ -9,7 +9,7 @@ password varchar(32) not null,
 firstName varchar(20) not null,
 lastName varchar(20) not null,
 email varchar(40) not null,
-memberImageUrl varchar(500) DEFAULT 'images/defaultProfilePicture.jpg',
+memberImageUrl varchar(500) DEFAULT 'images/defaultProfilePicture.jpeg',
 securityQuestionAnswer varchar(500) not null,
 isAdmin boolean,
 primary key(memberId))ENGINE=INNODB;
@@ -110,9 +110,9 @@ Insert into `product`(`productId`, `productImageUrl`, `productName`, `productPri
 
 
 Insert into `member`(`memberId`, `firstName`, `lastName`,`userName`, `password` ,`email` ,`memberImageUrl`,`securityQuestionAnswer`,`isAdmin`) values
-(1, 'Bob', 'McGinty','Bob123', '5f4dcc3b5aa765d61d8327deb882cf99', 'ash@yahoo.net', 'images/defaultProfilePicture.jpg','spot',true),
-(3, 'john', 'Rock','john1', '5f4dcc3b5aa765d61d8327deb882cf99','ash@hotmail.com', '../images/defaultProfilePicture.jpg','twinkle',false),
-(4, 'aisling', 'stafford','ashstaff', '5f4dcc3b5aa765d61d8327deb882cf99','ashs@yahoo.com', '../images/defaultProfilePicture.jpg','reilly',true);
+(1, 'Bob', 'McGinty','Bob123', '5f4dcc3b5aa765d61d8327deb882cf99', 'ash@yahoo.net', 'images/defaultProfilePicture.jpeg','spot',true),
+(3, 'john', 'Rock','john1', '5f4dcc3b5aa765d61d8327deb882cf99','ash@hotmail.com', 'images/defaultProfilePicture.jpeg','twinkle',false),
+(4, 'aisling', 'stafford','ashstaff', '5f4dcc3b5aa765d61d8327deb882cf99','ashs@yahoo.com', 'images/defaultProfilePicture.jpeg','reilly',true);
 
 insert into `salesReceipt` (`receiptId`, `dateOrdered`, `totalPrice`, `memberId`, `paymentType`) values
 (1, 23-05-2015, 120.00, 1, 'card'),

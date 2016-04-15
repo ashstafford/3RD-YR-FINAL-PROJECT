@@ -4,6 +4,8 @@
     Author     : Karen.Aungier
 --%>
 
+<%@page import="java.util.ResourceBundle"%>
+<%@page import="java.util.Locale"%>
 <%@page import="Dtos.Member"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
@@ -15,7 +17,34 @@
         
         <link rel="stylesheet" type="text/css" href="mainCSS.css" >
         <script type="text/javascript" src="HomepageImageSliderScript.js"></script>
-        <style>
+       
+    
+        <% 
+    // Get the request parameter
+    Locale userSetting = null;
+    
+    String language = request.getParameter("lang");
+    
+    
+    if(language != null)
+    {
+        userSetting = new Locale(language);
+        session.setAttribute("locale", userSetting);
+    }
+    else
+    {
+        userSetting = (Locale) session.getAttribute("locale");
+        if(userSetting == null)
+        {
+            userSetting = request.getLocale();
+        }
+    }
+   
+    ResourceBundle messages = ResourceBundle.getBundle("properties.text", userSetting);
+%>
+     
+<style>
+            
             
 
 /* *** homepage SlideShow *** */
@@ -121,7 +150,7 @@ h2
             
         <nav class = "topmenu">
             <ul class="navigation">
-                    <li><a href="MemberActionServlet?action=viewProfile">My Profile</a></li>
+                    <li><a href="MemberActionServlet?action=viewProfile"><%=messages.getString("MenuButtonMyProfile")%></a></li>
                     
             
        
@@ -134,12 +163,11 @@ h2
             
          %>
         
-         <li><a href="Login.jsp">Login</a></li>
+         <li><a href="Login.jsp"><%=messages.getString("MenuButtonLogin")%></a></li>
            
             
-        <li><a href="Login.jsp">Sign Up</a></li>
-        </ul>
-     </nav>
+        <li><a href="Login.jsp"><%=messages.getString("MenuButtonRegister")%></a></li>
+        
         <%
         
         }
@@ -149,7 +177,7 @@ h2
             
         %>
             
-           <li><a href="MemberActionServlet?action=logout">Logout</a></li>
+           <li><a href="MemberActionServlet?action=logout"><%=messages.getString("MenuButtonLogout")%></a></li>
                       
    </ul>
      </nav> 
@@ -162,20 +190,27 @@ h2
   
        <nav class="menu-1">
     <ul class="menu">
-        <li> <a href="/Login.html/Login.html/HomePage.jsp">Home</a> </li>
-        <li> <a href="MemberActionServlet?action=ViewAllProducts">Shop</a> </li>
-        <li> <a href="/Login.html/About.jsp">About</a> </li>
+        <li> <a href="/CA3WebApp/HomePage.jsp"><%=messages.getString("MenuHomeButton")%></a> </li>
+        <li> <a href="MemberActionServlet?action=ViewAllProducts"><%=messages.getString("MenuShopButton")%></a> </li>
+        <li> <a href="/CA3WebApp/About.jsp"><%=messages.getString("MenuAboutButton")%></a> </li>
         
-        <li> <a href="MemberActionServlet?action=ViewPreviousOrders">View Orders</a> </li>
+        <li> <a href="MemberActionServlet?action=ViewPreviousOrders"><%=messages.getString("MenuViewOrdersButton")%></a> </li>
         
-        <li> <a href="/Login.html/ContactUs.jsp">Contact</a> </li>
-        <li> <a href="/Login.html/Cart.jsp">Cart</a> </li>
+        <li> <a href="/CA3WebApp/ContactUs.jsp"><%=messages.getString("MenuContactUsButton")%></a> </li>
+        <li> <a href="/CA3WebApp/Cart.jsp"><%=messages.getString("MenuCartButton")%></a> </li>
+        <form action="HomePage.jsp">
+        <li><select name ="lang" onchange="submit()">
+            <option name="Default">Language...</option>
+            <option value ="ru">Russian</option>
+            <option value="en">English</option>
+        </select>
+        </form></li>
         
         <div id="searchbar">
         <form  action = "MemberActionServlet" method = "post" >
                <td> <input name="searchName" size=30 type="text" />  
                  <input type="hidden" name="action" value="searchName" />
-                 <input type="submit" value="Search"/>
+                 <input type="submit" value="<%=messages.getString("SearchBarButton")%>"/>
                
         </form>
         </div>

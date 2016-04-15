@@ -4,6 +4,7 @@
     Author     : Aisling
 --%>
 
+<%@page import="Daos.ProductDao"%>
 <%@page import="java.util.List"%>
 <%@page import="Dtos.Product"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -108,10 +109,18 @@ div#container
           <table>    
               
           <%
-
-               List<Product> products;
-               products = (List) (request.getSession().getAttribute("AllProducts"));
-
+                ProductDao pDao = new ProductDao();
+                
+                List<Product> products;
+                   // products = (List) (request.getSession().getAttribute("AllProducts"));
+                    
+                 products = (List) (pDao.getAllProducts()) ;
+                 
+                for(Product p : products)
+                {
+                    System.out.println("jsp : " + p.toString());
+                }
+                
                 if (products != null) 
                 { 
  
@@ -119,60 +128,63 @@ div#container
                   {
            
            %>
-            <form action="MemberActionServlet" method="post">
+           <form action="MemberActionServlet" method="post">
                  
-            <tr>
-                
-                <td><img src="<%=prod.getProductImageUrl()%>" style="width: 300px; height: 250px;"></td>
-                <td><%=prod.getProductName()%></td>
-                <td><% out.println("\t\t"); %></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td>Quantity in stock: <%=prod.getQuantityInStock()%></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td><p>Price: €<%=prod.getProductPrice()%></p></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-           <%  
+                    <tr>
+
+                        <td><img src="<%=prod.getProductImageUrl()%>" style="width: 300px; height: 250px;"></td>
+                        <td><%=prod.getProductName()%></td>
+                        <td><% out.println("\t\t"); %></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td>Quantity in stock: <%=prod.getQuantityInStock()%></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td><p>Price: €<%=prod.getProductPrice()%></p></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+<%  
                String action = request.getParameter("action");
                
                if(action.equals("Edit Product"))
                {
-                   
-                   %>
-                   <td><input type="hidden" name="action" value="edit Product" /></td>
-                   <input type="hidden" name="editProduct" value="<%= prod.getProductId()%>"/> 
-         
-                   </form> 
-                
-                   <form action="EditProductDetails.jsp" method="post"> 
-             
-                     <td><input type="submit" value="Edit Product" /></td>
-                  </tr>
-                 </form>
-            <%
+ %>
+                    <td><input type="hidden" name="action" value="edit Product" /></td>
+                    <input type="hidden" name="editProduct" value="<%= prod.getProductId()%>"/> 
+
+
+
+                     <form action="EditProductDetails.jsp" method="post"> 
+
+                          <td><input type="submit" value="Edit Product" /></td>
+                          </tr>
+                          
+                    </form> 
+                  
+<%
                } 
                else
                {
         
-           %>
-             <td><input type="hidden" name="action" value="Remove Product" /></td>
-             <input type="hidden" name="removeProduct" value="<%= prod.getProductId()%>"/>
+%>
+                     <td><input type="hidden" name="action" value="Remove Product" /></td>
+                     <input type="hidden" name="removeProduct" value="<%= prod.getProductId()%>"/>
               
-                   <form action="MemberActionServlet" method="post"> 
+                     <form action="MemberActionServlet" method="post"> 
              
-                <td><input type="submit" value="Remove Product" /></td>
-             </tr>
-           </form> 
+                         <td><input type="submit" value="Remove Product" /></td>
+                         </tr>
+                         
+                    </form> 
+          </form>     
     
         <%      }
               }
@@ -190,5 +202,7 @@ div#container
 
       </div>
 </div> 
+            
+    </body>
 
 </html>

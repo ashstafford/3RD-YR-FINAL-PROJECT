@@ -60,21 +60,21 @@ public class MemberDaoTest
     public void testAddMember()
     {
         System.out.println("addMember");
-         Member m = new Member(5,"bennyboyvr", "password", "Ben", "Van Rhee", "ben@gmail.com", "trio",false); 
+       // Member m = new Member(5,"bennyboyvr", "password", "Ben", "Van Rhee", "ben@gmail.com", "trio",false); 
         String userName = "bennyboyvr";
         String password = "password";
         String firstName = "Ben";
         String lastName = "Van Rhee";        
-        String email = "ben@gmail.com";
-        String memberImageUrl = "IMG_StarWars1.jpg";
+        String email = "ben@gmail.com";        
         String securityQuestionAnswer = "trio";
         boolean isAdmin = false ;      
         MemberDao instance = new MemberDao();
-        //boolean expResult = true;
+        boolean expResult = true;
         Member result = instance.addMember(userName, password,firstName, lastName,  email, securityQuestionAnswer,isAdmin);
-        assertEquals(m, result);
+        assertEquals(expResult,result);
         System.out.println("addMember Test Passed");
         instance.addMember(userName, password,firstName, lastName,  email, securityQuestionAnswer,isAdmin);
+        //instance.removeMember(5);
         
     }
 
@@ -108,9 +108,7 @@ public class MemberDaoTest
         instance.editUserName(id,newUserName, userName);
     }
 
-    /**
-     * Test of editPassword method, of class MemberDao.
-     */
+ 
     @Test
     public void testEditPassword() {
         System.out.println("editPassword");
@@ -210,12 +208,12 @@ public class MemberDaoTest
     public void testRemoveMember()
     {
         System.out.println("removeMember");
-        int memberId = 0;
+        int memberId = 5;
         MemberDao instance = new MemberDao();
-        boolean expResult = false;
+        boolean expResult = true;
         boolean result = instance.removeMember(memberId);
         assertEquals(expResult, result);
-        
+        //instance.addMember("aisling", "stafford","ashstaff", "5f4dcc3b5aa765d61d8327deb882cf99","ashs@yahoo.com","reilly",true);
     }
 
     
@@ -223,14 +221,14 @@ public class MemberDaoTest
     public void testEditEmail()
     {
         System.out.println("editEmail");
-        int id = 0;
-        String email = "";
-        String newEmail = "";
+        int id = 3;
+        String email = "ash@hotmail.com";
+        String newEmail = "ashs@hotmail.ie";
         MemberDao instance = new MemberDao();
-        boolean expResult = false;
+        boolean expResult = true;
         boolean result = instance.editEmail(id, email, newEmail);
         assertEquals(expResult, result);
-        
+        instance.editEmail(id,newEmail, email);
     }
 
   
@@ -238,13 +236,14 @@ public class MemberDaoTest
     public void testEditMemberImageUrl()
     {
         System.out.println("editMemberImageUrl");
-        int id = 0;
-        String memberImageUrl = "";
-        String newMemberImageUrl = "";
+        int id = 3;
+        String memberImageUrl = "IMG_TWD1.jpg";
+        String newMemberImageUrl = "TWD1.JPG";
         MemberDao instance = new MemberDao();
-        boolean expResult = false;
+        boolean expResult = true;
         boolean result = instance.editMemberImageUrl(id, memberImageUrl, newMemberImageUrl);
         assertEquals(expResult, result);
+         instance.editMemberImageUrl(id,newMemberImageUrl, memberImageUrl);
         
     }
 
