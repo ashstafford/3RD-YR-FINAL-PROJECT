@@ -211,24 +211,32 @@
         
         
     </div>
-        
+         
       
-        
+        <%  
+         
+            String comboBox = request.getParameter("filterCombobox");
+         
+            if(comboBox != null)
+            {
+                
+            }    
+        %>
         <div id="pagecontent"> 
          <form action="MemberActionServlet" method="post">
-             <select name="filterComboBox" id="soflow">
+             <select name="filterComboBox" id="soflow" onchange="submit()">
                 <div id="filterCombo"></div>
+<form action="HomePage.jsp">
 
-
-                  <option value="1">Select an Option</option>
+                  <option name="default">Select an Option</option>
                   <option value="2">Price - Lowest To Highest</option> 
                   <option value="3">Price - Highest To Lowest</option>
 
                 
 
-                  <div class="sortButton"> </div>
+         <!--         <div class="sortButton"> </div>
                    <td><input type="hidden" name="action" style="width: 350px; height: 300px;" value="filterProducts" /></td>
-                   <td><input type="submit" class="sortButtonSize" value="Sort" /></td>
+                   <td><input type="submit" class="sortButtonSize" value="Sort" /></td> -->
                 
              </select>
          </form>

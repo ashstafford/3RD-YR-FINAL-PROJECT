@@ -201,8 +201,10 @@ h2
         <form action="HomePage.jsp">
         <li><select name ="lang" onchange="submit()">
             <option name="Default">Language...</option>
-            <option value ="ru">Russian</option>
             <option value="en">English</option>
+            <option value ="ru">Russian</option>
+            <option value="fr">French</option>
+            
         </select>
         </form></li>
         
