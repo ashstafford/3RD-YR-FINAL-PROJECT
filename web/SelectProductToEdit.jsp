@@ -112,23 +112,20 @@ div#container
                 ProductDao pDao = new ProductDao();
                 
                 List<Product> products;
-                   // products = (List) (request.getSession().getAttribute("AllProducts"));
+                   
                     
                  products = (List) (pDao.getAllProducts()) ;
                  
-                for(Product p : products)
-                {
-                    System.out.println("jsp : " + p.toString());
-                }
+               
                 
                 if (products != null) 
                 { 
  
                   for(Product prod : products) 
                   {
-           
+                       
            %>
-           <form action="MemberActionServlet" method="post">
+             
                  
                     <tr>
 
@@ -156,13 +153,16 @@ div#container
                
                if(action.equals("Edit Product"))
                {
- %>
+               System.out.println(prod.getProductId());
+ %>                
+                  <form action="EditProductDetails.jsp" method="post"> 
+ 
                     <td><input type="hidden" name="action" value="edit Product" /></td>
                     <input type="hidden" name="editProduct" value="<%= prod.getProductId()%>"/> 
 
 
 
-                     <form action="EditProductDetails.jsp" method="post"> 
+                     
 
                           <td><input type="submit" value="Edit Product" /></td>
                           </tr>
@@ -184,7 +184,7 @@ div#container
                          </tr>
                          
                     </form> 
-          </form>     
+            
     
         <%      }
               }

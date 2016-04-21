@@ -10,7 +10,7 @@
      <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" type="text/css" href="mainCSS.css" >
-        <title>Select Member</title>
+        <title>Add Admin Success</title>
     </head>
      </head>   
     <body>
@@ -80,8 +80,20 @@
            
 </nav>
           
-          <div id="pagecontent">
-              <h1> Admin Successfully Added! </h1>
+          <div id="pagecontent3">
+              
+              <div id ="NotFoundTitle">
+                <h1> Admin Successfully Added </h1>
+              </div>
+              
+              <div id="NotFoundBackButton">
+                    <form action="MemberActionServlet?action=viewProfile" method = "post">
+                        <p> 
+                           <input type = "submit" class="resizedButton" name = "profile" value = "Return to Profile"/>
+                        </p>
+                    </form>
+                </div>
+              
           </div>
    </body>
 </html>

@@ -4,6 +4,7 @@
     Author     : D00155224
 --%>
 
+<%@page import="java.text.DecimalFormat"%>
 <%@page import="Dtos.Member"%>
 <%@page import="java.util.List"%>
 <%@page import="Dtos.Product"%>
@@ -36,8 +37,8 @@
           
          <%  Member m = (Member)session.getAttribute("member"); 
          
-       // if(m == null)
-        //{
+        if(m == null)
+        {
             
          %>
         
@@ -48,9 +49,9 @@
         
         <%
         
-       // }
-       // else
-        //{
+        }
+        else
+        {
       
             
         %>
@@ -59,7 +60,7 @@
                       
    </ul>
      </nav> 
-          <%// } %>
+          <% } %>
 
             <div id="banner">
                 <img src="tempBanner.jpg"/>
@@ -216,7 +217,7 @@
         
         <div id="pagecontent"> 
          <form action="MemberActionServlet" method="post">
-             <select name="filterComboBox" id="soflow">
+             <select name="filterComboBox" id="soflow" onchange="submit()">
                 <div id="filterCombo"></div>
 
 
@@ -226,9 +227,9 @@
 
                 
 
-                  <div class="sortButton"> </div>
+                  <!--<div class="sortButton"> </div>
                    <td><input type="hidden" name="action" style="width: 350px; height: 300px;" value="filterProducts" /></td>
-                   <td><input type="submit" class="sortButtonSize" value="Sort" /></td>
+                   <td><input type="submit" class="sortButtonSize" value="Sort" /></td>-->
                 
              </select>
          </form>
@@ -242,10 +243,11 @@
 <%
                     List<Product> products;
                     products = (List) (request.getSession().getAttribute("AllProducts"));
-
-              if (products != null) 
-              { 
-%>        
+                    DecimalFormat decFor = new DecimalFormat("####0.00");
+                    
+                    if (products != null) 
+                    { 
+                %>        
                 
                 <table>    
 <%
@@ -255,36 +257,35 @@
                 
                     <form action="MemberActionServlet" method="post">
 
-
-
-                    <div id="all">
-                        <div id="overall">
-                                 </div>
-                   <div id="productImage">   
-                  <img src="<%=prod.getProductImageUrl()%>" style="width: 280px; height: 230px;">     
-                   </div>   
-
-                   <div id ="productDetails">
-                       <div class="ProductName">
-                       <p><%=prod.getProductName()%></p>
-                       </div>
-                           <p>Quantity in stock: <%=prod.getQuantityInStock()%></p>
-                           <p>Price: €<%=prod.getProductPrice()%></p>
-
-
-                           <p>Quantity: <input name="quantity" size=15 type="text" /></p>
-                           <p><input type="hidden" name="action" value="Add To Cart" /></p>
-                           <input type="hidden" name="addToCart" value="<%=prod.getProductId()%>" />
-                           <p><input type="submit" value="Add To Cart" /></p>
-                   </div>
-
-                    </div> 
-
-             </form>
-
-<%
-               }
-          }
+        
+         <div id="all">
+             <div id="overall">
+                      </div>
+        <div id="productImage">   
+       <img src="<%=prod.getProductImageUrl()%>" style="width: 280px; height: 230px;">     
+        </div>   
+            
+        <div id ="productDetails">
+            <div class="ProductName">
+            <p><%=prod.getProductName()%></p>
+            </div>
+                <p>Quantity in stock: <%=prod.getQuantityInStock()%></p>
+                <p>Price: €<%=decFor.format(prod.getProductPrice())%></p>
+                
+                
+                <p>Quantity: <input name="quantity" size=15 type = "number" min = "1" max = "<%=prod.getQuantityInStock()%>"></p>
+                <p><input type="hidden" name="action" value="Add To Cart" /></p>
+                <input type="hidden" name="addToCart" value="<%=prod.getProductId()%>" />
+                <p><input type="submit" value="Add To Cart" /></p>
+        </div>
+                
+         </div> 
+                
+  </form>
+               
+            <%
+                    }
+                }
                        
 %>
              

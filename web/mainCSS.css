@@ -822,3 +822,21 @@ div#main
     padding: 18px;
     
 }
+/* General Not Found Page Title and Buttons */
+div#NotFoundTitle
+{
+    padding-top:50px;
+    padding-left:425px;
+}
+
+div#NotFoundBackButton
+{
+    padding-top: 20px;
+    padding-left: 495px;
+    margin-bottom: 200px;
+}
+
+
+
+
+/* Home Page CSS */

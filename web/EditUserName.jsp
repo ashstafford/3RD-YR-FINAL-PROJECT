@@ -19,8 +19,9 @@
             <script>
                 
                function validateForm() {
+                   alert("Hello");
                var x = document.forms["myForm"]["editUsername"].value;
-                if (x === null || x === "") {
+                if (x == null || x == "") {
                     alert("User Name must be filled out");
                     return false;
                 }
@@ -56,42 +57,7 @@
         
    <div id="container">
             
-        <nav class = "topmenu">
-            <ul class="navigation">
-                    <li><a href="MemberActionServlet?action=viewProfile">My Profile</a></li>
-                    
-            
-       
-      
-          
-         <%  Member m = (Member)session.getAttribute("member"); 
-         
-        if(m == null)
-        {
-            
-         %>
         
-         <li><a href="/CA3WebApp/Login.html">Login</a></li>
-            <meta http-equiv="refresh" 
-            content="0; url=Login.html">
-            
-        <li><a href="/CA3WebApp/Login.html">Sign Up</a></li>
-        <meta http-equiv="refresh" 
-        content="0; url=Login.html">
-        <%
-        
-        }
-        else
-        {
-      
-            
-        %>
-            
-           <li><a href="MemberActionServlet?action=logout">Logout</a></li>
-                      
-   </ul>
-     </nav> 
-          <% } %>
 
             <div id="banner">
                 <img src="tempBanner.jpg"/>

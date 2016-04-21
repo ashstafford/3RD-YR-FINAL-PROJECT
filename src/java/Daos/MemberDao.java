@@ -618,7 +618,7 @@ public class MemberDao extends Dao implements MemberDaoInterface
         }
         return m;
     }
-
+     
     /**
      *
      * @param userName

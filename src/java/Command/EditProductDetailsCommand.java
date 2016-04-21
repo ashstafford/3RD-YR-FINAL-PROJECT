@@ -26,7 +26,7 @@ public class EditProductDetailsCommand implements Command
            HttpSession session = request.getSession();
            String forwardToJsp = "";
 
-           String id = request.getParameter("editProduct");
+           String id = request.getParameter("ProductId");
            String productImageUrl = request.getParameter("productImageUrl");
            String productName = request.getParameter("productName");
            String price = request.getParameter("productPrice");
@@ -86,7 +86,7 @@ public class EditProductDetailsCommand implements Command
                    }
                    
                    System.out.println("new " + p.toString());
-                   
+
                    boolean updated = pDao.editProductDetails(productId,productImageUrl, productName, newPrice, newQuantity, category);
                    
                
@@ -103,10 +103,11 @@ public class EditProductDetailsCommand implements Command
                      p.setCategory(category);
                      
                     System.out.println("final " + p.toString());
-                    forwardToJsp = "/ViewAllProducts.jsp";
+                    forwardToJsp = "/ProductEditedSuccessfully.jsp";
                }  
  
-        }      
+        }
+             
       
        return forwardToJsp;       
     

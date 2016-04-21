@@ -94,10 +94,14 @@
         <form action = "MemberActionServlet" method = "post">
             
             <div id="EditslabelPosition">   
+             <label for="exampleInputEditFirstname">Enter your current Password: <span style="color:red;">*</span></label>   
             <label for="exampleInputEditFirstname">Enter your new Password: <span style="color:red;">*</span></label>
             </div>
                
             <div id="EditsTextboxandButtonPosition">  
+                
+                
+               <input name="currentPassword" class="resizedTextBox"  placeholder="MUST be at least 8 characters " type="password" size=15 />
                <input name="editPassword" class="resizedTextBox"  placeholder="MUST be at least 8 characters " type="password" size=15 />
                  
                <input type="hidden" name="action" value="Edit Password"/>

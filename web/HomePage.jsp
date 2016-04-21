@@ -158,8 +158,8 @@ h2
           
          <%  Member m = (Member)session.getAttribute("member"); 
          
-       // if(m == null)
-       // {
+        if(m == null)
+        {
             
          %>
         
@@ -170,9 +170,9 @@ h2
         
         <%
         
-        //}
-       // else
-       // {
+        }
+        else
+        {
       
             
         %>
@@ -182,7 +182,7 @@ h2
    </ul>
      </nav> 
         <%  
-       // }
+        }
         %>
             <div id="banner">
                 <img src="tempBanner.jpg"/>
@@ -201,8 +201,10 @@ h2
         <form action="HomePage.jsp">
         <li><select name ="lang" onchange="submit()">
             <option name="Default">Language...</option>
-            <option value ="ru">Russian</option>
             <option value="en">English</option>
+            <option value ="ru">Russian</option>
+            <option value="fr">French</option>
+            
         </select>
         </form></li>
         
