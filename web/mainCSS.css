@@ -10,9 +10,15 @@ and open the template in the editor.
 
 /**********************************************************/
 
+
+
+
+
+
 /* General for every page */
 div#container
 {
+ 
   position     : relative;
   width        : 85%;
   margin-left  : auto;
@@ -790,3 +796,29 @@ div#ForgotPasswordButtonBack
 }
 
 /* Home Page CSS */
+
+/*payment info  */
+div#container2
+{
+  position     : relative;
+  width        : 85%;
+  margin-left  : auto;
+  margin-right : auto;
+  background-color: white;
+  border : black thin solid;
+  height:930px; 
+  
+}
+
+div#payform
+{
+   border-style: solid;
+    border-color: white;
+        background-color: wheat;
+    
+}
+div#main
+{
+    padding: 18px;
+    
+}

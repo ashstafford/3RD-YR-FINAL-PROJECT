@@ -12,59 +12,70 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Payment Page</title>
-        
+        <link rel="stylesheet" type="text/css" href="mainCSS.css" >
  <script type="text/javascript" src="payment.js"></script>
     </head>
     <body>
       		
    			
-
+        <div id = container2>
    			<div id="main">
       			
       				<br><br><br><br><br><br>
-      			
+      			<div id ="payform">
       			<h1>
       				Payment Form
 
       			</h1>
-
+                        </div>
+                                
       			<fieldset>
          			<legend>Enter your Credit Card Information</legend>
 
          			<table>
+                                    <div id = card>    
             			<tr>
                				<td class="labelcell">
                					Card<span style="color: red">*</span>
                				</td>
 
                				<td class="inputcell2">
-                  				<input type="radio" name="ccard" id="amex" value ="American Express" onclick="setCCnum()"/>
-                  				<label for="amex">American Express</label><br />
-
+                  				<input type="radio" name="ccard" id="amex" value ="American Express" onclick="setCCnum()"/>                                                
+                  				<img src="images/americaExp.png" alt="American Exp" height="45" width="70"><br />
+                                                
+                                                <br>
                   				<input type="radio" name="ccard" id="mc" value ="MasterCard" onclick="setCCnum()"/>
-                  				<label for="mc">MasterCard</label><br />
-
+                                                <img src="images/Mastercard_Logo_03.png" alt="MasterCard"height="45" width="70"><br />
+                                                <br>
                   				<input type="radio" name="ccard" id="visa" value = "Visa" onclick="setCCnum()"/>
-                  				<label for="visa">Visa</label>
+                  				<img src="images/visa.png" alt="Visa" height="38" width="70">
                				</td>
-            			</tr>
-
+            			</tr> 
+                                    </div>
+                                    
+                                    <br>
+                                    <div id ="name">
+                                        
             			<tr>
-               				<td class="labelcell">
-               					Name<span style="color: red">*</span>
+                                    
+                                    <td class="labelcell"><br><br>
+               					Name on Card<span style="color: red">*</span>
                				</td>
-
-               				<td class="inputcell2">
+                                            
+               				<td class="inputcell2"><br><br>
                   				<input class="text" name="cname" id="cname" size="35" />
                				</td>
             			</tr>
-
+                                    </div>
+                                    
+                                    
+                                    <div id =" cardNumber">
             			<tr>
-               				<td class="labelcell">
-               					Number<span style="color: red">*</span>
+               				<td class="labelcell"><br>
+               					Card Number<span style="color: red">*</span>
                				</td>
 
-               				<td class="inputcell2">
+               				<td class="inputcell2"><br>
                   				<input class="text" name="cnumber" id="cnumber" size="35" />
 
                   				<span class="fieldlabel">
@@ -100,9 +111,10 @@
                   				</select>
                				</td>
             			</tr>
+                                    </div>
 
             			<tr>
-               				<td colspan="2">
+               				<td colspan="2"><br>
                					<span style="color: red">*</span> Required Field
                				</td>
             			</tr>
@@ -123,6 +135,8 @@
                       
                         </form>
 	</div>
-     </form>
+        </div>
+     
+    
     </body>
 </html>
