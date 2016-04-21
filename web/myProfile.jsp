@@ -299,16 +299,17 @@ div#personalDetailsTitle h3
         
         
         <div id ="otherButtons"> 
-             
+            
                
             <% 
                
             if(m.isAdmin())
             {
                 %>
-                <div id="adminChanges">
-                    <h2>ADMIN CHANGES</h2>
-                </div> 
+                 
+                    <div id="adminChanges">
+                        <h2>ADMIN CHANGES</h2>
+                    </div> 
                 
                   <td><form action = "AddProduct.jsp" method = "post"> <p><input type = "submit" style="width:300px; height: 35px;" name="action" value = "Add Product" /></p></form></td
                   <td><form action = "SelectProductToEdit.jsp" method = "post"> <p><input type = "submit" style="width:300px; height: 35px;" name="action" value = "Remove Product" /></p></form></td>

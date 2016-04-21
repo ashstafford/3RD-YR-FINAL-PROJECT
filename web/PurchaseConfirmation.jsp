@@ -9,7 +9,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Category Selection</title>
+        <title>Purchase Confirmation</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" type="text/css" href="mainCSS.css" >
@@ -82,14 +82,21 @@
 </nav>
             
             
-            <div id="pagecontent2">
-                
-                <h1>Item(s) Successfully Purchased!</h1>  
-       
+            <div id="pagecontent3">
+
+                <div id ="NotFoundTitle">
+                    <h1> Item(s) Successfully Purchased </h1>
+                </div>
+
+                <div id="NotFoundBackButton">
+                    <form action="MemberActionServlet?action=ViewPreviousOrders" method = "post">
+                        <p> 
+                           <input type = "submit" class="resizedButton" name = "profile" value = "View Orders"/>
+                        </p>
+                    </form>
+                </div>
             </div>
-            
-        
-      
+   </div>
       
           
        
