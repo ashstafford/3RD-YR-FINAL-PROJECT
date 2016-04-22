@@ -167,7 +167,8 @@ h2
            
             
         <li><a href="Login.jsp"><%=messages.getString("MenuButtonRegister")%></a></li>
-        
+       </ul>
+     </nav>  
         <%
         
         }

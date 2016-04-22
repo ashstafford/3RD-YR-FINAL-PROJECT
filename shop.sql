@@ -9,7 +9,7 @@ password varchar(32) not null,
 firstName varchar(20) not null,
 lastName varchar(20) not null,
 email varchar(40) not null,
-memberImageUrl varchar(500) DEFAULT 'images/defaultProfilePicture.jpeg',
+memberImageUrl blob ,
 securityQuestionAnswer varchar(500) not null,
 isAdmin boolean,
 primary key(memberId))ENGINE=INNODB;
