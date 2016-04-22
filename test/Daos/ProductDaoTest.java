@@ -23,20 +23,6 @@ import static org.junit.Assert.*;
 public class ProductDaoTest 
 {
     
-    /**
-     *
-     */
-    public ProductDaoTest() 
-    {
-        
-    }
-
-   
-
-   
-
-  
-    
 
 
     @Test
@@ -166,6 +152,27 @@ public class ProductDaoTest
         System.out.println("Test Passed");
         //ArrayList<Product> p = instance.findProductsByTitle("red top");
     }
+
+   
+    @Test
+    public void testEditProductDetails()
+    {
+        System.out.println("editProductDetails");
+        int id = 4;
+        String productImageUrl = "images/IMG_starwars2.jpg";
+        String productName = "STAR WARS COMIC COVER T-SHIRT";
+        double productPrice = 25.0;
+        int quantityInStock = 10;
+        String category = "Star Wars";
+        ProductDao instance = new ProductDao();
+        boolean expResult = instance.editProductDetails(id, productImageUrl, productName, productPrice, quantityInStock, category);
+        boolean result = instance.editProductDetails(id, productImageUrl, productName, productPrice, quantityInStock, category);
+        assertEquals(expResult, result);
+        System.out.println("Test Passed");
+        boolean p= instance.editProductDetails(4,"images/IMG_starwars2.jpg","STAR WARS COMIC COVER T-SHIRT",25.0,10,"Star Wars");
+        instance.editProductDetails(id, productImageUrl, productName, productPrice, quantityInStock, category);
+    }
+    
 
    
     
