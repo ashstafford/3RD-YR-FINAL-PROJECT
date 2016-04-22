@@ -46,7 +46,8 @@
             
             
         <li><a href="/CA3WebApp/Login.jsp">Sign Up</a></li>
-        
+        </ul>
+     </nav>
         <%
         
         }
@@ -193,22 +194,7 @@
                </p>
          </form>
         
-          <form action = "MemberActionServlet" method = "post">
-               <p> 
-                  <input type="hidden" name="action" value ="Pokemon">
-                  <input type="image" src="images/pokemonLogo.jpg" alt="Submit" width="200px" height="70px"/> 
-             
-               </p>
-         </form>
-        
-        
-          <form action = "MemberActionServlet" method = "post">
-               <p> 
-                  <input type="hidden" name="action" value ="SuperNatural">
-                  <input type="image" src="images/supernaturalLogo.jpg" alt="Submit" width="200px" height="70px"/> 
-             
-               </p>
-         </form>
+          
         
         
     </div>
@@ -217,7 +203,7 @@
         
         <div id="pagecontent"> 
          <form action="MemberActionServlet" method="post">
-             <select name="filterComboBox" id="soflow" onchange="submit()">
+             <select name="filterComboBox" id="soflow" >
                 <div id="filterCombo"></div>
 
 
@@ -227,9 +213,9 @@
 
                 
 
-                  <!--<div class="sortButton"> </div>
+                  <div class="sortButton"> </div>
                    <td><input type="hidden" name="action" style="width: 350px; height: 300px;" value="filterProducts" /></td>
-                   <td><input type="submit" class="sortButtonSize" value="Sort" /></td>-->
+                   <td><input type="submit" class="sortButtonSize" value="Sort" /></td>
                 
              </select>
          </form>

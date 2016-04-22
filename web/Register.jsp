@@ -130,7 +130,7 @@
                 
                  <div id="register">  
            
-    <form action="MemberActionServlet" method="post">
+    <form action="MemberActionServlet" method="post" >
                 
                     <div id="RegisterPersonalDetailsTitle">
                         <h3> PERSONAL DETAILS </h3>
@@ -212,6 +212,9 @@
                                 </tr>
                             </table>
                         </div>
+                        
+                        
+                
                     
                 
                 <div id="RegisterSubmitButton">
