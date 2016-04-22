@@ -195,11 +195,11 @@ div#personalDetailsTitle h3
         
          <li><a href="/CA3WebApp/Login.jsp"><%=messages.getString("MenuButtonLogin")%></a></li>
             <meta http-equiv="refresh" 
-            content="0; url=Login.html">
+            content="0; url=Login.jsp">
             
         <li><a href="/CA3WebApp/Login.jsp"><%=messages.getString("MenuButtonRegister")%></a></li>
         <meta http-equiv="refresh" 
-        content="0; url=Login.html">
+        content="0; url=Login.j"sp>
         <%
         
         }
@@ -220,14 +220,14 @@ div#personalDetailsTitle h3
   
        <nav class="menu-1">
     <ul class="menu">
-        <li> <a href="/Login.html/HomePage.jsp"><%=messages.getString("MenuHomeButton")%></a> </li>
+        <li> <a href="/CA3WebApp/HomePage.jsp"><%=messages.getString("MenuHomeButton")%></a> </li>
         <li> <a href="MemberActionServlet?action=ViewAllProducts"><%=messages.getString("MenuShopButton")%></a> </li>
-        <li> <a href="/Login.html/About.jsp"><%=messages.getString("MenuAboutButton")%></a> </li>
+        <li> <a href="/CA3WebApp/About.jsp"><%=messages.getString("MenuAboutButton")%></a> </li>
         
         <li> <a href="MemberActionServlet?action=ViewPreviousOrders"><%=messages.getString("MenuViewOrdersButton")%></a> </li>
         
-        <li> <a href="/Login.html/ContactUs.jsp"><%=messages.getString("MenuContactUsButton")%></a> </li>
-        <li> <a href="/Login.html/Cart.jsp"><%=messages.getString("MenuCartButton")%></a> </li>
+        <li> <a href="/CA3WebApp/ContactUs.jsp"><%=messages.getString("MenuContactUsButton")%></a> </li>
+        <li> <a href="/CA3WebApp/Cart.jsp"><%=messages.getString("MenuCartButton")%></a> </li>
         
         <div id="searchbar">
         <form  action = "MemberActionServlet" method = "post" >

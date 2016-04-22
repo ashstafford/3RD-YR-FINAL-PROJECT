@@ -56,7 +56,7 @@ public class PriceComparisonCommand implements Command
                 
  
                 
-                //Put the list of products into the session so that JSP(the View) can display them...
+               
                 session.setAttribute("fileredProducts", products);
                 forwardToJsp = "/productFilterResults.jsp";	
        

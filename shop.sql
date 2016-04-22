@@ -104,7 +104,7 @@ Insert into `product`(`productId`, `productImageUrl`, `productName`, `productPri
 
 (51,'images/IMG_supern1.jpg','FUNKO SUPERNATURAL POP! TELEVISION SAM VINYL FIGURE',10.00,20,'Supernatural'),
 (52,'images/IMG_supern2.jpg','SUPERNATURAL SAM & DEAN BODY PILLOW',35.00,45,'Supernatural'),
-(53,'images/IMG_supern3.jpg','UPERNATURAL THE ROAD SO FAR IPHONE 6 CASE',10.00,30,'Supernatural'),
+(53,'images/IMG_supern3.jpg','SUPERNATURAL THE ROAD SO FAR IPHONE 6 CASE',10.00,30,'Supernatural'),
 (54,'images/IMG_supern4.jpg','SUPERNATURAL CASTIEL GUYS PAJAMA PANTS',16.00,23,'Supernatural'),
 (55,'images/IMG_supern5.jpg','FUNKO SUPERNATURAL POCKET POP! SAM KEY CHAIN',050.00,19,'Supernatural');
 

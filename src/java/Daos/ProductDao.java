@@ -588,7 +588,7 @@ public class ProductDao extends Dao implements ProductDaoInterface
          
         
             conn = getConnection();
-            String query = "update product set productImageUrl =? && productName =? && productPrice && quantityInStock =? && category =? where id=?";
+            String query = "update product set productImageUrl =?, productName =?, productPrice=?, quantityInStock =?, category =? where productId=?";
             ps = conn.prepareStatement(query);
             
           
@@ -599,8 +599,13 @@ public class ProductDao extends Dao implements ProductDaoInterface
             ps.setString(5,category);
             ps.setInt(6,id);
 
-            ps.executeUpdate();
-  
+            int rowsAffected = ps.executeUpdate();
+            
+            if(rowsAffected == 0)
+            {
+                return false;
+            }    
+            
         } 
         catch (SQLException e)
         {
