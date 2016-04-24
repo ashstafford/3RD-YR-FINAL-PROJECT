@@ -41,6 +41,8 @@ primary key(productId,receiptId),
 foreign key(productId) references product(productId)on delete cascade on update cascade, 
 foreign key(receiptId) references salesReceipt(receiptId)on delete cascade on update cascade) ENGINE=INNODB;
 
+
+
 Insert into `product`(`productId`, `productImageUrl`, `productName`, `productPrice`,`quantityInStock`,`category`) values
 (1,'images/IMG_starwars1.jpg','STAR WARS DROIDS YOURE LOOKING FOR GIRLS T-SHIRT',20.00,2,'Star Wars'),
 (2,'images/IMG_starwars2.jpg','STAR WARS R2-D2 MEDIUM SLOUCH BACKPACK',25.00,5,'Star Wars'),

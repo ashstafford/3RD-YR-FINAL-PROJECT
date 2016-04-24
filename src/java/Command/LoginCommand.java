@@ -33,12 +33,11 @@ public class LoginCommand implements Command
             String username = request.getParameter("username");
             String password = request.getParameter("password");
 
-            System.out.println("username" + username);
-            System.out.println("pass " + password);
+          
             if (username != null && password != null && !username.isEmpty() && !password.isEmpty())
             {
                 Member memberLogin = mService.login(username, password);
-                //System.out.println("m " + memberLogin.toString());
+                
                 
                 if (memberLogin != null)
                 {
@@ -53,12 +52,12 @@ public class LoginCommand implements Command
                 } 
                 else
                 {
-                    forwardToJsp = "/LoginFailure.jsp";
+                    forwardToJsp = "/Login.jsp";
                 }
             } 
             else
             {
-                forwardToJsp = "/LoginFailure.jsp";
+                forwardToJsp = "/Login.jsp";
             }
             
       return forwardToJsp;

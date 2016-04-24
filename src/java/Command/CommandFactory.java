@@ -37,7 +37,7 @@ public class CommandFactory
         {
     		command = new ResetPasswordCommand();
     	}
-        if (commandStr.equals("filterProducts")) 
+        if (commandStr.equals("sortPrice")) 
         {
     		command = new PriceComparisonCommand();
     	}
@@ -64,6 +64,10 @@ public class CommandFactory
         if (commandStr.equals("AddAdmin")) 
         {
     		command = new AddAdminCommand();
+    	}
+        if (commandStr.equals("Confirm Password")) 
+        {
+    		command = new ConfirmPasswordCommand();
     	}
         if (commandStr.equals("ViewAllProducts")) 
         {

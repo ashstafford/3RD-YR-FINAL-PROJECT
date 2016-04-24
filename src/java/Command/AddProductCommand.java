@@ -30,55 +30,60 @@ public class AddProductCommand implements Command
              
              
              String regexPrice = "^[0-9]+(\\.[0-9]{2})"; //begining of string
-             String regexQuantityInStock = "^\\d+";
+         
 
                 
              boolean priceValid = false;
-             boolean quantityInStockValid = false;
+        
           
             
              String productName = request.getParameter("productName");
              String productPrice = request.getParameter("productPrice");
              double price = Double.parseDouble(productPrice);
              
-             String quantityInStock = request.getParameter("quantityInStock");
+             String quantityInStock = request.getParameter("productQuantityInStock");
              int quantity = Integer.parseInt(quantityInStock);
              
              String category = request.getParameter("category");
-             String productImageUrl = request.getParameter("productImageUrl"); //Needs Validation
+             String productImageUrl = request.getParameter("productImageUrl");
+             
+             
              
  
-             if(productPrice.matches(regexPrice) && quantityInStock.matches(regexQuantityInStock))
+             if(productPrice.matches(regexPrice))
              {
                  priceValid = true;
-                 quantityInStockValid = true;
+               
              }
 
-             if (productName != null && category != null && productImageUrl != null && priceValid != false && quantityInStockValid != false &&
+             
+             
+             if (productName != null && category != null && productImageUrl != null && priceValid != false &&
                      !productName.isEmpty() && !category.isEmpty() && !productImageUrl.isEmpty() && !productPrice.isEmpty() && !quantityInStock.isEmpty() )
              {
   
                   boolean productAdded = pDao.addProduct(productImageUrl,productName, price, quantity, category);
-                
-                  if(productAdded == true)
-                  {
+                 System.out.println("product added " + productAdded);
+                  
+                 if(productAdded == true)
+                 {
                     session = request.getSession();
                   
                     session.setAttribute("productAdded", true);
                     
-                    forwardToJsp = "/CategorySelection.html";
-                  } 
-                  else
-                  {
-                      forwardToJsp = "/RegisterFailure.jsp";
-                  }    
-                    //forwardToJsp = "/AddProduct.jsp";
+                    forwardToJsp = "/ViewAllProducts.jsp"; //MemberActionServlet?action=ViewAllProducts
+                 } 
+                 else
+                 {
+                        forwardToJsp = "/AddProduct.jsp";
+                 }    
+                  
                     
                 
              } 
              else
              {
-                 forwardToJsp = "/RegisterFailure.jsp";
+                   forwardToJsp = "/AddProduct.jsp";
              }
              
      return forwardToJsp;        

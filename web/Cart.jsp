@@ -4,6 +4,8 @@
     Author     : d00155224
 --%>
 
+<%@page import="java.util.Locale"%>
+<%@page import="java.util.ResourceBundle"%>
 <%@page import="Dtos.Member"%>
 <%@page import="java.util.List"%>
 <%@page import="Dtos.Product"%>
@@ -17,11 +19,20 @@
         <script src="js/paginate.js"></script>
         <script src="js/custom.js"></script>
         <script type="text/javascript" src="js/modernizr-1.5.min.js"></script>
-        <title>JSP Page</title>
+        <title>Cart</title>
   
-        <style>   
-           
-        </style>
+<% 
+   
+        Locale userSetting = (Locale) session.getAttribute("locale");
+       
+        if(userSetting == null)
+        {
+            userSetting = request.getLocale();
+        }
+   
+    ResourceBundle messages = ResourceBundle.getBundle("properties.text", userSetting);
+%> 
+
     </head>   
     <body>
         
@@ -41,10 +52,10 @@
             
          %>
         
-         <li><a href="/Login.html/Login.jsp">Login</a></li>
+         <li><a href="/CA3WebApp/Login.jsp"><%=messages.getString("MenuButtonLogin")%></a></li>
             
             
-        <li><a href="/Login.html/Login.jsp">Sign Up</a></li>
+        <li><a href="/CA3WebApp/Login.jsp"><%=messages.getString("MenuButtonSignUp")%></a></li>
         
         <%
         
@@ -55,7 +66,7 @@
             
         %>
             
-           <li><a href="MemberActionServlet?action=logout">Logout</a></li>
+           <li><a href="MemberActionServlet?action=logout"><%=messages.getString("MenuButtonLogout")%></a></li>
                       
    </ul>
      </nav> 
@@ -67,20 +78,20 @@
   
        <nav class="menu-1">
     <ul class="menu">
-        <li> <a href="/Login.html/HomePage.jsp">Home</a> </li>
-        <li> <a href="MemberActionServlet?action=ViewAllProducts">Shop</a> </li>
-        <li> <a href="/Login.html/About.jsp">About</a> </li>
+        <li> <a href="/CA3WebApp/HomePage.jsp"><%=messages.getString("MenuHomeButton")%></a> </li>
+        <li> <a href="MemberActionServlet?action=ViewAllProducts"><%=messages.getString("MenuShopButton")%></a> </li>
+        <li> <a href="/CA3WebApp/About.jsp"><%=messages.getString("MenuAboutButton")%></a> </li>
         
-        <li> <a href="MemberActionServlet?action=ViewPreviousOrders">View Orders</a> </li>
+        <li> <a href="MemberActionServlet?action=ViewPreviousOrders"><%=messages.getString("MenuViewOrdersButton")%></a> </li>
         
-        <li> <a href="/Login.html/ContactUs.jsp">Contact</a> </li>
-        <li> <a href="/Login.html/Cart.jsp">Cart</a> </li>
+        <li> <a href="/CA3WebApp/ContactUs.jsp"><%=messages.getString("MenucontactUsButton")%></a> </li>
+        <li> <a href="/CA3WebApp/Cart.jsp"><%=messages.getString("MenuCartButton")%></a> </li>
         
         <div id="searchbar">
         <form  action = "MemberActionServlet" method = "post" >
                <p><td> <input name="searchName" size=30 type="text" />  
                  <input type="hidden" name="action" value="searchName" />
-                 <input type="submit" value="Search"/>
+                 <input type="submit" value="<%=messages.getString("SearchBarButton")%>"/>
                </p>
         </form>
         </div>
@@ -182,85 +193,83 @@
         
         <div id="pagecontent2"> 
          
-         <%
+<%
           
-                    List<Product> cart;
-                    cart = (List) (request.getSession().getAttribute("cart"));
+        List<Product> cart;
+        cart = (List) (request.getSession().getAttribute("cart"));
                     
-                    double total = 0;
+        double total = 0;
                     
-                    if (cart != null) 
-                    {
+        if (cart != null) 
+        {
 
-                        for (Product prod : cart) 
-                        {
+           for (Product prod : cart) 
+           {
                             
                          
-                %>
+%>
              
-           <form action="MemberActionServlet" method="post"> 
-               
-               <div id="all2">
-             <div id="overall2">
-             </div>
-        <div id="productImage2">   
-       <img src="<%=prod.getProductImageUrl()%>" style="width: 280px; height: 230px;">     
-        </div>   
-            
-        <div id ="productDetails2">
-            <div class="ProductName2">
-            <p><%=prod.getProductName()%></p>
-            </div>
-                <p>Quantity in stock: <%=prod.getQuantityInStock()%></p>
-                <p>Price: €<%=prod.getProductPrice()%></p>
-                
-        </div>
-                
-          
-            <!--<tr>
-                <td><img src="<%=prod.getProductImageUrl()%>" style="width: 300px; height: 300px;"></td>
-                <td><%=prod.getProductName()%></td>
-                <td><% out.println("\t\t"); %><td>
-                <td><p>Price: €<%=prod.getProductPrice()%></p></td>
-                <td><p>Quantity: <%= prod.getQuantityInStock()%></p></td>
-            </tr>-->
-            
-           
-                
-                <td><input type="hidden" name="action" value="RemoveProduct"</td>
-                <td><input type="submit" value="Remove" </td>
-                
-         </div>
-        
-           </form>   
+            <form action="MemberActionServlet" method="post"> 
+
+                <div id="all2">
+                      <div id="overall2">
+                </div>
+                     
+                     
+                <div id="productImage2">   
+                    <img src="<%=prod.getProductImageUrl()%>" style="width: 280px; height: 230px;">     
+                </div>   
+
+                <div id ="productDetails2">
+                    
+                    <div class="ProductName2">
+                        <p><%=prod.getProductName()%></p>
+                    </div>
+                    
+                            <p><%=messages.getString("QuantityLabel")%>: <%=prod.getQuantityInStock()%></p>
+                            <p><%=messages.getString("PriceLabel")%>: <%=messages.getString("CurrencySymbol")%><%=prod.getProductPrice()%></p>
+
+                </div>
+
+                         <td><input type="hidden" name="action" value="RemoveProduct"</td>
+                         <td><input type="hidden" name="qtyOrdered" value="<%=prod.getQuantityInStock()%>"</td>
+                         <td><input type="hidden" name="productId" value="<%=prod.getProductId()%>"</td>
+                         <td><input type="submit" value="<%=messages.getString("RemoveItemFromCartLabel")%>" </td>
+
+                </div>
+
+            </form>   
             
             <div id ="Total">
             
-            <%         total = total + prod.getProductPrice() * prod.getQuantityInStock();
+<%                     total = total + prod.getProductPrice() * prod.getQuantityInStock();
                      
-                    }
+           }
                     
-                        %> <h2> Total: <%  out.print(total);
-                }
-                else
-                {
-                    %><h1> There are Currently No items in the cart!</h1> <%
-                }        
-            %>
+%>                  <h2> <%=messages.getString("TotalLabel")%>: <%  out.print(total);
+        }
+        else
+        {
+%>
+               <h1> <%=messages.getString("EmptyCartMessage")%> </h1> 
+<%
+        }        
+%>
            
             </div>
             
             <div id ="EmptyCartButton">
                 <form action="MemberActionServlet" method="post">
                     <td><input type="hidden" name="action" value="EmptyCart"</td>
-                    <td><input type="submit" value="Empty Cart"</td>
+                    <td><input type="submit" value="<%=messages.getString("EmptyCartLabel")%>"</td>
                 </form>
             </div>
             
             <div id ="PurchaseItemButton">
                 <form action="PaymentInformation.jsp">  
                     <td><input type="hidden" name="action" value="BuyItems" /></td>
-                    <td><input type="submit" value="Purchase Items" /></td
+                    <td><input type="submit" value="<%=messages.getString("PurchaseItemsLabel")%>
+" /></td
                 </form>
             </div>
             
@@ -271,7 +280,7 @@
         </table>
     
       <p id="formbuttons">
-         			<input type="button" name="prevb" id="prevb" value="Previous" onclick="history.back()" />
+         			<input type="button" name="prevb" id="prevb" value="<%=messages.getString("PreviousButton")%>" onclick="history.back()" />
                         </p>
        
             

@@ -35,43 +35,40 @@ public class EditPasswordCommand implements Command
            String regexPass = "[a-zA-Z0-9]{8,}";
            boolean passValid = false;
            
-           String currentPassword = request.getParameter("currentPassword");
-           
-           if(m.getPassword().equals(currentPassword))  //if password matchs one in members account
-           {
          
                     String password = request.getParameter("editPassword");
 
-                    if(password.matches(regexPass))
+                    
+
+                    if(password != null)
                     {
-                        passValid = true;
-                    } 
+                        
+                        if(password.matches(regexPass))
+                        {
+                            passValid = true;
+                        } 
+                        
+                            if(passValid != false)
+                            {    
+                                boolean updated =  mDao.editPassword(m.getMemberId(),m.getPassword(),password);
 
-                    if(password != null && passValid != false)
-                    {
+                                 if(updated == true)
+                                 {    
 
-                        boolean updated =  mDao.editPassword(m.getMemberId(),m.getPassword(),password);
+                                     HashPasswordMD5 hp = new HashPasswordMD5();
+                                     String hashedPassword = hp.hashPassword(password);
 
-                         if(updated == true)
-                         {    
+                                     String passwordEdit = session.getId();
 
-                             HashPasswordMD5 hp = new HashPasswordMD5();
-                             String hashedPassword = hp.hashPassword(password);
+                                     m.setPassword(hashedPassword);
 
-                             String passwordEdit = session.getId();
+                                     forwardToJsp = "/myProfile.jsp";
+                                }  
+                            }
+                    }        
+                         
+           return forwardToJsp;       
+        }
+   }
+              
 
-                             m.setPassword(hashedPassword);
-
-                             forwardToJsp = "/myProfile.jsp";
-                        }  
-                    }   
-           }
-           else
-           {
-               forwardToJsp = "/editPassword.jsp";
-           }    
-
-
-              return forwardToJsp;       
-     }
-}

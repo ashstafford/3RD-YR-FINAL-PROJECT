@@ -4,6 +4,9 @@
     Author     : D00155224
 --%>
 
+<%@page import="java.text.NumberFormat"%>
+<%@page import="java.util.ResourceBundle"%>
+<%@page import="java.util.Locale"%>
 <%@page import="java.text.DecimalFormat"%>
 <%@page import="Dtos.Member"%>
 <%@page import="java.util.List"%>
@@ -20,16 +23,25 @@
         <script type="text/javascript" src="js/modernizr-1.5.min.js"></script>
         <title>View all products</title>
   
-        <style>   
-           
-        </style>
+<% 
+   
+        Locale userSetting = (Locale) session.getAttribute("locale");
+       
+        if(userSetting == null)
+        {
+            userSetting = request.getLocale();
+        }
+   
+    ResourceBundle messages = ResourceBundle.getBundle("properties.text", userSetting);
+%>
+    
     </head>   
     <body>
         
    <div id="container">  
           <nav class = "topmenu">
             <ul class="navigation">
-                    <li><a href="MemberActionServlet?action=viewProfile">My Profile</a></li>
+                    <li><a href="MemberActionServlet?action=viewProfile"><%=messages.getString("MenuButtonMyProfile")%></a></li>
                     
             
        
@@ -42,10 +54,10 @@
             
          %>
         
-         <li><a href="/CA3WebApp/Login.jsp">Login</a></li>
+         <li><a href="/CA3WebApp/Login.jsp"><%=messages.getString("MenuButtonLogin")%></a></li>
             
             
-        <li><a href="/CA3WebApp/Login.jsp">Sign Up</a></li>
+        <li><a href="/CA3WebApp/Login.jsp"><%=messages.getString("MenuButtonRegister")%></a></li>
         
         <%
         
@@ -56,7 +68,7 @@
             
         %>
             
-           <li><a href="MemberActionServlet?action=logout">Logout</a></li>
+           <li><a href="MemberActionServlet?action=logout"><%=messages.getString("MenuButtonLogout")%></a></li>
                       
    </ul>
      </nav> 
@@ -68,20 +80,20 @@
   
        <nav class="menu-1">
     <ul class="menu">
-        <li> <a href="/CA3WebApp/HomePage.jsp">Home</a> </li>
-        <li> <a href="MemberActionServlet?action=ViewAllProducts">Shop</a> </li>
-        <li> <a href="/CA3WebApp/About.jsp">About</a> </li>
+        <li> <a href="/CA3WebApp/HomePage.jsp"><%=messages.getString("MenuHomeButton")%></a> </li>
+        <li> <a href="MemberActionServlet?action=ViewAllProducts"><%=messages.getString("MenuShopButton")%></a> </li>
+        <li> <a href="/CA3WebApp/About.jsp"><%=messages.getString("MenuAboutButton")%></a> </li>
         
-        <li> <a href="MemberActionServlet?action=ViewPreviousOrders">View Orders</a> </li>
+        <li> <a href="MemberActionServlet?action=ViewPreviousOrders"><%=messages.getString("MenuViewOrdersButton")%></a> </li>
         
-        <li> <a href="/CA3WebApp/ContactUs.jsp">Contact</a> </li>
-        <li> <a href="/CA3WebApp/Cart.jsp">Cart</a> </li>
+        <li> <a href="/CA3WebApp/ContactUs.jsp"><%=messages.getString("MenuContactUsButton")%></a> </li>
+        <li> <a href="/CA3WebApp/Cart.jsp"><%=messages.getString("MenuCartButton")%></a> </li>
         
         <div id="searchbar">
         <form  action = "MemberActionServlet" method = "post" >
                <p><td> <input name="searchName" size=30 type="text" />  
                  <input type="hidden" name="action" value="searchName" />
-                 <input type="submit" value="Search"/>
+                 <input type="submit" value="<%=messages.getString("SearchBarButton")%>"/>
                </p>
         </form>
         </div>
@@ -217,13 +229,13 @@
         
         <div id="pagecontent"> 
          <form action="MemberActionServlet" method="post">
-             <select name="filterComboBox" id="soflow" onchange="submit()">
+             <select name="filterComboBox" id="soflow" onchange="submit()" value="sortPrice">
                 <div id="filterCombo"></div>
 
 
-                  <option value="1">Select an Option</option>
-                  <option value="2">Price - Lowest To Highest</option> 
-                  <option value="3">Price - Highest To Lowest</option>
+                  <option value="1"><%=messages.getString("ComboBoxOption1")%></option>
+                  <option value="2"><%=messages.getString("ComboBoxOption2")%></option> 
+                  <option value="3"><%=messages.getString("ComboBoxOption3")%></option>
 
                 
 
@@ -244,6 +256,7 @@
                     List<Product> products;
                     products = (List) (request.getSession().getAttribute("AllProducts"));
                     DecimalFormat decFor = new DecimalFormat("####0.00");
+                    NumberFormat numFormatter = NumberFormat.getInstance(userSetting);
                     
                     if (products != null) 
                     { 
@@ -270,13 +283,13 @@
             <p><%=prod.getProductName()%></p>
             </div>
                 <p>Quantity in stock: <%=prod.getQuantityInStock()%></p>
-                <p>Price: €<%=decFor.format(prod.getProductPrice())%></p>
+                <p>Price: <%=numFormatter.format(prod.getProductPrice())%></p>
                 
                 
                 <p>Quantity: <input name="quantity" size=15 type = "number" min = "1" max = "<%=prod.getQuantityInStock()%>"></p>
                 <p><input type="hidden" name="action" value="Add To Cart" /></p>
                 <input type="hidden" name="addToCart" value="<%=prod.getProductId()%>" />
-                <p><input type="submit" value="Add To Cart" /></p>
+                <p><input type="submit" value="<%=messages.getString("AddToCartButton")%>" /></p>
         </div>
                 
          </div> 

@@ -12,7 +12,7 @@
 <html>
     <head>
             <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-            <title>Edit Member Image URL</title>
+            <title>Edit Password</title>
             <link rel="stylesheet" type="text/css" href="mainCSS.css" >
             <style>
 
@@ -39,13 +39,13 @@
             
          %>
         
-         <li><a href="/CA3WebApp/Login.html">Login</a></li>
+         <li><a href="/CA3WebApp/Login.jsp">Login</a></li>
             <meta http-equiv="refresh" 
-            content="0; url=Login.html">
+            content="0; url=Login.jsp">
             
-        <li><a href="/CA3WebApp/Login.html">Sign Up</a></li>
+        <li><a href="/CA3WebApp/Login.jsp">Sign Up</a></li>
         <meta http-equiv="refresh" 
-        content="0; url=Login.html">
+        content="0; url=Login.jsp">
         <%
         
         }
@@ -67,14 +67,14 @@
   
        <nav class="menu-1">
     <ul class="menu">
-        <li> <a href="/Login.html/HomePage.jsp">Home</a> </li>
+        <li> <a href="/CA3WebApp/HomePage.jsp">Home</a> </li>
         <li> <a href="MemberActionServlet?action=ViewAllProducts">Shop</a> </li>
-        <li> <a href="/Login.html/About.jsp">About</a> </li>
+        <li> <a href="/CA3WebApp/About.jsp">About</a> </li>
         
         <li> <a href="MemberActionServlet?action=ViewPreviousOrders">View Orders</a> </li>
         
-        <li> <a href="/Login.html/ContactUs.jsp">Contact</a> </li>
-        <li> <a href="/Login.html/Cart.jsp">Cart</a> </li>
+        <li> <a href="/CA3WebApp/ContactUs.jsp">Contact</a> </li>
+        <li> <a href="/CA3WebApp/Cart.jsp">Cart</a> </li>
         
         <div id="searchbar">
         <form  action = "MemberActionServlet" method = "post" >
@@ -94,14 +94,14 @@
         <form action = "MemberActionServlet" method = "post">
             
             <div id="EditslabelPosition">   
-             <label for="exampleInputEditFirstname">Enter your current Password: <span style="color:red;">*</span></label>   
+           
             <label for="exampleInputEditFirstname">Enter your new Password: <span style="color:red;">*</span></label>
             </div>
                
             <div id="EditsTextboxandButtonPosition">  
                 
                 
-               <input name="currentPassword" class="resizedTextBox"  placeholder="MUST be at least 8 characters " type="password" size=15 />
+               
                <input name="editPassword" class="resizedTextBox"  placeholder="MUST be at least 8 characters " type="password" size=15 />
                  
                <input type="hidden" name="action" value="Edit Password"/>

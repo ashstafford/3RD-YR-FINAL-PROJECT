@@ -7,9 +7,6 @@ package Daos;
 
 import Dtos.Member;
 import Exceptions.DaoException;
-import java.io.UnsupportedEncodingException;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -971,3 +968,4 @@ public class MemberDao extends Dao implements MemberDaoInterface
 
     
 }
+

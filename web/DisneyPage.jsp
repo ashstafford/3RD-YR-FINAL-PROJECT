@@ -16,10 +16,7 @@
         <link rel="stylesheet" type="text/css" href="mainCSS.css" >
         <title>Disney</title>
         
-        <style>
-
-   
-        </style>
+ 
         
     </head>
     <body>
