@@ -4,6 +4,7 @@
     Author     : Karen.Aungier
 --%>
 
+<%@page import="java.text.DecimalFormat"%>
 <%@page import="Dtos.Member"%>
 <%@page import="Dtos.Product"%>
 <%@page import="java.util.List"%>
@@ -30,8 +31,8 @@
           
          <%  Member m = (Member)session.getAttribute("member"); 
          
-       // if(m == null)
-        //{
+        if(m == null)
+        {
             
          %>
         
@@ -39,12 +40,14 @@
             
             
         <li><a href="/Login.html/Login.jsp">Sign Up</a></li>
+        </ul>
+     </nav> 
         
         <%
         
-       // }
-       // else
-        //{
+        }
+        else
+        {
       
             
         %>
@@ -53,7 +56,7 @@
                       
    </ul>
      </nav> 
-          <%// } %>
+          <% } %>
 
             <div id="banner">
                 <img src="tempBanner.jpg"/>
@@ -89,7 +92,7 @@
             
             <p>
                  <input type="hidden" name="action" value ="ViewAllProducts">
-                 <input type="image" src="IMG_viewAllProductsLogo.jpg" alt="Submit" width="200px" height="70px"/>
+                 <input type="image" src="images/IMG_viewAllProductsLogo.jpg" alt="Submit" width="200px" height="70px"/>
                 
             </p>
         </form>
@@ -98,7 +101,7 @@
             
             <p>
                  <input type="hidden" name="action" value ="StarWars">
-                 <input type="image" src="swLogo.png" alt="Submit" width="200px" height="70px"/>
+                 <input type="image" src="images/swLogo.png" alt="Submit" width="200px" height="70px"/>
                 
             </p>
         </form>
@@ -107,7 +110,7 @@
                <p> 
                    
                  <input type="hidden" name="action" value ="Marvel">
-                 <input type="image" src="IMG_mLogo.jpeg" alt="Submit" width="200px" height="70px"/>
+                 <input type="image" src="images/IMG_mLogo.jpeg" alt="Submit" width="200px" height="70px"/>
                  
                </p>
          </form>
@@ -115,7 +118,7 @@
          <form action = "MemberActionServlet" method = "post">
                <p> 
                  <input type="hidden" name="action" value ="DC">
-                 <input type="image" src="IMG_dcLogo.jpg" alt="Submit" width="200px" height="70px"/>
+                 <input type="image" src="images/IMG_dcLogo.jpg" alt="Submit" width="200px" height="70px"/>
               
                </p>
          </form>
@@ -124,7 +127,7 @@
                <p> 
                    
                  <input type="hidden" name="action" value ="Disney">
-                 <input type="image" src="IMG_dLogo.jpg" alt="Submit" width="200px" height="70px"/>
+                 <input type="image" src="images/IMG_dLogo.jpg" alt="Submit" width="200px" height="70px"/>
                
                </p>
          </form>
@@ -133,7 +136,7 @@
                <p> 
                    
                  <input type="hidden" name="action" value ="The Walking Dead">
-                 <input type="image" src="IMG_twdLogo.jpg" alt="Submit" width="200px" height="70px"/>
+                 <input type="image" src="images/IMG_twdLogo.jpg" alt="Submit" width="200px" height="70px"/>
                   
                </p>
          </form>
@@ -141,7 +144,7 @@
         <form action = "MemberActionServlet" method = "post">
                <p> 
                  <input type="hidden" name="action" value ="Doctor Who">
-                 <input type="image" src="IMG_dwLogo.jpg" alt="Submit" width="200px" height="70px"/>
+                 <input type="image" src="images/IMG_dwLogo.jpg" alt="Submit" width="200px" height="70px"/>
                   
                </p>
          </form>
@@ -149,7 +152,7 @@
         <form action = "MemberActionServlet" method = "post">
                <p> 
                   <input type="hidden" name="action" value ="Game Of Thrones">
-                  <input type="image" src="IMG_gotLogo.jpg" alt="Submit" width="200px" height="70px"/> 
+                  <input type="image" src="images/IMG_gotLogo.jpg" alt="Submit" width="200px" height="70px"/> 
              
                </p>
          </form>
@@ -181,7 +184,7 @@
         
           <form action = "MemberActionServlet" method = "post">
                <p> 
-                  <input type="hidden" name="action" value ="SuperNatural">
+                  <input type="hidden" name="action" value ="Supernatural">
                   <input type="image" src="images/supernaturalLogo.jpg" alt="Submit" width="200px" height="70px"/> 
              
                </p>
@@ -192,30 +195,36 @@
       <div id="pagecontent">
         
         
-         <table>
-
+        
+        
+         <div class="list-of-posts">
+                 
+                    
                 <%
                     List<Product> products;
                     products = (List) (request.getSession().getAttribute("hpProducts"));
-
+                    DecimalFormat decFor = new DecimalFormat("####0.00");
+                    
                     if (products != null) 
-                    {
-
-                        for (Product prod : products) 
+                    { 
+                %>        
+                
+                <table>    
+                    <%
+                    for (Product prod : products) 
                         {
-                %>
-             
-            
-  
+                            
+                    %>
                 
          <form action="MemberActionServlet" method="post">
-            <div id="overall">
-                      </div>
+            
 
-        <tr>
-                
+        
+         <div id="all">
+             <div id="overall">
+                      </div>
         <div id="productImage">   
-       <img src="<%=prod.getProductImageUrl()%>" style="width: 300px; height: 250px;">     
+       <img src="<%=prod.getProductImageUrl()%>" style="width: 280px; height: 230px;">     
         </div>   
             
         <div id ="productDetails">
@@ -223,27 +232,29 @@
             <p><%=prod.getProductName()%></p>
             </div>
                 <p>Quantity in stock: <%=prod.getQuantityInStock()%></p>
-                <p>Price: €<%=prod.getProductPrice()%></p>
+                <p>Price: €<%=decFor.format(prod.getProductPrice())%></p>
                 
                 
-                <p>Quantity: <input name="quantity" size=15 type="text" /></p>
+                <p>Quantity: <input name="quantity" size=15 type = "number" min = "1" max = "<%=prod.getQuantityInStock()%>"></p>
                 <p><input type="hidden" name="action" value="Add To Cart" /></p>
-                <input type="hidden" name="addToCart" value="<%= prod.getProductId()%>" />
+                <input type="hidden" name="addToCart" value="<%=prod.getProductId()%>" />
                 <p><input type="submit" value="Add To Cart" /></p>
         </div>
-           </tr>
-           
-           
-           <%
+                
+         </div> 
+                
+  </form>
+               
+            <%
                     }
                 }
+                       
             %>
-      </form>
-            
-
-
-        </table>
-
+             
+            </table>
+           <div class="pagination">
+            </div>
+           </div>
         
 
       </div>

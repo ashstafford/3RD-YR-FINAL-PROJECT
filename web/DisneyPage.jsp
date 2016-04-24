@@ -192,7 +192,24 @@
         
       <div id="pagecontent">
         
-        
+        <form action="MemberActionServlet" method="post">
+             <select name="filterComboBox" id="soflow" >
+                <div id="filterCombo"></div>
+
+
+                  <option value="1">Select an Option</option>
+                  <option value="2">Price - Lowest To Highest</option> 
+                  <option value="3">Price - Highest To Lowest</option>
+
+                
+
+                  <div class="sortButton"> </div>
+                   <td><input type="hidden" name="action" style="width: 350px; height: 300px;" value="filterProducts" /></td>
+                   <td><input type="submit" class="sortButtonSize" value="Sort" /></td>
+                
+             </select>
+         </form>
+          
          <div class="list-of-posts">
                  
                     

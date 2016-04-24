@@ -28,10 +28,10 @@
 %>     
             <style>
     
-div#adminChanges h2
+div#adminChanges 
 {
-    padding-left: 830px;
-    padding-top:12px;
+    padding-left: 50px;
+    color: black;
     font-family: Arial, Helvetica, sans-serif;
 }
                 
@@ -40,7 +40,7 @@ div#otherButtons
 {
      left: 69%;
      color:#FFFFFF;
-     padding-top: 30px;
+     padding-top: 10px;
      padding-left:800px;
      font-family: Arial, Helvetica, sans-serif;
      font-weight: bold;
@@ -284,7 +284,7 @@ div#personalDetailsTitle h3
         <div id="editButtons">
         <td><form action = "editFirstName.jsp" method = "post"> <p><input type = "submit" style="width:300px; height: 35px;" value = "<%=messages.getString("EditFirstNameButton")%>" /></p></form></td>
         
-        <form action = "EditLastName.jsp" method = "post"> <p><input type = "submit" style="width:300px; height: 35px;" value = "<%=messages.getString("EditLastNameButton")%>C" /></p></form>
+        <form action = "EditLastName.jsp" method = "post"> <p><input type = "submit" style="width:300px; height: 35px;" value = "<%=messages.getString("EditLastNameButton")%>" /></p></form>
         
         <form action = "EditUserName.jsp" method = "post"> <p><input type = "submit" style="width:300px; height: 35px;"  value = "<%=messages.getString("EditUsernameButton")%>" /></p></form>
         
@@ -300,16 +300,16 @@ div#personalDetailsTitle h3
         
         <div id ="otherButtons"> 
             
-               
+              <div id="adminChanges">
+                        <h2>ADMIN CHANGES</h2>
+                    </div> 
             <% 
                
             if(m.isAdmin())
             {
                 %>
                  
-                    <div id="adminChanges">
-                        <h2>ADMIN CHANGES</h2>
-                    </div> 
+                     
                 
                   <td><form action = "AddProduct.jsp" method = "post"> <p><input type = "submit" style="width:300px; height: 35px;" name="action" value = "<%=messages.getString("AddProductButton")%>" /></p></form></td
                   <td><form action = "SelectProductToEdit.jsp" method = "post"> <p><input type = "submit" style="width:300px; height: 35px;" name="action" value = "<%=messages.getString("RemoveProductButton")%>" /></p></form></td>

@@ -205,22 +205,7 @@
                </p>
          </form>
         
-          <form action = "MemberActionServlet" method = "post">
-               <p> 
-                  <input type="hidden" name="action" value ="Pokemon">
-                  <input type="image" src="images/pokemonLogo.jpg" alt="Submit" width="200px" height="70px"/> 
-             
-               </p>
-         </form>
-        
-        
-          <form action = "MemberActionServlet" method = "post">
-               <p> 
-                  <input type="hidden" name="action" value ="SuperNatural">
-                  <input type="image" src="images/supernaturalLogo.jpg" alt="Submit" width="200px" height="70px"/> 
-             
-               </p>
-         </form>
+          
         
         
     </div>
@@ -239,9 +224,9 @@
 
                 
 
-                  <!--<div class="sortButton"> </div>
+                  <div class="sortButton"> </div>
                    <td><input type="hidden" name="action" style="width: 350px; height: 300px;" value="filterProducts" /></td>
-                   <td><input type="submit" class="sortButtonSize" value="Sort" /></td>-->
+                   <td><input type="submit" class="sortButtonSize" value="Sort" /></td>
                 
              </select>
          </form>

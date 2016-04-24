@@ -15,6 +15,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.servlet.http.Part;
 
 
 /**
@@ -912,7 +913,7 @@ public class MemberDao extends Dao implements MemberDaoInterface
     }
     //userid
     @Override
-    public boolean editMemberImageUrl(int id,String memberImageUrl, String newMemberImageUrl) 
+    public boolean editMemberImageUrl(int id,String memberImageUrl,String newMemberImageUrl) //Part filePart
    // public boolean editMemberImageUrl(int memberId, String newMemberImageUrl) 
     {
         Connection conn = null;
@@ -926,6 +927,20 @@ public class MemberDao extends Dao implements MemberDaoInterface
             String query = "Update member set memberImageUrl =? where memberImageUrl=? and memberId=?";
             //String query = "Update member set memberImageUrl =? where memberId=?";
             ps = conn.prepareStatement(query);
+            
+//            InputStream inputStream = null;
+//           
+//            if (filePart != null) 
+//            {
+//               // obtains input stream of the upload file
+//               inputStream = filePart.getInputStream();
+//            }
+//            
+//            if (inputStream != null) 
+//            {
+//                // fetches input stream of the upload file for the blob column
+//                ps.setBlob(1, inputStream);
+//            }
             ps.setString(1, newMemberImageUrl);
             ps.setString(2, memberImageUrl);
             ps.setInt(3,id);
