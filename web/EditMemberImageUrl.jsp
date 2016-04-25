@@ -63,14 +63,14 @@
   
        <nav class="menu-1">
     <ul class="menu">
-        <li> <a href="/Login.html/HomePage.jsp">Home</a> </li>
+        <li> <a href="/CA3WebApp/HomePage.jsp">Home</a> </li>
         <li> <a href="MemberActionServlet?action=ViewAllProducts">Shop</a> </li>
-        <li> <a href="/Login.html/About.jsp">About</a> </li>
+        <li> <a href="/CA3WebApp/About.jsp">About</a> </li>
         
         <li> <a href="MemberActionServlet?action=ViewPreviousOrders">View Orders</a> </li>
         
-        <li> <a href="/Login.html/ContactUs.jsp">Contact</a> </li>
-        <li> <a href="/Login.html/Cart.jsp">Cart</a> </li>
+        <li> <a href="/CA3WebApp/ContactUs.jsp">Contact</a> </li>
+        <li> <a href="/CA3WebApp/Cart.jsp">Cart</a> </li>
         
         <div id="searchbar">
         <form  action = "MemberActionServlet" method = "post" >
@@ -94,14 +94,13 @@
             </div>
                
             <div id="EditsTextboxandButtonPosition">  
-               <input name="editMemberImageUrl" class="resizedTextBox" size=15 type="url" />
-                 
-               <input type = "hidden" name="action" value="Edit MemberImageUrl"/>
-               <input type="submit" class="resizedButton" name="submit" value="Edit Profile Image"/>
                
                <tr>
                     <td><input type="file" name="editMemberImageUrl" size="50" required/></td>
                 </tr>
+                
+                <input type = "hidden" name="action" value="Edit MemberImageUrl"/>
+               <input type="submit" class="resizedButton" name="submit" value="Edit Profile Image"/>
             </div>
                
          </form>

@@ -84,12 +84,12 @@
            
 </nav>
                   
-    <div id="side_bar">
+       <div id="side_bar">
         <form action = "MemberActionServlet" method = "post">
             
             <p>
                  <input type="hidden" name="action" value ="ViewAllProducts">
-                 <input type="image" src="IMG_viewAllProductsLogo.jpg" alt="Submit" width="200px" height="70px"/>
+                 <input type="image" src="images/IMG_viewAllProductsLogo.jpg" alt="Submit" width="200px" height="70px"/>
                 
             </p>
         </form>
@@ -98,7 +98,7 @@
             
             <p>
                  <input type="hidden" name="action" value ="StarWars">
-                 <input type="image" src="swLogo.png" alt="Submit" width="200px" height="70px"/>
+                 <input type="image" src="images/swLogo.png" alt="Submit" width="200px" height="70px"/>
                 
             </p>
         </form>
@@ -107,7 +107,7 @@
                <p> 
                    
                  <input type="hidden" name="action" value ="Marvel">
-                 <input type="image" src="IMG_mLogo.jpeg" alt="Submit" width="200px" height="70px"/>
+                 <input type="image" src="images/IMG_mLogo.jpeg" alt="Submit" width="200px" height="70px"/>
                  
                </p>
          </form>
@@ -115,7 +115,7 @@
          <form action = "MemberActionServlet" method = "post">
                <p> 
                  <input type="hidden" name="action" value ="DC">
-                 <input type="image" src="IMG_dcLogo.jpg" alt="Submit" width="200px" height="70px"/>
+                 <input type="image" src="images/IMG_dcLogo.jpg" alt="Submit" width="200px" height="70px"/>
               
                </p>
          </form>
@@ -124,7 +124,7 @@
                <p> 
                    
                  <input type="hidden" name="action" value ="Disney">
-                 <input type="image" src="IMG_dLogo.jpg" alt="Submit" width="200px" height="70px"/>
+                 <input type="image" src="images/IMG_dLogo.jpg" alt="Submit" width="200px" height="70px"/>
                
                </p>
          </form>
@@ -133,7 +133,7 @@
                <p> 
                    
                  <input type="hidden" name="action" value ="The Walking Dead">
-                 <input type="image" src="IMG_twdLogo.jpg" alt="Submit" width="200px" height="70px"/>
+                 <input type="image" src="images/IMG_twdLogo.jpg" alt="Submit" width="200px" height="70px"/>
                   
                </p>
          </form>
@@ -141,7 +141,7 @@
         <form action = "MemberActionServlet" method = "post">
                <p> 
                  <input type="hidden" name="action" value ="Doctor Who">
-                 <input type="image" src="IMG_dwLogo.jpg" alt="Submit" width="200px" height="70px"/>
+                 <input type="image" src="images/IMG_dwLogo.jpg" alt="Submit" width="200px" height="70px"/>
                   
                </p>
          </form>
@@ -149,7 +149,7 @@
         <form action = "MemberActionServlet" method = "post">
                <p> 
                   <input type="hidden" name="action" value ="Game Of Thrones">
-                  <input type="image" src="IMG_gotLogo.jpg" alt="Submit" width="200px" height="70px"/> 
+                  <input type="image" src="images/IMG_gotLogo.jpg" alt="Submit" width="200px" height="70px"/> 
              
                </p>
          </form>
@@ -170,22 +170,23 @@
                </p>
          </form>
         
-         <form action = "MemberActionServlet" method = "post">
+        <form action = "MemberActionServlet" method = "post">
                <p> 
                   <input type="hidden" name="action" value ="Pokemon">
-                  <input type="image" src="images/pokemonLogo.jpg" alt="Submit" width="200px" height="70px"/> 
+                  <input type="image" src="images/pokemonLogo.png" alt="Submit" width="200px" height="70px"/> 
              
                </p>
          </form>
         
-        
-          <form action = "MemberActionServlet" method = "post">
+        <form action = "MemberActionServlet" method = "post">
                <p> 
-                  <input type="hidden" name="action" value ="SuperNatural">
+                  <input type="hidden" name="action" value ="Supernatural">
                   <input type="image" src="images/supernaturalLogo.jpg" alt="Submit" width="200px" height="70px"/> 
              
                </p>
          </form>
+        
+          
         
     </div>
         

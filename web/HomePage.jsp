@@ -152,12 +152,7 @@ h2
             
         <nav class = "topmenu">
             <ul class="navigation">
-                    <li><a href="MemberActionServlet?action=viewProfile"><%=messages.getString("MenuButtonMyProfile")%></a></li>
-                    
-            
-       
-      
-          
+ 
          <%  Member m = (Member)session.getAttribute("member"); 
          
         if(m == null)
@@ -168,7 +163,7 @@ h2
          <li><a href="Login.jsp"><%=messages.getString("MenuButtonLogin")%></a></li>
            
             
-        <li><a href="Login.jsp"><%=messages.getString("MenuButtonRegister")%></a></li>
+        <li><a href="Register.jsp"><%=messages.getString("MenuButtonRegister")%></a></li>
        </ul>
      </nav>  
         <%
@@ -179,7 +174,7 @@ h2
       
             
         %>
-            
+           <li><a href="MemberActionServlet?action=viewProfile">My Profile</a></li> 
            <li><a href="MemberActionServlet?action=logout"><%=messages.getString("MenuButtonLogout")%></a></li>
                       
    </ul>
@@ -236,7 +231,7 @@ h2
 				
 					<h1>The Walking Dead</h1>
 					
-					<p class = "slideshowInfo">The Walking Dead is one of the most popular television shows at the moment. We have blahh blahh blahhh</p>
+					<p class = "slideshowInfo">The Walking Dead is one of the most popular television shows at the moment. We have the latest merchandise at a great price!</p>
 					
 					<a href="TwdPage.jsp"><img src="slide-1-.png" alt="learn more" /></a>
 					
@@ -246,7 +241,7 @@ h2
 				
 					<h1>Marvel Merchandise</h1>
 					
-					<p class = "slideshowInfo">Here at In a Flash we stock all the latest Merchandise from all the latest Movies. We currently have 10% off all Deadpool Merchandise. Enjoy</p>
+					<p class = "slideshowInfo">Here at In a Flash we stock all the latest Merchandise from all the latest Movies. We currently have 10% off all Deadpool Merchandise. Only while stock lasts!</p>
 					
 					<a href="MavelPage.jsp"><img src="slide-2.png" alt="learn more" /></a>
 					
@@ -268,9 +263,20 @@ h2
                 
                 
                 <div id="DisneyAdvert">
-                    <img src="images/DisneyAdvertisment.jpg">
+                    <img src="images/DisneyAd.jpg" style="width: 29%; height: 30%;">
                 </div>
                 
+                <div id="HarryPotterAdvert">
+                    <img src="images/HarryPotterAd.jpg" style="width: 29%; height: 30%;">
+                </div>
+                
+                <div id="GOTAdvert">
+                    <img src="images/gameofthronesAd.jpg">
+                </div>
+                
+                <div id="deadpoolAdvert">
+                    <img src="images/DeadpoolAdvertisment.jpg" style="width: 60%; height: 30%;">
+                </div>
                 
                 
        

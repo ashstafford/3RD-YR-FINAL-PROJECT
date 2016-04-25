@@ -37,7 +37,7 @@ public class CommandFactory
         {
     		command = new ResetPasswordCommand();
     	}
-        if (commandStr.equals("filterProducts")) 
+        if (commandStr.equals("sortPrice")) 
         {
     		command = new PriceComparisonCommand();
     	}
@@ -45,6 +45,10 @@ public class CommandFactory
         {
     		command = new ViewProfileCommand();
     	}
+        if (commandStr.equals("ViewAdminChanges")) 
+        {
+    	       command = new ViewAdminChangesCommand();
+    	}        
         if (commandStr.equals("AddProduct")) 
         {
     		command = new AddProductCommand();
@@ -64,6 +68,10 @@ public class CommandFactory
         if (commandStr.equals("AddAdmin")) 
         {
     		command = new AddAdminCommand();
+    	}
+        if (commandStr.equals("Confirm Password")) 
+        {
+    		command = new ConfirmPasswordCommand();
     	}
         if (commandStr.equals("ViewAllProducts")) 
         {
@@ -113,7 +121,7 @@ public class CommandFactory
         {
     		command = new ViewPokemonCommand();
     	}
-          if (commandStr.equals("SuperNatural")) 
+          if (commandStr.equals("Supernatural")) 
         {
     		command = new ViewSupernaturalCommand();
     	}

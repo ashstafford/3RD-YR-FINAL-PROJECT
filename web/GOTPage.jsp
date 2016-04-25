@@ -86,7 +86,7 @@
            
 </nav>
                   
-    <div id="side_bar">
+       <div id="side_bar">
         <form action = "MemberActionServlet" method = "post">
             
             <p>
@@ -175,19 +175,21 @@
         <form action = "MemberActionServlet" method = "post">
                <p> 
                   <input type="hidden" name="action" value ="Pokemon">
-                  <input type="image" src="images/pokemonLogo.jpg" alt="Submit" width="200px" height="70px"/> 
+                  <input type="image" src="images/pokemonLogo.png" alt="Submit" width="200px" height="70px"/> 
              
                </p>
          </form>
         
-        
-          <form action = "MemberActionServlet" method = "post">
+        <form action = "MemberActionServlet" method = "post">
                <p> 
                   <input type="hidden" name="action" value ="Supernatural">
                   <input type="image" src="images/supernaturalLogo.jpg" alt="Submit" width="200px" height="70px"/> 
              
                </p>
          </form>
+        
+          
+        
         
     </div>
         

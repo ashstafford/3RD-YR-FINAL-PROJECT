@@ -28,11 +28,12 @@
     ResourceBundle messages = ResourceBundle.getBundle("properties.text", userSetting);
 %>
 
- <script>
-    function goBack()
-    {            
-        window.history.back();
-    }
+
+<script>
+ function goBack()
+ {            
+   window.history.back();
+ }
 </script>
          <style>
              div#login{
@@ -185,7 +186,7 @@
 
                     <br>
                     <br>
-         <p> <%=messages.getString("forgotPasswordTitle")%></p>
+         <p> <%=messages.getString("forgotPasswordTitle")%>?</p>
         
          <form action = "ForgotPassword.jsp" method = "post">
                

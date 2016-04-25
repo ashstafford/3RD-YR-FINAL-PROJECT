@@ -7,7 +7,10 @@ package Daos;
 
 import Dtos.Member;
 import Exceptions.DaoException;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
 import java.util.ArrayList;
+import javax.servlet.http.Part;
 
 /**
  *
@@ -84,7 +87,7 @@ public interface MemberDaoInterface
     
     public boolean editEmail(int id,String email, String newEmail);
             
-    public boolean editMemberImageUrl(int id,String memberImageUrl, String newMemberImageUrl);
+    public BufferedImage editMemberImageUrl(int id, String newMemberImageUrl);
     
     public Member findMemberById(int id);
     

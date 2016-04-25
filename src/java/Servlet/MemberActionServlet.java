@@ -32,6 +32,7 @@ import javax.servlet.http.HttpSession;
  *
  * @author Aisling
  */
+@MultipartConfig(maxFileSize = 16177215)
 @WebServlet(name = "MemberActionServlet", urlPatterns =
 {
     "/MemberActionServlet"

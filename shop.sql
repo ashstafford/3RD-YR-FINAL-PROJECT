@@ -9,7 +9,7 @@ password varchar(32) not null,
 firstName varchar(20) not null,
 lastName varchar(20) not null,
 email varchar(40) not null,
-memberImageUrl blob ,
+memberImageUrl LONGBLOB,
 securityQuestionAnswer varchar(500) not null,
 isAdmin boolean,
 primary key(memberId))ENGINE=INNODB;
@@ -40,6 +40,8 @@ quantity int(7) not null,
 primary key(productId,receiptId),
 foreign key(productId) references product(productId)on delete cascade on update cascade, 
 foreign key(receiptId) references salesReceipt(receiptId)on delete cascade on update cascade) ENGINE=INNODB;
+
+
 
 Insert into `product`(`productId`, `productImageUrl`, `productName`, `productPrice`,`quantityInStock`,`category`) values
 (1,'images/IMG_starwars1.jpg','STAR WARS DROIDS YOURE LOOKING FOR GIRLS T-SHIRT',20.00,2,'Star Wars'),
@@ -124,3 +126,32 @@ insert into `orderItem` (`productId`, `receiptId`, `price`, `quantity`) values
 (10, 2, 22.00, 10),
 (28, 3, 50.00, 3);
 
+CREATE TABLE adminLog(
+messageId INT(20) AUTO_INCREMENT,
+message VARCHAR(20),
+messageTime TIMESTAMP,
+details varchar (50) NOT NULL,
+PRIMARY KEY(messageId));
+
+/* TRIGGERS*/
+
+DROP TRIGGER IF EXISTS `AdminChangesMemberDelete`;
+CREATE TRIGGER `AdminChangesMemberDelete` AFTER DELETE ON member
+FOR EACH ROW
+INSERT INTO adminlog Values(messageId,'Member Deleted', CURRENT_TIMESTAMP,old.userName);
+
+DROP TRIGGER IF EXISTS `AdminChangesProductDelete`;
+CREATE TRIGGER `AdminChangesProductDelete` AFTER DELETE ON product
+FOR EACH ROW
+INSERT INTO adminlog Values(messageId,'Product Deleted', CURRENT_TIMESTAMP,old.productName);
+
+
+DROP TRIGGER IF EXISTS `AdminChangesProductEdit`;
+CREATE TRIGGER `AdminChangesProductEdit` AFTER UPDATE ON product
+FOR EACH ROW
+INSERT INTO adminlog Values(messageId,'Product Edited',CURRENT_TIMESTAMP,old.productId);
+
+DROP TRIGGER IF EXISTS `AdminChangesAddAdmin`;
+CREATE TRIGGER `AdminChangesAddAdmin` AFTER UPDATE ON member
+FOR EACH ROW
+INSERT INTO adminlog Values(messageId,'Admin Added', CURRENT_TIMESTAMP,old.email);

@@ -41,18 +41,18 @@ public class PriceComparisonCommand implements Command
             products = pDao.getAllProducts();
            
             
-           if(choice == 2)
-           {
+        switch (choice)
+        {
+            case 2:
                 Collections.sort(products,prodLth);
-           } 
-           else if(choice == 3)
-           {
-               Collections.sort(products,prodHtl);
-           }
-           else
-           {
-               forwardToJsp = "/ViewAllProducts.jsp";
-           }    
+                break;
+            case 3:
+                Collections.sort(products,prodHtl);
+                break;
+            default:
+                forwardToJsp = "/ViewAllProducts.jsp";
+                break;
+        }    
                 
  
                 

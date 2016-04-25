@@ -48,15 +48,15 @@ public class OrderDetailsCommand implements Command
            List<Product> cart;
            cart = (List) (request.getSession().getAttribute("cart"));
            
-           //String quantity = request.getParameter("quantity");
+           // String quantityOrdered = request.getParameter("qtyOrdered");
            
             //System.out.println("dsdsdsdsdsw" + quantity);
            
-             int qtyOrdered = 10;
+          
            
-          // if(quantity != null)
-          // {    
-              //  int qtyOrdered = Integer.parseInt(quantity);
+          // if(quantityOrdered != null)
+         //  {    
+            //    int qtyOrdered = Integer.parseInt(quantityOrdered);
                 
                 String productName;
                 double totalPrice = 0;
@@ -75,10 +75,14 @@ public class OrderDetailsCommand implements Command
                 
                 SalesReceipt sr1 =  srDao.insertIntoSalesReceipt(dateOrdered,totalPrice,memberId,paymentType);
  
+                String quantity; 
+                
                 for (Product prod : cart) 
                 {
-                   oItemDao.insertIntoOrderItem(memberId, sr1.getReceiptId(), prod.getProductPrice(),qtyOrdered);
-                   int qty = prod.getQuantityInStock() - qtyOrdered;
+                   quantity = request.getParameter("quantity");
+                   int quantity2 = Integer.parseInt(quantity);
+                   oItemDao.insertIntoOrderItem(memberId, sr1.getReceiptId(), prod.getProductPrice(),quantity2);
+                   int qty = prod.getQuantityInStock() - quantity2;
                    prod.setQuantityInStock(qty);
                 } 
                 
