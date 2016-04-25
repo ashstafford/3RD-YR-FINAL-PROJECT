@@ -19,10 +19,7 @@
         <script type="text/javascript" src="js/modernizr-1.5.min.js"></script>
         <title>Disney</title>
         
-        <style>
-
-   
-        </style>
+ 
         
     </head>
     <body>
@@ -193,6 +190,9 @@
              
                </p>
          </form>
+        
+          
+        
         
     </div>
         

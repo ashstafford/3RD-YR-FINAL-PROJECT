@@ -75,7 +75,7 @@
                                        <label for="forgetPasswordEmail">Enter your Email Address: <span style="color:red;">*</span></label> 
                                   </tr>
                                   <tr>
-                                      <td> <input name="userName" class="resizedTextBox" placeholder="MUST have an @" size=25 type="text" required /> </td>
+                                      <td> <input name="email" class="resizedTextBox" placeholder="MUST have an @" size=25 type="text" required /> </td>
                                   </tr>
                                </table>
                            </div>
@@ -86,7 +86,7 @@
                                        <label for="forgetPasswordPet">What was the Name of your first pet? <span style="color:red;">*</span></label>
                                    </tr>
                                    <tr>
-                                       <td> <input name="password" class="resizedTextBox" size=25 type="password" required /> </td> 
+                                       <td> <input name="securityQuestionAnswer" class="resizedTextBox" size=25 type="password" required /> </td> 
                                    </tr>
                                </table>
                            </div>

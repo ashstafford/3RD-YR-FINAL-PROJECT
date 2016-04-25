@@ -69,7 +69,7 @@
     
         
     <form action="MemberActionServlet" method="post">
-        <form>
+        
                     
                     
                     <div id ="AddProduct">
@@ -81,9 +81,7 @@
                                 <td><input name="productName" class="resizedTextBox" style="border:0.5px solid black;" size="35" type="text" /> </td>
                             </tr>
                         </table>
-                        <!--<tr>
-                            <td> Product Name  : </td><td> <input name="productName" placeholder="MUST be at least 4 characters" size=25 type="text" /> </td> 
-                        </tr>-->
+                      
                     </div>
                     
                     <div id ="AddProduct">
@@ -103,7 +101,7 @@
                                 <label for="exampleInputPassword" style="font-size:20px;">Quantity in Stock: </label> 
                             </tr>
                             <tr>
-                                <td><input name="productQuanityInStock" class="resizedTextBox" style="border:0.5px solid black;" size="35"/> </td>
+                                <td><input name="productQuantityInStock" class="resizedTextBox" style="border:0.5px solid black;" size="35"/> </td>
                             </tr>
                         </table>
                     </div>
@@ -114,7 +112,7 @@
                                 <label for="exampleInputPassword" style="font-size:20px;">Category: </label> 
                             </tr>
                             <tr>
-                                <td><input name="productQuanityInStock" class="resizedTextBox" style="border:0.5px solid black;" size="35" type="text"/> </td>
+                                <td><input name="category" class="resizedTextBox" style="border:0.5px solid black;" size="35" type="text"/> </td>
                             </tr>
                         </table>
                     </div>

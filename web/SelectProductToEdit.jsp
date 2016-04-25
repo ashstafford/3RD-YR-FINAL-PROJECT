@@ -165,11 +165,11 @@
                else
                {
         
-%>
+%>                <form action="MemberActionServlet" method="post"> 
                      <td><input type="hidden" name="action" value="Remove Product" /></td>
                      <input type="hidden" name="removeProduct" value="<%= prod.getProductId()%>"/>
               
-                     <form action="MemberActionServlet" method="post"> 
+                    
              
                          <td><input type="submit" value="Remove Product" /></td>
                          </tr>

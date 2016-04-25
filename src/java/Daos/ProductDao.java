@@ -100,15 +100,8 @@ public class ProductDao extends Dao implements ProductDaoInterface
             PreparedStatement ps = null;
             ResultSet generatedKeys = null;
             int productId = -1;
-            //Product p = null;
             ResultSet rs = null;
-            
-              System.out.println("name " + productName);
-              System.out.println("p price " + productPrice);
-      
-              System.out.println("quantity in stock " + quantityInStock);
-              System.out.println("category " + category);
-              System.out.println("productImageUrl " + productImageUrl);
+           
             
             try 
             {
@@ -126,7 +119,7 @@ public class ProductDao extends Dao implements ProductDaoInterface
                 ps.setString(6,category);
                 
                 int i = ps.executeUpdate();  //updates the table
-                
+               
                 generatedKeys = ps.getGeneratedKeys();
             
                 if(generatedKeys.next())
@@ -138,7 +131,7 @@ public class ProductDao extends Dao implements ProductDaoInterface
                     return false;
                 }
        
-                //p = new Product(productId,productImageUrl,productName,productPrice,quantityInStock,category);
+              
             } 
               
             catch (SQLException e) 
@@ -146,7 +139,7 @@ public class ProductDao extends Dao implements ProductDaoInterface
                 System.out.println("Exception happened in addProduct method");
                 System.out.println("adProduct: exception message = "+e.getMessage());
                 
-                //return false;
+                return false;
             } 
             
             finally

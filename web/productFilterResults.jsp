@@ -1,3 +1,6 @@
+<%@page import="java.text.DecimalFormat"%>
+<%@page import="java.util.ResourceBundle"%>
+<%@page import="java.util.Locale"%>
 <%@page import="Dtos.Member"%>
 <%@page import="java.util.List"%>
 <%@page import="Dtos.Product"%>
@@ -10,18 +13,28 @@
         <script src="js/paginate.js"></script>
         <script src="js/custom.js"></script>
         <script type="text/javascript" src="js/modernizr-1.5.min.js"></script>
-        <title>JSP Page</title>
+        <title>Products</title>
   
-        <style>         
-
-        </style>
+<% 
+   
+        Locale userSetting = (Locale) session.getAttribute("locale");
+       
+        if(userSetting == null)
+        {
+            userSetting = request.getLocale();
+        }
+   
+    ResourceBundle messages = ResourceBundle.getBundle("properties.text", userSetting);
+%>
     </head>   
+    
     <body>
         
    <div id="container">  
-          <nav class = "topmenu">
-             <ul class="navigation">
-                    <li><a href="MemberActionServlet?action=viewProfile">My Profile</a></li>
+        
+        <nav class = "topmenu">
+            <ul class="navigation">
+                    <li><a href="MemberActionServlet?action=viewProfile"><%=messages.getString("MenuButtonMyProfile")%></a></li>
                     
             
        
@@ -29,53 +42,53 @@
           
          <%  Member m = (Member)session.getAttribute("member"); 
          
-       // if(m == null)
-        //{
+        if(m == null)
+        {
             
          %>
         
-         <li><a href="/CA3WebApp/Login.jsp">Login</a></li>
+         <li><a href="Login.jsp"><%=messages.getString("MenuButtonLogin")%></a></li>
+           
             
-            
-        <li><a href="/CA3WebApp/Login.jsp">Sign Up</a></li>
-        
+        <li><a href="Login.jsp"><%=messages.getString("MenuButtonRegister")%></a></li>
+       </ul>
+     </nav>  
         <%
         
-       // }
-       // else
-        //{
+        }
+        else
+        {
       
             
         %>
             
-           <li><a href="MemberActionServlet?action=logout">Logout</a></li>
+           <li><a href="MemberActionServlet?action=logout"><%=messages.getString("MenuButtonLogout")%></a></li>
                       
    </ul>
      </nav> 
-          <%// } %>
-     
-
+        <%  
+        }
+        %>
             <div id="banner">
                 <img src="tempBanner.jpg"/>
             </div>
   
        <nav class="menu-1">
     <ul class="menu">
-        <li> <a href="/CA3WebApp/HomePage.jsp">Home</a> </li>
-        <li> <a href="MemberActionServlet?action=ViewAllProducts">Shop</a> </li>
-        <li> <a href="/CA3WebApp/About.jsp">About</a> </li>
+        <li> <a href="/CA3WebApp/HomePage.jsp"><%=messages.getString("MenuHomeButton")%></a> </li>
+        <li> <a href="MemberActionServlet?action=ViewAllProducts"><%=messages.getString("MenuShopButton")%></a> </li>
+        <li> <a href="/CA3WebApp/About.jsp"><%=messages.getString("MenuAboutButton")%></a> </li>
         
-        <li> <a href="MemberActionServlet?action=ViewPreviousOrders">View Orders</a> </li>
+        <li> <a href="MemberActionServlet?action=ViewPreviousOrders"><%=messages.getString("MenuViewOrdersButton")%></a> </li>
         
-        <li> <a href="/CA3WebApp/ContactUs.jsp">Contact</a> </li>
-        <li> <a href="/CA3WebApp/Cart.jsp">Cart</a> </li>
-        
+        <li> <a href="/CA3WebApp/ContactUs.jsp"><%=messages.getString("MenuContactUsButton")%></a> </li>
+        <li> <a href="/CA3WebApp/Cart.jsp"><%=messages.getString("MenuCartButton")%></a> </li>     
         <div id="searchbar">
         <form  action = "MemberActionServlet" method = "post" >
-               <p><td> <input name="searchName" size=30 type="text" />  
+               <td> <input name="searchName" size=30 type="text" />  
                  <input type="hidden" name="action" value="searchName" />
-                 <input type="submit" value="Search"/>
-               </p>
+                 <input type="submit" value="<%=messages.getString("SearchBarButton")%>"/>
+               
         </form>
         </div>
         
@@ -84,12 +97,12 @@
            
 </nav>
                   
-    <div id="side_bar">
+     <div id="side_bar">
         <form action = "MemberActionServlet" method = "post">
             
             <p>
                  <input type="hidden" name="action" value ="ViewAllProducts">
-                 <input type="image" src="IMG_viewAllProductsLogo.jpg" alt="Submit" width="200px" height="70px"/>
+                 <input type="image" src="images/IMG_viewAllProductsLogo.jpg" alt="Submit" width="200px" height="70px"/>
                 
             </p>
         </form>
@@ -98,7 +111,7 @@
             
             <p>
                  <input type="hidden" name="action" value ="StarWars">
-                 <input type="image" src="swLogo.png" alt="Submit" width="200px" height="70px"/>
+                 <input type="image" src="images/swLogo.png" alt="Submit" width="200px" height="70px"/>
                 
             </p>
         </form>
@@ -107,7 +120,7 @@
                <p> 
                    
                  <input type="hidden" name="action" value ="Marvel">
-                 <input type="image" src="IMG_mLogo.jpeg" alt="Submit" width="200px" height="70px"/>
+                 <input type="image" src="images/IMG_mLogo.jpeg" alt="Submit" width="200px" height="70px"/>
                  
                </p>
          </form>
@@ -115,7 +128,7 @@
          <form action = "MemberActionServlet" method = "post">
                <p> 
                  <input type="hidden" name="action" value ="DC">
-                 <input type="image" src="IMG_dcLogo.jpg" alt="Submit" width="200px" height="70px"/>
+                 <input type="image" src="images/IMG_dcLogo.jpg" alt="Submit" width="200px" height="70px"/>
               
                </p>
          </form>
@@ -124,7 +137,7 @@
                <p> 
                    
                  <input type="hidden" name="action" value ="Disney">
-                 <input type="image" src="IMG_dLogo.jpg" alt="Submit" width="200px" height="70px"/>
+                 <input type="image" src="images/IMG_dLogo.jpg" alt="Submit" width="200px" height="70px"/>
                
                </p>
          </form>
@@ -133,7 +146,7 @@
                <p> 
                    
                  <input type="hidden" name="action" value ="The Walking Dead">
-                 <input type="image" src="IMG_twdLogo.jpg" alt="Submit" width="200px" height="70px"/>
+                 <input type="image" src="images/IMG_twdLogo.jpg" alt="Submit" width="200px" height="70px"/>
                   
                </p>
          </form>
@@ -141,7 +154,7 @@
         <form action = "MemberActionServlet" method = "post">
                <p> 
                  <input type="hidden" name="action" value ="Doctor Who">
-                 <input type="image" src="IMG_dwLogo.jpg" alt="Submit" width="200px" height="70px"/>
+                 <input type="image" src="images/IMG_dwLogo.jpg" alt="Submit" width="200px" height="70px"/>
                   
                </p>
          </form>
@@ -149,7 +162,7 @@
         <form action = "MemberActionServlet" method = "post">
                <p> 
                   <input type="hidden" name="action" value ="Game Of Thrones">
-                  <input type="image" src="IMG_gotLogo.jpg" alt="Submit" width="200px" height="70px"/> 
+                  <input type="image" src="images/IMG_gotLogo.jpg" alt="Submit" width="200px" height="70px"/> 
              
                </p>
          </form>
@@ -170,6 +183,23 @@
                </p>
          </form>
         
+        <form action = "MemberActionServlet" method = "post">
+               <p> 
+                  <input type="hidden" name="action" value ="Pokemon">
+                  <input type="image" src="images/pokemonLogo.png" alt="Submit" width="200px" height="70px"/> 
+             
+               </p>
+         </form>
+        
+        <form action = "MemberActionServlet" method = "post">
+               <p> 
+                  <input type="hidden" name="action" value ="Supernatural">
+                  <input type="image" src="images/supernaturalLogo.jpg" alt="Submit" width="200px" height="70px"/> 
+             
+               </p>
+         </form>
+        
+          
     </div>
         
       
@@ -178,21 +208,18 @@
         
         <table>
         <form action="MemberActionServlet" method="post">
-             <select name="filterComboBox" id="soflow">
+             <select name="filterComboBox" id="soflow" onchange="submit()">
                 <div id="filterCombo"></div>
 
 
-                  <option value="1">Select an Option</option>
-                  <option value="2">Price - Lowest To Highest</option> 
-                  <option value="3">Price - Highest To Lowest</option>
-
-                
-
-                  <div class="sortButton"> </div>
-                   <td><input type="hidden" name="action" style="width: 350px; height: 300px;" value="filterProducts" /></td>
-                   <td><input type="submit" class="sortButtonSize" value="Sort" /></td>
-                
+                  <option value="1"><%=messages.getString("ComboBoxOption1")%></option>
+                  <option value="2"><%=messages.getString("ComboBoxOption2")%></option> 
+                  <option value="3"><%=messages.getString("ComboBoxOption3")%></option>
+                  
+                 <input type="hidden" name="action" style="width: 350px; height: 300px;" value="sortPrice" />
+      
              </select>
+         </form>
          </form>  
             
             <form action="MemberActionServlet" method="post"> 
@@ -202,7 +229,7 @@
                 <%
                     List<Product> products;
                     products = (List) (request.getSession().getAttribute("fileredProducts"));
-
+                    DecimalFormat decFor = new DecimalFormat("####0.00");
                     if (products != null) 
                     { 
                         
@@ -225,14 +252,14 @@
             <div class="ProductName">
             <p><%=prod.getProductName()%></p>
             </div>
-                <p>Quantity in stock: <%=prod.getQuantityInStock()%></p>
-                <p>Price: €<%=prod.getProductPrice()%></p>
+               <p> <%=messages.getString("QtyInStockLabel")%>: <%=prod.getQuantityInStock()%></p>
+               <p>Price: <%=messages.getString("CurrencySymbolLabel")%> <%=decFor.format(prod.getProductPrice())%></p>
                 
                 
                 <p>Quantity: <input name="quantity" size=15 type="text" /></p>
                 <p><input type="hidden" name="action" value="Add To Cart" /></p>
                 <input type="hidden" name="addToCart" value="<%= prod.getProductId()%>" />
-                <p><input type="submit" value="Add To Cart" /></p>
+                 <p><input type="submit" value="<%=messages.getString("AddToCartButton")%>" /></p>
         </div>
                 
          </div> 

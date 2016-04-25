@@ -32,39 +32,46 @@ public class ResetPasswordCommand implements Command
             String email = request.getParameter("email");
             String securityAnswer = request.getParameter("securityQuestionAnswer");
 
-            if(email.matches(regexEmail))
-            {
-                emailValid = true;
-            } 
             
-            if (email != null && securityAnswer != null && !email.isEmpty() && !securityAnswer.isEmpty() && emailValid != false)
+            
+            if (email != null && securityAnswer != null && !email.isEmpty() && !securityAnswer.isEmpty())
             {
                 
-                  MemberDao mDao = new MemberDao();
+                if(email.matches(regexEmail))
+                {
+                      emailValid = true;
+                } 
                   
-                  Member m = mDao.findMemberByEmailAddress(email);
-                  
-                  HashPasswordMD5 hp = new HashPasswordMD5();
-                  String hashedSecuriyAnswer = hp.hashPassword(securityAnswer);
-                  
-                  if(m != null && hashedSecuriyAnswer.equals(m.getSecurtiyQuestionAnswer()))
-                  {
-                      HttpSession session = request.getSession();
-                      String clientSessionId = session.getId();
-                      session.setAttribute("loggedSessionId", clientSessionId);
-                      
-                      session.setAttribute("member", m);
-                      
-                      forwardToJsp = "/EditPassword.jsp";
-                  }              
-                  else
-                  {
-                       forwardToJsp = "/AccountNotFound.jsp";
-                  }    
+                if(emailValid != false)
+                {    
+                        MemberDao mDao = new MemberDao();
+
+                        Member m = mDao.findMemberByEmailAddress(email);
+
+                        HashPasswordMD5 hp = new HashPasswordMD5();
+                        String hashedSecurityAnswer = hp.hashPassword(securityAnswer);
+                        System.out.println("answer " + hashedSecurityAnswer);
+                        
+                        if(m != null && hashedSecurityAnswer.equals(m.getSecurtiyQuestionAnswer()))
+                        {
+                            HttpSession session = request.getSession();
+                            String clientSessionId = session.getId();
+                            session.setAttribute("loggedSessionId", clientSessionId);
+
+                            session.setAttribute("member", m);
+
+                            forwardToJsp = "/EditPassword.jsp";
+                        }              
+                        else
+                        {
+                             forwardToJsp = "/AccountNotFound.jsp";
+                        }  
+                }        
             }
             else
             {
                 forwardToJsp = "/AccountNotFound.jsp";
+                System.out.println("haha " + email + " rr " + securityAnswer);
             }    
          
        return forwardToJsp;

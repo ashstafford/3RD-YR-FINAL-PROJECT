@@ -1047,3 +1047,4 @@ public class MemberDao extends Dao implements MemberDaoInterface
 
     
 }
+

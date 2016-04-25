@@ -150,12 +150,7 @@ h2
             
         <nav class = "topmenu">
             <ul class="navigation">
-                    <li><a href="MemberActionServlet?action=viewProfile"><%=messages.getString("MenuButtonMyProfile")%></a></li>
-                    
-            
-       
-      
-          
+ 
          <%  Member m = (Member)session.getAttribute("member"); 
          
         if(m == null)
@@ -166,7 +161,7 @@ h2
          <li><a href="Login.jsp"><%=messages.getString("MenuButtonLogin")%></a></li>
            
             
-        <li><a href="Login.jsp"><%=messages.getString("MenuButtonRegister")%></a></li>
+        <li><a href="Register.jsp"><%=messages.getString("MenuButtonRegister")%></a></li>
        </ul>
      </nav>  
         <%
@@ -177,7 +172,7 @@ h2
       
             
         %>
-            
+           <li><a href="MemberActionServlet?action=viewProfile">My Profile</a></li> 
            <li><a href="MemberActionServlet?action=logout"><%=messages.getString("MenuButtonLogout")%></a></li>
                       
    </ul>
