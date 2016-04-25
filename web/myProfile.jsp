@@ -301,7 +301,7 @@ div#personalDetailsTitle h3
         <div id ="otherButtons"> 
             
               <div id="adminChanges">
-                        <h2>ADMIN CHANGES</h2>
+                        <h2><%=messages.getString("AdminLabel")%></h2>
                     </div> 
             <% 
                
@@ -316,7 +316,7 @@ div#personalDetailsTitle h3
                   <td><form action = "SelectProductToEdit.jsp" method = "post"> <p><input type = "submit" style="width:300px; height: 35px;" name="action" value = "<%=messages.getString("EditProductButton")%>" /></p></form></td>
                   <td><form action = "MemberActionServlet" method = "post"> <p><input type = "hidden" name="action" value = "ViewAllMembers"/><input type = "submit" style="width:300px; height: 35px;" value="<%=messages.getString("AddAdminButton")%>"/></p></form></td>
                   <td><form action = "MemberActionServlet" method = "post"> <p><input type = "hidden" name="action" value = "ViewAllMembers"/><input type = "submit" style="width:300px; height: 35px;" value="<%=messages.getString("RemoveMemberButton")%>"/></p></form></td>
-                   <td><form action = "MemberActionServlet" method = "post"> <p><input type = "hidden" name="action" value = "ViewAdminChanges"/><input type = "submit" style="width:300px; height: 35px;" value="<%=messages.getString("ViewAdminLogButton")%>"/></p></form></td>
+                  <td><form action = "MemberActionServlet" method = "post"> <p><input type = "hidden" name="action" value = "ViewAdminChanges"/><input type = "submit" style="width:300px; height: 35px;" value="<%=messages.getString("ViewAdminLogButton")%>"/></p></form></td>
                 <%
             }
             
