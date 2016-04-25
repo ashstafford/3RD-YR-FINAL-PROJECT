@@ -7,10 +7,19 @@ package Command;
 
 import Daos.MemberDao;
 import Dtos.Member;
+import java.awt.Graphics;
+import java.awt.image.BufferedImage;
+import java.awt.image.ImageObserver;
+import java.io.ByteArrayOutputStream;
+import java.io.DataOutputStream;
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.OutputStream;
+import java.net.Socket;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.imageio.ImageIO;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.HttpServletRequest;
@@ -33,8 +42,10 @@ public class EditMemberImageUrlCommand implements Command
      * @param response
      * @return
      */
+    
     public String execute(HttpServletRequest request, HttpServletResponse response) 
     {
+        
            HttpSession session = request.getSession();
            String forwardToJsp = "";
            Member m = (Member) session.getAttribute("member");
@@ -42,27 +53,67 @@ public class EditMemberImageUrlCommand implements Command
 
            String newMemberImageUrl = request.getParameter("editMemberImageUrl");
            
+           newMemberImageUrl = "C:/Users/Public/Pictures/Sample Pictures/" + newMemberImageUrl;
+           
            if(newMemberImageUrl != null)
            {
+//               System.out.println("memId = " + m.getMemberImageUrl());
                
-             boolean updated =  mDao.editMemberImageUrl(m.getMemberId(),m.getMemberImageUrl(),newMemberImageUrl);
-             
+               // + " memurl = " + m.getMemberImageUrl() + " newmemurl = " + newMemberImageUrl
+               
+//               Part filePart = null;
+// 
+//               try
+//               {
+//                   filePart = request.getPart("memberImageUrl");
+//               } catch (IOException ex)
+//               {
+//                   Logger.getLogger(EditMemberImageUrlCommand.class.getName()).log(Level.SEVERE, null, ex);
+//               } catch (ServletException ex)
+//               {
+//                   Logger.getLogger(EditMemberImageUrlCommand.class.getName()).log(Level.SEVERE, null, ex);
+//               }
+  
+//               System.out.println("filepart = " + filePart);
+               
+//
+               
+               
    
-                if(updated == true)
-                {    
+//                if(updated == true)
+//                {    
+//
+//                    String MemberImageUrlEdit = session.getId();
+//                     
+//                 
+//                    //Part filePart = request.getPart("newMemberImageUrl");
+//                 
+//                     
+//                     
+//                    m.setMemberImageUrl(newMemberImageUrl);
+//           
+               
 
-                    String MemberImageUrlEdit = session.getId();
-                     
-                 
-                    //Part filePart = request.getPart("newMemberImageUrl");
-                 
-                     
-                     
-                    m.setMemberImageUrl(newMemberImageUrl);
-           
+                BufferedImage updated =  mDao.editMemberImageUrl(m.getMemberId(), newMemberImageUrl);
+               
+                Graphics g = null;
+                
+//                if(updated != null)
+//                g.drawImage(updated, 70, 20, (ImageObserver) this); 
+                
+                String newImage = updated.toString();
+                
+                System.out.println("newImage id here = " + newImage);
+                
+                m.setMemberImageUrl(newImage);
+                System.out.println("Hi" + updated);
                     forwardToJsp = "/myProfile.jsp";
-               }  
-           }   
+//               }  
+           }
+           else
+           {
+              forwardToJsp = "/Login.jsp"; 
+           }
           
                
           

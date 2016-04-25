@@ -12,7 +12,7 @@ password varchar(32) not null,
 firstName varchar(20) not null,
 lastName varchar(20) not null,
 email varchar(40) not null,
-memberImageUrl blob ,
+memberImageUrl LONGBLOB,
 securityQuestionAnswer varchar(500) not null,
 isAdmin boolean,
 primary key(memberId))ENGINE=INNODB;

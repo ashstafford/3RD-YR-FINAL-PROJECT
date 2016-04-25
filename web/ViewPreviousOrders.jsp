@@ -16,6 +16,20 @@
         <link rel="stylesheet" type="text/css" href="mainCSS.css" >
         <title>Sales Orders</title>
         <style>
+            table, td, th {    
+    border: 1px solid #ddd;
+    text-align: left;
+}
+
+table {
+    border-collapse: collapse;
+    width: 90%;
+    padding-top: 30px;
+}
+
+th, td {
+    padding: 15px;
+}
         </style>
     </head>
      <body>
@@ -30,21 +44,22 @@
           
          <%  Member m = (Member)session.getAttribute("member"); 
          
-       // if(m == null)
-        //{
+        if(m == null)
+        {
             
          %>
         
-         <li><a href="/Login.html/Login.jsp">Login</a></li>
-           
+         <li><a href="/CA3WebApp/Login.jsp">Login</a></li>
             
-        <li><a href="/Login.html/Login.jsp">Sign Up</a></li>
-        
+            
+        <li><a href="/CA3WebApp/Login.jsp">Sign Up</a></li>
+        </ul>
+     </nav>
         <%
         
-      //  }
-       // else
-       // {
+        }
+        else
+        {
       
             
         %>
@@ -53,23 +68,21 @@
                       
    </ul>
      </nav> 
-        <%  
-        }
-        %>
+          <% } %>
             <div id="banner">
                 <img src="tempBanner.jpg"/>
             </div>
   
        <nav class="menu-1">
     <ul class="menu">
-        <li> <a href="/Login.html/HomePage.html">Home</a> </li>
+        <li> <a href="/CA3WebApp/HomePage.jsp">Home</a> </li>
         <li> <a href="MemberActionServlet?action=ViewAllProducts">Shop</a> </li>
-        <li> <a href="/Login.html/About.jsp">About</a> </li>
+        <li> <a href="/CA3WebApp/About.jsp">About</a> </li>
         
         <li> <a href="MemberActionServlet?action=ViewPreviousOrders">View Orders</a> </li>
         
-        <li> <a href="/Login.html/ContactUs.jsp">Contact</a> </li>
-        <li> <a href="/Login.html/Cart.jsp">Cart</a> </li>
+        <li> <a href="/CA3WebApp/ContactUs.jsp">Contact</a> </li>
+        <li> <a href="/CA3WebApp/Cart.jsp">Cart</a> </li>
         
         <div id="searchbar">
         <form  action = "MemberActionServlet" method = "post" >
@@ -90,7 +103,9 @@
                 
                 <table>
 
-            <tr> <th>Receipt ID</th><th>Date Ordered</th><th>Total Price</th><th>Member ID</th><th>Payment Type</th>
+                    
+                    
+            <!--<tr> <th>Receipt ID</th><th>Date Ordered</th><th>Total Price</th><th>Member ID</th><th>Payment Type</th>-->
 
          <%
                     List<SalesReceipt> orders;
@@ -98,20 +113,28 @@
 
                     if (orders != null) 
                     {
-
+        %>
+                     <tr>
+                        <th>Receipt ID</th>
+                        <th>Date Ordered</th>
+                        <th>Total Price</th>
+                        <th>Member ID</th>
+                        <th>Payment Type</th>
+                    </tr>
+        <%
                         for (SalesReceipt sr : orders) 
                         {
-                %>
-            
-             <tr>
-                <td><%=sr.getReceiptId()%></td>
-                <td><%=sr.getDateOrdered()%></td>
-                <td><%=sr.getTotalPrice()%></td>
-                <td><%=sr.getMemberId()%></td>
-                <td><%=sr.getPaymentType()%></td>
                 
-            </tr>
+        %>    
                 
+                
+                    <tr>
+                        <td><%=sr.getReceiptId()%></td>
+                        <td><%=sr.getDateOrdered()%></td>
+                        <td><%=sr.getTotalPrice()%></td>
+                        <td><%=sr.getMemberId()%></td>
+                        <td><%=sr.getPaymentType()%></td>
+                    </tr>
                 
                 
                 
@@ -121,11 +144,12 @@
                 }
                 else
                 {
-                     %><h1> You have no previous orders!</h1> <%     
+                     %><h1> You have no previous Orders!</h1> <%     
                 }        
             %>
-         </table>
-       
+         
+           </table>
+
 </div>
   
             
