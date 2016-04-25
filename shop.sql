@@ -126,3 +126,32 @@ insert into `orderItem` (`productId`, `receiptId`, `price`, `quantity`) values
 (10, 2, 22.00, 10),
 (28, 3, 50.00, 3);
 
+CREATE TABLE adminLog(
+messageId INT(20) AUTO_INCREMENT,
+message VARCHAR(20),
+messageTime TIMESTAMP,
+details varchar (50) NOT NULL,
+PRIMARY KEY(messageId));
+
+/* TRIGGERS*/
+
+DROP TRIGGER IF EXISTS `AdminChangesMemberDelete`;
+CREATE TRIGGER `AdminChangesMemberDelete` AFTER DELETE ON member
+FOR EACH ROW
+INSERT INTO adminlog Values(messageId,'Member Deleted', CURRENT_TIMESTAMP,old.userName);
+
+DROP TRIGGER IF EXISTS `AdminChangesProductDelete`;
+CREATE TRIGGER `AdminChangesProductDelete` AFTER DELETE ON product
+FOR EACH ROW
+INSERT INTO adminlog Values(messageId,'Product Deleted', CURRENT_TIMESTAMP,old.productName);
+
+
+DROP TRIGGER IF EXISTS `AdminChangesProductEdit`;
+CREATE TRIGGER `AdminChangesProductEdit` AFTER UPDATE ON product
+FOR EACH ROW
+INSERT INTO adminlog Values(messageId,'Product Edited',CURRENT_TIMESTAMP,old.productId);
+
+DROP TRIGGER IF EXISTS `AdminChangesAddAdmin`;
+CREATE TRIGGER `AdminChangesAddAdmin` AFTER UPDATE ON member
+FOR EACH ROW
+INSERT INTO adminlog Values(messageId,'Admin Added', CURRENT_TIMESTAMP,old.email);

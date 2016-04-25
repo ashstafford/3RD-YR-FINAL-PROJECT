@@ -58,7 +58,8 @@
             
             
         <li><a href="/CA3WebApp/Login.jsp"><%=messages.getString("MenuButtonRegister")%></a></li>
-        
+        </ul>
+     </nav>
         <%
         
         }
@@ -214,20 +215,16 @@
         
         <div id="pagecontent"> 
          <form action="MemberActionServlet" method="post">
-             <select name="filterComboBox" id="soflow" onchange="submit()" value="sortPrice">
+             <select name="filterComboBox" id="soflow" onchange="submit()">
                 <div id="filterCombo"></div>
 
 
                   <option value="1"><%=messages.getString("ComboBoxOption1")%></option>
                   <option value="2"><%=messages.getString("ComboBoxOption2")%></option> 
                   <option value="3"><%=messages.getString("ComboBoxOption3")%></option>
-
-                
-
-                  <div class="sortButton"> </div>
-                   <td><input type="hidden" name="action" style="width: 350px; height: 300px;" value="filterProducts" /></td>
-                   <td><input type="submit" class="sortButtonSize" value="Sort" /></td>
-                
+                  
+                 <input type="hidden" name="action" style="width: 350px; height: 300px;" value="sortPrice" />
+      
              </select>
          </form>
         
@@ -241,7 +238,7 @@
                     List<Product> products;
                     products = (List) (request.getSession().getAttribute("AllProducts"));
                     DecimalFormat decFor = new DecimalFormat("####0.00");
-                    NumberFormat numFormatter = NumberFormat.getInstance(userSetting);
+                   // NumberFormat numFormatter = NumberFormat.getInstance(userSetting);
                     
                     if (products != null) 
                     { 
@@ -267,8 +264,8 @@
             <div class="ProductName">
             <p><%=prod.getProductName()%></p>
             </div>
-                <p>Quantity in stock: <%=prod.getQuantityInStock()%></p>
-                <p>Price: <%=numFormatter.format(prod.getProductPrice())%></p>
+                <p> <%=messages.getString("QtyInStockLabel")%>: <%=prod.getQuantityInStock()%></p>
+                <p><%=messages.getString("PriceLabel")%>: <%=messages.getString("CurrencySymbolLabel")%> <%=decFor.format(prod.getProductPrice())%></p>
                 
                 
                 <p>Quantity: <input name="quantity" size=15 type = "number" min = "1" max = "<%=prod.getQuantityInStock()%>"></p>

@@ -45,6 +45,10 @@ public class CommandFactory
         {
     		command = new ViewProfileCommand();
     	}
+        if (commandStr.equals("ViewAdminChanges")) 
+        {
+    	       command = new ViewAdminChangesCommand();
+    	}        
         if (commandStr.equals("AddProduct")) 
         {
     		command = new AddProductCommand();
@@ -117,7 +121,7 @@ public class CommandFactory
         {
     		command = new ViewPokemonCommand();
     	}
-          if (commandStr.equals("SuperNatural")) 
+          if (commandStr.equals("Supernatural")) 
         {
     		command = new ViewSupernaturalCommand();
     	}

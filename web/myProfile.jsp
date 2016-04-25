@@ -314,8 +314,9 @@ div#personalDetailsTitle h3
                   <td><form action = "AddProduct.jsp" method = "post"> <p><input type = "submit" style="width:300px; height: 35px;" name="action" value = "<%=messages.getString("AddProductButton")%>" /></p></form></td
                   <td><form action = "SelectProductToEdit.jsp" method = "post"> <p><input type = "submit" style="width:300px; height: 35px;" name="action" value = "<%=messages.getString("RemoveProductButton")%>" /></p></form></td>
                   <td><form action = "SelectProductToEdit.jsp" method = "post"> <p><input type = "submit" style="width:300px; height: 35px;" name="action" value = "<%=messages.getString("EditProductButton")%>" /></p></form></td>
-                  <td><form action = "MemberActionServlet" method = "post"> <p><input type = "hidden" name="action" value = "ViewAllMembers"/><input type = "submit" style="width:300px; height: 35px;" value=<%=messages.getString("AddAdminButton")%> /></p></form></td>
-                  <td><form action = "MemberActionServlet" method = "post"> <p><input type = "hidden" name="action" value = "ViewAllMembers"/><input type = "submit" style="width:300px; height: 35px;" value=<%=messages.getString("RemoveMemberButton")%>/></p></form></td>
+                  <td><form action = "MemberActionServlet" method = "post"> <p><input type = "hidden" name="action" value = "ViewAllMembers"/><input type = "submit" style="width:300px; height: 35px;" value="<%=messages.getString("AddAdminButton")%>"/></p></form></td>
+                  <td><form action = "MemberActionServlet" method = "post"> <p><input type = "hidden" name="action" value = "ViewAllMembers"/><input type = "submit" style="width:300px; height: 35px;" value="<%=messages.getString("RemoveMemberButton")%>"/></p></form></td>
+                   <td><form action = "MemberActionServlet" method = "post"> <p><input type = "hidden" name="action" value = "ViewAdminChanges"/><input type = "submit" style="width:300px; height: 35px;" value="<%=messages.getString("ViewAdminLogButton")%>"/></p></form></td>
                 <%
             }
             

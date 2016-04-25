@@ -4,6 +4,7 @@
     Author     : d00155224
 --%>
 
+<%@page import="java.text.DecimalFormat"%>
 <%@page import="java.util.Locale"%>
 <%@page import="java.util.ResourceBundle"%>
 <%@page import="Dtos.Member"%>
@@ -55,7 +56,7 @@
          <li><a href="/CA3WebApp/Login.jsp"><%=messages.getString("MenuButtonLogin")%></a></li>
             
             
-        <li><a href="/CA3WebApp/Login.jsp"><%=messages.getString("MenuButtonSignUp")%></a></li>
+        <li><a href="/CA3WebApp/Login.jsp"><%=messages.getString("MenuButtonRegister")%></a></li>
         
         <%
         
@@ -84,7 +85,7 @@
         
         <li> <a href="MemberActionServlet?action=ViewPreviousOrders"><%=messages.getString("MenuViewOrdersButton")%></a> </li>
         
-        <li> <a href="/CA3WebApp/ContactUs.jsp"><%=messages.getString("MenucontactUsButton")%></a> </li>
+        <li> <a href="/CA3WebApp/ContactUs.jsp"><%=messages.getString("MenuContactUsButton")%></a> </li>
         <li> <a href="/CA3WebApp/Cart.jsp"><%=messages.getString("MenuCartButton")%></a> </li>
         
         <div id="searchbar">
@@ -199,7 +200,9 @@
         cart = (List) (request.getSession().getAttribute("cart"));
                     
         double total = 0;
-                    
+        
+        DecimalFormat decFor = new DecimalFormat("####0.00"); 
+        
         if (cart != null) 
         {
 
@@ -227,7 +230,7 @@
                     </div>
                     
                             <p><%=messages.getString("QuantityLabel")%>: <%=prod.getQuantityInStock()%></p>
-                            <p><%=messages.getString("PriceLabel")%>: <%=messages.getString("CurrencySymbol")%><%=prod.getProductPrice()%></p>
+                            <p><%=messages.getString("PriceLabel")%>: <%=messages.getString("CurrencySymbolLabel")%><%=prod.getProductPrice()%></p>
 
                 </div>
 
@@ -246,7 +249,7 @@
                      
            }
                     
-%>                  <h2> <%=messages.getString("TotalLabel")%>: <%  out.print(total);
+%>                  <h2> <%=messages.getString("TotalLabel")%>: <%=messages.getString("CurrencySymbolLabel")%>  <%out.print(decFor.format(total));
         }
         else
         {
