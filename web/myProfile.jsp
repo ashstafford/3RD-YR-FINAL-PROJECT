@@ -194,12 +194,10 @@ div#personalDetailsTitle h3
          %>
         
          <li><a href="/CA3WebApp/Login.jsp"><%=messages.getString("MenuButtonLogin")%></a></li>
-            <meta http-equiv="refresh" 
-            content="0; url=Login.jsp">
+
             
         <li><a href="/CA3WebApp/Login.jsp"><%=messages.getString("MenuButtonRegister")%></a></li>
-        <meta http-equiv="refresh" 
-        content="0; url=Login.j"sp>
+ 
         <%
         
         }
@@ -244,10 +242,11 @@ div#personalDetailsTitle h3
 </nav>
         
  
-            <div id="pagecontent2">
-  
+            <div id="pagecontent2">              
+                
         <div id="profilePicture">
         <img src="<%=m.getMemberImageUrl()%>" class="imageBorder" style="width: 350px; height: 300px;">
+<!--        <img src="http://example.com/getImage?imageId=1234">-->
         </div>
         
         

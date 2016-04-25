@@ -27,23 +27,32 @@
        
       
           
-         <%  //Member m = (Member)session.getAttribute("member"); 
+       <nav class = "topmenu">
+            <ul class="navigation">
+                    <li><a href="MemberActionServlet?action=viewProfile">My Profile</a></li>
+                    
+            
+       
+      
+          
+         <%  Member m = (Member)session.getAttribute("member"); 
          
-       // if(m == null)
-        //{
+        if(m == null)
+        {
             
          %>
         
-         <li><a href="/CA3WebApp/Login.jsp">Login</a></li>
-            
-            
-        <li><a href="/CA3WebApp/Login.jsp">Sign Up</a></li>
+         <li><a href="/CA3WebApp/Login.html">Login</a></li>
         
+            
+        <li><a href="/CA3WebApp/Login.html">Sign Up</a></li>
+        </ul>
+     </nav> 
         <%
         
-       // }
-       // else
-        //{
+        }
+        else
+        {
       
             
         %>
@@ -52,7 +61,7 @@
                       
    </ul>
      </nav> 
-          <%// } %>
+          <% } %>
 
             <div id="banner">
                 <img src="tempBanner.jpg"/>

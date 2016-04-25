@@ -94,14 +94,13 @@
             </div>
                
             <div id="EditsTextboxandButtonPosition">  
-               <input name="editMemberImageUrl" class="resizedTextBox" size=15 type="url" />
-                 
-               <input type = "hidden" name="action" value="Edit MemberImageUrl"/>
-               <input type="submit" class="resizedButton" name="submit" value="Edit Profile Image"/>
                
                <tr>
                     <td><input type="file" name="editMemberImageUrl" size="50" required/></td>
                 </tr>
+                
+                <input type = "hidden" name="action" value="Edit MemberImageUrl"/>
+               <input type="submit" class="resizedButton" name="submit" value="Edit Profile Image"/>
             </div>
                
          </form>

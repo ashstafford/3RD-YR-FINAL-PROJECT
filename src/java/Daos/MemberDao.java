@@ -7,8 +7,16 @@ package Daos;
 
 import Dtos.Member;
 import Exceptions.DaoException;
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayInputStream;
+import java.io.DataInputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
+import java.net.ServerSocket;
+import java.net.Socket;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.sql.Connection;
@@ -19,7 +27,11 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.imageio.ImageIO;
 import javax.servlet.http.Part;
+import javax.swing.ImageIcon;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
 
 
 /**
@@ -916,28 +928,55 @@ public class MemberDao extends Dao implements MemberDaoInterface
      return true;   
     }
     //userid
+    
     @Override
-    public boolean editMemberImageUrl(int id,String memberImageUrl,String newMemberImageUrl) //Part filePart
+    public BufferedImage editMemberImageUrl(int id, String newMemberImageUrl)  //Part filePart
    // public boolean editMemberImageUrl(int memberId, String newMemberImageUrl) 
     {
         Connection conn = null;
         PreparedStatement ps = null;
         ResultSet rs = null;
+        BufferedImage img = null;
 
         try
         {
 
             conn = getConnection();
-            String query = "Update member set memberImageUrl =? where memberImageUrl=? and memberId=?";
-            //String query = "Update member set memberImageUrl =? where memberId=?";
-            ps = conn.prepareStatement(query);
+//            String query = "Update member set memberImageUrl =? where memberImageUrl=? and memberId=?";
+            String query = "Update member set memberImageUrl =? where memberId=?";
+//            ps = conn.prepareStatement(query);
+            
+            FileInputStream fis = null;
+            File file = null;
+            try {
+              conn.setAutoCommit(false);
+              file = new File(newMemberImageUrl);
+                System.out.println("file = " + file);
+              fis = new FileInputStream(file);
+              ps = conn.prepareStatement(query);
+//              ps.setAutoCommitString(1, newMemberImageUrl);
+        //            ps.setString(2, memberImageUrl);                   
+              ps.setBinaryStream(1, fis, (int) file.length());
+              ps.setInt(2, id);
+              ps.executeUpdate();
+              conn.commit();
+            } finally {
+              ps.close();
+              fis.close();
+            }
+            
+            //Set image from database
+            
+            img = getImageFromDatabase(conn, id);
             
 //            InputStream inputStream = null;
-//           
+////            Part filePart = request.getPart("newMemberImageUrl");
+////           
 //            if (filePart != null) 
 //            {
 //               // obtains input stream of the upload file
 //               inputStream = filePart.getInputStream();
+//               return false;
 //            }
 //            
 //            if (inputStream != null) 
@@ -945,17 +984,17 @@ public class MemberDao extends Dao implements MemberDaoInterface
 //                // fetches input stream of the upload file for the blob column
 //                ps.setBlob(1, inputStream);
 //            }
-            ps.setString(1, newMemberImageUrl);
-            ps.setString(2, memberImageUrl);
-            ps.setInt(3,id);
-
-            ps.executeUpdate();
+            
+            System.out.println("reached memberdao");
 
         } catch (SQLException e)
         {
            e.printStackTrace();
-            return false;
+            return img;
 
+        } catch (IOException ex)
+        {
+            Logger.getLogger(MemberDao.class.getName()).log(Level.SEVERE, null, ex);
         } finally
         {
             try
@@ -978,11 +1017,32 @@ public class MemberDao extends Dao implements MemberDaoInterface
             } catch (SQLException e)
             {
                 e.printStackTrace();
-                return false;
+                return img;
                   
             }
         }
-     return true;   
+     return img;   
+    }
+    
+    public BufferedImage getImageFromDatabase(Connection conn, int memberId)
+    {
+        String query = "select memberImageUrl from member where memberId = ?";
+        BufferedImage buffimg = null;
+        try 
+        {
+            PreparedStatement stmt = conn.prepareStatement(query);
+            stmt.setInt(1,memberId);
+            ResultSet result = stmt.executeQuery();
+            result.next();
+            InputStream img = result.getBinaryStream(1); // reading image as InputStream
+            System.out.println("image pulling from database "+ img);
+            buffimg= ImageIO.read(img); // decoding the inputstream as BufferedImage
+        }
+        catch(Exception ex) {
+        System.out.println(ex.getMessage());
+        }
+        return buffimg;
+        
     }
 
     
