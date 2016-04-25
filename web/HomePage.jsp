@@ -136,6 +136,8 @@ h2
   text-transform: 
   uppercase; z-index: 1000;
   font-family: Arial, Helvetica, sans-serif;
+  
+  
 }
 
         </style>
