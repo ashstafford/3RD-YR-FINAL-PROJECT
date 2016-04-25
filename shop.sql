@@ -2,6 +2,9 @@ drop database if exists Shop;
 create database Shop;
 use Shop;
 
+/* MEMBER TABLE */
+
+
 create table member(
 memberId int(20) not null AUTO_INCREMENT,
 userName varchar(20) not null,
@@ -14,6 +17,14 @@ securityQuestionAnswer varchar(500) not null,
 isAdmin boolean,
 primary key(memberId))ENGINE=INNODB;
 
+Insert into `member`(`memberId`, `firstName`, `lastName`,`userName`, `password` ,`email` ,`memberImageUrl`,`securityQuestionAnswer`,`isAdmin`) values
+(1, 'Bob', 'McGinty','Bob123', '5f4dcc3b5aa765d61d8327deb882cf99', 'ash@yahoo.net', 'images/defaultProfilePicture.jpeg','spot',true),
+(3, 'john', 'Rock','john1', '5f4dcc3b5aa765d61d8327deb882cf99','ash@hotmail.com', 'images/defaultProfilePicture.jpeg','twinkle',false),
+(4, 'aisling', 'stafford','ashstaff', '5f4dcc3b5aa765d61d8327deb882cf99','ashs@yahoo.com', 'images/defaultProfilePicture.jpeg','reilly',true);
+
+
+/* PRODUCTS TABLE */
+
 create table product(
 productId int(20) not null  AUTO_INCREMENT,
 productImageUrl varchar(500),
@@ -22,26 +33,6 @@ productPrice decimal(20) not null,
 quantityInStock int(50) not null,
 category varchar(20) not null, 
 primary key(productId));
-
-create table salesReceipt(
-receiptId int (20) not null AUTO_INCREMENT,
-dateOrdered date,
-totalPrice double(20,2) not null,
-memberId int(20) not null,
-paymentType varchar(30) not null,
-primary key(receiptId),
-foreign key(memberId) references member(memberId)on delete cascade on update cascade) ENGINE=INNODB;
-
-create table orderItem(
-productId int(7) not null,
-receiptId int(7) not null,
-price double(20,2) not null,
-quantity int(7) not null,
-primary key(productId,receiptId),
-foreign key(productId) references product(productId)on delete cascade on update cascade, 
-foreign key(receiptId) references salesReceipt(receiptId)on delete cascade on update cascade) ENGINE=INNODB;
-
-
 
 Insert into `product`(`productId`, `productImageUrl`, `productName`, `productPrice`,`quantityInStock`,`category`) values
 (1,'images/IMG_starwars1.jpg','STAR WARS DROIDS YOURE LOOKING FOR GIRLS T-SHIRT',20.00,2,'Star Wars'),
@@ -111,20 +102,48 @@ Insert into `product`(`productId`, `productImageUrl`, `productName`, `productPri
 (55,'images/IMG_supern5.jpg','FUNKO SUPERNATURAL POCKET POP! SAM KEY CHAIN',050.00,19,'Supernatural');
 
 
-Insert into `member`(`memberId`, `firstName`, `lastName`,`userName`, `password` ,`email` ,`memberImageUrl`,`securityQuestionAnswer`,`isAdmin`) values
-(1, 'Bob', 'McGinty','Bob123', '5f4dcc3b5aa765d61d8327deb882cf99', 'ash@yahoo.net', 'images/defaultProfilePicture.jpeg','spot',true),
-(3, 'john', 'Rock','john1', '5f4dcc3b5aa765d61d8327deb882cf99','ash@hotmail.com', 'images/defaultProfilePicture.jpeg','twinkle',false),
-(4, 'aisling', 'stafford','ashstaff', '5f4dcc3b5aa765d61d8327deb882cf99','ashs@yahoo.com', 'images/defaultProfilePicture.jpeg','reilly',true);
+
+
+
+/* SALES RECEIPT TABLE */
+
+create table salesReceipt(
+receiptId int (20) not null AUTO_INCREMENT,
+dateOrdered date,
+totalPrice double(20,2) not null,
+memberId int(20) not null,
+paymentType varchar(30) not null,
+primary key(receiptId),
+foreign key(memberId) references member(memberId)on delete cascade on update cascade) ENGINE=INNODB;
 
 insert into `salesReceipt` (`receiptId`, `dateOrdered`, `totalPrice`, `memberId`, `paymentType`) values
 (1, 23-05-2015, 120.00, 1, 'card'),
 (2, 04-02-2015, 60.00, 3, 'card'),
 (3, 04-02-2014, 70.00, 4,'card');
 
+
+
+
+
+/* ORDER ITEM TABLE */
+
+create table orderItem(
+productId int(7) not null,
+receiptId int(7) not null,
+price double(20,2) not null,
+quantity int(7) not null,
+primary key(productId,receiptId),
+foreign key(productId) references product(productId)on delete cascade on update cascade, 
+foreign key(receiptId) references salesReceipt(receiptId)on delete cascade on update cascade) ENGINE=INNODB;
+
+
 insert into `orderItem` (`productId`, `receiptId`, `price`, `quantity`) values
 (18, 1, 21.00, 5),
 (10, 2, 22.00, 10),
 (28, 3, 50.00, 3);
+
+
+/* ADMINLOG TABLE */
 
 CREATE TABLE adminLog(
 messageId INT(20) AUTO_INCREMENT,
@@ -133,7 +152,7 @@ messageTime TIMESTAMP,
 details varchar (50) NOT NULL,
 PRIMARY KEY(messageId));
 
-/* TRIGGERS*/
+/* TRIGGERS */
 
 DROP TRIGGER IF EXISTS `AdminChangesMemberDelete`;
 CREATE TRIGGER `AdminChangesMemberDelete` AFTER DELETE ON member
@@ -144,7 +163,6 @@ DROP TRIGGER IF EXISTS `AdminChangesProductDelete`;
 CREATE TRIGGER `AdminChangesProductDelete` AFTER DELETE ON product
 FOR EACH ROW
 INSERT INTO adminlog Values(messageId,'Product Deleted', CURRENT_TIMESTAMP,old.productName);
-
 
 DROP TRIGGER IF EXISTS `AdminChangesProductEdit`;
 CREATE TRIGGER `AdminChangesProductEdit` AFTER UPDATE ON product
