@@ -192,7 +192,7 @@
         <form action = "MemberActionServlet" method = "post">
                <p> 
                   <input type="hidden" name="action" value ="Supernatural">
-                  <input type="image" src="images/supernaturalLogo.jpg" alt="Submit" width="200px" height="70px"/> 
+                  <input type="image" src="images/supernatural-logo.jpg" alt="Submit" width="200px" height="70px"/> 
              
                </p>
          </form>
@@ -201,7 +201,7 @@
         
       <div id="pagecontent">
         
-        
+        <div class="list-of-posts">
          <table>
 
                 <%
@@ -236,25 +236,30 @@
                 <input type="hidden" name="addToCart" value="<%=prod.getProductId()%>" />
                 <p><input type="submit" value="<%=messages.getString("AddToCartButton")%>" /></p>
         </div>
-           </tr>
            
+             </div>
+                </form>
            
            <%
                     }
                 }
             %>
-      </form>
+      
             
 
-
+        
         </table>
 
         
 
-      </div>
-</div>
+
+      <div class="pagination">
+            </div>
+            </div>
             
-            
+</div>  
+    </div>    
+      
         
     </body>
 </html>

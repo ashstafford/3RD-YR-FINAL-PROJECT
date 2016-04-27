@@ -79,11 +79,11 @@ public class OrderDetailsCommand implements Command
                 
                 for (Product prod : cart) 
                 {
-                   quantity = request.getParameter("quantity");
-                   int quantity2 = Integer.parseInt(quantity);
-                   oItemDao.insertIntoOrderItem(memberId, sr1.getReceiptId(), prod.getProductPrice(),quantity2);
-                   int qty = prod.getQuantityInStock() - quantity2;
-                   prod.setQuantityInStock(qty);
+        //           quantity = request.getParameter("quantity");
+//                   int quantity2 = Integer.parseInt(quantity);
+  //                 oItemDao.insertIntoOrderItem(memberId, sr1.getReceiptId(), prod.getProductPrice(),quantity2);
+    //               int qty = prod.getQuantityInStock() - quantity2;
+      //             prod.setQuantityInStock(qty);
                 } 
                 
                 cart.clear();

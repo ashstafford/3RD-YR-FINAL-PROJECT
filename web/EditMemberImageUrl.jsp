@@ -103,7 +103,7 @@
             <div id="EditsTextboxandButtonPosition">  
                
                <tr>
-                    <td><input type="file" name="editMemberImageUrl" size="50" required/></td>
+                    <td><input type="file"  name="editMemberImageUrl"  size="50" required/></td>
                 </tr>
                 
                 <input type = "hidden" name="action" value="Edit MemberImageUrl"/>

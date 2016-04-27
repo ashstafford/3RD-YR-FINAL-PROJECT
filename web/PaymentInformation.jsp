@@ -13,7 +13,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Payment Page</title>
         <link rel="stylesheet" type="text/css" href="mainCSS.css" >
- <script type="text/javascript" src="payment.js"></script>
+        <script type="text/javascript" src="js/payment.js"></script>
     </head>
     <body>
       		

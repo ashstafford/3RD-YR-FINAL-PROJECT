@@ -88,8 +88,8 @@
     </ul>
            
            
-</nav>
-      <div id="pagecontent2">
+</nav> 
+      <div id="pagecontent3">
            
         <form action = "MemberActionServlet" method = "post">
             

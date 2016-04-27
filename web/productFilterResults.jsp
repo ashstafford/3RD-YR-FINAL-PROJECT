@@ -194,7 +194,7 @@
         <form action = "MemberActionServlet" method = "post">
                <p> 
                   <input type="hidden" name="action" value ="Supernatural">
-                  <input type="image" src="images/supernaturalLogo.jpg" alt="Submit" width="200px" height="70px"/> 
+                  <input type="image" src="images/supernatural-logo.jpg" alt="Submit" width="200px" height="70px"/> 
              
                </p>
          </form>

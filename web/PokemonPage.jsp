@@ -1,7 +1,7 @@
 <%-- 
-    Document   : PokemonPage
-    Created on : 12-Apr-2016, 15:23:38
-    Author     : Benjamin
+    Document   : StarWarsPage
+    Created on : 09-Dec-2015, 02:00:45
+    Author     : Aisling
 --%>
 
 <%@page import="java.text.DecimalFormat"%>
@@ -10,14 +10,19 @@
 <%@page import="Dtos.Member"%>
 <%@page import="java.util.List"%>
 <%@page import="Dtos.Product"%>
+
+
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <link rel="stylesheet" type="text/css" href="mainCSS.css" >
-        <title>DC Page</title>
-     <% 
+         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+         <link rel="stylesheet" type="text/css" href="mainCSS.css" >
+         <script src="js/jquery_1.js"></script>
+        <script src="js/paginate.js"></script>
+        <script src="js/custom.js"></script>
+        <script type="text/javascript" src="js/modernizr-1.5.min.js"></script>
+  <% 
    
         Locale userSetting = (Locale) session.getAttribute("locale");
        
@@ -27,10 +32,9 @@
         }
    
     ResourceBundle messages = ResourceBundle.getBundle("properties.text", userSetting);
-%>
-
-    </head>
-     </head>   
+%> 
+    </head>   
+    
     <body>
   
     <div id="container">
@@ -192,7 +196,7 @@
         <form action = "MemberActionServlet" method = "post">
                <p> 
                   <input type="hidden" name="action" value ="Supernatural">
-                  <input type="image" src="images/supernaturalLogo.jpg" alt="Submit" width="200px" height="70px"/> 
+                  <input type="image" src="images/supernatural-logo.jpg" alt="Submit" width="200px" height="70px"/> 
              
                </p>
          </form>
@@ -201,7 +205,7 @@
         
       <div id="pagecontent">
         
-        
+        <div class="list-of-posts">
          <table>
 
                 <%
@@ -236,25 +240,30 @@
                 <input type="hidden" name="addToCart" value="<%=prod.getProductId()%>" />
                 <p><input type="submit" value="<%=messages.getString("AddToCartButton")%>" /></p>
         </div>
-           </tr>
            
+             </div>
+                </form>
            
            <%
                     }
                 }
             %>
-      </form>
+      
             
 
-
+        
         </table>
 
         
 
-      </div>
-</div>
+
+      <div class="pagination">
+            </div>
+            </div>
             
-            
+</div>  
+    </div>    
+      
         
     </body>
 </html>
