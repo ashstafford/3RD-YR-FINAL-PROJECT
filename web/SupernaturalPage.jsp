@@ -16,9 +16,10 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <link rel="stylesheet" type="text/css" href="mainCSS.css" >
-        <script src="js/jquery_1.js"></script>
+         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+         <link rel="icon" href="images/flash3.png" type="image/gif" sizes="20x20">
+         <link rel="stylesheet" type="text/css" href="mainCSS.css" >
+         <script src="js/jquery_1.js"></script>
         <script src="js/paginate.js"></script>
         <script src="js/custom.js"></script>
         <script type="text/javascript" src="js/modernizr-1.5.min.js"></script>

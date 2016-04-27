@@ -11,6 +11,7 @@
 <html>
     <head>
             <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+            <link rel="icon" href="images/flash3.png" type="image/gif" sizes="20x20">
             <title>Edit First Name</title>
             <link rel="stylesheet" type="text/css" href="mainCSS.css" >
             <script src="//code.jquery.com/jquery-1.10.2.js"></script>

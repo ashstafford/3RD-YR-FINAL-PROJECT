@@ -3,33 +3,33 @@
 // * To change this template file, choose Tools | Templates
 // * and open the template in the editor.
 // */
-//package Daos;
-//
-//import Dtos.Product;
-//import java.util.ArrayList;
-//import java.util.List;
-//import org.junit.After;
-//import org.junit.AfterClass;
-//import org.junit.Assert;
-//import org.junit.Before;
-//import org.junit.BeforeClass;
-//import org.junit.Test;
-//import static org.junit.Assert.*;
-//
-///**
-// *
-// * @author Benjamin
-// */
-//public class ProductDaoTest 
-//{
-//    
-//    /**
-//     *
-//     */
-//    public ProductDaoTest() 
-//    {
-//        
-//    }
+package Daos;
+
+import Dtos.Product;
+import java.util.ArrayList;
+import java.util.List;
+import org.junit.After;
+import org.junit.AfterClass;
+import org.junit.Assert;
+import org.junit.Before;
+import org.junit.BeforeClass;
+import org.junit.Test;
+import static org.junit.Assert.*;
+
+/**
+ *
+ * @author Benjamin
+ */
+public class ProductDaoTest 
+{
+    
+    /**
+     *
+     */
+    public ProductDaoTest() 
+    {
+        
+    }
 //
 //   
 //
@@ -169,59 +169,59 @@
 
    
     
-//
-//    
-//    
-//    @Test
-//    public void testRemoveProduct()
-//    {
-//        System.out.println("removeProduct");
-//        int productId = 1;
-//        ProductDao instance = new ProductDao();
-//        boolean expResult = true;
-//        boolean result = instance.removeProduct(productId);
-//        assertEquals(expResult, result);
-//       
-//    }
-//
-//   
-//    @Test
-//    public void testAddProduct() {
-//        System.out.println("addProduct");
-//        String productImageUrl = "images/IMG_GOT1.jpg";
-//        String productName = "red top";
-//        double productPrice = 20.0;
-//        int quantityInStock = 10;
-//        String category = "The Walking Dead";
-//        ProductDao instance = new ProductDao();
-//        boolean expResult = instance.addProduct(productImageUrl, productName, productPrice, quantityInStock, category);
-//        boolean result = instance.addProduct(productImageUrl, productName, productPrice, quantityInStock, category);
-//        assertEquals(expResult, result);
-//        System.out.println("Test Passed");
-//        //ArrayList<Product> p = instance.findProductsByTitle("red top");
-//    }
-//
-//   
-//    @Test
-//    public void testEditProductDetails()
-//    {
-//        System.out.println("editProductDetails");
-//        int id = 4;
-//        String productImageUrl = "images/IMG_starwars2.jpg";
-//        String productName = "STAR WARS COMIC COVER T-SHIRT";
-//        double productPrice = 25.0;
-//        int quantityInStock = 10;
-//        String category = "Star Wars";
-//        ProductDao instance = new ProductDao();
-//        boolean expResult = instance.editProductDetails(id, productImageUrl, productName, productPrice, quantityInStock, category);
-//        boolean result = instance.editProductDetails(id, productImageUrl, productName, productPrice, quantityInStock, category);
-//        assertEquals(expResult, result);
-//        System.out.println("Test Passed");
-//        boolean p= instance.editProductDetails(4,"images/IMG_starwars2.jpg","STAR WARS COMIC COVER T-SHIRT",25.0,10,"Star Wars");
-//        instance.editProductDetails(id, productImageUrl, productName, productPrice, quantityInStock, category);
-//    }
-//    
+
+    
+    
+    @Test
+    public void testRemoveProduct()
+    {
+        System.out.println("removeProduct");
+        int productId = 1;
+        ProductDao instance = new ProductDao();
+        boolean expResult = true;
+        boolean result = instance.removeProduct(productId);
+        assertEquals(expResult, result);
+       
+    }
+
+   
+    @Test
+    public void testAddProduct() {
+        System.out.println("addProduct");
+        String productImageUrl = "images/IMG_GOT1.jpg";
+        String productName = "red top";
+        double productPrice = 20.0;
+        int quantityInStock = 10;
+        String category = "The Walking Dead";
+        ProductDao instance = new ProductDao();
+        boolean expResult = instance.addProduct(productImageUrl, productName, productPrice, quantityInStock, category);
+        boolean result = instance.addProduct(productImageUrl, productName, productPrice, quantityInStock, category);
+        assertEquals(expResult, result);
+        System.out.println("Test Passed");
+        //ArrayList<Product> p = instance.findProductsByTitle("red top");
+    }
+
+   
+    @Test
+    public void testEditProductDetails()
+    {
+        System.out.println("editProductDetails");
+        int id = 4;
+        String productImageUrl = "images/IMG_starwars2.jpg";
+        String productName = "STAR WARS COMIC COVER T-SHIRT";
+        double productPrice = 25.0;
+        int quantityInStock = 10;
+        String category = "Star Wars";
+        ProductDao instance = new ProductDao();
+        boolean expResult = instance.editProductDetails(id, productImageUrl, productName, productPrice, quantityInStock, category);
+        boolean result = instance.editProductDetails(id, productImageUrl, productName, productPrice, quantityInStock, category);
+        assertEquals(expResult, result);
+        System.out.println("Test Passed");
+        boolean p= instance.editProductDetails(4,"images/IMG_starwars2.jpg","STAR WARS COMIC COVER T-SHIRT",25.0,10,"Star Wars");
+        instance.editProductDetails(id, productImageUrl, productName, productPrice, quantityInStock, category);
+    }
+    
 
    
     
-//}
+}

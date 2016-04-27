@@ -4,14 +4,13 @@
     Author     : D00154410
 --%>
 
-<%@page import="java.util.ResourceBundle"%>
-<%@page import="java.util.Locale"%>
 <%@page import="Dtos.Member"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link rel="icon" href="images/flash3.png" type="image/gif" sizes="20x20">
         <link rel="stylesheet" type="text/css" href="mainCSS.css" >
         <script src="//code.jquery.com/jquery-1.10.2.js"></script>
         <script src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
@@ -32,16 +31,17 @@
 %>
 
     </head>
-     </head>   
     <body>
-        
-
-          
-    <div id="container">
+        <div id="container">
             
         <nav class = "topmenu">
             <ul class="navigation">
- 
+                    <li><a href="MemberActionServlet?action=viewProfile">My Profile</a></li>
+                    
+            
+       
+      
+          
          <%  Member m = (Member)session.getAttribute("member"); 
          
         if(m == null)
@@ -49,12 +49,12 @@
             
          %>
         
-         <li><a href="Login.jsp"><%=messages.getString("MenuButtonLogin")%></a></li>
-           
+         <li><a href="/CA3WebApp/Login.html">Login</a></li>
+        
             
-        <li><a href="Register.jsp"><%=messages.getString("MenuButtonRegister")%></a></li>
-       </ul>
-     </nav>  
+        <li><a href="/CA3WebApp/Login.html">Sign Up</a></li>
+        </ul>
+     </nav> 
         <%
         
         }
@@ -63,34 +63,34 @@
       
             
         %>
-           <li><a href="MemberActionServlet?action=viewProfile">My Profile</a></li> 
-           <li><a href="MemberActionServlet?action=logout"><%=messages.getString("MenuButtonLogout")%></a></li>
+            
+           <li><a href="MemberActionServlet?action=logout">Logout</a></li>
                       
    </ul>
      </nav> 
-        <%  
-        }
-        %>
+          <% } %>
+
             <div id="banner">
                 <img src="tempBanner.jpg"/>
             </div>
   
        <nav class="menu-1">
     <ul class="menu">
-        <li> <a href="/CA3WebApp/HomePage.jsp"><%=messages.getString("MenuHomeButton")%></a> </li>
-        <li> <a href="MemberActionServlet?action=ViewAllProducts"><%=messages.getString("MenuShopButton")%></a> </li>
-        <li> <a href="/CA3WebApp/About.jsp"><%=messages.getString("MenuAboutButton")%></a> </li>
+        <li> <a href="/CA3WebApp/HomePage.jsp">Home</a> </li>
+        <li> <a href="MemberActionServlet?action=ViewAllProducts">Shop</a> </li>
+        <li> <a href="/CA3WebApp/About.jsp">About</a> </li>
         
-        <li> <a href="MemberActionServlet?action=ViewPreviousOrders"><%=messages.getString("MenuViewOrdersButton")%></a> </li>
+        <li> <a href="MemberActionServlet?action=ViewPreviousOrders">View Orders</a> </li>
         
-        <li> <a href="/CA3WebApp/ContactUs.jsp"><%=messages.getString("MenuContactUsButton")%></a> </li>
-        <li> <a href="/CA3WebApp/Cart.jsp"><%=messages.getString("MenuCartButton")%></a> </li>
+        <li> <a href="/CA3WebApp/ContactUs.jsp">Contact</a> </li>
+        <li> <a href="/CA3WebApp/Cart.jsp">Cart</a> </li>
+        
         <div id="searchbar">
         <form  action = "MemberActionServlet" method = "post" >
                <td> <input name="searchName" id="searchName" size=30 type="text" />  
                  <input type="hidden" name="action" value="searchName" />
-                 <input type="submit" value="<%=messages.getString("SearchBarButton")%>"/>
-               
+                 <input type="submit" value="Search"/>
+               </p>
         </form>
         </div>
         
@@ -98,11 +98,10 @@
            
            
 </nav>
-
       <div id="pagecontent3">
            
           <div id ="ContactHeading">
-              <h1><%=messages.getString("ContactUsLabel")%></h1>
+              <h1> Contact Us </h1>
               <hr></hr>
           </div>
           
@@ -110,12 +109,13 @@
           <br>
           
           <div id="ContactUsInfo">
-              <td><p><%=messages.getString("ContactUsInfoText")%></p></td>
+              <td><p>Thank you for your interest in our store. 
+                      If you still have questions, please do not hesitate to Contact Us!</p></td>
           </div>
           <div id="ContactUsInfo2">
               
               <div id="ContactInfoHeadings">
-                    <td><p><%=messages.getString("EmailAddressLabel")%><p></td>
+                    <td><p>Email Address<p></td>
               </div>
               
               <div id="ContactInfo">
@@ -123,7 +123,7 @@
               </div>
               
               <div id="ContactInfoHeadings">
-                    <td><p><%=messages.getString("PhoneNoLabel")%></p></td>
+                    <td><p>Telephone Number</p></td>
               </div>
               
               <div id ="ContactInfo">
@@ -131,7 +131,7 @@
               </div>
               
               <div id="ContactInfoHeadings">
-                    <td><p><%=messages.getString("AddressLabel")%></p></td>
+                    <td><p>Address</p></td>
               </div>
               
               <div id="ContactInfo">
@@ -146,7 +146,7 @@
           </div>
           
            <div id="map_heading">
-                  <h3><%=messages.getString("MapHeadingLabel")%></h3>
+                  <h3>Where we are located</h3>
            </div>
             <div id="mapDiv"></div>
 
@@ -181,6 +181,36 @@ for (var i = 0; i < locations.length; i++)
                                                      })(location_marker, i));
 }
 </script>
+
+    <div class ="images2">
+                <div class="social-popout">
+                    <a href="http://www.facebook.com"><img src="images/facebook.png" />         
+                </div>
+                
+                <div class="social-popout">            
+                     <a href="http://www.twitter.com"><img src="images/twitter.png" />            
+                </div>
+                
+                <div class="social-popout">             
+                     <a href="http://www.googleplus.com"><img src="images/googleplus.png" />  
+                </div>
+                
+                <div class="social-popout">            
+                     <a href="http://www.instagram.com"><img src="images/instagram.png" />
+                </div>
+                
+                <div class="social-popout">         
+                     <a href="http://www.pinterest.com"><img src="images/pinterest.png" />
+                </div>
+                
+                <div class="social-popout">
+                     <a href="http://www.tumblr.com"><img src="images/tumblr.png" />
+                </div>
+            </div>
+
+
        </div>
+           
+          
     </body>
 </html>
