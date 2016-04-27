@@ -4,6 +4,8 @@
  * and open the template in the editor.
  */
 package Dtos;
+import java.awt.image.BufferedImage;
+import java.sql.Blob;
 import java.util.Objects;
 
 /**
@@ -18,7 +20,7 @@ public class Member
     private String firstName;
     private String lastName;
     private String email;
-    private String memberImageUrl;
+    private BufferedImage memberImage;
     private String securtiyQuestionAnswer;
     private boolean admin;
 
@@ -49,7 +51,7 @@ public class Member
         this.admin = admin;
     }
 
-    public Member(int memberId, String userName, String password, String firstName, String lastName, String email, String memberImageUrl, String securtiyQuestionAnswer, boolean admin)
+    public Member(int memberId, String userName, String password, String firstName, String lastName, String email, BufferedImage memberImageUrl, String securtiyQuestionAnswer, boolean admin)
     {
         this.memberId = memberId;
         this.userName = userName;
@@ -57,7 +59,7 @@ public class Member
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
-        this.memberImageUrl = memberImageUrl;
+        this.memberImage = memberImageUrl;
         this.securtiyQuestionAnswer = securtiyQuestionAnswer;
         this.admin = admin;
     }
@@ -176,18 +178,18 @@ public class Member
      *
      * @return memberImageUrl
      */
-    public String getMemberImageUrl()
+    public BufferedImage getMemberImageUrl()
     {
-        return memberImageUrl;
+        return memberImage;
     }
 
     /**
      *
-     * @param memberImageUrl
+     * @param memberImage
      */
-    public void setMemberImageUrl(String memberImageUrl)
+    public void setMemberImage(BufferedImage memberImage)
     {
-        this.memberImageUrl = memberImageUrl;
+        this.memberImage = memberImage;
     }
 
     public String getSecurtiyQuestionAnswer()
@@ -227,7 +229,7 @@ public class Member
         hash = 89 * hash + Objects.hashCode(this.firstName);
         hash = 89 * hash + Objects.hashCode(this.lastName);
         hash = 89 * hash + Objects.hashCode(this.email);
-        hash = 89 * hash + Objects.hashCode(this.memberImageUrl);
+        hash = 89 * hash + Objects.hashCode(this.memberImage);
         hash = 89 * hash + Objects.hashCode(this.securtiyQuestionAnswer);
         hash = 89 * hash + (this.admin ? 1 : 0);
         return hash;
@@ -277,7 +279,7 @@ public class Member
         {
             return false;
         }
-        if (!Objects.equals(this.memberImageUrl, other.memberImageUrl))
+        if (!Objects.equals(this.memberImage, other.memberImage))
         {
             return false;
         }
@@ -291,7 +293,7 @@ public class Member
     @Override
     public String toString()
     {
-        return "Member{" + "memberId=" + memberId + ", userName=" + userName + ", password=" + password + ", firstName=" + firstName + ", lastName=" + lastName + ", email=" + email + ", memberImageUrl=" + memberImageUrl + ", securtiyQuestionAnswer=" + securtiyQuestionAnswer + ", admin=" + admin + '}';
+        return "Member{" + "memberId=" + memberId + ", userName=" + userName + ", password=" + password + ", firstName=" + firstName + ", lastName=" + lastName + ", email=" + email + ", memberImage=" + memberImage + ", securtiyQuestionAnswer=" + securtiyQuestionAnswer + ", admin=" + admin + '}';
     }
     
 }

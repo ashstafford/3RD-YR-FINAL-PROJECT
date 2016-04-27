@@ -53,7 +53,7 @@ public class EditMemberImageUrlCommand implements Command
 
            String newMemberImageUrl = request.getParameter("editMemberImageUrl");
            
-           newMemberImageUrl = "C:/Users/Public/Pictures/Sample Pictures/" + newMemberImageUrl;
+           newMemberImageUrl = "C:/temp/" + newMemberImageUrl;
            
            if(newMemberImageUrl != null)
            {
@@ -101,13 +101,13 @@ public class EditMemberImageUrlCommand implements Command
 //                if(updated != null)
 //                g.drawImage(updated, 70, 20, (ImageObserver) this); 
                 
-                String newImage = updated.toString();
+                //String newImage = updated.toString();
+                BufferedImage newImage = updated;
+                //System.out.println("newImage id here = " + newImage);
                 
-                System.out.println("newImage id here = " + newImage);
-                
-                m.setMemberImageUrl(newImage);
+                m.setMemberImage(newImage);
                 System.out.println("Hi" + updated);
-                    forwardToJsp = "/myProfile.jsp";
+                forwardToJsp = "/myProfile.jsp";
 //               }  
            }
            else

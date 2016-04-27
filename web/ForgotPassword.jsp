@@ -96,6 +96,9 @@
                     <input type="submit" class="resizedButton" value="Next" />
                 </div>
                 
+                
+            </form>
+                
                 <div id ="ForgotPasswordButtonBack">
                     <form action = "Login.jsp" method = "post">
                         <p> 
@@ -103,7 +106,6 @@
                         </p>
                     </form>  
                 </div>
-            </form>
                 </div>
            
             </div>

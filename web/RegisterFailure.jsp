@@ -61,24 +61,24 @@
 
             <div id="pagecontent2">
                 
-                <div id="registerFailed">    
-        <h1>Register Failed</h1>
+                <div id="RegisterFailed">    
+                    <h1>Register Failed</h1>
 
-        <form action = "Register.jsp" method = "post">
-               
-      
-               <p> 
-                  <input type = "submit" name = "Register" value = "Return to Register" />
-               </p>
-       </form>
+                    <form action = "Register.jsp" method = "post">
+
+
+                           <p> 
+                              <input type = "submit"  name = "Register" class="resizedButton" value = "Return to Register" />
+                           </p>
+                   </form>
         
-       <form action = "Login.jsp" method = "post">
-               
-      
-               <p> 
-                  <input type = "submit" name = "Login" value = "Return to Login"/>
-               </p>
-       </form>
+                <form action = "Login.jsp" method = "post">
+
+
+                        <p> 
+                           <input type = "submit"  name = "Login" class="resizedButton" value = "Return to Login"/>
+                        </p>
+                </form>
         
       </div>
            

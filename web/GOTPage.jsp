@@ -1,26 +1,33 @@
 <%-- 
-    Document   : GOTPage
-    Created on : 15-Dec-2015, 17:02:58
-    Author     : d00155224
+    Document   : StarWarsPage
+    Created on : 09-Dec-2015, 02:00:45
+    Author     : Aisling
 --%>
 
 <%@page import="java.text.DecimalFormat"%>
 <%@page import="Dtos.Member"%>
 <%@page import="java.util.List"%>
 <%@page import="Dtos.Product"%>
+
+
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <link rel="stylesheet" type="text/css" href="mainCSS.css" >
-        <title>Game Of Thrones Page</title>
-     <style>   
-    </style>
+         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+         <link rel="stylesheet" type="text/css" href="mainCSS.css" >
+         <script src="js/jquery_1.js"></script>
+        <script src="js/paginate.js"></script>
+        <script src="js/custom.js"></script>
+        <script type="text/javascript" src="js/modernizr-1.5.min.js"></script>
+         <style>   
+
+        </style>
+    </head>   
     <body>
         
-    <div id="container">  
-         <nav class = "topmenu">
+   <div id="container">  
+          <nav class = "topmenu">
              <ul class="navigation">
                     <li><a href="MemberActionServlet?action=viewProfile">My Profile</a></li>
                     
@@ -30,23 +37,21 @@
           
          <%  Member m = (Member)session.getAttribute("member"); 
          
-        if(m == null)
-        {
+       // if(m == null)
+        //{
             
          %>
         
-         <li><a href="/Login.html/Login.jsp">Login</a></li>
+         <li><a href="/CA3WebApp/Login.jsp">Login</a></li>
             
             
-        <li><a href="/Login.html/Login.jsp">Sign Up</a></li>
-        </ul>
-     </nav> 
+        <li><a href="/CA3WebApp/Login.jsp">Sign Up</a></li>
         
         <%
         
-        }
-        else
-        {
+       // }
+       // else
+        //{
       
             
         %>
@@ -55,7 +60,8 @@
                       
    </ul>
      </nav> 
-          <% } %>
+          <%// } %>
+          
 
             <div id="banner">
                 <img src="tempBanner.jpg"/>
@@ -63,14 +69,14 @@
   
        <nav class="menu-1">
     <ul class="menu">
-        <li> <a href="/Login.html/HomePage.jsp">Home</a> </li>
+        <li> <a href="/CA3WebApp/HomePage.jsp">Home</a> </li>
         <li> <a href="MemberActionServlet?action=ViewAllProducts">Shop</a> </li>
-        <li> <a href="/Login.html/About.jsp">About</a> </li>
+        <li> <a href="/CA3WebApp/About.jsp">About</a> </li>
         
         <li> <a href="MemberActionServlet?action=ViewPreviousOrders">View Orders</a> </li>
         
-        <li> <a href="/Login.html/ContactUs.jsp">Contact</a> </li>
-        <li> <a href="/Login.html/Cart.jsp">Cart</a> </li>
+        <li> <a href="/CA3WebApp/ContactUs.jsp">Contact</a> </li>
+        <li> <a href="/CA3WebApp/Cart.jsp">Cart</a> </li>
         
         <div id="searchbar">
         <form  action = "MemberActionServlet" method = "post" >
@@ -86,7 +92,7 @@
            
 </nav>
                   
-       <div id="side_bar">
+        <div id="side_bar">
         <form action = "MemberActionServlet" method = "post">
             
             <p>
@@ -183,47 +189,42 @@
         <form action = "MemberActionServlet" method = "post">
                <p> 
                   <input type="hidden" name="action" value ="Supernatural">
-                  <input type="image" src="images/supernaturalLogo.jpg" alt="Submit" width="200px" height="70px"/> 
+                  <input type="image" src="images/supernatural-logo.jpg" alt="Submit" width="200px" height="70px"/> 
              
                </p>
          </form>
         
           
         
-        
     </div>
         
       <div id="pagecontent">
         
-        
-         <div class="list-of-posts">
-                 
-                    
+        <div class="list-of-posts">
+         <table>
+
                 <%
                     List<Product> products;
                     products = (List) (request.getSession().getAttribute("GOTProducts"));
                     DecimalFormat decFor = new DecimalFormat("####0.00");
-                    
                     if (products != null) 
-                    { 
-                %>        
-                
-                <table>    
-                    <%
-                    for (Product prod : products) 
+                    {
+
+                        for (Product prod : products) 
                         {
-                            
-                    %>
+                %>
+             
+            
+  
                 
          <form action="MemberActionServlet" method="post">
-            
-
-        
-         <div id="all">
-             <div id="overall">
+             <div id="all">
+    <div id="overall">
                       </div>
+        
+                
         <div id="productImage">   
-       <img src="<%=prod.getProductImageUrl()%>" style="width: 280px; height: 230px;">     
+       <img src="<%=prod.getProductImageUrl()%>" style="width: 300px; height: 250px;">     
         </div>   
             
         <div id ="productDetails">
@@ -236,29 +237,33 @@
                 
                 <p>Quantity: <input name="quantity" size=15 type = "number" min = "1" max = "<%=prod.getQuantityInStock()%>"></p>
                 <p><input type="hidden" name="action" value="Add To Cart" /></p>
-                <input type="hidden" name="addToCart" value="<%=prod.getProductId()%>" />
+                <input type="hidden" name="addToCart" value="<%= prod.getProductId()%>" />
                 <p><input type="submit" value="Add To Cart" /></p>
         </div>
-                
-         </div> 
-                
-  </form>
-               
-            <%
+           
+             </div>
+                </form>
+           
+           <%
                     }
                 }
-                       
             %>
-             
-            </table>
-           <div class="pagination">
-            </div>
-           </div>
+      
+            
+
+        
+        </table>
 
         
 
-      </div>
+
+      <div class="pagination">
+            </div>
+            </div>
+            
 </div>  
+    </div>    
+      
         
     </body>
 </html>

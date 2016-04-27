@@ -167,10 +167,11 @@
         
       <div id="pagecontent">
         
-        
+        <div class="list-of-posts">
          <table>
 
-               <% List<Product> products;
+               <% 
+                    List<Product> products;
                     products = (List) (request.getSession().getAttribute("searchitem"));
                     
                     if (products != null) 
@@ -186,8 +187,6 @@
          <form action="MemberActionServlet" method="post">
             <div id="overall">
                       </div>
-
-        <tr>
                 
         <div id="productImage">   
        <img src="<%=prod.getProductImageUrl()%>" style="width: 300px; height: 250px;">     
@@ -204,24 +203,26 @@
                 <input type="hidden" name="addToCart" value="<%= prod.getProductId()%>" />
                 <p><input type="submit" value="Add To Cart" /></p>
         </div>
-           </tr>
-           
+           </form>
            
             <%
                     }
                 }
                 else
                     {
-                        out.println("sorry not found!!");
+                        out.println("Sorry not found!!");
                     }        
             %>
-      </form>
+      
+         
             
 
 
         </table>
 
-        
+        <div class="pagination">
+        </div>
+            </div>
 
       </div>
 </div>  

@@ -261,19 +261,19 @@ h2
                 
                 
                 <div id="DisneyAdvert">
-                    <img src="images/DisneyAd.jpg" style="width: 29%; height: 30%;">
+                    <a href="MemberActionServlet?action=Disney"><img src="images/DisneyAd.jpg" style="width: 29%; height: 30%;"></a>
                 </div>
                 
                 <div id="HarryPotterAdvert">
-                    <img src="images/HarryPotterAd.jpg" style="width: 29%; height: 30%;">
+                    <a href="MemberActionServlet?action=Harry Potter"><img src="images/HarryPotterAd.jpg" style="width: 29%; height: 30%;"></a>
                 </div>
                 
                 <div id="GOTAdvert">
-                    <img src="images/gameofthronesAd.jpg">
+                    <a href="MemberActionServlet?action=Game Of Thrones"><img src="images/gameofthronesAd.jpg"></a>
                 </div>
                 
                 <div id="deadpoolAdvert">
-                    <img src="images/DeadpoolAdvertisment.jpg" style="width: 60%; height: 30%;">
+                    <a href="MemberActionServlet?action=Marvel"><img src="images/DeadpoolAdvertisment.jpg" style="width: 60%; height: 30%;"></a>
                 </div>
                 
                 

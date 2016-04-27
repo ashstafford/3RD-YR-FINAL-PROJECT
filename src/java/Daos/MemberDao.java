@@ -12,6 +12,7 @@ import java.io.ByteArrayInputStream;
 import java.io.DataInputStream;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
@@ -52,7 +53,7 @@ public class MemberDao extends Dao implements MemberDaoInterface
         Connection conn = null;
         PreparedStatement ps = null;
         ResultSet rs = null;
-
+        BufferedImage memberimage = null;
         ArrayList<Member> member = new ArrayList<>();
 
         try
@@ -71,11 +72,11 @@ public class MemberDao extends Dao implements MemberDaoInterface
                 String firstName = rs.getString("firstName");
                 String lastName = rs.getString("lastName");
                 String email = rs.getString("email");
-                String memberImageUrl = rs.getString("memberImageUrl");
+                memberimage = ImageIO.read(rs.getBlob("memberImage").getBinaryStream());
                 String securityQuestionAnswer = rs.getString("securityQuestionAnswer");
                 boolean isAdmin = rs.getBoolean("isAdmin");
 
-                Member m = new Member(memberId,userName, password, firstName, lastName,email,memberImageUrl,securityQuestionAnswer,isAdmin);
+                Member m = new Member(memberId,userName, password, firstName, lastName,email,memberimage,securityQuestionAnswer,isAdmin);
                 member.add(m);
             }
 
@@ -86,6 +87,9 @@ public class MemberDao extends Dao implements MemberDaoInterface
 
             e.printStackTrace();
             
+        } catch (IOException ex)
+        {
+            Logger.getLogger(MemberDao.class.getName()).log(Level.SEVERE, null, ex);
         } 
         finally
         {
@@ -146,7 +150,7 @@ public class MemberDao extends Dao implements MemberDaoInterface
                  rs.getString("firstName"),
                  rs.getString("lastName"),        
                  rs.getString("email"),
-                 rs.getString("memberimageUrl"),      
+                 ImageIO.read(rs.getBlob("memberImage").getBinaryStream()),      
                  rs.getString("securityQuestionAnswer"),
                  rs.getBoolean("isAdmin"));
                   
@@ -159,7 +163,10 @@ public class MemberDao extends Dao implements MemberDaoInterface
             {
                  e.printStackTrace();
 
-            } 
+            } catch (IOException ex) 
+        {
+            Logger.getLogger(MemberDao.class.getName()).log(Level.SEVERE, null, ex);
+        } 
             
             finally
             {
@@ -269,7 +276,7 @@ public class MemberDao extends Dao implements MemberDaoInterface
             String query = "select * from member where userName =?";
             ps = con.prepareStatement(query);
             ps.setString(1, username);
-
+            BufferedImage memberimage = null;
             rs = ps.executeQuery();
             if (rs.next())
             {
@@ -279,17 +286,20 @@ public class MemberDao extends Dao implements MemberDaoInterface
                 String firstName = rs.getString("firstName");
                 String lastName = rs.getString("lastName");
                 String email = rs.getString("email");
-                String memberImageUrl = rs.getString("memberImageUrl");
+                memberimage = ImageIO.read(rs.getBlob("memberImage").getBinaryStream());
                 String securityQuestionAnswer = rs.getString("securityQuestionAnswer");
                 boolean isAdmin = rs.getBoolean("isAdmin");
                 
-                m = new Member(memberId, firstName, lastName, username, password,email,memberImageUrl,securityQuestionAnswer,isAdmin);
+                m = new Member(memberId, firstName, lastName, username, password,email,memberimage,securityQuestionAnswer,isAdmin);
             }
         } 
         
         catch (SQLException e)   
         {
           e.printStackTrace();
+        } catch (IOException ex)
+        {
+            Logger.getLogger(MemberDao.class.getName()).log(Level.SEVERE, null, ex);
         } 
         
         finally
@@ -341,7 +351,7 @@ public class MemberDao extends Dao implements MemberDaoInterface
             String query = "select * from member where email =?";
             ps = con.prepareStatement(query);
             ps.setString(1, eMail);
-
+            BufferedImage memberimage =null;
             rs = ps.executeQuery();
             if (rs.next())
             {
@@ -351,17 +361,20 @@ public class MemberDao extends Dao implements MemberDaoInterface
                 String userName = rs.getString("username");
                 String password = rs.getString("password");
                 String email = rs.getString("email");
-                String memberImageUrl = rs.getString("memberImageUrl");
+                memberimage = ImageIO.read(rs.getBlob("memberImage").getBinaryStream());
                 String securityQuestionAnswer = rs.getString("securityQuestionAnswer");
                 boolean isAdmin = rs.getBoolean("isAdmin");
                 
-                m = new Member(memberId,userName, password,firstName, lastName, email,memberImageUrl,securityQuestionAnswer,isAdmin);
+                m = new Member(memberId,userName, password,firstName, lastName, email,memberimage,securityQuestionAnswer,isAdmin);
             }
         } 
         
         catch (SQLException e)   
         {
           e.printStackTrace();
+        } catch (IOException ex)
+        {
+            Logger.getLogger(MemberDao.class.getName()).log(Level.SEVERE, null, ex);
         } 
         
         finally
@@ -572,7 +585,7 @@ public class MemberDao extends Dao implements MemberDaoInterface
              HashPasswordMD5 hp = new HashPasswordMD5();
              String hashedPassword = hp.hashPassword(passWord);
           
-            
+            BufferedImage memberimage = null;
             String query = "select * from Member where userName = ? and password = ?";
             ps = con.prepareStatement(query);
             ps.setString(1, userName);
@@ -590,7 +603,9 @@ public class MemberDao extends Dao implements MemberDaoInterface
                 String firstname = rs.getString("firstName");
                 String lastname = rs.getString("lastName");
                 String email = rs.getString("email");
-                String memberImageUrl = rs.getString("memberImageUrl");
+//                memberimage = (BufferedImage) rs.getBlob("memberImage");
+                memberimage = ImageIO.read(rs.getBlob("memberImage").getBinaryStream());
+                
                 String securityQuestionAnswer = rs.getString("securityQuestionAnswer");
                 boolean isAdmin = rs.getBoolean("isAdmin");
             
@@ -598,7 +613,7 @@ public class MemberDao extends Dao implements MemberDaoInterface
                if(hashedPassword.equals(password))
                {    
 
-                  m = new Member(memberId,username, password, firstname, lastname, email,memberImageUrl,securityQuestionAnswer,isAdmin);
+                  m = new Member(memberId,username, password, firstname, lastname, email,memberimage,securityQuestionAnswer,isAdmin);
                   
                }
 
@@ -608,6 +623,9 @@ public class MemberDao extends Dao implements MemberDaoInterface
          catch (SQLException e)
         {
             e.printStackTrace();
+        } catch (IOException ex)
+        {
+            Logger.getLogger(MemberDao.class.getName()).log(Level.SEVERE, null, ex);
         } 
         finally
         {
@@ -943,7 +961,7 @@ public class MemberDao extends Dao implements MemberDaoInterface
 
             conn = getConnection();
 //            String query = "Update member set memberImageUrl =? where memberImageUrl=? and memberId=?";
-            String query = "Update member set memberImageUrl =? where memberId=?";
+            String query = "Update member set memberImage =? where memberId=?";
 //            ps = conn.prepareStatement(query);
             
             FileInputStream fis = null;
@@ -952,15 +970,26 @@ public class MemberDao extends Dao implements MemberDaoInterface
               conn.setAutoCommit(false);
               file = new File(newMemberImageUrl);
                 System.out.println("file = " + file);
+                
+                
               fis = new FileInputStream(file);
+                System.out.println("fis");
+                
               ps = conn.prepareStatement(query);
+                System.out.println("Hello");
+                
 //              ps.setAutoCommitString(1, newMemberImageUrl);
         //            ps.setString(2, memberImageUrl);                   
               ps.setBinaryStream(1, fis, (int) file.length());
+                System.out.println("BinaryStream");
               ps.setInt(2, id);
+                System.out.println("Set int");
               ps.executeUpdate();
+                System.out.println("Updated");
               conn.commit();
-            } finally {
+            } 
+            finally 
+            {
               ps.close();
               fis.close();
             }
@@ -1024,9 +1053,9 @@ public class MemberDao extends Dao implements MemberDaoInterface
      return img;   
     }
     
-    public BufferedImage getImageFromDatabase(Connection conn, int memberId)
+    public BufferedImage getImageFromDatabase(Connection conn, int memberId)//Connection conn
     {
-        String query = "select memberImageUrl from member where memberId = ?";
+        String query = "select memberImage from member where memberId = ?";
         BufferedImage buffimg = null;
         try 
         {
@@ -1037,12 +1066,50 @@ public class MemberDao extends Dao implements MemberDaoInterface
             InputStream img = result.getBinaryStream(1); // reading image as InputStream
             System.out.println("image pulling from database "+ img);
             buffimg= ImageIO.read(img); // decoding the inputstream as BufferedImage
+            System.out.println("buffimg = " + buffimg);
         }
-        catch(Exception ex) {
-        System.out.println(ex.getMessage());
+        catch(Exception ex) 
+        {
+            System.out.println(ex.getMessage());
         }
         return buffimg;
-        
+//        Connection conn = null;
+//        ResultSet rs = null;
+//        String query = "select memberImageUrl from member where memberId = ?";
+//        
+//        try
+//        {
+//            PreparedStatement pstmt = conn.prepareStatement(query);
+//            pstmt.setInt(1, memberId);
+//            rs = pstmt.executeQuery();
+//            
+//            File file = new File("C:\temp\testimage.jpg");
+//            FileOutputStream output = new FileOutputStream(file);
+// 
+//            System.out.println("Writing to file " + file.getAbsolutePath());
+//            while (rs.next()) {
+//                InputStream img = rs.getBinaryStream(1);
+//                byte[] buffer = new byte[1024];
+//                while (img.read(buffer) > 0) 
+//                {
+//                    output.write(buffer);
+//                }
+//            }
+//            
+//        }
+//        catch (SQLException | IOException e) {
+//            System.out.println(e.getMessage());
+//        } finally {
+//            try {
+//                if (rs != null) {
+//                    rs.close();
+//                }
+//            } catch (SQLException e) {
+//                System.out.println(e.getMessage());
+//            }
+//        }
+// 
+      //return null;
     }
 
     

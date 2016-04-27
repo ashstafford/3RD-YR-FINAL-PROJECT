@@ -1,6 +1,6 @@
 <%-- 
-    Document   : DisneyPage
-    Created on : 12-Dec-2015, 19:50:44
+    Document   : StarWarsPage
+    Created on : 09-Dec-2015, 02:00:45
     Author     : Aisling
 --%>
 
@@ -8,23 +8,25 @@
 <%@page import="Dtos.Member"%>
 <%@page import="java.util.List"%>
 <%@page import="Dtos.Product"%>
+
+
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <link rel="stylesheet" type="text/css" href="mainCSS.css" >
+         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+         <link rel="stylesheet" type="text/css" href="mainCSS.css" >
+         <script src="js/jquery_1.js"></script>
         <script src="js/paginate.js"></script>
         <script src="js/custom.js"></script>
         <script type="text/javascript" src="js/modernizr-1.5.min.js"></script>
-        <title>Disney</title>
-        
- 
-        
-    </head>
+         <style>   
+
+        </style>
+    </head>   
     <body>
         
-           <div id="container">  
+   <div id="container">  
           <nav class = "topmenu">
              <ul class="navigation">
                     <li><a href="MemberActionServlet?action=viewProfile">My Profile</a></li>
@@ -60,11 +62,12 @@
      </nav> 
           <%// } %>
           
+
             <div id="banner">
                 <img src="tempBanner.jpg"/>
             </div>
   
-      <nav class="menu-1">
+       <nav class="menu-1">
     <ul class="menu">
         <li> <a href="/CA3WebApp/HomePage.jsp">Home</a> </li>
         <li> <a href="MemberActionServlet?action=ViewAllProducts">Shop</a> </li>
@@ -89,7 +92,7 @@
            
 </nav>
                   
-    <div id="side_bar">
+        <div id="side_bar">
         <form action = "MemberActionServlet" method = "post">
             
             <p>
@@ -186,64 +189,42 @@
         <form action = "MemberActionServlet" method = "post">
                <p> 
                   <input type="hidden" name="action" value ="Supernatural">
-                  <input type="image" src="images/supernaturalLogo.jpg" alt="Submit" width="200px" height="70px"/> 
+                  <input type="image" src="images/supernatural-logo.jpg" alt="Submit" width="200px" height="70px"/> 
              
                </p>
          </form>
         
           
         
-        
     </div>
         
       <div id="pagecontent">
         
-        <form action="MemberActionServlet" method="post">
-             <select name="filterComboBox" id="soflow" >
-                <div id="filterCombo"></div>
+        <div class="list-of-posts">
+         <table>
 
-
-                  <option value="1">Select an Option</option>
-                  <option value="2">Price - Lowest To Highest</option> 
-                  <option value="3">Price - Highest To Lowest</option>
-
-                
-
-                  <div class="sortButton"> </div>
-                   <td><input type="hidden" name="action" style="width: 350px; height: 300px;" value="filterProducts" /></td>
-                   <td><input type="submit" class="sortButtonSize" value="Sort" /></td>
-                
-             </select>
-         </form>
-          
-         <div class="list-of-posts">
-                 
-                    
                 <%
                     List<Product> products;
                     products = (List) (request.getSession().getAttribute("DProducts"));
                     DecimalFormat decFor = new DecimalFormat("####0.00");
-                    
                     if (products != null) 
-                    { 
-                %>        
-                
-                <table>    
-                    <%
-                    for (Product prod : products) 
+                    {
+
+                        for (Product prod : products) 
                         {
-                            
-                    %>
+                %>
+             
+            
+  
                 
          <form action="MemberActionServlet" method="post">
-            
-
-        
-         <div id="all">
-             <div id="overall">
+             <div id="all">
+    <div id="overall">
                       </div>
+        
+                
         <div id="productImage">   
-       <img src="<%=prod.getProductImageUrl()%>" style="width: 280px; height: 230px;">     
+       <img src="<%=prod.getProductImageUrl()%>" style="width: 300px; height: 250px;">     
         </div>   
             
         <div id ="productDetails">
@@ -256,31 +237,33 @@
                 
                 <p>Quantity: <input name="quantity" size=15 type = "number" min = "1" max = "<%=prod.getQuantityInStock()%>"></p>
                 <p><input type="hidden" name="action" value="Add To Cart" /></p>
-                <input type="hidden" name="addToCart" value="<%=prod.getProductId()%>" />
+                <input type="hidden" name="addToCart" value="<%= prod.getProductId()%>" />
                 <p><input type="submit" value="Add To Cart" /></p>
         </div>
-                
-         </div> 
-                
-  </form>
-               
-            <%
+           
+             </div>
+                </form>
+           
+           <%
                     }
                 }
-                       
             %>
-             
-            </table>
-           <div class="pagination">
-            </div>
-           </div>
+      
+            
+
+        
+        </table>
 
         
 
-      </div>
+
+      <div class="pagination">
+            </div>
+            </div>
+            
 </div>  
-          
-       
-  
+    </div>    
+      
+        
     </body>
 </html>

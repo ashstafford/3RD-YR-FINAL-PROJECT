@@ -4,6 +4,7 @@
     Author     : Aisling
 --%>
 
+<%@page import="java.text.DecimalFormat"%>
 <%@page import="Dtos.Member"%>
 <%@page import="java.util.List"%>
 <%@page import="Dtos.Product"%>
@@ -15,6 +16,10 @@
     <head>
          <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
          <link rel="stylesheet" type="text/css" href="mainCSS.css" >
+         <script src="js/jquery_1.js"></script>
+        <script src="js/paginate.js"></script>
+        <script src="js/custom.js"></script>
+        <script type="text/javascript" src="js/modernizr-1.5.min.js"></script>
          <style>   
 
         </style>
@@ -32,8 +37,8 @@
           
          <%  Member m = (Member)session.getAttribute("member"); 
          
-       // if(m == null)
-        //{
+       if(m == null)
+        {
             
          %>
         
@@ -41,12 +46,13 @@
             
             
         <li><a href="/CA3WebApp/Login.jsp">Sign Up</a></li>
-        
+        </ul>
+     </nav>
         <%
         
-       // }
-       // else
-        //{
+       }
+        else
+        {
       
             
         %>
@@ -55,7 +61,7 @@
                       
    </ul>
      </nav> 
-          <%// } %>
+          <%} %>
           
 
             <div id="banner">
@@ -184,7 +190,7 @@
         <form action = "MemberActionServlet" method = "post">
                <p> 
                   <input type="hidden" name="action" value ="Supernatural">
-                  <input type="image" src="images/supernaturalLogo.jpg" alt="Submit" width="200px" height="70px"/> 
+                  <input type="image" src="images/supernatural-logo.jpg" alt="Submit" width="200px" height="70px"/> 
              
                </p>
          </form>
@@ -195,13 +201,13 @@
         
       <div id="pagecontent">
         
-        
+        <div class="list-of-posts">
          <table>
 
                 <%
                     List<Product> products;
                     products = (List) (request.getSession().getAttribute("SwProducts"));
-
+                    DecimalFormat decFor = new DecimalFormat("####0.00");
                     if (products != null) 
                     {
 
@@ -213,10 +219,10 @@
   
                 
          <form action="MemberActionServlet" method="post">
-            <div id="overall">
+             <div id="all">
+    <div id="overall">
                       </div>
-
-        <tr>
+        
                 
         <div id="productImage">   
        <img src="<%=prod.getProductImageUrl()%>" style="width: 300px; height: 250px;">     
@@ -227,32 +233,37 @@
             <p><%=prod.getProductName()%></p>
             </div>
                 <p>Quantity in stock: <%=prod.getQuantityInStock()%></p>
-                <p>Price: €<%=prod.getProductPrice()%></p>
+                <p>Price: €<%=decFor.format(prod.getProductPrice())%></p>
                 
                 
-                <p>Quantity: <input name="quantity" size=15 type="text" /></p>
+                <p>Quantity: <input name="quantity" size=15 type = "number" min = "1" max = "<%=prod.getQuantityInStock()%>"></p>
                 <p><input type="hidden" name="action" value="Add To Cart" /></p>
                 <input type="hidden" name="addToCart" value="<%= prod.getProductId()%>" />
                 <p><input type="submit" value="Add To Cart" /></p>
         </div>
-           </tr>
            
+             </div>
+                </form>
            
            <%
                     }
                 }
             %>
-      </form>
+      
             
 
-
+        
         </table>
 
         
 
-      </div>
+
+      <div class="pagination">
+            </div>
+            </div>
+            
 </div>  
-        
+    </div>    
       
         
     </body>

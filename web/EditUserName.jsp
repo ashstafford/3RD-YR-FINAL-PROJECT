@@ -18,36 +18,7 @@
             
             <script>
                 
-               function validateForm() {
-                   alert("Hello");
-               var x = document.forms["myForm"]["editUsername"].value;
-                if (x == null || x == "") {
-                    alert("User Name must be filled out");
-                    return false;
-                }
-                
-                //function validateForm()
-                //{
-                  //if (document.myForm.editUsername.value==="")
-                  //{
-                   // alert("You haven't entered your Username !");
-                   // return false;
-                  //}
-
-              //    document.myForm.submit();
-              //    return true;
-              
-              //var Username=document.myForm.editUsername.value;
-              
-              //if (Username===null || Username==="")
-              //{  
-               //// alert("Username can't be blank");  
-               // return false;  
-              //}
-              
-              
-                }
-}
+          
                 
             </script>
     </head>
@@ -87,7 +58,7 @@
            
            
 </nav> 
-      <div id="pagecontent2">
+      <div id="pagecontent3">
        
         
             <form method="post" action = "MemberActionServlet" name="myForm"  onSubmit="return validateForm()">

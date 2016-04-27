@@ -9,7 +9,7 @@ password varchar(32) not null,
 firstName varchar(20) not null,
 lastName varchar(20) not null,
 email varchar(40) not null,
-memberImageUrl LONGBLOB,
+memberImage LONGBLOB,
 securityQuestionAnswer varchar(500) not null,
 isAdmin boolean,
 primary key(memberId))ENGINE=INNODB;
@@ -111,10 +111,10 @@ Insert into `product`(`productId`, `productImageUrl`, `productName`, `productPri
 (55,'images/IMG_supern5.jpg','FUNKO SUPERNATURAL POCKET POP! SAM KEY CHAIN',050.00,19,'Supernatural');
 
 
-Insert into `member`(`memberId`, `firstName`, `lastName`,`userName`, `password` ,`email` ,`memberImageUrl`,`securityQuestionAnswer`,`isAdmin`) values
-(1, 'Bob', 'McGinty','Bob123', '5f4dcc3b5aa765d61d8327deb882cf99', 'ash@yahoo.net', 'images/defaultProfilePicture.jpeg','spot',true),
-(3, 'john', 'Rock','john1', '5f4dcc3b5aa765d61d8327deb882cf99','ash@hotmail.com', 'images/defaultProfilePicture.jpeg','twinkle',false),
-(4, 'aisling', 'stafford','ashstaff', '5f4dcc3b5aa765d61d8327deb882cf99','ashs@yahoo.com', 'images/defaultProfilePicture.jpeg','reilly',true);
+Insert into `member`(`memberId`, `firstName`, `lastName`,`userName`, `password` ,`email` ,`memberImage`,`securityQuestionAnswer`,`isAdmin`) values
+(1, 'Bob', 'McGinty','Bob123', '5f4dcc3b5aa765d61d8327deb882cf99', 'ash@yahoo.net', 'C:/temp/supernaturalLogo.jpg','spot',true),
+(3, 'john', 'Rock','john1', '5f4dcc3b5aa765d61d8327deb882cf99','ash@hotmail.com', 'C:/temp/supernaturalLogo.jpg','twinkle',false),
+(4, 'aisling', 'stafford','ashstaff', '5f4dcc3b5aa765d61d8327deb882cf99','ashs@yahoo.com', 'C:/temp/supernaturalLogo.jpg','reilly',true);
 
 insert into `salesReceipt` (`receiptId`, `dateOrdered`, `totalPrice`, `memberId`, `paymentType`) values
 (1, 23-05-2015, 120.00, 1, 'card'),

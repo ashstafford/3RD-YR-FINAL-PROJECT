@@ -1,26 +1,32 @@
 <%-- 
-    Document   : MarvelPage
-    Created on : 15-Dec-2015, 01:03:30
+    Document   : StarWarsPage
+    Created on : 09-Dec-2015, 02:00:45
     Author     : Aisling
 --%>
 
+<%@page import="java.text.DecimalFormat"%>
 <%@page import="Dtos.Member"%>
 <%@page import="java.util.List"%>
 <%@page import="Dtos.Product"%>
+
+
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <link rel="stylesheet" type="text/css" href="mainCSS.css" >
-        <title>Marvel Page</title>
-        <style>      
-        </style>
+         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+         <link rel="stylesheet" type="text/css" href="mainCSS.css" >
+         <script src="js/jquery_1.js"></script>
+        <script src="js/paginate.js"></script>
+        <script src="js/custom.js"></script>
+        <script type="text/javascript" src="js/modernizr-1.5.min.js"></script>
+         <style>   
 
-    </head>
-     <body>
+        </style>
+    </head>   
+    <body>
         
-    <div id="container">  
+   <div id="container">  
           <nav class = "topmenu">
              <ul class="navigation">
                     <li><a href="MemberActionServlet?action=viewProfile">My Profile</a></li>
@@ -55,12 +61,13 @@
    </ul>
      </nav> 
           <%// } %>
+          
 
             <div id="banner">
                 <img src="tempBanner.jpg"/>
             </div>
   
-      <nav class="menu-1">
+       <nav class="menu-1">
     <ul class="menu">
         <li> <a href="/CA3WebApp/HomePage.jsp">Home</a> </li>
         <li> <a href="MemberActionServlet?action=ViewAllProducts">Shop</a> </li>
@@ -182,25 +189,24 @@
         <form action = "MemberActionServlet" method = "post">
                <p> 
                   <input type="hidden" name="action" value ="Supernatural">
-                  <input type="image" src="images/supernaturalLogo.jpg" alt="Submit" width="200px" height="70px"/> 
+                  <input type="image" src="images/supernatural-logo.jpg" alt="Submit" width="200px" height="70px"/> 
              
                </p>
          </form>
         
           
         
-        
     </div>
         
       <div id="pagecontent">
         
-        
+        <div class="list-of-posts">
          <table>
 
-               <%
+                <%
                     List<Product> products;
                     products = (List) (request.getSession().getAttribute("MProducts"));
-
+                    DecimalFormat decFor = new DecimalFormat("####0.00");
                     if (products != null) 
                     {
 
@@ -212,10 +218,10 @@
   
                 
          <form action="MemberActionServlet" method="post">
-            <div id="overall">
+             <div id="all">
+    <div id="overall">
                       </div>
-
-        <tr>
+        
                 
         <div id="productImage">   
        <img src="<%=prod.getProductImageUrl()%>" style="width: 300px; height: 250px;">     
@@ -226,31 +232,38 @@
             <p><%=prod.getProductName()%></p>
             </div>
                 <p>Quantity in stock: <%=prod.getQuantityInStock()%></p>
-                <p>Price: €<%=prod.getProductPrice()%></p>
+                <p>Price: €<%=decFor.format(prod.getProductPrice())%></p>
                 
                 
-                <p>Quantity: <input name="quantity" size=15 type="text" /></p>
+                <p>Quantity: <input name="quantity" size=15 type = "number" min = "1" max = "<%=prod.getQuantityInStock()%>"></p>
                 <p><input type="hidden" name="action" value="Add To Cart" /></p>
                 <input type="hidden" name="addToCart" value="<%= prod.getProductId()%>" />
                 <p><input type="submit" value="Add To Cart" /></p>
         </div>
-           </tr>
            
+             </div>
+                </form>
            
            <%
                     }
                 }
             %>
-      </form>
+      
             
 
-
+        
         </table>
 
         
 
-      </div>
+
+      <div class="pagination">
+            </div>
+            </div>
+            
 </div>  
-          
+    </div>    
+      
+        
     </body>
 </html>
