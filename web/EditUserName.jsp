@@ -12,7 +12,8 @@
 <html>
     <head>
             <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-            <title>Edit Member Image URL</title>
+            <link rel="icon" href="images/flash3.png" type="image/gif" sizes="20x20">
+            <title>Edit Username</title>
             <link rel="stylesheet" type="text/css" href="mainCSS.css" >
          
             

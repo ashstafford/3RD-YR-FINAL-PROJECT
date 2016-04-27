@@ -13,6 +13,7 @@
     <head>
         <title>Product Out of Stock</title>
         <meta charset="UTF-8">
+        <link rel="icon" href="images/flash3.png" type="image/gif" sizes="20x20">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" type="text/css" href="mainCSS.css" >
     <% 

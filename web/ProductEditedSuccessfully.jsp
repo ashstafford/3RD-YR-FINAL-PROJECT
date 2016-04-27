@@ -9,6 +9,7 @@
 <html>
     <head>
        <link rel="stylesheet" type="text/css" href="mainCSS.css" >
+       <link rel="icon" href="images/flash3.png" type="image/gif" sizes="20x20">
         <meta http-equiv="refresh" content="5;url=MemberActionServlet?action=ViewAllProducts" />
         <title>JSP Page</title>
     </head>
