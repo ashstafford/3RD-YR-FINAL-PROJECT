@@ -50,4 +50,6 @@ public interface ProductDaoInterface
     public int checkQuantityInStock(int id);
     
     public boolean removeProduct(int productId);
+    
+    public boolean updateQuantityInStock(int qtyInStock, int newQuantityInStock,int productId);
 }

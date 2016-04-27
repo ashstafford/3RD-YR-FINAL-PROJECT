@@ -4,6 +4,8 @@
     Author     : Ash
 --%>
 
+<%@page import="java.util.ResourceBundle"%>
+<%@page import="java.util.Locale"%>
 <%@page import="Dtos.Member"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -13,44 +15,55 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" type="text/css" href="mainCSS.css" >
-        
-             <style>
-            </style>
+    <% 
+   
+        Locale userSetting = (Locale) session.getAttribute("locale");
+       
+        if(userSetting == null)
+        {
+            userSetting = request.getLocale();
+        }
+   
+    ResourceBundle messages = ResourceBundle.getBundle("properties.text", userSetting);
+%>
 
     </head>
-    
-   <div id="container">  
-          <nav class = "topmenu">
+     </head>   
+    <body>
+  
+    <div id="container">
+            
+        <nav class = "topmenu">
             <ul class="navigation">
-                    <li><a href="MemberActionServlet?action=viewProfile">My Profile</a></li>
-          
+ 
          <%  Member m = (Member)session.getAttribute("member"); 
          
-      //  if(m == null)
-        //{
+        if(m == null)
+        {
             
          %>
         
-         <li><a href="/CA3WebApp/Login.jsp">Login</a></li>
+         <li><a href="Login.jsp"><%=messages.getString("MenuButtonLogin")%></a></li>
            
             
-        <li><a href="/CA3WebApp/Login.jsp">Sign Up</a></li>
-        
+        <li><a href="Register.jsp"><%=messages.getString("MenuButtonRegister")%></a></li>
+       </ul>
+     </nav>  
         <%
         
-       // }
-       // else
-       // {
+        }
+        else
+        {
       
             
         %>
-            
-           <li><a href="MemberActionServlet?action=logout">Logout</a></li>
+           <li><a href="MemberActionServlet?action=viewProfile">My Profile</a></li> 
+           <li><a href="MemberActionServlet?action=logout"><%=messages.getString("MenuButtonLogout")%></a></li>
                       
    </ul>
      </nav> 
         <%  
-      //  }
+        }
         %>
             <div id="banner">
                 <img src="tempBanner.jpg"/>
@@ -58,21 +71,20 @@
   
        <nav class="menu-1">
     <ul class="menu">
-        <li> <a href="/CA3WebApp/HomePage.html">Home</a> </li>
-        <li> <a href="MemberActionServlet?action=ViewAllProducts">Shop</a> </li>
-        <li> <a href="/CA3WebApp/About.jsp">About</a> </li>
+        <li> <a href="/CA3WebApp/HomePage.jsp"><%=messages.getString("MenuHomeButton")%></a> </li>
+        <li> <a href="MemberActionServlet?action=ViewAllProducts"><%=messages.getString("MenuShopButton")%></a> </li>
+        <li> <a href="/CA3WebApp/About.jsp"><%=messages.getString("MenuAboutButton")%></a> </li>
         
-        <li> <a href="MemberActionServlet?action=ViewPreviousOrders">View Orders</a> </li>
+        <li> <a href="MemberActionServlet?action=ViewPreviousOrders"><%=messages.getString("MenuViewOrdersButton")%></a> </li>
         
-        <li> <a href="/CA3WebApp/ContactUs.jsp">Contact</a> </li>
-        <li> <a href="/CA3WebApp/Cart.jsp">Cart</a> </li>
-        
+        <li> <a href="/CA3WebApp/ContactUs.jsp"><%=messages.getString("MenuContactUsButton")%></a> </li>
+        <li> <a href="/CA3WebApp/Cart.jsp"><%=messages.getString("MenuCartButton")%></a> </li>
         <div id="searchbar">
         <form  action = "MemberActionServlet" method = "post" >
-               <p><td> <input name="searchName" size=30 type="text" />  
+               <td> <input name="searchName" size=30 type="text" />  
                  <input type="hidden" name="action" value="searchName" />
-                 <input type="submit" value="Search"/>
-               </p>
+                 <input type="submit" value="<%=messages.getString("SearchBarButton")%>"/>
+               
         </form>
         </div>
         
@@ -85,13 +97,13 @@
             <div id="pagecontent3">
 
                 <div id ="NotFoundTitle">
-                    <h1>Sorry this Product is out of Stock</h1>
+                    <h1><%=messages.getString("ProductOutStockTitle")%></h1>
                 </div>
         
                 <div id="NotFoundBackButton">
                     <form action="MemberActionServlet?action=ViewAllProducts" method = "post">
                     <p> 
-                       <input type = "submit" class="resizedButton" name = "profile" value = "Back to Products"/>
+                       <input type = "submit" class="resizedButton" name = "profile" value = "<%=messages.getString("BackToProductsButton")%>"/>
                     </p>
                     </form>
                 </div>

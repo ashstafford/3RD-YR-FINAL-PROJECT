@@ -4,6 +4,9 @@
     Author     : d00155224
 --%>
 
+<%@page import="java.util.ResourceBundle"%>
+<%@page import="java.util.Locale"%>
+<%@page import="Dtos.Member"%>
 <%@page import="Dtos.Product"%>
 <%@page import="Daos.ProductDao"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -11,7 +14,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Edit Product Details</title>
         <style>
       body 
   {
@@ -87,64 +90,122 @@ div#container
   margin-right : auto;
 }
 </style>      
+          <% 
+   
+        Locale userSetting = (Locale) session.getAttribute("locale");
+       
+        if(userSetting == null)
+        {
+            userSetting = request.getLocale();
+        }
+   
+    ResourceBundle messages = ResourceBundle.getBundle("properties.text", userSetting);
+%>
+
     </head>
+     </head>   
     <body>
-        
-   <div id="container">  
-          <nav class = "topmenu">
- <ul>
+
       
-	<li><a href="/CA3WebApp/CategorySelection.html">Shop</a>
-	<li><a href="/CA3WebApp/Cart.jsp">Cart</a>
-	<li><a href="/CA3WebApp/Login.html">Login/Register</a>
-        <li><a href="MemberActionServlet?action=viewProfile">My Profile</a>
-        <li><a href="MemberActionServlet?action=ViewPreviousOrders">View Orders</a>   
-        <li><a href="MemberActionServlet?action=logout">Logout</a></li>
-</ul>
-  </nav>
+          
+    <div id="container">
+            
+        <nav class = "topmenu">
+            <ul class="navigation">
+ 
+         <%  Member m = (Member)session.getAttribute("member"); 
+         
+        if(m == null)
+        {
+            
+         %>
+        
+         <li><a href="Login.jsp"><%=messages.getString("MenuButtonLogin")%></a></li>
+           
+            
+        <li><a href="Register.jsp"><%=messages.getString("MenuButtonRegister")%></a></li>
+       </ul>
+     </nav>  
+        <%
+        
+        }
+        else
+        {
+      
+            
+        %>
+           <li><a href="MemberActionServlet?action=viewProfile">My Profile</a></li> 
+           <li><a href="MemberActionServlet?action=logout"><%=messages.getString("MenuButtonLogout")%></a></li>
+                      
+   </ul>
+     </nav> 
+        <%  
+        }
+        %>
+            <div id="banner">
+                <img src="tempBanner.jpg"/>
+            </div>
+  
+       <nav class="menu-1">
+    <ul class="menu">
+        <li> <a href="/CA3WebApp/HomePage.jsp"><%=messages.getString("MenuHomeButton")%></a> </li>
+        <li> <a href="MemberActionServlet?action=ViewAllProducts"><%=messages.getString("MenuShopButton")%></a> </li>
+        <li> <a href="/CA3WebApp/About.jsp"><%=messages.getString("MenuAboutButton")%></a> </li>
+        
+        <li> <a href="MemberActionServlet?action=ViewPreviousOrders"><%=messages.getString("MenuViewOrdersButton")%></a> </li>
+        
+        <li> <a href="/CA3WebApp/ContactUs.jsp"><%=messages.getString("MenuContactUsButton")%></a> </li>
+        <li> <a href="/CA3WebApp/Cart.jsp"><%=messages.getString("MenuCartButton")%></a> </li>
+        <div id="searchbar">
+        <form  action = "MemberActionServlet" method = "post" >
+               <td> <input name="searchName" size=30 type="text" />  
+                 <input type="hidden" name="action" value="searchName" />
+                 <input type="submit" value="<%=messages.getString("SearchBarButton")%>"/>
+               
+        </form>
+        </div>
+        
+    </ul>
+           
+           
+</nav>
        <div id="pagecontent">
            
 <%
                 ProductDao pDao = new ProductDao();
                 
                 String prod = request.getParameter("editProduct");
-                
-                System.out.println("id" + prod);
-                
+    
                 Product p = pDao.findProductById(Integer.parseInt(prod));
               
-                if(p == null )
-               {
-                   System.out.println("error!");
-               }    
+          
 %>
- 
               <form action="MemberActionServlet" method="post">
                 <table>
                     <tr>
-                        <td> Product Name  : </td><td> <input name="productName" size=25 type="text" value="<%=p.getProductName()%>" /> </td> 
+                        <td><%=messages.getString("ProductNameTitle")%> : </td><td> <input name="productName" size=25 type="text" value="<%=p.getProductName()%>" /> </td> 
                         <td></td>
                         <td></td>
                         <td></td>
                     </tr>
                     <tr>
-                        <td> Price  : </td><td> <input name="productPrice" placeholder="0.00" size=25 type="text" value="<%=p.getProductPrice()%>"/> </td> 
+                        <td><%=messages.getString("PriceLabel")%>: </td><td> <input name="productPrice" placeholder="0.00" size=25 type="text" value="<%=p.getProductPrice()%>"/> </td> 
                     </tr>
                      <tr>
-                        <td> Quantity in Stock  : </td><td> <input name="quantityInStock" size=25 type="text" value="<%=p.getQuantityInStock()%>"/> </td> 
+                        <td><%=messages.getString("QtyInStockLabel")%>: </td><td> <input name="quantityInStock" size=25 type="text" value="<%=p.getQuantityInStock()%>"/> </td> 
                     </tr>
                      <tr>
-                        <td> Category  : </td><td> <input name="category" size=25 type="text" value="<%=p.getCategory()%>"/> </td> 
+                        <td><%=messages.getString("CategoryLabel")%>: </td><td> <input name="category" size=25 type="text" value="<%=p.getCategory()%>"/> </td> 
                     </tr>
                      <tr>
-                        <td> Product image url  : </td><td> <input name="productImageUrl" placeholder="" size=25 type="text" value="<%=p.getProductImageUrl()%>" /> </td> 
+                        <td><%=messages.getString("ProductImageLabel")%>: </td><td> <input name="productImageUrl" placeholder="" size=25 type="text" value="<%=p.getProductImageUrl()%>" /> </td> 
                     </tr>
                     
                 </table>
                 
                 <input type="hidden" name="action" value="editProductDetails"/>
                 <input type="hidden" name="ProductId" value="<%=p.getProductId()%>"/>
-                <input type="submit" value="Edit Product"  />
+                <input type="submit" value="<%=messages.getString("EditProductButton")%>"  />
       </form>
        
        </div>

@@ -19,6 +19,7 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -403,7 +404,8 @@ public class MemberDao extends Dao implements MemberDaoInterface
     public Member addMember(String userName, String password,String firstName, String lastName, String email,String securityQuestionAnswer,boolean isAdmin) 
     {
         Connection con = null;
-        PreparedStatement ps = null; 
+        PreparedStatement ps = null;
+        
         ResultSet generatedKeys = null;
         int memberId = -1;
         Member m = null;
@@ -561,7 +563,8 @@ public class MemberDao extends Dao implements MemberDaoInterface
     public Member findMemberByUserNamePassword(String userName, String passWord) throws DaoException
     {
         Connection con = null;
-        PreparedStatement ps = null;
+        CallableStatement cs = null;
+       // PreparedStatement ps = null;
         ResultSet rs = null;
         Member m = null;
 
@@ -573,13 +576,19 @@ public class MemberDao extends Dao implements MemberDaoInterface
              String hashedPassword = hp.hashPassword(passWord);
           
             
-            String query = "select * from Member where userName = ? and password = ?";
-            ps = con.prepareStatement(query);
-            ps.setString(1, userName);
-            ps.setString(2, hashedPassword);
+          //  String query = "select * from Member where userName = ? and password = ?";
+          //  ps = con.prepareStatement(query);
+            
+            String query = "{ call login(?,?) }";
+            
+            cs = con.prepareCall(query);
+            
+            
+            cs.setString(1, userName);
+            cs.setString(2, hashedPassword);
  
             
-            rs = ps.executeQuery();
+            rs = cs.executeQuery();
      
             if (rs.next())
             {
@@ -617,9 +626,9 @@ public class MemberDao extends Dao implements MemberDaoInterface
                 {
                     rs.close();
                 }
-                if (ps != null)
+                if (cs != null)
                 {
-                    ps.close();
+                    cs.close();
                 }
                 if (con != null)
                 {

@@ -4,52 +4,54 @@
     Author     : Ash
 --%>
 
+<%@page import="java.util.ResourceBundle"%>
+<%@page import="java.util.Locale"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" type="text/css" href="mainCSS.css" >
-        <title>JSP Page</title>
+        <title>Forgot Password</title>
     </head>
+       <% 
+   
+        Locale userSetting = (Locale) session.getAttribute("locale");
+       
+        if(userSetting == null)
+        {
+            userSetting = request.getLocale();
+        }
+   
+    ResourceBundle messages = ResourceBundle.getBundle("properties.text", userSetting);
+%>
+
+    </head>
+     </head>   
     <body>
         
-        <div id="container">
-            
-        <nav class = "topmenu">
-            <ul class="navigation">
-                    <li><a href="MemberActionServlet?action=viewProfile">My Profile</a></li>
-          
-         <li><a href="/CA3WebApp/Login.jsp">Login</a></li>
-            
-            
-        <li><a href="/CA3WebApp/Login.jsp">Sign Up</a></li>
-         
-                      
-   </ul>
-     </nav> 
-        
+   <div id="container">  
+
             <div id="banner">
                 <img src="tempBanner.jpg"/>
             </div>
   
        <nav class="menu-1">
     <ul class="menu">
-        <li> <a href="/CA3WebApp/HomePage.jsp">Home</a> </li>
-        <li> <a href="MemberActionServlet?action=ViewAllProducts">Shop</a> </li>
-        <li> <a href="/CA3WebApp/About.jsp">About</a> </li>
+        <li> <a href="/CA3WebApp/HomePage.jsp"><%=messages.getString("MenuHomeButton")%></a> </li>
+        <li> <a href="MemberActionServlet?action=ViewAllProducts"><%=messages.getString("MenuShopButton")%></a> </li>
+        <li> <a href="/CA3WebApp/About.jsp"><%=messages.getString("MenuAboutButton")%></a> </li>
         
-        <li> <a href="MemberActionServlet?action=ViewPreviousOrders">View Orders</a> </li>
+        <li> <a href="MemberActionServlet?action=ViewPreviousOrders"><%=messages.getString("MenuViewOrdersButton")%></a> </li>
         
-        <li> <a href="/CA3WebApp/ContactUs.jsp">Contact</a> </li>
-        <li> <a href="/CA3WebApp/Cart.jsp">Cart</a> </li>
-        
+        <li> <a href="/CA3WebApp/ContactUs.jsp"><%=messages.getString("MenuContactUsButton")%></a> </li>
+        <li> <a href="/CA3WebApp/Cart.jsp"><%=messages.getString("MenuCartButton")%></a> </li>
         <div id="searchbar">
         <form  action = "MemberActionServlet" method = "post" >
-               <p><td> <input name="searchName" size=30 type="text" />  
+               <td> <input name="searchName" size=30 type="text" />  
                  <input type="hidden" name="action" value="searchName" />
-                 <input type="submit" value="Search"/>
-               </p>
+                 <input type="submit" value="<%=messages.getString("SearchBarButton")%>"/>
+               
         </form>
         </div>
         
@@ -63,7 +65,7 @@
                  <form action="MemberActionServlet" method="post">
                      
                      <div id="ForgotPasswordTitle">
-                         <h1> Forgot your Password </h1>
+                         <h1><%=messages.getString("ForgotPasswordTitle")%></h1>
                          <br>
                          <hr>
                      </div>
@@ -72,7 +74,7 @@
                         <div id="ForgotPassword">
                                <table>
                                    <tr>
-                                       <label for="forgetPasswordEmail">Enter your Email Address: <span style="color:red;">*</span></label> 
+                                       <label for="forgetPasswordEmail"><%=messages.getString("NewEmailLabel")%>: <span style="color:red;">*</span></label> 
                                   </tr>
                                   <tr>
                                       <td> <input name="email" class="resizedTextBox" placeholder="MUST have an @" size=25 type="text" required /> </td>
@@ -83,7 +85,7 @@
                            <div id="ForgotPassword">
                                <table>
                                    <tr>
-                                       <label for="forgetPasswordPet">What was the Name of your first pet? <span style="color:red;">*</span></label>
+                                       <label for="forgetPasswordPet"><%=messages.getString("SecurityQuestion")%> <span style="color:red;">*</span></label>
                                    </tr>
                                    <tr>
                                        <td> <input name="securityQuestionAnswer" class="resizedTextBox" size=25 type="password" required /> </td> 
@@ -108,7 +110,7 @@
            
             </div>
         
-      
+   </div>
       
         
         

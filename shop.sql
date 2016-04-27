@@ -2,6 +2,22 @@ drop database if exists Shop;
 create database Shop;
 use Shop;
 
+
+http://www.simplecodestuffs.com/autocomplete-in-java-web-application-using-jquery-and-json/
+https://support.twitter.com/articles/20170071
+https://dev.twitter.com/web/embedded-timelines
+https://www.google.ie/search?q=pixel+to+em&oq=pixel+to+&aqs=chrome.4.69i57j0l5.4911j0j7&sourceid=chrome&ie=UTF-8#q=embedding+a+live+feed+widget+into+a+website+jdbc
+
+DELIMITER $$
+
+DROP PROCEDURE IF EXISTS `login`$$
+CREATE DEFINER= `root`@`localhost` PROCEDURE `login`(in usernamein varchar(30), in passwordin varchar(32))
+BEGIN 
+     SELECT * FROM Member WHERE userName = usernamein AND password = passwordin;
+END$$
+
+DELIMITER ; 
+
 /* MEMBER TABLE */
 
 
@@ -18,9 +34,9 @@ isAdmin boolean,
 primary key(memberId))ENGINE=INNODB;
 
 Insert into `member`(`memberId`, `firstName`, `lastName`,`userName`, `password` ,`email` ,`memberImageUrl`,`securityQuestionAnswer`,`isAdmin`) values
-(1, 'Bob', 'McGinty','Bob123', '5f4dcc3b5aa765d61d8327deb882cf99', 'ash@yahoo.net', 'images/defaultProfilePicture.jpeg','spot',true),
-(3, 'john', 'Rock','john1', '5f4dcc3b5aa765d61d8327deb882cf99','ash@hotmail.com', 'images/defaultProfilePicture.jpeg','twinkle',false),
-(4, 'aisling', 'stafford','ashstaff', '5f4dcc3b5aa765d61d8327deb882cf99','ashs@yahoo.com', 'images/defaultProfilePicture.jpeg','reilly',true);
+(1, 'Bob', 'McGinty','Bob123', '5f4dcc3b5aa765d61d8327deb882cf99', 'ash@yahoo.net', 'Libraries/Pictures/holiday.jpg','spot',true),
+(3, 'john', 'Rock','john1', '5f4dcc3b5aa765d61d8327deb882cf99','ash@hotmail.com', 'Libraries/Pictures/holiday.jpg','twinkle',false),
+(4, 'aisling', 'stafford','ashstaff', '5f4dcc3b5aa765d61d8327deb882cf99','ashs@yahoo.com', 'Libraries/Pictures/holiday.jpg','reilly',true);
 
 
 /* PRODUCTS TABLE */
@@ -116,10 +132,11 @@ paymentType varchar(30) not null,
 primary key(receiptId),
 foreign key(memberId) references member(memberId)on delete cascade on update cascade) ENGINE=INNODB;
 
+
 insert into `salesReceipt` (`receiptId`, `dateOrdered`, `totalPrice`, `memberId`, `paymentType`) values
-(1, 23-05-2015, 120.00, 1, 'card'),
-(2, 04-02-2015, 60.00, 3, 'card'),
-(3, 04-02-2014, 70.00, 4,'card');
+(1, '2015-05-23', 120.00, 1, 'card'),
+(2, '2013-04-02', 60.00, 3, 'card'),
+(3, '2014-02-08', 70.00, 4,'card');
 
 
 
@@ -139,8 +156,10 @@ foreign key(receiptId) references salesReceipt(receiptId)on delete cascade on up
 
 insert into `orderItem` (`productId`, `receiptId`, `price`, `quantity`) values
 (18, 1, 21.00, 5),
-(10, 2, 22.00, 10),
-(28, 3, 50.00, 3);
+(10, 3, 22.00, 10),
+(28, 3, 50.00, 3),
+(28, 1, 50.00, 3),
+(10, 2, 100.00, 6);
 
 
 /* ADMINLOG TABLE */

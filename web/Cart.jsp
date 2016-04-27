@@ -4,6 +4,7 @@
     Author     : d00155224
 --%>
 
+<%@page import="java.util.ArrayList"%>
 <%@page import="java.text.DecimalFormat"%>
 <%@page import="java.util.Locale"%>
 <%@page import="java.util.ResourceBundle"%>
@@ -197,8 +198,24 @@
 <%
           
         List<Product> cart;
-        cart = (List) (request.getSession().getAttribute("cart"));
-                    
+        
+        String referer = request.getHeader("Referer");
+        System.out.println("referer " + referer );
+        
+        if(referer.equals("http://localhost:8080/CA3WebApp/MemberActionServlet?action=ViewAllProducts"))
+        {
+          
+          cart = (List) (request.getSession().getAttribute("cart"));
+        }
+        else if(referer.equals("http://localhost:8080/CA3WebApp/MemberActionServlet"))
+        {
+          cart = (List) (request.getSession().getAttribute("updatedCart"));
+        }    
+        else
+        {    
+           cart = (List) (request.getSession().getAttribute("updatedCart"));
+        }
+        
         double total = 0;
         
         DecimalFormat decFor = new DecimalFormat("####0.00"); 
@@ -229,15 +246,19 @@
                         <p><%=prod.getProductName()%></p>
                     </div>
                     
-                            <p><%=messages.getString("QuantityLabel")%>: <%=prod.getQuantityInStock()%></p>
-                            <p><%=messages.getString("PriceLabel")%>: <%=messages.getString("CurrencySymbolLabel")%><%=prod.getProductPrice()%></p>
+                         
+                            <p><%=messages.getString("PriceLabel")%>: <%=messages.getString("CurrencySymbolLabel")%><%=messages.getString("CurrencySymbolLabel")%><%=out.print(decFor.format(prod.getProductPrice()))%></p>
 
                 </div>
-
-                         <td><input type="hidden" name="action" value="RemoveProduct"</td>
-                         <td><input type="hidden" name="qtyOrdered" value="<%=prod.getQuantityInStock()%>"</td>
-                         <td><input type="hidden" name="productId" value="<%=prod.getProductId()%>"</td>
-                         <td><input type="submit" value="<%=messages.getString("RemoveItemFromCartLabel")%>" </td>
+                        
+                        <p><%=messages.getString("QuantityLabel")%>: <input name="quantity" size=15 type = "number" min = "0" max = "100" value="<%=prod.getQuantityInStock()%>"></p>
+                        <td><input type="hidden" name="action" value="updateQty"</td>
+                        <td><input type="hidden" name="productId" value="<%=prod.getProductId()%>"</td>
+                        <td><input type="submit" value="<%=messages.getString("UpdateLabel")%>" </td>
+                        
+                        
+                        
+                     
 
                 </div>
 

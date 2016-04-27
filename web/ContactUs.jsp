@@ -4,6 +4,8 @@
     Author     : D00154410
 --%>
 
+<%@page import="java.util.ResourceBundle"%>
+<%@page import="java.util.Locale"%>
 <%@page import="Dtos.Member"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -11,19 +13,30 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" type="text/css" href="mainCSS.css" >
-        <title>JSP Page</title>
+        <title>Contact Us</title>
+ <% 
+   
+        Locale userSetting = (Locale) session.getAttribute("locale");
+       
+        if(userSetting == null)
+        {
+            userSetting = request.getLocale();
+        }
+   
+    ResourceBundle messages = ResourceBundle.getBundle("properties.text", userSetting);
+%>
+
     </head>
+     </head>   
     <body>
-        <div id="container">
+        
+
+          
+    <div id="container">
             
         <nav class = "topmenu">
             <ul class="navigation">
-                    <li><a href="MemberActionServlet?action=viewProfile">My Profile</a></li>
-                    
-            
-       
-      
-          
+ 
          <%  Member m = (Member)session.getAttribute("member"); 
          
         if(m == null)
@@ -31,12 +44,12 @@
             
          %>
         
-         <li><a href="/CA3WebApp/Login.html">Login</a></li>
-        
+         <li><a href="Login.jsp"><%=messages.getString("MenuButtonLogin")%></a></li>
+           
             
-        <li><a href="/CA3WebApp/Login.html">Sign Up</a></li>
-        </ul>
-     </nav> 
+        <li><a href="Register.jsp"><%=messages.getString("MenuButtonRegister")%></a></li>
+       </ul>
+     </nav>  
         <%
         
         }
@@ -45,34 +58,34 @@
       
             
         %>
-            
-           <li><a href="MemberActionServlet?action=logout">Logout</a></li>
+           <li><a href="MemberActionServlet?action=viewProfile">My Profile</a></li> 
+           <li><a href="MemberActionServlet?action=logout"><%=messages.getString("MenuButtonLogout")%></a></li>
                       
    </ul>
      </nav> 
-          <% } %>
-
+        <%  
+        }
+        %>
             <div id="banner">
                 <img src="tempBanner.jpg"/>
             </div>
   
        <nav class="menu-1">
     <ul class="menu">
-        <li> <a href="/CA3WebApp/HomePage.jsp">Home</a> </li>
-        <li> <a href="MemberActionServlet?action=ViewAllProducts">Shop</a> </li>
-        <li> <a href="/CA3WebApp/About.jsp">About</a> </li>
+        <li> <a href="/CA3WebApp/HomePage.jsp"><%=messages.getString("MenuHomeButton")%></a> </li>
+        <li> <a href="MemberActionServlet?action=ViewAllProducts"><%=messages.getString("MenuShopButton")%></a> </li>
+        <li> <a href="/CA3WebApp/About.jsp"><%=messages.getString("MenuAboutButton")%></a> </li>
         
-        <li> <a href="MemberActionServlet?action=ViewPreviousOrders">View Orders</a> </li>
+        <li> <a href="MemberActionServlet?action=ViewPreviousOrders"><%=messages.getString("MenuViewOrdersButton")%></a> </li>
         
-        <li> <a href="/CA3WebApp/ContactUs.jsp">Contact</a> </li>
-        <li> <a href="/CA3WebApp/Cart.jsp">Cart</a> </li>
-        
+        <li> <a href="/CA3WebApp/ContactUs.jsp"><%=messages.getString("MenuContactUsButton")%></a> </li>
+        <li> <a href="/CA3WebApp/Cart.jsp"><%=messages.getString("MenuCartButton")%></a> </li>
         <div id="searchbar">
         <form  action = "MemberActionServlet" method = "post" >
-               <p><td> <input name="searchName" size=30 type="text" />  
+               <td> <input name="searchName" size=30 type="text" />  
                  <input type="hidden" name="action" value="searchName" />
-                 <input type="submit" value="Search"/>
-               </p>
+                 <input type="submit" value="<%=messages.getString("SearchBarButton")%>"/>
+               
         </form>
         </div>
         
@@ -80,10 +93,11 @@
            
            
 </nav>
+
       <div id="pagecontent3">
            
           <div id ="ContactHeading">
-              <h1> Contact Us </h1>
+              <h1><%=messages.getString("ContactUsLabel")%></h1>
               <hr></hr>
           </div>
           
@@ -91,13 +105,12 @@
           <br>
           
           <div id="ContactUsInfo">
-              <td><p>Thank you for your interest in our store. 
-                      If you still have questions, please do not hesitate to Contact Us!</p></td>
+              <td><p><%=messages.getString("ContactUsInfoText")%></p></td>
           </div>
           <div id="ContactUsInfo2">
               
               <div id="ContactInfoHeadings">
-                    <td><p>Email Address<p></td>
+                    <td><p><%=messages.getString("EmailAddressLabel")%><p></td>
               </div>
               
               <div id="ContactInfo">
@@ -105,7 +118,7 @@
               </div>
               
               <div id="ContactInfoHeadings">
-                    <td><p>Telephone Number</p></td>
+                    <td><p><%=messages.getString("PhoneNoLabel")%></p></td>
               </div>
               
               <div id ="ContactInfo">
@@ -113,7 +126,7 @@
               </div>
               
               <div id="ContactInfoHeadings">
-                    <td><p>Address</p></td>
+                    <td><p><%=messages.getString("AddressLabel")%></p></td>
               </div>
               
               <div id="ContactInfo">
@@ -128,7 +141,7 @@
           </div>
           
            <div id="map_heading">
-                  <h3>Where we are located</h3>
+                  <h3><%=messages.getString("MapHeadingLabel")%></h3>
            </div>
             <div id="mapDiv"></div>
 
