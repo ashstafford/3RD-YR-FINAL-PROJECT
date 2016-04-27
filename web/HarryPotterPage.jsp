@@ -9,6 +9,8 @@
 <%@page import="Dtos.Member"%>
 <%@page import="java.util.List"%>
 <%@page import="Dtos.Product"%>
+
+
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -19,7 +21,12 @@
         <script src="js/paginate.js"></script>
         <script src="js/custom.js"></script>
         <script type="text/javascript" src="js/modernizr-1.5.min.js"></script>
-   <% 
+        <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+        <script src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+        <script type="text/javascript" src="js/autoCompleter.js"></script>
+        <link rel="stylesheet" href="//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
+        
+ <% 
    
         Locale userSetting = (Locale) session.getAttribute("locale");
        
@@ -32,8 +39,8 @@
 %> 
     </head>   
     <body>
-        
-  
+       
+          
     <div id="container">
             
         <nav class = "topmenu">
@@ -41,8 +48,8 @@
  
          <%  Member m = (Member)session.getAttribute("member"); 
          
-       // if(m == null)
-        //{
+        if(m == null)
+        {
             
          %>
         
@@ -54,9 +61,9 @@
      </nav>  
         <%
         
-       // }
-       // else
-        //{
+        }
+        else
+        {
       
             
         %>
@@ -84,7 +91,7 @@
         <li> <a href="/CA3WebApp/Cart.jsp"><%=messages.getString("MenuCartButton")%></a> </li>
         <div id="searchbar">
         <form  action = "MemberActionServlet" method = "post" >
-               <td> <input name="searchName" size=30 type="text" />  
+               <td> <input name="searchName" size=30 id="searchName" type="text" />  
                  <input type="hidden" name="action" value="searchName" />
                  <input type="submit" value="<%=messages.getString("SearchBarButton")%>"/>
                

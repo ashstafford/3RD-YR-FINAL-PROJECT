@@ -12,88 +12,93 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" type="text/css" href="mainCSS.css" >
-<% 
-   
-        Locale userSetting = (Locale) session.getAttribute("locale");
-       
-        if(userSetting == null)
-        {
-            userSetting = request.getLocale();
-        }
-   
-    ResourceBundle messages = ResourceBundle.getBundle("properties.text", userSetting);
-%> 
+        <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+        <script src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+        <script type="text/javascript" src="js/autoCompleter.js"></script>
+        <link rel="stylesheet" href="//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
+
+        <%
+
+            Locale userSetting = (Locale) session.getAttribute("locale");
+
+            if (userSetting == null)
+            {
+                userSetting = request.getLocale();
+            }
+
+            ResourceBundle messages = ResourceBundle.getBundle("properties.text", userSetting);
+        %> 
     </head>
     <body>
         <div id="container">
-            
-        <nav class = "topmenu">
-            <ul class="navigation">
-                  
-          
-         <li><a href="/CA3WebApp/Login.jsp"><%=messages.getString("MenuButtonLogin")%></a></li>
-            
-            
-        <li><a href="/CA3WebApp/Login.jsp"><%=messages.getString("MenuButtonRegister")%></a></li>
-         
-                      
-   </ul>
-     </nav> 
-        
-        <div id="banner">
+
+            <nav class = "topmenu">
+                <ul class="navigation">
+
+
+                    <li><a href="/CA3WebApp/Login.jsp"><%=messages.getString("MenuButtonLogin")%></a></li>
+
+
+                    <li><a href="/CA3WebApp/Login.jsp"><%=messages.getString("MenuButtonRegister")%></a></li>
+
+
+                </ul>
+            </nav> 
+
+            <div id="banner">
                 <img src="tempBanner.jpg"/>
             </div>
-  
-       <nav class="menu-1">
-    <ul class="menu">
-        <li> <a href="/CA3WebApp/HomePage.jsp"><%=messages.getString("MenuHomeButton")%></a> </li>
-        <li> <a href="MemberActionServlet?action=ViewAllProducts"><%=messages.getString("MenuShopButton")%></a> </li>
-        <li> <a href="/CA3WebApp/About.jsp"><%=messages.getString("MenuAboutButton")%></a> </li>
-        
-        <li> <a href="MemberActionServlet?action=ViewPreviousOrders"><%=messages.getString("MenuViewOrdersButton")%></a> </li>
-        
-        <li> <a href="/CA3WebApp/ContactUs.jsp"><%=messages.getString("MenuContactUsButton")%></a> </li>
-        <li> <a href="/CA3WebApp/Cart.jsp"><%=messages.getString("MenuCartButton")%></a> </li>
-        <div id="searchbar">
-        <form  action = "MemberActionServlet" method = "post" >
-               <td> <input name="searchName" size=30 type="text" />  
-                 <input type="hidden" name="action" value="searchName" />
-                 <input type="submit" value="<%=messages.getString("SearchBarButton")%>"/>
-               
-        </form>
-        </div>
-        
-    </ul>
-           
-           
-</nav>
+
+            <nav class="menu-1">
+                <ul class="menu">
+                    <li> <a href="/CA3WebApp/HomePage.jsp"><%=messages.getString("MenuHomeButton")%></a> </li>
+                    <li> <a href="MemberActionServlet?action=ViewAllProducts"><%=messages.getString("MenuShopButton")%></a> </li>
+                    <li> <a href="/CA3WebApp/About.jsp"><%=messages.getString("MenuAboutButton")%></a> </li>
+
+                    <li> <a href="MemberActionServlet?action=ViewPreviousOrders"><%=messages.getString("MenuViewOrdersButton")%></a> </li>
+
+                    <li> <a href="/CA3WebApp/ContactUs.jsp"><%=messages.getString("MenuContactUsButton")%></a> </li>
+                    <li> <a href="/CA3WebApp/Cart.jsp"><%=messages.getString("MenuCartButton")%></a> </li>
+                    <div id="searchbar">
+                        <form  action = "MemberActionServlet" method = "post" >
+                            <td> <input name="searchName" id="searchName" size=30 type="text" />  
+                                <input type="hidden" name="action" value="searchName" />
+                                <input type="submit" value="<%=messages.getString("SearchBarButton")%>"/>
+
+                        </form>
+                    </div>
+
+                </ul>
+
+
+            </nav>
             <div id="pagecontent2">
-                
+
                 <div id="RegisterFailed">    
                     <h1>Register Failed</h1>
 
                     <form action = "Register.jsp" method = "post">
 
 
-                           <p> 
-                              <input type = "submit"  name = "Register" class="resizedButton" value = "Return to Register" />
-                           </p>
-                   </form>
-        
-                <form action = "Login.jsp" method = "post">
+                        <p> 
+                            <input type = "submit"  name = "Register" class="resizedButton" value = "Return to Register" />
+                        </p>
+                    </form>
+
+                    <form action = "Login.jsp" method = "post">
 
 
                         <p> 
-                           <input type = "submit"  name = "Login" class="resizedButton" value = "Return to Login"/>
+                            <input type = "submit"  name = "Login" class="resizedButton" value = "Return to Login"/>
                         </p>
-                </form>
-        
-      </div>
-           
+                    </form>
+
+                </div>
+
             </div>
-        
-        
-        
-      
+
+
+
+
     </body>
-       </html>
+</html>

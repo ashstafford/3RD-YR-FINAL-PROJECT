@@ -14,144 +14,145 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" type="text/css" href="mainCSS.css" >
+        <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+        <script src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+        <script type="text/javascript" src="js/autoCompleter.js"></script>
+        <link rel="stylesheet" href="//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
+
         <title>Sales Orders</title>
         <style>
             table, td, th {    
-    border: 1px solid #ddd;
-    text-align: left;
-}
+                border: 1px solid #ddd;
+                text-align: left;
+            }
 
-table {
-    border-collapse: collapse;
-    width: 90%;
-    padding-top: 30px;
-}
+            table {
+                border-collapse: collapse;
+                width: 90%;
+                padding-top: 30px;
+            }
 
-th, td {
-    padding: 15px;
-}
+            th, td {
+                padding: 15px;
+            }
         </style>
     </head>
-     <body>
-        
-   <nav class = "topmenu">
+    <body>
+
+        <nav class = "topmenu">
             <ul class="navigation">
-                    <li><a href="MemberActionServlet?action=viewProfile">My Profile</a></li>
-                    
-            
-       
-      
-          
-         <%  Member m = (Member)session.getAttribute("member"); 
-         
-        if(m == null)
+                <li><a href="MemberActionServlet?action=viewProfile">My Profile</a></li>
+
+
+
+
+
+                <%  Member m = (Member) session.getAttribute("member");
+
+                    if (m == null)
+                    {
+
+                %>
+
+                <li><a href="/CA3WebApp/Login.jsp">Login</a></li>
+
+
+                <li><a href="/CA3WebApp/Login.jsp">Sign Up</a></li>
+            </ul>
+        </nav>
+        <%        } else
         {
-            
-         %>
-        
-         <li><a href="/CA3WebApp/Login.jsp">Login</a></li>
-            
-            
-        <li><a href="/CA3WebApp/Login.jsp">Sign Up</a></li>
-        </ul>
-     </nav>
-        <%
-        
-        }
-        else
-        {
-      
-            
+
+
         %>
-            
-           <li><a href="MemberActionServlet?action=logout">Logout</a></li>
-                      
-   </ul>
-     </nav> 
-          <% } %>
-            <div id="banner">
-                <img src="tempBanner.jpg"/>
-            </div>
-  
-       <nav class="menu-1">
+
+    <li><a href="MemberActionServlet?action=logout">Logout</a></li>
+
+</ul>
+</nav> 
+<% } %>
+<div id="banner">
+    <img src="tempBanner.jpg"/>
+</div>
+
+<nav class="menu-1">
     <ul class="menu">
         <li> <a href="/CA3WebApp/HomePage.jsp">Home</a> </li>
         <li> <a href="MemberActionServlet?action=ViewAllProducts">Shop</a> </li>
         <li> <a href="/CA3WebApp/About.jsp">About</a> </li>
-        
+
         <li> <a href="MemberActionServlet?action=ViewPreviousOrders">View Orders</a> </li>
-        
+
         <li> <a href="/CA3WebApp/ContactUs.jsp">Contact</a> </li>
         <li> <a href="/CA3WebApp/Cart.jsp">Cart</a> </li>
-        
+
         <div id="searchbar">
-        <form  action = "MemberActionServlet" method = "post" >
-               <p><td> <input name="searchName" size=30 type="text" />  
-                 <input type="hidden" name="action" value="searchName" />
-                 <input type="submit" value="Search"/>
-               </p>
-        </form>
+            <form  action = "MemberActionServlet" method = "post" >
+                <p><td> <input name="searchName" id="searchName" size=30 type="text" />  
+                    <input type="hidden" name="action" value="searchName" />
+                    <input type="submit" value="Search"/>
+                    </p>
+            </form>
         </div>
-        
+
     </ul>
-           
-           
+
+
 </nav>
-            
-            
-            <div id="pagecontent2">
-                
-                <table>
 
-                    
-                    
-            <!--<tr> <th>Receipt ID</th><th>Date Ordered</th><th>Total Price</th><th>Member ID</th><th>Payment Type</th>-->
 
-         <%
-                    List<SalesReceipt> orders;
-                    orders = (List)(request.getSession().getAttribute("previousOrders"));
+<div id="pagecontent2">
 
-                    if (orders != null) 
-                    {
-        %>
-                     <tr>
-                        <th>Receipt ID</th>
-                        <th>Date Ordered</th>
-                        <th>Total Price</th>
-                        <th>Member ID</th>
-                        <th>Payment Type</th>
-                    </tr>
+    <table>
+
+
+
+        <!--<tr> <th>Receipt ID</th><th>Date Ordered</th><th>Total Price</th><th>Member ID</th><th>Payment Type</th>-->
+
         <%
-                        for (SalesReceipt sr : orders) 
-                        {
-                
+            List<SalesReceipt> orders;
+            orders = (List) (request.getSession().getAttribute("previousOrders"));
+
+            if (orders != null)
+            {
+        %>
+        <tr>
+            <th>Receipt ID</th>
+            <th>Date Ordered</th>
+            <th>Total Price</th>
+            <th>Member ID</th>
+            <th>Payment Type</th>
+        </tr>
+        <%
+            for (SalesReceipt sr : orders)
+            {
+
         %>    
-                
-                
-                    <tr>
-                        <td><%=sr.getReceiptId()%></td>
-                        <td><%=sr.getDateOrdered()%></td>
-                        <td><%=sr.getTotalPrice()%></td>
-                        <td><%=sr.getMemberId()%></td>
-                        <td><%=sr.getPaymentType()%></td>
-                    </tr>
-                
-                
-                
-                
-                   <%
-                    }
-                }
-                else
-                {
-                     %><h1> You have no previous Orders!</h1> <%     
-                }        
-            %>
-         
-           </table>
+
+
+        <tr>
+            <td><%=sr.getReceiptId()%></td>
+            <td><%=sr.getDateOrdered()%></td>
+            <td><%=sr.getTotalPrice()%></td>
+            <td><%=sr.getMemberId()%></td>
+            <td><%=sr.getPaymentType()%></td>
+        </tr>
+
+
+
+
+        <%
+            }
+        } else
+        {
+        %><h1> You have no previous Orders!</h1> <%
+              }
+        %>
+
+    </table>
 
 </div>
-  
-            
-    </body>
+
+
+</body>
 </html>

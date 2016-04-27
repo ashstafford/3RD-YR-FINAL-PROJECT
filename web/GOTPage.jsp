@@ -1,8 +1,9 @@
 <%-- 
-    Document   : StarWarsPage
-    Created on : 09-Dec-2015, 02:00:45
-    Author     : Aisling
+    Document   : GOTPage
+    Created on : 15-Dec-2015, 17:02:58
+    Author     : d00155224
 --%>
+
 <%@page import="java.text.DecimalFormat"%>
 <%@page import="java.util.ResourceBundle"%>
 <%@page import="java.util.Locale"%>
@@ -21,7 +22,12 @@
         <script src="js/paginate.js"></script>
         <script src="js/custom.js"></script>
         <script type="text/javascript" src="js/modernizr-1.5.min.js"></script>
-<% 
+        <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+        <script src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+        <script type="text/javascript" src="js/autoCompleter.js"></script>
+        <link rel="stylesheet" href="//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
+        
+ <% 
    
         Locale userSetting = (Locale) session.getAttribute("locale");
        
@@ -34,7 +40,8 @@
 %> 
     </head>   
     <body>
-  
+       
+          
     <div id="container">
             
         <nav class = "topmenu">
@@ -42,8 +49,8 @@
  
          <%  Member m = (Member)session.getAttribute("member"); 
          
-       // if(m == null)
-        //{
+        if(m == null)
+        {
             
          %>
         
@@ -55,9 +62,9 @@
      </nav>  
         <%
         
-       // }
-       // else
-        //{
+        }
+        else
+        {
       
             
         %>
@@ -85,7 +92,7 @@
         <li> <a href="/CA3WebApp/Cart.jsp"><%=messages.getString("MenuCartButton")%></a> </li>
         <div id="searchbar">
         <form  action = "MemberActionServlet" method = "post" >
-               <td> <input name="searchName" size=30 type="text" />  
+               <td> <input name="searchName" size=30 id="searchName" type="text" />  
                  <input type="hidden" name="action" value="searchName" />
                  <input type="submit" value="<%=messages.getString("SearchBarButton")%>"/>
                
@@ -199,7 +206,9 @@
                </p>
          </form>
         
-            </div>       
+          
+        
+    </div>
         
       <div id="pagecontent">
         

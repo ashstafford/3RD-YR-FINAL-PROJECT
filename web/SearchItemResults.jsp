@@ -18,13 +18,18 @@
         <script>
             function goBack()
             {
-              window.history.back();
+                window.history.back();
             }
         </script>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" type="text/css" href="mainCSS.css" >
+        <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+        <script src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+        <script type="text/javascript" src="js/autoCompleter.js"></script>
+        <link rel="stylesheet" href="//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
+
         <title>Product Search Results</title>
-        
+
         <%
 
             Locale userSetting = (Locale) session.getAttribute("locale");
@@ -69,7 +74,7 @@
                     <li> <a href="/CA3WebApp/Cart.jsp"><%=messages.getString("MenuCartButton")%></a> </li>
                     <div id="searchbar">
                         <form  action = "MemberActionServlet" method = "post" >
-                            <td> <input name="searchName" size=30 type="text" />  
+                            <td> <input name="searchName" id="searchName" size=30 type="text" />  
                                 <input type="hidden" name="action" value="searchName" />
                                 <input type="submit" value="<%=messages.getString("SearchBarButton")%>"/>
 
@@ -201,51 +206,51 @@
 
 
 
-        <div class="pagination">
-        </div>
+                    <div class="pagination">
+                    </div>
             </div>
 
-                    <form action="MemberActionServlet" method="post">
-                        <div id="overall">
-                        </div>
+            <form action="MemberActionServlet" method="post">
+                <div id="overall">
+                </div>
 
-                        <tr>
+                <tr>
 
-                        <div id="productImage">   
-                            <img src="<%=prod.getProductImageUrl()%>" style="width: 300px; height: 250px;">     
-                        </div>   
+                <div id="productImage">   
+                    <img src="<%=prod.getProductImageUrl()%>" style="width: 300px; height: 250px;">     
+                </div>   
 
-                        <div id ="productDetails">
-                            <p><%=prod.getProductName()%></p>
-                            <p><%=messages.getString("QtyInStockLabel")%>: <%=prod.getQuantityInStock()%></p>
-                            <p><%=messages.getString("PriceLabel")%>: <%=messages.getString("CurrencySymbolLabel")%> <%=decFor.format(prod.getProductPrice())%></p>
-
-
-                            <p><%=messages.getString("QuantityLabel")%>: <input name="quantity" size=15 type="text" /></p>
-                            <p><input type="hidden" name="action" value="Add To Cart" /></p>
-                            <input type="hidden" name="addToCart" value="<%= prod.getProductId()%>" />
-                            <p><input type="submit" value="<%=messages.getString("addToCartLabel")%>" /></p>
-                        </div>
-                        </tr>
+                <div id ="productDetails">
+                    <p><%=prod.getProductName()%></p>
+                    <p><%=messages.getString("QtyInStockLabel")%>: <%=prod.getQuantityInStock()%></p>
+                    <p><%=messages.getString("PriceLabel")%>: <%=messages.getString("CurrencySymbolLabel")%> <%=decFor.format(prod.getProductPrice())%></p>
 
 
-                        <%
-                                }
-                            }
+                    <p><%=messages.getString("QuantityLabel")%>: <input name="quantity" size=15 type = "number" min = "1" max = "<%=prod.getQuantityInStock()%>"></p>
+                    <p><input type="hidden" name="action" value="Add To Cart" /></p>
+                    <input type="hidden" name="addToCart" value="<%= prod.getProductId()%>" />
+                    <p><input type="submit" value="<%=messages.getString("AddToCartButton")%>" /></p>
+                </div>
+                </tr>
 
-                        %>
-                    </form>
 
+                <%
+                        }
+                    }
 
-
-                </table>
+                %>
+            </form>
 
 
 
-            </div>
-        </div>  
+        </table>
 
 
-        <button onclick="goBack()">Go Back</button>
-    </body>
+
+    </div>
+</div>  
+
+
+<button onclick="goBack()">Go Back</button>
+</body>
 </html>

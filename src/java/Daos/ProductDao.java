@@ -94,6 +94,43 @@ public class ProductDao extends Dao implements ProductDaoInterface
     }
     
     @Override
+    public ArrayList<String> getAutoCompleteData(String searchEntry) 
+    {
+                Connection conn = null;
+		ArrayList<String> list = new ArrayList<String>();
+		PreparedStatement ps = null;
+                ResultSet rs = null;
+                
+		String data;
+		
+                try 
+                {    
+                    conn = getConnection();
+                     
+                    String query = "select productName from product where productName like ?";
+                    
+                    ps = conn.prepareStatement(query);
+                    System.out.println("ps " + ps);
+                    ps.setString(1, searchEntry + "%");
+
+                    rs = ps.executeQuery();
+
+                    while (rs.next())
+                    {
+                            data = rs.getString("productName");
+                            list.add(data);
+                    }                       
+		}
+                
+                catch (Exception e) 
+                {
+			System.out.println(e.getMessage());
+		}
+                
+		return list;
+	}
+    
+    @Override
     public boolean addProduct(String productImageUrl,String productName,double productPrice,int quantityInStock,String category)  
     {
             Connection conn = null;

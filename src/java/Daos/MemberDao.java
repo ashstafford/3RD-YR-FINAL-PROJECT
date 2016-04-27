@@ -613,8 +613,8 @@ public class MemberDao extends Dao implements MemberDaoInterface
                 String firstname = rs.getString("firstName");
                 String lastname = rs.getString("lastName");
                 String email = rs.getString("email");
-//                memberimage = (BufferedImage) rs.getBlob("memberImage");
-                memberimage = ImageIO.read(rs.getBlob("memberImage").getBinaryStream());
+               memberimage = (BufferedImage) rs.getBlob("memberImage");
+               // memberimage = ImageIO.read(rs.getBlob("memberImage").getBinaryStream());
                 
                 String securityQuestionAnswer = rs.getString("securityQuestionAnswer");
                 boolean isAdmin = rs.getBoolean("isAdmin");
@@ -633,10 +633,11 @@ public class MemberDao extends Dao implements MemberDaoInterface
          catch (SQLException e)
         {
             e.printStackTrace();
-        } catch (IOException ex)
-        {
-            Logger.getLogger(MemberDao.class.getName()).log(Level.SEVERE, null, ex);
         } 
+//        catch (IOException ex)
+//        {
+//            Logger.getLogger(MemberDao.class.getName()).log(Level.SEVERE, null, ex);
+//        } 
         finally
         {
             try

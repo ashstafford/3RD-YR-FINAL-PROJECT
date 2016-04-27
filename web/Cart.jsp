@@ -21,6 +21,11 @@
         <script src="js/paginate.js"></script>
         <script src="js/custom.js"></script>
         <script type="text/javascript" src="js/modernizr-1.5.min.js"></script>
+        <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+        <script src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+        <script type="text/javascript" src="js/autoCompleter.js"></script>
+        <link rel="stylesheet" href="//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
+        
         <title>Cart</title>
   
 <% 
@@ -41,16 +46,11 @@
    <div id="container">  
           <nav class = "topmenu">
             <ul class="navigation">
-                    <li><a href="MemberActionServlet?action=viewProfile">My Profile</a></li>
-                    
-            
        
-      
-          
          <%  Member m = (Member)session.getAttribute("member"); 
          
-       // if(m == null)
-        //{
+        if(m == null)
+        {
             
          %>
         
@@ -58,18 +58,19 @@
             
             
         <li><a href="/CA3WebApp/Login.jsp"><%=messages.getString("MenuButtonRegister")%></a></li>
-        
+    </ul>
+   </nav>   
         <%
         
-       // }
-       // else
-        //{
+        }
+        else
+        {
       
             
         %>
             
            <li><a href="MemberActionServlet?action=logout"><%=messages.getString("MenuButtonLogout")%></a></li>
-                      
+           <li><a href="MemberActionServlet?action=viewProfile">My Profile</a></li>           
    </ul>
      </nav> 
           <%// } %>
@@ -91,7 +92,7 @@
         
         <div id="searchbar">
         <form  action = "MemberActionServlet" method = "post" >
-               <p><td> <input name="searchName" size=30 type="text" />  
+               <p><td> <input name="searchName" id="searchName" size=30 type="text" />  
                  <input type="hidden" name="action" value="searchName" />
                  <input type="submit" value="<%=messages.getString("SearchBarButton")%>"/>
                </p>
