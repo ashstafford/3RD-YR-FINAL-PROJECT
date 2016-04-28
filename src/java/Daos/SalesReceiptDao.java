@@ -23,7 +23,10 @@ import java.util.ArrayList;
  */
 public class SalesReceiptDao extends Dao implements SalesReceiptDaoInterface
 {
-
+/**
+     *
+     * @handles the processes of each method
+     */
     @Override
     public SalesReceipt insertIntoSalesReceipt(Date dateOrdered,double totalPrice,int memberId,String paymentType) 
     {
@@ -101,7 +104,7 @@ public class SalesReceiptDao extends Dao implements SalesReceiptDaoInterface
     /**
      *
      * @param id
-     * @return
+     * @uses id of user to return all orders of that user
      */
     @Override
      public ArrayList<SalesReceipt> viewPreviousOrders(int id)

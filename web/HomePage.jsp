@@ -16,6 +16,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="icon" href="images/flash3.png" type="image/gif" sizes="20x20">
         <link rel="stylesheet" type="text/css" href="mainCSS.css" >
+        <link rel="stylesheet" type="text/css" href="HomepageSlider.css" >
         <script type="text/javascript" src="HomepageImageSliderScript.js"></script>
        
         <script src="//code.jquery.com/jquery-1.10.2.js"></script>
@@ -52,98 +53,8 @@
             
             
 
-/* *** homepage SlideShow *** */
 
-*
-{ margin: 0; 
-  padding: 0; 
-}
 
-a
-{ 
-    text-decoration: none; outline: none; 
-}
-a img							
-{ 
-    border: none; 
-}
-
-h2								
-{ 
-    font-family: Georgia, Serif; 
-    font-size: 36px; 
-    text-align: center;                                                               
-    font-weight: normal; 
-}
-
-#page-wrap						
-{ 
-    background: white; width: 960px; margin: 0 auto;                                                            
-    padding: 50px 0; 
-}
-
-#slider							
-{ 
-    background: white url(../images/slider-bg.jpg); 
-    height: 227px; 
-    overflow: hidden;                                                               
-    position: relative; 
-    margin: 50px 0; 
-}
-
-  /* DEFAULT is for three panels in width, adjust as needed
-  This only matters if JS is OFF, otherwise JS sets this. */								  
-#mover							
-{ 
-    width: 100%; 
-    height: 100%;
-    position: relative; 
-}
-
-.slide							
-{ 
-    padding: 40px 30px; 
-  width: 1500px; 
-  float: left; 
-  position: relative; 
-}
-.slide h1						
-{
-    font-family: Helvetica, Sans-Serif; 
-    font-size: 30px; 
-    letter-spacing: -1px;
-    color: black; 
-}
-.slide .slideshowInfo						
-{
-    color: #666666; 
-    font-size: 18px; 
-    line-height: 22px; 
-    width: 300px; 
-    font-family: Arial, Helvetica, sans-serif;
-    font-weight:500;
-    padding-top:8px;
-}
-.slide img						
-{
-    position: absolute; 
-    top: 20px; 
-    left: 400px; 
-}
-#slider-stopper					
-{ position: absolute; 
-  top: 1px; 
-  right: 20px; 
-  background: #777; 
-  color: white;
-  padding: 3px 8px; 
-  font-size: 12px; 
-  text-transform: 
-  uppercase; z-index: 1000;
-  font-family: Arial, Helvetica, sans-serif;
-  
-  
-}
 
         </style>
         <script>
@@ -216,7 +127,7 @@ h2
                <td> <input name="searchName" id ="searchName" size=30 type="text" class ="searchName" />  
                  <input type="hidden" name="action" value="searchName" />
                  <input type="submit" value="<%=messages.getString("SearchBarButton")%>"/>
-               
+               </td>
         </form>
         </div>
         
@@ -238,7 +149,7 @@ h2
 					
 					<p class = "slideshowInfo">The Walking Dead is one of the most popular television shows at the moment. We have the latest merchandise at a great price!</p>
 					
-					<a href="TwdPage.jsp"><img src="slide-1-.png" alt="learn more" /></a>
+					<a href="MemberActionServlet?action=The Walking Dead"><img src="slide-1-.png" alt="learn more" /></a>
 					
 				</div>
 				
@@ -248,7 +159,7 @@ h2
 					
 					<p class = "slideshowInfo">Here at In a Flash we stock all the latest Merchandise from all the latest Movies. We currently have 10% off all Deadpool Merchandise. Only while stock lasts!</p>
 					
-					<a href="MavelPage.jsp"><img src="slide-2.png" alt="learn more" /></a>
+					<a href="MemberActionServlet?action=Marvel"><img src="slide-2.png" alt="learn more" /></a>
 					
 				</div>
 				
@@ -258,7 +169,7 @@ h2
 					
 					<p class = "slideshowInfo">In our store we stock great products at great prices. Our Disney Merchandise is perfect for both kids and adults. Buy Now</p>
 					
-					<a href="DisneyPage.jsp"><img src="slide-3.png" alt="learn more" /></a>
+					<a href="MemberActionServlet?action=Disney"><img src="slide-3.png" alt="learn more" /></a>
 					
 				</div>
 			
@@ -285,7 +196,7 @@ h2
                 
         <div class ="images">
                 <div class="social-popout">
-                    <a href="http://www.facebook.com"><img src="images/facebook.png" />         
+                    <a href="https://www.facebook.com/inaflash8/"><img src="images/facebook.png" />         
                 </div>
                 
                 <div class="social-popout">            
@@ -297,7 +208,7 @@ h2
                 </div>
                 
                 <div class="social-popout">            
-                     <a href="http://www.instagram.com"><img src="images/instagram.png" />
+                     <a href="https://www.instagram.com/inaflash8/"><img src="images/instagram.png" />
                 </div>
                 
                 <div class="social-popout">         

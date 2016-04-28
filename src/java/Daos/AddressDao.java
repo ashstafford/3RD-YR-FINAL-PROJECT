@@ -19,6 +19,12 @@ import java.util.ArrayList;
  */
 public class AddressDao extends Dao implements AddressDaoInterface
 {
+    
+     /**
+     *
+     * 
+     * @adds a new address by taking in information given by user
+     */
   @Override
     public boolean addAddress(int memberId, String line1,String line2, String city, String country) 
     {
@@ -102,6 +108,12 @@ public class AddressDao extends Dao implements AddressDaoInterface
         }
         return true;
     } 
+    
+    
+    /**
+     *
+     * @takes in id and returns address details from that member
+     */
     
  @Override
  public ArrayList<Address> findAddessesByMemberId(int id)  

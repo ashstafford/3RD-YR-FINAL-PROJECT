@@ -150,6 +150,21 @@
  
                     <td><input type="hidden" name="action" value="edit Product" /></td>
                     <input type="hidden" name="editProduct" value="<%= prod.getProductId()%>"/> 
+              
+                    
+             
+                         <td><input type="submit" value="Remove Product" /></td>
+            <div class="pagination">
+            </div>
+          </div>
+      </div>
+      
+
+</div>
+            
+    </body>
+
+</html>
 
 
 
@@ -168,34 +183,3 @@
 %>                <form action="MemberActionServlet" method="post"> 
                      <td><input type="hidden" name="action" value="Remove Product" /></td>
                      <input type="hidden" name="removeProduct" value="<%= prod.getProductId()%>"/>
-              
-                    
-             
-                         <td><input type="submit" value="Remove Product" /></td>
-                         </tr>
-                         
-                    </form> 
-            
-    
-        <%      }
-              }
-            }
-            else
-            {
-                out.println("sorry not found!!");
-            }        
-            %>
-
-
-        </table>
-            <div class="pagination">
-            </div>
-          </div>
-      </div>
-      
-
-</div>
-            
-    </body>
-
-</html>

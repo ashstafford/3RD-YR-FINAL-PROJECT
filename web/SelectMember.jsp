@@ -4,8 +4,6 @@
     Author     : Ash
 --%>
 
-<%@page import="java.util.Locale"%>
-<%@page import="java.util.ResourceBundle"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="Dtos.Member"%>
 <%@page import="java.util.List"%>
@@ -167,10 +165,6 @@
                   <form action="MemberActionServlet" method="post"> 
                     <td><input type="hidden" name="action" value="Remove Member" /></td>
                     <input type="hidden" name="removeMember" value="<%= m.getMemberId()%>"/>
-                    
-                        <td><input type="submit" value="Remove Member" /></td>
-                  </form>    
-            </div>     
 
                 
              
@@ -190,7 +184,6 @@
           }        
             %>
 
-
         
           
         
@@ -199,4 +192,3 @@
 </div>
         
     </body>
-</html>
