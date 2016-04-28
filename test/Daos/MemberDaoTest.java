@@ -69,15 +69,16 @@ public class MemberDaoTest
         String password = "password";
         String firstName = "Ben";
         String lastName = "Van Rhee";        
-        String email = "ben@gmail.com";        
+        String email = "ben@gmail.com"; 
+        BufferedImage memberImage = LONGBLOB;
         String securityQuestionAnswer = "trio";
         boolean isAdmin = false ;      
         MemberDao instance = new MemberDao();
         boolean expResult = true;
-        Member result = instance.addMember(userName, password,firstName, lastName,  email, securityQuestionAnswer,isAdmin);
+        Member result = instance.addMember(userName, password,firstName, lastName, email, memberImage,securityQuestionAnswer,isAdmin);
         assertEquals(expResult,result);
         System.out.println("addMember Test Passed");
-        instance.addMember(userName, password,firstName, lastName,  email, securityQuestionAnswer,isAdmin);
+        instance.addMember(userName, password,firstName, lastName,  email, memberImage, securityQuestionAnswer,isAdmin);
         //instance.removeMember(5);
         
     }

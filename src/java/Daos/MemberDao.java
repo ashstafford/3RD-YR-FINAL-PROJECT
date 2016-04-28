@@ -3,6 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package Daos;
 
 import Dtos.Member;
@@ -135,18 +140,6 @@ public class MemberDao extends Dao implements MemberDaoInterface
             
             m = null; 
             
-            try 
-            {
-                     
-                conn = getConnection();
-                String query = "select * from member where memberId=?";
-                ps = conn.prepareStatement(query);
-                
-                ps.setInt(1, id);
-
-        Member m = new Member();
-
-        m = null;
 
         try
         {
@@ -567,7 +560,12 @@ public class MemberDao extends Dao implements MemberDaoInterface
       @Override
         public boolean removeMember(int memberId) 
         {
-
+        
+        Connection conn = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;  
+        try
+        {
             conn = getConnection();
             String query = "delete from member where memberId= ?";
             ps = conn.prepareStatement(query);
@@ -1126,6 +1124,11 @@ public class MemberDao extends Dao implements MemberDaoInterface
         return img;
     }
 
+     /**
+     *
+     * @takes in the current members image and replaces it with a new one
+     */
+    
     @Override
     public BufferedImage editMemberImageUrl(String newMemberImageUrl)  //Part filePart
     // public boolean editMemberImageUrl(int memberId, String newMemberImageUrl) 

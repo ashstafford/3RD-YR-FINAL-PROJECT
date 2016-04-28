@@ -19,6 +19,12 @@ import java.util.ArrayList;
  */
 public class AdminLogDao extends Dao implements AdminLogDaoInterface
 {
+    
+    
+    /**
+     *
+     * @returns an arraylist of all logs by admin
+     */
     @Override
     public ArrayList<AdminLog> getAllLogs() 
     {

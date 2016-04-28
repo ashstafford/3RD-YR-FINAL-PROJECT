@@ -688,6 +688,11 @@ public class ProductDao extends Dao implements ProductDaoInterface
         return true;
     }
     
+    /**
+     *
+     * @updates a particular product's details using its id and updating its information
+     */
+    
     @Override
     public boolean editProductDetails(int id,String productImageUrl,String productName, double productPrice,int quantityInStock,String category) //throws DaoException
     {

@@ -24,7 +24,10 @@ import Dtos.OrderItem;
  */
 public class OrderItemDao extends Dao implements OrderItemDaoInterface
 {
-    
+    /**
+     *
+     * @handles the processes of each method
+     */
 
     @Override
     public OrderItem insertIntoOrderItem(int productId,int receiptId,double price,int quantity) 

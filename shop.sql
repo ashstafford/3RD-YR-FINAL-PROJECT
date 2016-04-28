@@ -31,7 +31,10 @@ primary key(memberId))ENGINE=INNODB;
 Insert into `member`(`memberId`, `firstName`, `lastName`,`userName`, `password` ,`email` ,`memberImageUrl`,`securityQuestionAnswer`,`isAdmin`) values
 (1, 'Bob', 'McGinty','Bob123', '5f4dcc3b5aa765d61d8327deb882cf99', 'ash@yahoo.net', 'Libraries/Pictures/holiday.jpg','spot',true),
 (3, 'john', 'Rock','john1', '5f4dcc3b5aa765d61d8327deb882cf99','ash@hotmail.com', 'Libraries/Pictures/holiday.jpg','twinkle',false),
-(4, 'aisling', 'stafford','ashstaff', '5f4dcc3b5aa765d61d8327deb882cf99','ashs@yahoo.com', 'Libraries/Pictures/holiday.jpg','reilly',true);
+(4, 'aisling', 'stafford','ashstaff', '5f4dcc3b5aa765d61d8327deb882cf99','ashs@yahoo.com', 'Libraries/Pictures/holiday.jpg','reilly',true),
+(9, 'Michelle', 'Graham','mgraham', '5f4dcc3b5aa765d61d8327deb882cf99','mich@yahoo.com', 'images/belle.jpeg','fido',true),
+(7, 'Peadar', 'Grant','pead10', '5f4dcc3b5aa765d61d8327deb882cf99','peadar@yahoo.com', 'images/ironman.jpeg','lucky',false),
+(8, 'Dermot', 'Logue','derm123', '5f4dcc3b5aa765d61d8327deb882cf99','logue@yahoo.com', 'images/stromtrooper.jpeg','bobby',false);
 
 
 /* PRODUCTS TABLE */
