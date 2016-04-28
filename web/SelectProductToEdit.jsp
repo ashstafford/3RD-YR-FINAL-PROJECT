@@ -4,8 +4,6 @@
     Author     : Aisling
 --%>
 
-<%@page import="java.util.Locale"%>
-<%@page import="java.util.ResourceBundle"%>
 <%@page import="java.text.DecimalFormat"%>
 <%@page import="Dtos.Member"%>
 <%@page import="Daos.ProductDao"%>
@@ -16,198 +14,215 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <link rel="icon" href="images/flash3.png" type="image/gif" sizes="20x20">
         <link rel="stylesheet" type="text/css" href="mainCSS.css" >
         <script src="js/jquery_1.js"></script>
         <script src="js/paginate.js"></script>
         <script src="js/custom.js"></script>
         <script type="text/javascript" src="js/modernizr-1.5.min.js"></script>
-        <script src="//code.jquery.com/jquery-1.10.2.js"></script>
-        <script src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
-        <script type="text/javascript" src="js/autoCompleter.js"></script>
-        <link rel="stylesheet" href="//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
         <title></title>
-        <style>
-
-        </style>      
+           <style>
+  
+</style>      
     </head>
-    <body>
-
-
+     <body>
+        
+ <div id="container">
+            
+        <nav class = "topmenu">
+            <ul class="navigation">
+                    <li><a href="MemberActionServlet?action=viewProfile">My Profile</a></li>
+                    
+            
+       
+      
+          
+         <%  Member m = (Member)session.getAttribute("member"); 
+         
+        if(m == null)
+        {
+            
+         %>
+        
+         <li><a href="/CA3WebApp/Login.html">Login</a></li>
+        
+            
+        <li><a href="/CA3WebApp/Login.html">Sign Up</a></li>
+        </ul>
+     </nav> 
         <%
-
-            Locale userSetting = (Locale) session.getAttribute("locale");
-
-            if (userSetting == null)
-            {
-                userSetting = request.getLocale();
-            }
-
-            ResourceBundle messages = ResourceBundle.getBundle("properties.text", userSetting);
-        %>     
-
-    <body>
-
-        <div id="container">
-
-            <nav class = "topmenu">
-                <ul class="navigation">
-
-                    <%  Member m = (Member) session.getAttribute("member");
-
-                        if (m == null)
-                        {
-
-                    %>
-
-                    <li><a href="Login.jsp"><%=messages.getString("MenuButtonLogin")%></a></li>
-
-
-                    <li><a href="Register.jsp"><%=messages.getString("MenuButtonRegister")%></a></li>
-                </ul>
-            </nav>  
-            <%
-
-            } else
-            {
-
-
-            %>
-            <li><a href="MemberActionServlet?action=viewProfile">My Profile</a></li> 
-            <li><a href="MemberActionServlet?action=logout"><%=messages.getString("MenuButtonLogout")%></a></li>
-
-        </ul>
-    </nav> 
-    <%
+        
         }
-    %>
+        else
+        {
+      
+            
+        %>
+            
+           <li><a href="MemberActionServlet?action=logout">Logout</a></li>
+                      
+   </ul>
+     </nav> 
+          <% } %>
 
-    <div id="banner">
-        <img src="tempBanner.jpg"/>
-    </div>
-
-    <nav class="menu-1">
-        <ul class="menu">
-            <li> <a href="/CA3WebApp/HomePage.jsp"><%=messages.getString("MenuHomeButton")%></a> </li>
-            <li> <a href="MemberActionServlet?action=ViewAllProducts"><%=messages.getString("MenuShopButton")%></a> </li>
-            <li> <a href="/CA3WebApp/About.jsp"><%=messages.getString("MenuAboutButton")%></a> </li>
-
-            <li> <a href="MemberActionServlet?action=ViewPreviousOrders"><%=messages.getString("MenuViewOrdersButton")%></a> </li>
-
-            <li> <a href="/CA3WebApp/ContactUs.jsp"><%=messages.getString("MenuContactUsButton")%></a> </li>
-            <li> <a href="/CA3WebApp/Cart.jsp"><%=messages.getString("MenuCartButton")%></a> </li>
-            <div id="searchbar">
-                <form  action = "MemberActionServlet" method = "post" >
-                    <td> <input name="searchName" id="searchName" size=30 type="text" />  
-                        <input type="hidden" name="action" value="searchName" />
-                        <input type="submit" value="<%=messages.getString("SearchBarButton")%>"/>
-
-                </form>
+            <div id="banner">
+                <img src="tempBanner.jpg"/>
             </div>
-
-        </ul>
-
-
-    </nav>
-    <div id="pagecontent2">
-        <div class="list-of-posts">
-
-
-
-            <%
+  
+       <nav class="menu-1">
+    <ul class="menu">
+        <li> <a href="/CA3WebApp/HomePage.jsp">Home</a> </li>
+        <li> <a href="MemberActionServlet?action=ViewAllProducts">Shop</a> </li>
+        <li> <a href="/CA3WebApp/About.jsp">About</a> </li>
+        
+        <li> <a href="MemberActionServlet?action=ViewPreviousOrders">View Orders</a> </li>
+        
+        <li> <a href="/CA3WebApp/ContactUs.jsp">Contact</a> </li>
+        <li> <a href="/CA3WebApp/Cart.jsp">Cart</a> </li>
+        
+        <div id="searchbar">
+        <form  action = "MemberActionServlet" method = "post" >
+               <p><td> <input name="searchName" size=30 type="text" />  
+                 <input type="hidden" name="action" value="searchName" />
+                 <input type="submit" value="Search"/>
+               </p>
+        </form>
+        </div>
+        
+    </ul>
+           
+           
+</nav> 
+      <div id="pagecontent2">
+          <div class="list-of-posts">
+          
+                <table> 
+              
+          <%
                 ProductDao pDao = new ProductDao();
-
+                
                 List<Product> products;
-
-                products = (List) (pDao.getAllProducts());
+                   
+                    
+                 products = (List) (pDao.getAllProducts()) ;
+                 
+               DecimalFormat decFor = new DecimalFormat("####0.00");
                 
-                DecimalFormat decFor = new DecimalFormat("####0.00");
-                
-                if (products != null)
-                {
-            %>
-            <table> 
-                <%
-                    for (Product prod : products)
-                    {
-
-                %>
-
-
-                <tr>
-
-                    <td><img src="<%=prod.getProductImageUrl()%>" style="width: 300px; height: 250px;"></td>
-                    <td><%=prod.getProductName()%></td>
-                    <td><% out.println("\t\t");%></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td><%=messages.getString("QtyInStockLabel")%>: <%=prod.getQuantityInStock()%></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td><p><%=messages.getString("PriceLabel")%>:<%=messages.getString("CurrencySymbolLabel")%> <%=decFor.format(prod.getProductPrice())%></p></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                if (products != null) 
+                { 
+                    %>
+                    
                     <%
-                        String action = request.getParameter("action");
+ 
+                  for(Product prod : products) 
+                  {
+                       
+           %>
+             
+                 
+                    <!--<tr>
 
-                        if (action.equals("Edit Product"))
-                        {
-                            
-                    %>                
-                <form action="EditProductDetails.jsp" method="post"> 
-
+                        <td><img src="<%=prod.getProductImageUrl()%>" style="width: 300px; height: 250px;"></td>
+                        <td><%=prod.getProductName()%></td>
+                        <td><% out.println("\t\t"); %></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td>Quantity in stock: <%=prod.getQuantityInStock()%></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td><p>Price: €<%=prod.getProductPrice()%></p></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>-->
+                    
+                    <form action="MemberActionServlet" method="post">
+             <div id="all2">
+    <div id="overall2">
+        </div>
+        
+                
+        <div id="productImage2">   
+       <img src="<%=prod.getProductImageUrl()%>" style="width: 300px; height: 250px;">     
+        </div>   
+            
+        <div id ="productDetails2">
+            <div class="ProductName2">
+            <p><%=prod.getProductName()%></p>
+            <br>
+            <br>
+            </div>
+                <p>Quantity in stock: <%=prod.getQuantityInStock()%></p>
+                <p>Price: €<%=decFor.format(prod.getProductPrice())%></p>
+                
+        </div>   
+              
+        
+<%  
+               String action = request.getParameter("action");
+               
+               if(action.equals("Edit Product"))
+               {
+               System.out.println(prod.getProductId());
+ %>                
+                  
+ 
                     <td><input type="hidden" name="action" value="edit Product" /></td>
                     <input type="hidden" name="editProduct" value="<%= prod.getProductId()%>"/> 
-
-
-
-
-
-                    <td><input type="submit" value="<%=messages.getString("EditProductLabel")%>" /></td>
-                    </tr>
-
-                </form> 
-
-                <%
-                } else
-                {
-
-                %>  
-                    <form action="MemberActionServlet" method="post"> 
-                    <td><input type="hidden" name="action" value="Remove Product" /></td>
-                    <input type="hidden" name="removeProduct" value="<%= prod.getProductId()%>"/>
-
-
-
-                    <td><input type="submit" value="<%=messages.getString("RemoveProductLabel")%>" /></td>
-                    </tr>
-
-                </form> 
-
-
-                <%      }
-                      }
+                     <td><input type="submit" value="Edit Product" /></td>
+                          
+                          
+                     
+                  </div>
+           
+             
+                </form>
+<%
+               } 
+               //else
+               //{
+        
+%>                
+                     <!--<td><input type="hidden" name="action" value="Remove Product" /></td>
+                     <input type="hidden" name="removeProduct" value="<%//= prod.getProductId()%>"/>
               
-                %>
-
-
+                    
+             
+                         <td><input type="submit" value="Remove Product" /></td>
+                         
+                        
+                         
+                    
+            </div>
+           
+             </div>
+                </form>
+    
+        <%      }
+              }
+            }
+            else
+            {
+                out.println("Sorry Not FSound!!");
+            }        
+            %>
+            <!--</tr>-->
             </table>
             <div class="pagination">
             </div>
-        </div>
-    </div>
-
+          </div>
+        
+        
+      </div>
+      
 
 </div>
-
-</body>
+            
+    </body>
 
 </html>
