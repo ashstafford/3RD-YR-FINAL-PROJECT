@@ -44,6 +44,10 @@ public class ViewPreviousOrdersCommand implements Command
              
              order = srDao.viewPreviousOrders(m.getMemberId());        
              
+             for(SalesReceipt sr: order)
+             {
+                 System.out.println("order " + sr.toString());
+             }    
              session.setAttribute("previousOrders",order);
              
              forwardToJsp = "/ViewPreviousOrders.jsp";

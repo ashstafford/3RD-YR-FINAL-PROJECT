@@ -57,6 +57,14 @@ public class CommandFactory
         {
     		command = new RemoveProductCommand();
     	}
+        if (commandStr.equals("AddAddress")) 
+        {
+    		command = new AddAddressCommand();
+    	}
+        if (commandStr.equals("FindAddress")) 
+        {
+    		command = new FindAddressCommand();
+    	}
         if (commandStr.equals("Remove Member")) 
         {
     		command = new RemoveMemberCommand();

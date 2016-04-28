@@ -3,11 +3,6 @@ create database Shop;
 use Shop;
 
 
-http://www.simplecodestuffs.com/autocomplete-in-java-web-application-using-jquery-and-json/
-https://support.twitter.com/articles/20170071
-https://dev.twitter.com/web/embedded-timelines
-https://www.google.ie/search?q=pixel+to+em&oq=pixel+to+&aqs=chrome.4.69i57j0l5.4911j0j7&sourceid=chrome&ie=UTF-8#q=embedding+a+live+feed+widget+into+a+website+jdbc
-
 DELIMITER $$
 
 DROP PROCEDURE IF EXISTS `login`$$
@@ -192,3 +187,22 @@ DROP TRIGGER IF EXISTS `AdminChangesAddAdmin`;
 CREATE TRIGGER `AdminChangesAddAdmin` AFTER UPDATE ON member
 FOR EACH ROW
 INSERT INTO adminlog Values(messageId,'Admin Added', CURRENT_TIMESTAMP,old.email);
+
+
+/* ADDRESS TABLE */
+
+CREATE TABLE address(
+addressId int(20) not null AUTO_INCREMENT,
+memberId int(20) not null,
+addressLine1 varchar(50) not null,
+addressLine2 varchar(50),
+city varchar(25) not null,
+country varchar(30) not null,
+primary key(addressId),
+foreign key(memberId) references member(memberId)on delete cascade on update cascade)ENGINE=INNODB;
+
+insert into `address` (`addressId`, `memberId`, `addressLine1`, `addressLine2`,`city`, `country`) values
+(1, 3, '20 harvest way', 'dublin rd','Dundalk','Ireland'),
+(2, 3, '5 wheaton hall', 'chord rd','Drogheda','Ireland'),
+(3, 4, '56 rosevale', 'dublin rd','Drogheda','Ireland');
+
