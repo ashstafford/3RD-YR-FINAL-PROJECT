@@ -50,7 +50,7 @@ public class AddressDaoTest
         System.out.println("findAddessesByMemberId");
         int id = 3;
         AddressDao instance = new AddressDao();
-        ArrayList<Address> expResult = null;
+        ArrayList<Address> expResult = instance.findAddessesByMemberId(id);
         ArrayList<Address> result = instance.findAddessesByMemberId(id);
         assertEquals(expResult, result);
         

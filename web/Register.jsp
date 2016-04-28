@@ -179,7 +179,7 @@
                                     <label for="exampleInputEmail"><%=messages.getString("EmailAddressLabel")%>: <span style="color:red;">*</span></label>
                                </tr>
                                <tr>
-                                   <td> <input name="email" class="resizedTextBox" placeholder="MUST have an '@'" size=25 type="text" required /> </td> 
+                                   <td> <input name="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" class="resizedTextBox" placeholder="MUST have an '@'" size=25 type="text" required /> </td> 
                                </tr>
                             </table>
                         </div>
@@ -220,7 +220,7 @@
                                     <label for="exampleInputUsername"><%=messages.getString("UsernameLabel")%>: <span style="color:red;">*</span></label> 
                                </tr>
                                <tr>
-                                   <td> <input name="userName" class="resizedTextBox" placeholder="MUST be at least 4 characters" size=25 type="text" required /> </td>
+                                   <td> <input name="userName" pattern="[a-zA-Z0-9]{4,}" class="resizedTextBox" placeholder="MUST be at least 4 characters" size=25 type="text" required /> </td>
                                </tr>
                             </table>
                         </div>
@@ -231,7 +231,7 @@
                                     <label for="exampleInputPassword"><%=messages.getString("PasswordLabel")%>: <span style="color:red;">*</span></label>
                                 </tr>
                                 <tr>
-                                    <td> <input name="password" class="resizedTextBox" placeholder="MUST be at least 8 characters " size=25 type="password" required /> </td> 
+                                    <td> <input name="password" pattern="[a-zA-Z0-9]{8,}" class="resizedTextBox" placeholder="MUST be at least 8 characters " size=25 type="password" required /> </td> 
                                 </tr>
                             </table>
                         </div>
