@@ -9,6 +9,7 @@ import Dtos.Member;
 import Exceptions.DaoException;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import javax.servlet.http.Part;
 
@@ -32,7 +33,7 @@ public interface MemberDaoInterface
      * @return
      * @throws DaoException
      */
-    public Member findMemberByUserNamePassword(String userName, String passWord)  throws DaoException;
+    public Member findMemberByUserNamePassword(String userName, String passWord) throws DaoException;
 
     /**
      *
@@ -41,7 +42,7 @@ public interface MemberDaoInterface
      */
     public Member findMemberByUsername(String username);
 
-   public Member addMember(String firstName, String lastName, String userName, String password,String email,String securityQuestionAnswer,boolean isAdmin);
+     public Member addMember(String userName, String password, String firstName, String lastName, String email, BufferedImage memberImage, String securityQuestionAnswer, boolean isAdmin);
 
     /**
      *
@@ -49,7 +50,7 @@ public interface MemberDaoInterface
      * @param newUserName
      * @return
      */
-    public boolean editUserName(int id,String userName,String newUserName);
+    public boolean editUserName(int id, String userName, String newUserName);
 
     /**
      *
@@ -57,7 +58,7 @@ public interface MemberDaoInterface
      * @param newPassword
      * @return
      */
-    public boolean editPassword(int id,String password,String newPassword);
+    public boolean editPassword(int id, String password, String newPassword);
 
     /**
      *
@@ -65,7 +66,7 @@ public interface MemberDaoInterface
      * @param newFirstname
      * @return
      */
-    public boolean editFirstName(int id,String firstName,String newFirstname);
+    public boolean editFirstName(int id, String firstName, String newFirstname);
 
     /**
      *
@@ -73,26 +74,27 @@ public interface MemberDaoInterface
      * @param newLastName
      * @return
      */
-    public boolean editLastName(int id,String lastName,String newLastName);
+    public boolean editLastName(int id, String lastName, String newLastName);
 
     /**
      *
      * @param email
      * @return
      */
-    public Member findMemberByEmailAddress(String eMail); 
-    
-    
-    
-    
-    public boolean editEmail(int id,String email, String newEmail);
-            
+    public String findEmailAddress(String eMail);
+
+    public Member findMemberByEmailAddress(String eMail);
+
+    public BufferedImage editMemberImageUrl(String newMemberImageUrl);
+
+    public boolean editEmail(int id, String email, String newEmail);
+
     public BufferedImage editMemberImageUrl(int id, String newMemberImageUrl);
-    
+
     public Member findMemberById(int id);
-    
+
     public boolean addAdmin(Member m);
-    
+
     public boolean removeMember(int memberId);
-    
+
 }

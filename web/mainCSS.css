@@ -371,8 +371,8 @@ div#productImage2 img{
     
     clear:right;
     border    : thin  black   solid;
-    width: 260px; 
-    height: 220px;
+    width: 200px; 
+    height: 180px;
 }
 div#productImage2
 {
@@ -401,11 +401,52 @@ div#overall2
 
 div#Total
 {
-    padding-top: 100px;
+    float:right;
+}
+div#Total h2{
+    
 }
 div#all2
 {
     padding-left: 10px;
+
+}
+div#CartIsEmptyTitle
+{
+    padding-left:70px;
+    padding-top:50px;
+}
+
+div#ShoppingCartTitle
+{
+    padding-left:70px;
+    padding-top:50px;
+    
+}
+div#PurchaseItemButton
+{
+    float:right;
+    clear:left;
+    padding-right:20px;
+    padding-top:40px;
+    
+}
+div#EmptyCartButton
+{
+    float:right;
+    clear:left;
+    padding-right:20px;
+    padding-top:40px;
+    margin-bottom:400px;
+    
+}
+p#formbuttons
+{
+    float: left;
+    padding-left:70px;
+    padding-top:40px;
+    margin-bottom:400px;
+    
 }
 
 /* Add Product*/
@@ -441,6 +482,8 @@ div#AddProductButton
     padding-left:275px;
     margin-bottom:70px;
 }
+
+
 
 /*Select Member CSS */
 div#overall2
@@ -757,4 +800,21 @@ div#RegisterFailed
 {
     padding-top:50px;
     padding-left:470px;
+}
+
+/*ViewAdminLogs CSS*/
+div#AdminLogTitles
+{
+    font-size:24px;
+    font-family: Arial, Helvetica, sans-serif;
+    padding-left:400px;
+    padding-top: 60px;
+}
+
+div#AdminLigTitle h1
+{
+    padding-left:500px;
+    padding-top:60px;
+    font-family: Arial, Helvetica, sans-serif;
+    
 }

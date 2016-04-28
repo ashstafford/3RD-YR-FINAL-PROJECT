@@ -168,7 +168,32 @@
                                </tr>
                             </table>
                         </div>
+                        
+                        <div id="emailTable">
+                            <table>
+                                <tr>
+                                    <label for="exampleInputEmail">Profile Picture: <span style="color:red;">*</span></label>
+                               </tr>
+                               <tr>
+                                <td><input type="file"  name="MemberProfileImage"  size="50" required/></td>
+                                </tr>
+                            </table>
+                        </div>
+                    
+                    
+                    <!--<div id="emailTable">
+                            <table>
+                                <tr>
+                                    <label for="exampleInputEmail">Profile Picture: <span style="color:red;">*</span></label>
+                               </tr>
+                               
+                                   <tr>
+                                    <td><input type="file"  name="MemberImage"  size="50" required/></td>
+                                    </tr>
+                            </table>
+                        </div>
                     </div>
+                    -->
                     
                     <div id="RegisterLoginDetailsTitle">
                         <h3> LOGIN DETAILS </h3>

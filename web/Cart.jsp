@@ -21,6 +21,20 @@
         <script src="js/custom.js"></script>
         <script type="text/javascript" src="js/modernizr-1.5.min.js"></script>
         <title>Cart</title>
+    <style>
+        table {
+    border-collapse: collapse;
+    width: 100%;
+    margin-bottom:50px;
+}
+
+th, td {
+    padding: 8px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+        </style>
+        
   
 <% 
    
@@ -101,99 +115,13 @@
            
            
 </nav>
-                  
-    <div id="side_bar">
-        <form action = "MemberActionServlet" method = "post">
-            
-            <p>
-                 <input type="hidden" name="action" value ="ViewAllProducts">
-                 <input type="image" src="IMG_viewAllProductsLogo.jpg" alt="Submit" width="200px" height="70px"/>
-                
-            </p>
-        </form>
-        
-        <form action = "MemberActionServlet" method = "post">
-            
-            <p>
-                 <input type="hidden" name="action" value ="StarWars">
-                 <input type="image" src="swLogo.png" alt="Submit" width="200px" height="70px"/>
-                
-            </p>
-        </form>
-        
-         <form action = "MemberActionServlet" method = "post">
-               <p> 
-                   
-                 <input type="hidden" name="action" value ="Marvel">
-                 <input type="image" src="IMG_mLogo.jpeg" alt="Submit" width="200px" height="70px"/>
-                 
-               </p>
-         </form>
-        
-         <form action = "MemberActionServlet" method = "post">
-               <p> 
-                 <input type="hidden" name="action" value ="DC">
-                 <input type="image" src="IMG_dcLogo.jpg" alt="Submit" width="200px" height="70px"/>
-              
-               </p>
-         </form>
-        
-         <form action = "MemberActionServlet" method = "post">
-               <p> 
-                   
-                 <input type="hidden" name="action" value ="Disney">
-                 <input type="image" src="IMG_dLogo.jpg" alt="Submit" width="200px" height="70px"/>
-               
-               </p>
-         </form>
-        
-        <form action = "MemberActionServlet" method = "post">
-               <p> 
-                   
-                 <input type="hidden" name="action" value ="The Walking Dead">
-                 <input type="image" src="IMG_twdLogo.jpg" alt="Submit" width="200px" height="70px"/>
-                  
-               </p>
-         </form>
-        
-        <form action = "MemberActionServlet" method = "post">
-               <p> 
-                 <input type="hidden" name="action" value ="Doctor Who">
-                 <input type="image" src="IMG_dwLogo.jpg" alt="Submit" width="200px" height="70px"/>
-                  
-               </p>
-         </form>
-        
-        <form action = "MemberActionServlet" method = "post">
-               <p> 
-                  <input type="hidden" name="action" value ="Game Of Thrones">
-                  <input type="image" src="IMG_gotLogo.jpg" alt="Submit" width="200px" height="70px"/> 
              
-               </p>
-         </form>
-        
-        <form action = "MemberActionServlet" method = "post">
-               <p> 
-                  <input type="hidden" name="action" value ="Harry Potter">
-                  <input type="image" src="images/HarryPotterlogo.jpg" alt="Submit" width="200px" height="70px"/> 
-             
-               </p>
-         </form>
-        
-        <form action = "MemberActionServlet" method = "post">
-               <p> 
-                  <input type="hidden" name="action" value ="Hunger Games">
-                  <input type="image" src="images/HungerGameslogo.jpg" alt="Submit" width="200px" height="70px"/> 
-             
-               </p>
-         </form>
-        
-    </div>
-        
-      
-        
         <div id="pagecontent2"> 
-         
+         <div id ="ShoppingCartTitle">
+                        <h1> Shopping Cart </h1>
+                    </div>
+            <table>
+    
 <%
           
         List<Product> cart;
@@ -205,93 +133,101 @@
         
         if (cart != null) 
         {
+%>
+        <tr>
+    <th>Product</th>
+    <th>Product Name</th>
+    <th>Quantity in Stock</th>
+    <th>Price</th>
+    <th>       </th>
+    <th> Remove</th>
+  </tr>
+<%
 
            for (Product prod : cart) 
            {
                             
                          
 %>
-             
+           
             <form action="MemberActionServlet" method="post"> 
 
                 <div id="all2">
-                      <div id="overall2">
-                </div>
-                     
-                     
+                      
+     
+  
+            
+            <tr>
                 <div id="productImage2">   
-                    <img src="<%=prod.getProductImageUrl()%>" style="width: 280px; height: 230px;">     
-                </div>   
+                    <td><img src="<%=prod.getProductImageUrl()%>" style="width: 200px; height: 150px;">  </td>
+                    
 
-                <div id ="productDetails2">
+                
                     
                     <div class="ProductName2">
-                        <p><%=prod.getProductName()%></p>
+                        <td><p><%=prod.getProductName()%></p></td>
                     </div>
                     
-                            <p><%=messages.getString("QuantityLabel")%>: <%=prod.getQuantityInStock()%></p>
-                            <p><%=messages.getString("PriceLabel")%>: <%=messages.getString("CurrencySymbolLabel")%><%=prod.getProductPrice()%></p>
+                        <td><p><%=messages.getString("QuantityLabel")%>: <%=prod.getQuantityInStock()%></p></td>
+                        <td> <p><%=messages.getString("PriceLabel")%>: <%=messages.getString("CurrencySymbolLabel")%><%=prod.getProductPrice()%></p></td>
 
-                </div>
+                
 
                          <td><input type="hidden" name="action" value="RemoveProduct"</td>
                          <td><input type="hidden" name="qtyOrdered" value="<%=prod.getQuantityInStock()%>"</td>
                          <td><input type="hidden" name="productId" value="<%=prod.getProductId()%>"</td>
-                         <td><input type="submit" value="<%=messages.getString("RemoveItemFromCartLabel")%>" </td>
+                         <td><input type="submit"  value="<%=messages.getString("RemoveItemFromCartLabel")%>" </td>
 
                 </div>
-
-            </form>   
+           
+                </tr>
+                </div>
+            </form>
+                         
             
-            <div id ="Total">
             
+            <div id="Total">
 <%                     total = total + prod.getProductPrice() * prod.getQuantityInStock();
                      
            }
                     
-%>                  <h2> <%=messages.getString("TotalLabel")%>: <%=messages.getString("CurrencySymbolLabel")%>  <%out.print(decFor.format(total));
+%>                  
+        <h2> <%=messages.getString("TotalLabel")%>: <%=messages.getString("CurrencySymbolLabel")%>  <%out.print(decFor.format(total));
+        
+        
         }
         else
         {
-%>
-               <h1> <%=messages.getString("EmptyCartMessage")%> </h1> 
+%>   
+<div id="CartIsEmptyTitle">
+<h1> <%=messages.getString("EmptyCartMessage")%> </h1> 
+</div>
 <%
         }        
 %>
-           
-            </div>
+            </div>              
+</table> 
             
-            <div id ="EmptyCartButton">
-                <form action="MemberActionServlet" method="post">
-                    <td><input type="hidden" name="action" value="EmptyCart"</td>
-                    <td><input type="submit" value="<%=messages.getString("EmptyCartLabel")%>"</td>
-                </form>
-            </div>
             
-            <div id ="PurchaseItemButton">
-                <form action="PaymentInformation.jsp">  
-                    <td><input type="hidden" name="action" value="BuyItems" /></td>
-                    <td><input type="submit" value="<%=messages.getString("PurchaseItemsLabel")%>
-" /></td
-                </form>
-            </div>
+            
+            
             
             
             
            
            
-        </table>
+        
     
       <p id="formbuttons">
-         			<input type="button" name="prevb" id="prevb" value="<%=messages.getString("PreviousButton")%>" onclick="history.back()" />
-                        </p>
+         <input type="button" name="prevb" id="prevb" class="resizedButton" value="<%=messages.getString("PreviousButton")%>" onclick="history.back()" />
+      </p>
        
             
             </div>
         
 
       
-            
+        </div>    
         
     </body>
 </html>

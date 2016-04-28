@@ -23,78 +23,7 @@
 </script>
 
 <style>
-body 
-  {
-   
-        background:  url("IMG_cartBackground.jpg") no-repeat center center fixed; 
-        -webkit-background-size: cover;
-        -moz-background-size: cover;
-        -o-background-size: cover;
-        background-size: cover;
-    }      
-    
-    ul {
-    position: relative;
-    list-style-type: none;
-    margin: 10px;
-    padding: 0;
-    overflow: hidden;	
-    left:10%;
-	
-	
-}
-
-
-.topmenu li
-
-{
-	float :left;
-        position: relative;
-	padding: 0;
-	width: 200px;
-	line-height: 250%;
-	z-index: 1000;
-	
-}
-
-
-
-a:link, a:visited {
-    display: block;
-    width: 200px;
-    font-weight: bold;
-    color: #FFFFFF;
-    background-color:#000000;
-    text-align: center;
-    padding: 4px;
-    text-decoration: none;
-    text-transform: uppercase;
-}
-
-a:hover, a:active {
-    background-color:#666666
-	
-}
-
-div#pagecontent
-{
-    
-  min-height: 1500px;
-  padding: 50px;
-  left: 20%;
-  bottom: 50%;
-  font-family: serif;
- 
-}
-
-div#container
-{
-  position     : relative;
-  width        : 85%;
-  margin-left  : auto;
-  margin-right : auto;
-}
-    </style>
+</style>
 
     </head>
     

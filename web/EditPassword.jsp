@@ -46,6 +46,8 @@
         <li><a href="/CA3WebApp/Login.jsp">Sign Up</a></li>
         <meta http-equiv="refresh" 
         content="0; url=Login.jsp">
+        </ul>
+     </nav>
         <%
         
         }

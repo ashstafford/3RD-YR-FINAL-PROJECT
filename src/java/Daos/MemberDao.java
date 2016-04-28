@@ -9,9 +9,11 @@ import Dtos.Member;
 import Exceptions.DaoException;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.DataInputStream;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -34,20 +36,20 @@ import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 
-
 /**
  *
  * @author Karen
  */
 public class MemberDao extends Dao implements MemberDaoInterface
 {
+    File file = null;
 
     /**
      *
-     * @return 
+     * @return
      */
     @Override
-    public ArrayList<Member> getAllMembers() 
+    public ArrayList<Member> getAllMembers()
     {
 
         Connection conn = null;
@@ -76,22 +78,19 @@ public class MemberDao extends Dao implements MemberDaoInterface
                 String securityQuestionAnswer = rs.getString("securityQuestionAnswer");
                 boolean isAdmin = rs.getBoolean("isAdmin");
 
-                Member m = new Member(memberId,userName, password, firstName, lastName,email,memberimage,securityQuestionAnswer,isAdmin);
+                Member m = new Member(memberId, userName, password, firstName, lastName, email, memberimage, securityQuestionAnswer, isAdmin);
                 member.add(m);
             }
 
-        } 
-        
-        catch (SQLException e)
+        } catch (SQLException e)
         {
 
             e.printStackTrace();
-            
+
         } catch (IOException ex)
         {
             Logger.getLogger(MemberDao.class.getName()).log(Level.SEVERE, null, ex);
-        } 
-        finally
+        } finally
         {
             try
             {
@@ -118,88 +117,81 @@ public class MemberDao extends Dao implements MemberDaoInterface
 
         return member;
     }
-    
+
     @Override
- public Member findMemberById(int id)  //takes in id and returns all details about that member
- {
-            Connection conn = null;
-            PreparedStatement ps = null;
-            ResultSet rs = null;
-            
-            Member m = new Member();
-            
-            m = null; 
-            
-            try 
-            {
-                     
-                conn = getConnection();
-                String query = "select * from member where memberId=?";
-                ps = conn.prepareStatement(query);
-                
-                ps.setInt(1, id);
+    public Member findMemberById(int id)  //takes in id and returns all details about that member
+    {
+        Connection conn = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
 
-                rs = ps.executeQuery();
-                
-             while (rs.next()) 
-             {
-                 m = new Member(
-                 rs.getInt("MemberId"),
-                 rs.getString("userName"),        
-                 rs.getString("password"),
-                 rs.getString("firstName"),
-                 rs.getString("lastName"),        
-                 rs.getString("email"),
-                 ImageIO.read(rs.getBlob("memberImage").getBinaryStream()),      
-                 rs.getString("securityQuestionAnswer"),
-                 rs.getBoolean("isAdmin"));
-                  
+        Member m = new Member();
+
+        m = null;
+
+        try
+        {
+
+            conn = getConnection();
+            String query = "select * from member where memberId=?";
+            ps = conn.prepareStatement(query);
+
+            ps.setInt(1, id);
+
+            rs = ps.executeQuery();
+
+            while (rs.next())
+            {
+                m = new Member(
+                        rs.getInt("MemberId"),
+                        rs.getString("userName"),
+                        rs.getString("password"),
+                        rs.getString("firstName"),
+                        rs.getString("lastName"),
+                        rs.getString("email"),
+                        ImageIO.read(rs.getBlob("memberImage").getBinaryStream()),
+                        rs.getString("securityQuestionAnswer"),
+                        rs.getBoolean("isAdmin"));
+
             }
-            
-          } 
-            
-            
-            catch (SQLException e) 
-            {
-                 e.printStackTrace();
 
-            } catch (IOException ex) 
+        } catch (SQLException e)
+        {
+            e.printStackTrace();
+
+        } catch (IOException ex)
         {
             Logger.getLogger(MemberDao.class.getName()).log(Level.SEVERE, null, ex);
-        } 
-            
-            finally
+        } finally
+        {
+            try
             {
-                try 
+                if (rs != null)
                 {
-                    if (rs != null) 
-                    {
-                        rs.close();
-                    }
-                    
-                    if (ps != null) 
-                    {
-                        ps.close();
-                    }
-                    
-                    if (conn != null)
-                    {
-                        conn.close();
-                    }
+                    rs.close();
+                }
 
-                }
-                
-                catch (SQLException e) 
+                if (ps != null)
                 {
-                    e.printStackTrace();
+                    ps.close();
                 }
+
+                if (conn != null)
+                {
+                    conn.close();
+                }
+
+            } catch (SQLException e)
+            {
+                e.printStackTrace();
             }
-            
-        return m;    
+        }
+
+        return m;
     }
- 
+
     @Override
-    public boolean addAdmin(Member m) 
+    public boolean addAdmin(Member m)
     {
         Connection con = null;
         PreparedStatement ps = null;
@@ -213,21 +205,15 @@ public class MemberDao extends Dao implements MemberDaoInterface
             String query = "update member set isAdmin = ? where memberId = ?";
             ps = con.prepareStatement(query);
             ps.setBoolean(1, admin);
-            ps.setInt(2,m.getMemberId());
-           
+            ps.setInt(2, m.getMemberId());
 
             ps.executeUpdate();
 
-          
-
-        } 
-        
-        catch (SQLException e)   
+        } catch (SQLException e)
         {
-          e.printStackTrace();
-          return false;
-        } 
-        finally
+            e.printStackTrace();
+            return false;
+        } finally
         {
             try
             {
@@ -243,26 +229,26 @@ public class MemberDao extends Dao implements MemberDaoInterface
                 {
                     freeConnection(con);
                 }
-            }
-            catch (SQLException e)
+            } catch (SQLException e)
             {
-               e.printStackTrace();
-               return false;
-             
+                e.printStackTrace();
+                return false;
+
             }
         }
-        return true;    
+        return true;
     }
 
-    /**The method takes in a username parameter and searches the database for 
-     * a matching member based on their username.
-     * 
+    /**
+     * The method takes in a username parameter and searches the database for a
+     * matching member based on their username.
      *
-     * @param username String variable which stores the username being searched  
-     * @return the member object for the corresponding username 
+     *
+     * @param username String variable which stores the username being searched
+     * @return the member object for the corresponding username
      */
     @Override
-    public Member findMemberByUsername(String username) 
+    public Member findMemberByUsername(String username)
     {
         Connection con = null;
         PreparedStatement ps = null;
@@ -289,20 +275,16 @@ public class MemberDao extends Dao implements MemberDaoInterface
                 memberimage = ImageIO.read(rs.getBlob("memberImage").getBinaryStream());
                 String securityQuestionAnswer = rs.getString("securityQuestionAnswer");
                 boolean isAdmin = rs.getBoolean("isAdmin");
-                
-                m = new Member(memberId, firstName, lastName, username, password,email,memberimage,securityQuestionAnswer,isAdmin);
+
+                m = new Member(memberId, firstName, lastName, username, password, email, memberimage, securityQuestionAnswer, isAdmin);
             }
-        } 
-        
-        catch (SQLException e)   
+        } catch (SQLException e)
         {
-          e.printStackTrace();
+            e.printStackTrace();
         } catch (IOException ex)
         {
             Logger.getLogger(MemberDao.class.getName()).log(Level.SEVERE, null, ex);
-        } 
-        
-        finally
+        } finally
         {
             try
             {
@@ -318,32 +300,31 @@ public class MemberDao extends Dao implements MemberDaoInterface
                 {
                     freeConnection(con);
                 }
-            }
-            catch (SQLException e)
+            } catch (SQLException e)
             {
-               e.printStackTrace();
-             
+                e.printStackTrace();
+
             }
         }
-        return m;    
+        return m;
     }
-    
-    /**The method takes in a email parameter and searches the database for 
-     * a matching member based on their email address.
-     * 
+
+    /**
+     * The method takes in a email parameter and searches the database for a
+     * matching member based on their email address.
      *
-     * @param email String variable which stores the email being searched  
-     * @return the member object for the corresponding email address 
+     *
+     * @param email String variable which stores the email being searched
+     * @return the member object for the corresponding email address
      */
-    
     @Override
-    public Member findMemberByEmailAddress(String eMail) 
+    public Member findMemberByEmailAddress(String eMail)
     {
         Connection con = null;
         PreparedStatement ps = null;
         ResultSet rs = null;
         Member m = null;
-
+        BufferedImage memberimage = null;
         try
         {
             con = this.getConnection();
@@ -351,7 +332,7 @@ public class MemberDao extends Dao implements MemberDaoInterface
             String query = "select * from member where email =?";
             ps = con.prepareStatement(query);
             ps.setString(1, eMail);
-            BufferedImage memberimage =null;
+
             rs = ps.executeQuery();
             if (rs.next())
             {
@@ -364,20 +345,16 @@ public class MemberDao extends Dao implements MemberDaoInterface
                 memberimage = ImageIO.read(rs.getBlob("memberImage").getBinaryStream());
                 String securityQuestionAnswer = rs.getString("securityQuestionAnswer");
                 boolean isAdmin = rs.getBoolean("isAdmin");
-                
-                m = new Member(memberId,userName, password,firstName, lastName, email,memberimage,securityQuestionAnswer,isAdmin);
+
+                m = new Member(memberId, userName, password, firstName, lastName, email, memberimage, securityQuestionAnswer, isAdmin);
             }
-        } 
-        
-        catch (SQLException e)   
+        } catch (SQLException e)
         {
-          e.printStackTrace();
+            e.printStackTrace();
         } catch (IOException ex)
         {
             Logger.getLogger(MemberDao.class.getName()).log(Level.SEVERE, null, ex);
-        } 
-        
-        finally
+        } finally
         {
             try
             {
@@ -393,176 +370,221 @@ public class MemberDao extends Dao implements MemberDaoInterface
                 {
                     freeConnection(con);
                 }
-            }
-            catch (SQLException e)
+            } catch (SQLException e)
             {
-               e.printStackTrace();
-             
+                e.printStackTrace();
+
             }
         }
-        return m;    
+        return m;
+    }
+
+    @Override
+    public String findEmailAddress(String eMail)
+    {
+        Connection con = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+
+        String email = "";
+
+        try
+        {
+            con = this.getConnection();
+
+            String query = "select email from member where email =?";
+            ps = con.prepareStatement(query);
+            ps.setString(1, eMail);
+
+            rs = ps.executeQuery();
+            if (rs.next())
+            {
+//                int memberId = rs.getInt("memberId");
+//                String firstName = rs.getString("firstName");
+//                String lastName = rs.getString("lastName");
+//                String userName = rs.getString("username");
+//                String password = rs.getString("password");
+                email = rs.getString("email");
+//                memberimage = ImageIO.read(rs.getBlob("memberImage").getBinaryStream());
+//                String securityQuestionAnswer = rs.getString("securityQuestionAnswer");
+//                boolean isAdmin = rs.getBoolean("isAdmin");
+
+//                m = new Member(memberId,userName, password,firstName, lastName, email,memberimage,securityQuestionAnswer,isAdmin);
+                return email;
+            } 
+        } catch (SQLException e)
+        {
+            e.printStackTrace();
+        } finally
+        {
+            try
+            {
+                if (rs != null)
+                {
+                    rs.close();
+                }
+                if (ps != null)
+                {
+                    ps.close();
+                }
+                if (con != null)
+                {
+                    freeConnection(con);
+                }
+            } catch (SQLException e)
+            {
+                e.printStackTrace();
+
+            }
+        }
+        email = "null";
+        return email;
     }
 
     /**
      *
      * @param firstName
      * @param lastName
-   
+     *
      * @param userName
      * @param password
      * @return
      */
     @Override
-    public Member addMember(String userName, String password,String firstName, String lastName, String email,String securityQuestionAnswer,boolean isAdmin) 
+    public Member addMember(String userName, String password, String firstName, String lastName, String email, BufferedImage memberImage, String securityQuestionAnswer, boolean isAdmin)
     {
         Connection con = null;
-        PreparedStatement ps = null; 
+        PreparedStatement ps = null;
         ResultSet generatedKeys = null;
         int memberId = -1;
         Member m = null;
         isAdmin = false;
-       
-    
+        BufferedImage img = null;
 
-        
-        try 
-        {
+        try{
+            System.out.println("Is in Add Member Try");
+            con = getConnection();
+            HashPasswordMD5 hp = new HashPasswordMD5();
+            String hashedPassword = hp.hashPassword(password);
+            String hashedSecurityAnswer = hp.hashPassword(securityQuestionAnswer);
             
-            con = this.getConnection();
+            String query = "Insert into member(userName, password,firstName, lastName,email,memberImage,securityQuestionAnswer,isAdmin) values(?,?,?,?,?,?,?,?)"; //query to insert member info into fields in the members table
 
-             HashPasswordMD5 hp = new HashPasswordMD5();
-             String hashedPassword = hp.hashPassword(password);
-             String hashedSecurityAnswer = hp.hashPassword(securityQuestionAnswer);
-             
-            String query = "Insert into member(userName, password,firstName, lastName,email,securityQuestionAnswer,isAdmin) values(?,?,?,?,?,?,?)"; //query to insert member info into fields in the members table
-            
-           // Need to get the id back, so have to tell the database to return the id it generates
+            // Need to get the id back, so have to tell the database to return the id it generates
             ps = con.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
-            
-            
 
             ps.setString(1, userName);
+            
             ps.setString(2, hashedPassword);
             ps.setString(3, firstName);
             ps.setString(4, lastName);
             ps.setString(5, email);
-            ps.setString(6,hashedSecurityAnswer);
-            ps.setBoolean(7,isAdmin);
+//            ps.setBlob(6, memberImage);
             
-            
-           ps.executeUpdate();
-            
+//              ps.setAutoCommitString(1, newMemberImageUrl);
+                //            ps.setString(2, memberImageUrl);                   
+//            ps.setBinaryStream(6, memberImage, (int) file.length()); 
+            ps.setString(7, hashedSecurityAnswer);
+            ps.setBoolean(8, isAdmin);
+            System.out.println("MemberDao addMember:    member:   Username = " + userName + " password= " + password + " firstname= " + firstName + " Lastname= " + lastName + " email= " + email + " img= " + memberImage + " Security Question Answer= " + securityQuestionAnswer + " Is admin= " + isAdmin);
+            ps.executeUpdate();
 
-            
-                     // Find out what the id generated for this entry was
+            // Find out what the id generated for this entry was
             generatedKeys = ps.getGeneratedKeys();
-            
-            if(generatedKeys.next())
+
+            if (generatedKeys.next())
             {
                 memberId = generatedKeys.getInt(1);
-            } 
+            }
             
-            m = new Member(memberId,userName,password,firstName, lastName,email,securityQuestionAnswer,isAdmin); //stores the member in an object
+            img = getImageFromDatabase(con,memberId);
             
-             
-        } 
-        
-        catch (SQLException e) 
+            m = new Member(memberId, userName, password, firstName, lastName, email, img, securityQuestionAnswer, isAdmin); //stores the member in an object
+
+        } catch (SQLException e)
         {
             System.err.println("\tA problem occurred during the addMember method:");
-            System.err.println("\t"+e.getMessage());
+            System.err.println("\t" + e.getMessage());
             memberId = -1;
-        } catch (Exception ex) {
-            Logger.getLogger(MemberDao.class.getName()).log(Level.SEVERE, null, ex);
-        } 
-       // catch (NoSuchAlgorithmException ex) {
-//            Logger.getLogger(MemberDao.class.getName()).log(Level.SEVERE, null, ex);
-//        } 
-//        
-        finally 
+        } catch (Exception ex)
         {
-            try 
+            Logger.getLogger(MemberDao.class.getName()).log(Level.SEVERE, null, ex);
+        } // catch (NoSuchAlgorithmException ex) {
+        //            Logger.getLogger(MemberDao.class.getName()).log(Level.SEVERE, null, ex);
+        //        } 
+        //        
+        finally
+        {
+            try
             {
-                if (ps != null) 
+                if (ps != null)
                 {
                     ps.close();
                 }
-                if (con != null) 
+                if (con != null)
                 {
                     freeConnection(con);
                 }
-            } 
-            catch (SQLException e) 
+            } catch (SQLException e)
             {
                 System.err.println("A problem occurred when closing down the addMember smethod:\n" + e.getMessage());
             }
         }
         return m;
     }
-    
-    
-    
-      @Override
-        public boolean removeMember(int memberId) 
+
+    @Override
+    public boolean removeMember(int memberId)
+    {
+
+        Connection conn = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+
+        try
         {
-         
-            Connection conn = null;
-            PreparedStatement ps = null;
-            ResultSet rs = null;
-            
-            
+
+            conn = getConnection();
+            String query = "delete from member where memberId= ?";
+            ps = conn.prepareStatement(query);
+            ps.setInt(1, memberId);
+
+            ps.executeUpdate();
+
+        } catch (SQLException e)
+        {
+            System.out.println("Exception happened in delete member method");
+            e.getMessage();
+            return false;
+        } finally
+        {
             try
             {
+                if (rs != null)
+                {
+                    rs.close();
+                }
 
-                conn = getConnection();
-                String query = "delete from member where memberId= ?"; 
-                ps = conn.prepareStatement(query);
-                ps.setInt(1, memberId);
+                if (ps != null)
+                {
+                    ps.close();
+                }
 
-                ps.executeUpdate();
+                if (conn != null)
+                {
+                    conn.close();
+                }
 
-                
-
-            }
-            
-            catch (SQLException e) 
+            } catch (SQLException e)
             {
-                System.out.println("Exception happened in delete member method");
+                System.out.println("Exception happened in 'finally' part of the delete member method");
                 e.getMessage();
                 return false;
-            } 
-            
-            
-            finally
-            {
-                try 
-                {
-                    if (rs != null)
-                    {
-                        rs.close();
-                    }
-                    
-                    if (ps != null) 
-                    {
-                        ps.close();
-                    }
-                    
-                    if (conn != null) 
-                    {
-                        conn.close();
-                    }
-
-                } 
-                
-                catch (SQLException e) 
-                {
-                    System.out.println("Exception happened in 'finally' part of the delete member method");
-                    e.getMessage();
-                    return false;
-                }
             }
-          return true;  
         }
+        return true;
+    }
+
     /**
      *
      * @param userName
@@ -581,22 +603,21 @@ public class MemberDao extends Dao implements MemberDaoInterface
         try
         {
             con = this.getConnection();
-            
-             HashPasswordMD5 hp = new HashPasswordMD5();
-             String hashedPassword = hp.hashPassword(passWord);
-          
+
+            HashPasswordMD5 hp = new HashPasswordMD5();
+            String hashedPassword = hp.hashPassword(passWord);
+
             BufferedImage memberimage = null;
             String query = "select * from Member where userName = ? and password = ?";
             ps = con.prepareStatement(query);
             ps.setString(1, userName);
             ps.setString(2, hashedPassword);
- 
-            
+
             rs = ps.executeQuery();
-     
+
             if (rs.next())
             {
-               
+
                 int memberId = rs.getInt("memberId"); //changed
                 String username = rs.getString("userName");
                 String password = rs.getString("password");
@@ -605,29 +626,26 @@ public class MemberDao extends Dao implements MemberDaoInterface
                 String email = rs.getString("email");
 //                memberimage = (BufferedImage) rs.getBlob("memberImage");
                 memberimage = ImageIO.read(rs.getBlob("memberImage").getBinaryStream());
-                
+
                 String securityQuestionAnswer = rs.getString("securityQuestionAnswer");
                 boolean isAdmin = rs.getBoolean("isAdmin");
-            
-                
-               if(hashedPassword.equals(password))
-               {    
 
-                  m = new Member(memberId,username, password, firstname, lastname, email,memberimage,securityQuestionAnswer,isAdmin);
-                  
-               }
+                if (hashedPassword.equals(password))
+                {
+
+                    m = new Member(memberId, username, password, firstname, lastname, email, memberimage, securityQuestionAnswer, isAdmin);
+
+                }
 
             }
-            
-        } 
-         catch (SQLException e)
+
+        } catch (SQLException e)
         {
             e.printStackTrace();
         } catch (IOException ex)
         {
             Logger.getLogger(MemberDao.class.getName()).log(Level.SEVERE, null, ex);
-        } 
-        finally
+        } finally
         {
             try
             {
@@ -650,7 +668,7 @@ public class MemberDao extends Dao implements MemberDaoInterface
         }
         return m;
     }
-     
+
     /**
      *
      * @param userName
@@ -658,7 +676,7 @@ public class MemberDao extends Dao implements MemberDaoInterface
      * @return
      */
     @Override
-    public boolean editUserName(int id,String userName, String newUserName) //have seperate methods for each edit so user can select which field they want to edit and we can call the appropriate method - more efficent for database
+    public boolean editUserName(int id, String userName, String newUserName) //have seperate methods for each edit so user can select which field they want to edit and we can call the appropriate method - more efficent for database
     {
 
         Connection conn = null;
@@ -673,7 +691,7 @@ public class MemberDao extends Dao implements MemberDaoInterface
             ps = conn.prepareStatement(query);
             ps.setString(1, newUserName); //sets newUserName as the new userName
             ps.setString(2, userName);
-            ps.setInt(3,id);
+            ps.setInt(3, id);
 
             ps.executeUpdate();
 
@@ -703,11 +721,11 @@ public class MemberDao extends Dao implements MemberDaoInterface
 
             } catch (SQLException e)
             {
-               e.printStackTrace();
-               return false;
+                e.printStackTrace();
+                return false;
             }
         }
-    return true;
+        return true;
     }
 
     /**
@@ -718,7 +736,7 @@ public class MemberDao extends Dao implements MemberDaoInterface
      * @return
      */
     @Override
-    public boolean editPassword(int id,String password, String newPassword) 
+    public boolean editPassword(int id, String password, String newPassword)
     {
 
         Connection conn = null;
@@ -743,8 +761,7 @@ public class MemberDao extends Dao implements MemberDaoInterface
         {
             e.printStackTrace();
             return false;
-        } 
-        finally
+        } finally
         {
             try
             {
@@ -765,11 +782,11 @@ public class MemberDao extends Dao implements MemberDaoInterface
 
             } catch (SQLException e)
             {
-               e.printStackTrace();
-               return false;
+                e.printStackTrace();
+                return false;
             }
         }
-    return true;    
+        return true;
     }
 
     /**
@@ -779,7 +796,7 @@ public class MemberDao extends Dao implements MemberDaoInterface
      * @return
      */
     @Override
-    public boolean editFirstName(int id,String firstName, String newFirstName) //throws DaoException
+    public boolean editFirstName(int id, String firstName, String newFirstName) //throws DaoException
     {
 
         Connection conn = null;
@@ -788,24 +805,22 @@ public class MemberDao extends Dao implements MemberDaoInterface
 
         try
         {
-                
+
             conn = getConnection();
             String query = "update member set firstName =? where firstName=? and memberId=?";
             ps = conn.prepareStatement(query);
-            
-            ps.setString(1,newFirstName); //sets newFirstName as the new firstName
-            ps.setString(2,firstName);
-            ps.setInt(3,id);
+
+            ps.setString(1, newFirstName); //sets newFirstName as the new firstName
+            ps.setString(2, firstName);
+            ps.setInt(3, id);
 
             ps.executeUpdate();
-  
-        } 
-        catch (SQLException e)
+
+        } catch (SQLException e)
         {
-             e.printStackTrace();
+            e.printStackTrace();
             return false;
-        } 
-        finally
+        } finally
         {
             try
             {
@@ -824,8 +839,7 @@ public class MemberDao extends Dao implements MemberDaoInterface
                     conn.close();
                 }
 
-            } 
-            catch (SQLException e)
+            } catch (SQLException e)
             {
                 e.printStackTrace();
                 return false;
@@ -841,7 +855,7 @@ public class MemberDao extends Dao implements MemberDaoInterface
      * @return
      */
     @Override
-    public boolean editLastName(int id,String lastName, String newLastName) 
+    public boolean editLastName(int id, String lastName, String newLastName)
     {
         Connection conn = null;
         PreparedStatement ps = null;
@@ -855,13 +869,13 @@ public class MemberDao extends Dao implements MemberDaoInterface
             ps = conn.prepareStatement(query);
             ps.setString(1, newLastName);
             ps.setString(2, lastName);
-            ps.setInt(3,id);
+            ps.setInt(3, id);
 
             ps.executeUpdate();
 
         } catch (SQLException e)
         {
-           e.printStackTrace();
+            e.printStackTrace();
             return false;
 
         } finally
@@ -887,14 +901,14 @@ public class MemberDao extends Dao implements MemberDaoInterface
             {
                 e.printStackTrace();
                 return false;
-                  
+
             }
         }
-     return true;   
+        return true;
     }
 
     @Override
-    public boolean editEmail(int id,String email, String newEmail) 
+    public boolean editEmail(int id, String email, String newEmail)
     {
         Connection conn = null;
         PreparedStatement ps = null;
@@ -908,13 +922,13 @@ public class MemberDao extends Dao implements MemberDaoInterface
             ps = conn.prepareStatement(query);
             ps.setString(1, newEmail);
             ps.setString(2, email);
-            ps.setInt(3,id);
+            ps.setInt(3, id);
 
             ps.executeUpdate();
 
         } catch (SQLException e)
         {
-           e.printStackTrace();
+            e.printStackTrace();
             return false;
 
         } finally
@@ -940,16 +954,16 @@ public class MemberDao extends Dao implements MemberDaoInterface
             {
                 e.printStackTrace();
                 return false;
-                  
+
             }
         }
-     return true;   
+        return true;
     }
     //userid
-    
+
     @Override
     public BufferedImage editMemberImageUrl(int id, String newMemberImageUrl)  //Part filePart
-   // public boolean editMemberImageUrl(int memberId, String newMemberImageUrl) 
+    // public boolean editMemberImageUrl(int memberId, String newMemberImageUrl) 
     {
         Connection conn = null;
         PreparedStatement ps = null;
@@ -963,41 +977,39 @@ public class MemberDao extends Dao implements MemberDaoInterface
 //            String query = "Update member set memberImageUrl =? where memberImageUrl=? and memberId=?";
             String query = "Update member set memberImage =? where memberId=?";
 //            ps = conn.prepareStatement(query);
-            
+
             FileInputStream fis = null;
-            File file = null;
-            try {
-              conn.setAutoCommit(false);
-              file = new File(newMemberImageUrl);
-                System.out.println("file = " + file);
-                
-                
-              fis = new FileInputStream(file);
-                System.out.println("fis");
-                
-              ps = conn.prepareStatement(query);
-                System.out.println("Hello");
-                
-//              ps.setAutoCommitString(1, newMemberImageUrl);
-        //            ps.setString(2, memberImageUrl);                   
-              ps.setBinaryStream(1, fis, (int) file.length());
-                System.out.println("BinaryStream");
-              ps.setInt(2, id);
-                System.out.println("Set int");
-              ps.executeUpdate();
-                System.out.println("Updated");
-              conn.commit();
-            } 
-            finally 
+            
+            try
             {
-              ps.close();
-              fis.close();
+                conn.setAutoCommit(false);
+                file = new File(newMemberImageUrl);
+                System.out.println("file = " + file);
+
+                fis = new FileInputStream(file);
+                System.out.println("fis");
+
+                ps = conn.prepareStatement(query);
+                System.out.println("Hello");
+
+//              ps.setAutoCommitString(1, newMemberImageUrl);
+                //            ps.setString(2, memberImageUrl);                   
+                ps.setBinaryStream(1, fis, (int) file.length());
+                System.out.println("BinaryStream");
+                ps.setInt(2, id);
+                System.out.println("Set int");
+                ps.executeUpdate();
+                System.out.println("Updated");
+                conn.commit();
+            } finally
+            {
+                ps.close();
+                fis.close();
             }
-            
+
             //Set image from database
-            
             img = getImageFromDatabase(conn, id);
-            
+
 //            InputStream inputStream = null;
 ////            Part filePart = request.getPart("newMemberImageUrl");
 ////           
@@ -1013,12 +1025,11 @@ public class MemberDao extends Dao implements MemberDaoInterface
 //                // fetches input stream of the upload file for the blob column
 //                ps.setBlob(1, inputStream);
 //            }
-            
             System.out.println("reached memberdao");
 
         } catch (SQLException e)
         {
-           e.printStackTrace();
+            e.printStackTrace();
             return img;
 
         } catch (IOException ex)
@@ -1047,28 +1058,111 @@ public class MemberDao extends Dao implements MemberDaoInterface
             {
                 e.printStackTrace();
                 return img;
-                  
+
             }
         }
-     return img;   
+        return img;
+    }
+
+    @Override
+    public BufferedImage editMemberImageUrl(String newMemberImageUrl)  //Part filePart
+    // public boolean editMemberImageUrl(int memberId, String newMemberImageUrl) 
+    {
+        Connection conn = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        BufferedImage img = null;
+
+        try
+        {
+
+            conn = getConnection();
+//            String query = "Update member set memberImageUrl =? where memberImageUrl=? and memberId=?";
+            String query = "insert into member(memberImage) values(?)";
+//            ps = conn.prepareStatement(query);
+
+            FileInputStream fis = null;
+            
+            try
+            {
+                conn.setAutoCommit(false);
+                file = new File(newMemberImageUrl);
+                System.out.println("file = " + file);
+
+                fis = new FileInputStream(file);
+                System.out.println(" Gets FileInputStreamfis");
+
+                ps = conn.prepareStatement(query);
+                System.out.println("Makes the Prepared Statement");
+
+//              ps.setAutoCommitString(1, newMemberImageUrl);
+                //            ps.setString(2, memberImageUrl);                   
+                ps.setBinaryStream(1, fis, (int) file.length());
+                System.out.println("Sets the Image");
+                ps.executeUpdate();
+                System.out.println("Updated");
+                conn.commit();
+            } finally
+            {
+                ps.close();
+                fis.close();
+            }
+            img = getImageFromDatabase(conn);
+            System.out.println("reached memberdao");
+
+        } catch (SQLException e)
+        {
+            e.printStackTrace();
+            return img;
+
+        } catch (IOException ex)
+        {
+            Logger.getLogger(MemberDao.class.getName()).log(Level.SEVERE, null, ex);
+        } finally
+        {
+            try
+            {
+                if (rs != null)
+                {
+                    rs.close();
+                }
+
+                if (ps != null)
+                {
+                    ps.close();
+                }
+
+                if (conn != null)
+                {
+                    conn.close();
+                }
+
+            } catch (SQLException e)
+            {
+                e.printStackTrace();
+                return img;
+
+            }
+        }
+            System.out.println("reached memberdao");
+        return img;
     }
     
     public BufferedImage getImageFromDatabase(Connection conn, int memberId)//Connection conn
     {
         String query = "select memberImage from member where memberId = ?";
         BufferedImage buffimg = null;
-        try 
+        try
         {
             PreparedStatement stmt = conn.prepareStatement(query);
-            stmt.setInt(1,memberId);
+            stmt.setInt(1, memberId);
             ResultSet result = stmt.executeQuery();
             result.next();
             InputStream img = result.getBinaryStream(1); // reading image as InputStream
-            System.out.println("image pulling from database "+ img);
-            buffimg= ImageIO.read(img); // decoding the inputstream as BufferedImage
+            System.out.println("image pulling from database " + img);
+            buffimg = ImageIO.read(img); // decoding the inputstream as BufferedImage
             System.out.println("buffimg = " + buffimg);
-        }
-        catch(Exception ex) 
+        } catch (Exception ex)
         {
             System.out.println(ex.getMessage());
         }
@@ -1109,9 +1203,27 @@ public class MemberDao extends Dao implements MemberDaoInterface
 //            }
 //        }
 // 
-      //return null;
+        //return null;
+    }
+    public BufferedImage getImageFromDatabase(Connection conn)//Connection conn
+    {
+        String query = "select memberImage from member ";
+        BufferedImage buffimg = null;
+        try
+        {
+            PreparedStatement stmt = conn.prepareStatement(query);
+            ResultSet result = stmt.executeQuery();
+            result.next();
+            InputStream img = result.getBinaryStream(1); // reading image as InputStream
+            System.out.println("image pulling from database " + img);
+            buffimg = ImageIO.read(img); // decoding the inputstream as BufferedImage
+            System.out.println("buffimg = " + buffimg);
+        } catch (Exception ex)
+        {
+            System.out.println(ex.getMessage());
+        }
+        return buffimg;
+
     }
 
-    
 }
-
