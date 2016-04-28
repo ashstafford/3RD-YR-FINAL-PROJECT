@@ -23,9 +23,10 @@ import java.util.ArrayList;
 public class ProductDao extends Dao implements ProductDaoInterface
 {
 
+   
     /**
      *
-     * @return
+     * @returns an arraylist of products
      */
     @Override
     public ArrayList<Product> getAllProducts() 
@@ -93,6 +94,12 @@ public class ProductDao extends Dao implements ProductDaoInterface
 
     }
     
+    /**
+     *
+     * @pulls products name from database that match the string thats been typed in
+     * 
+     */
+    
     @Override
     public ArrayList<String> getAutoCompleteData(String searchEntry) 
     {
@@ -129,6 +136,14 @@ public class ProductDao extends Dao implements ProductDaoInterface
                 
 		return list;
 	}
+    
+    
+    
+       /**
+     *
+     * @creates a product with the information given by user thats an admin
+     * 
+     */
     
     @Override
     public boolean addProduct(String productImageUrl,String productName,double productPrice,int quantityInStock,String category)  
@@ -209,6 +224,13 @@ public class ProductDao extends Dao implements ProductDaoInterface
          return true;   
     }
     
+    
+     /**
+     *
+     * @removes product from database by finding the id of the product 
+     * 
+     */
+    
         @Override
         public boolean removeProduct(int productId) 
         {
@@ -274,7 +296,7 @@ public class ProductDao extends Dao implements ProductDaoInterface
     /**
      *
      * @param category
-     * @return
+     * @returns certain products by the chosen category
      */
     @Override
     public ArrayList<Product> getProductsByCategory(String category) 
@@ -349,7 +371,7 @@ public class ProductDao extends Dao implements ProductDaoInterface
     /**
      *
      * @param title
-     * @return
+     * @returns products from database that match the string thats been typed in
      */
     @Override
     public ArrayList<Product> findProductsByTitle(String title)   //takes in title and returns all details about that product
@@ -432,10 +454,10 @@ public class ProductDao extends Dao implements ProductDaoInterface
     /**
      *
      * @param id
-     * @return
+     * @returns product by taking in id and returns all details about that product
      */
     @Override
- public Product findProductById(int id)  //takes in id and returns all details about that product
+ public Product findProductById(int id)  
  {
             Connection conn = null;
             PreparedStatement ps = null;
@@ -507,8 +529,13 @@ public class ProductDao extends Dao implements ProductDaoInterface
         return prod;    
     }
  
+    /**
+     *
+     * @checks how many of a particular product is left by id
+     */
+ 
        @Override
-        public int checkQuantityInStock(int id)  //how many of a particuar product is left
+        public int checkQuantityInStock(int id)  
         {
             
             Connection conn = null;
@@ -598,6 +625,13 @@ public class ProductDao extends Dao implements ProductDaoInterface
 
         return qtyInStock;
     }
+        
+        
+    /**
+     *
+     * @updates a particular product's quantity using its id and current quantity
+     */
+        
     @Override
     public boolean updateQuantityInStock(int qtyInStock, int newQuantityInStock,int productId) //throws DaoException
     {

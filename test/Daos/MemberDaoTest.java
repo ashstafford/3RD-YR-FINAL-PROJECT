@@ -7,6 +7,7 @@ package Daos;
 
 import Dtos.Member;
 import java.awt.image.BufferedImage;
+import java.sql.Connection;
 import java.util.ArrayList;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -30,6 +31,8 @@ public class MemberDaoTest
     {
         
     }
+
+   
 
    
     @Test
@@ -245,6 +248,20 @@ public class MemberDaoTest
         BufferedImage result = instance.editMemberImageUrl(id, newMemberImageUrl);
         assertEquals(expResult, result);
          instance.editMemberImageUrl(id, memberImageUrl);
+        
+    }
+
+    
+    @Test
+    public void testGetImageFromDatabase()
+    {
+        System.out.println("getImageFromDatabase");
+        Connection conn = null;
+        int memberId = 0;
+        MemberDao instance = new MemberDao();
+        BufferedImage expResult = null;
+        BufferedImage result = instance.getImageFromDatabase(conn, memberId);
+        assertEquals(expResult, result);
         
     }
 

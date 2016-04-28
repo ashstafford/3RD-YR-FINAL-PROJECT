@@ -108,7 +108,7 @@
           
           <div class ="images2">
                 <div class="social-popout">
-                    <a href="http://www.facebook.com"><img src="images/facebook.png" />         
+                    <a href="https://www.facebook.com/inaflash8/"><img src="images/facebook.png" />         
                 </div>
                 
                 <div class="social-popout">            
@@ -120,7 +120,7 @@
                 </div>
                 
                 <div class="social-popout">            
-                     <a href="http://www.instagram.com"><img src="images/instagram.png" />
+                     <a href="https://www.instagram.com/inaflash8/"><img src="images/instagram.png" />
                 </div>
                 
                 <div class="social-popout">         

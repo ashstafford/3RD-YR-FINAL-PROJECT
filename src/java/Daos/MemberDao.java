@@ -45,7 +45,7 @@ public class MemberDao extends Dao implements MemberDaoInterface
 
     /**
      *
-     * @return 
+     * @returns an arraylist of members
      */
     @Override
     public ArrayList<Member> getAllMembers() 
@@ -120,8 +120,13 @@ public class MemberDao extends Dao implements MemberDaoInterface
         return member;
     }
     
+    
+    /**
+     *
+     * @takes in id and returns all details about that member
+     */
     @Override
- public Member findMemberById(int id)  //takes in id and returns all details about that member
+ public Member findMemberById(int id)  
  {
             Connection conn = null;
             PreparedStatement ps = null;
@@ -198,6 +203,12 @@ public class MemberDao extends Dao implements MemberDaoInterface
             
         return m;    
     }
+ 
+ 
+  /**
+     *
+     * @checks if the user adding the admin is an admin and if so allows to add another admin
+     */
  
     @Override
     public boolean addAdmin(Member m) 
@@ -411,7 +422,7 @@ public class MemberDao extends Dao implements MemberDaoInterface
    
      * @param userName
      * @param password
-     * @return
+     * @adds a new member by taking in information given by user
      */
     @Override
     public Member addMember(String userName, String password,String firstName, String lastName, String email,String securityQuestionAnswer,boolean isAdmin) 
@@ -503,7 +514,10 @@ public class MemberDao extends Dao implements MemberDaoInterface
     }
     
     
-    
+     /**
+     *
+     * @removes member by finding id and then delete it
+     */
       @Override
         public boolean removeMember(int memberId) 
         {
@@ -571,6 +585,11 @@ public class MemberDao extends Dao implements MemberDaoInterface
      * @param passWord
      * @return
      * @throws DaoException
+     */
+        
+         /**
+     *
+     * @finds member by using username and password
      */
     @Override
     public Member findMemberByUserNamePassword(String userName, String passWord) throws DaoException
@@ -668,6 +687,10 @@ public class MemberDao extends Dao implements MemberDaoInterface
      * @param newUserName
      * @return
      */
+     /**
+     *
+     * @takes in user id and username and then creates variable called newusername when  the new username is made
+     */
     @Override
     public boolean editUserName(int id,String userName, String newUserName) //have seperate methods for each edit so user can select which field they want to edit and we can call the appropriate method - more efficent for database
     {
@@ -727,6 +750,10 @@ public class MemberDao extends Dao implements MemberDaoInterface
      * @param password
      * @param newPassword
      * @return
+     */
+      /**
+     *
+     * @takes in user id and password and then creates variable called newpassword when  the new password is made
      */
     @Override
     public boolean editPassword(int id,String password, String newPassword) 
@@ -788,6 +815,10 @@ public class MemberDao extends Dao implements MemberDaoInterface
      * @param firstName
      * @param newFirstName
      * @return
+     */
+      /**
+     *
+     * @takes in user id and first name and then creates variable called newFirstName when  the new firstname is made
      */
     @Override
     public boolean editFirstName(int id,String firstName, String newFirstName) //throws DaoException
@@ -851,6 +882,10 @@ public class MemberDao extends Dao implements MemberDaoInterface
      * @param newLastName
      * @return
      */
+      /**
+     *
+     * @takes in user id and last name and then creates variable called newLastName when the new last name is made
+     */
     @Override
     public boolean editLastName(int id,String lastName, String newLastName) 
     {
@@ -903,7 +938,11 @@ public class MemberDao extends Dao implements MemberDaoInterface
         }
      return true;   
     }
-
+    
+  /**
+     *
+     * @takes in user id and email and then creates variable called newEmail when  the new email is made
+     */
     @Override
     public boolean editEmail(int id,String email, String newEmail) 
     {
@@ -957,7 +996,10 @@ public class MemberDao extends Dao implements MemberDaoInterface
      return true;   
     }
     //userid
-    
+      /**
+     *
+     * @takes in user id and current imageurl and then creates variable called newMemberImageUrl when the new imageurl is made
+     */
     @Override
     public BufferedImage editMemberImageUrl(int id, String newMemberImageUrl)  //Part filePart
    // public boolean editMemberImageUrl(int memberId, String newMemberImageUrl) 
@@ -1063,7 +1105,10 @@ public class MemberDao extends Dao implements MemberDaoInterface
         }
      return img;   
     }
-    
+      /**
+     *
+     * @takes in user id and then gets the image that the user chooses and uploads it to database.
+     */
     public BufferedImage getImageFromDatabase(Connection conn, int memberId)//Connection conn
     {
         String query = "select memberImage from member where memberId = ?";
