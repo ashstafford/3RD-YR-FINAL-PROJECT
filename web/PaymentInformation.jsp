@@ -36,14 +36,14 @@
       			<fieldset>
                             
          			<legend>Choose Payment Method</legend> 
-
+                    
          			<table>
                                     <div id = card>    
             			<tr>
                				<td class="labelcell">
                					Card<span style="color: red">*</span>
                				</td>
-
+                                   <form action="MemberActionServlet" method="post" >
                				<td class="inputcell2">
                   				<input type="radio" name="ccard" id="amex" value ="American Express" onclick="setCCnum()"/>                                                
                   				<img src="images/americaExp.png" alt="American Exp" height="45" width="70"><br />
@@ -128,22 +128,15 @@
 
       			<p id="formbuttons">
          			<input type="button" name="prevb" class="resizedButton" id="prevb" value="Previous" onclick="history.back()" />
-                        
-                              
-                       
-                        
                         </p>
-         			
-      			
-                        
-                          
-                                <form action="MemberActionServlet" method="post" >
+         	
                 
                        <td><input type="hidden" name="action" value="orderDetails" /></td>
+                       <td><input type="hidden" name="ccard" value="ccard" /></td>
                
                       <td><input type="submit" class="resizedButton" value="Purchase Items" /></td>
                       
-                        </form>
+                    </form>
 	</div>
         </div>
      

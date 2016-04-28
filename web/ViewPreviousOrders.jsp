@@ -4,6 +4,9 @@
     Author     : d00155224
 --%>
 
+<%@page import="java.util.Locale"%>
+<%@page import="java.util.ResourceBundle"%>
+<%@page import="java.text.DecimalFormat"%>
 <%@page import="Dtos.Member"%>
 <%@page import="Dtos.SalesReceipt"%>
 <%@page import="java.util.List"%>
@@ -21,6 +24,19 @@
         <link rel="stylesheet" href="//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
 
         <title>Sales Orders</title>
+
+        <%
+
+            Locale userSetting = (Locale) session.getAttribute("locale");
+
+            if (userSetting == null)
+            {
+                userSetting = request.getLocale();
+            }
+
+            ResourceBundle messages = ResourceBundle.getBundle("properties.text", userSetting);
+        %> 
+
         <style>
             table, td, th {    
                 border: 1px solid #ddd;
@@ -40,119 +56,120 @@
     </head>
     <body>
 
-        <nav class = "topmenu">
-            <ul class="navigation">
-                <li><a href="MemberActionServlet?action=viewProfile">My Profile</a></li>
+        <div id="container">
+
+            <nav class = "topmenu">
+                <ul class="navigation">
+
+                    <%  Member m = (Member) session.getAttribute("member");
+
+                        if (m == null)
+                        {
+
+                    %>
+
+                    <li><a href="Login.jsp"><%=messages.getString("MenuButtonLogin")%></a></li>
+
+
+                    <li><a href="Register.jsp"><%=messages.getString("MenuButtonRegister")%></a></li>
+                </ul>
+            </nav>  
+            <%
+
+            } else
+            {
+
+
+            %>
+            <li><a href="MemberActionServlet?action=viewProfile">My Profile</a></li> 
+            <li><a href="MemberActionServlet?action=logout"><%=messages.getString("MenuButtonLogout")%></a></li>
+
+        </ul>
+    </nav> 
+    <%
+        }
+    %>
+    <div id="banner">
+        <img src="tempBanner.jpg"/>
+    </div>
+
+    <nav class="menu-1">
+        <ul class="menu">
+            <li> <a href="/CA3WebApp/HomePage.jsp"><%=messages.getString("MenuHomeButton")%></a> </li>
+            <li> <a href="MemberActionServlet?action=ViewAllProducts"><%=messages.getString("MenuShopButton")%></a> </li>
+            <li> <a href="/CA3WebApp/About.jsp"><%=messages.getString("MenuAboutButton")%></a> </li>
+
+            <li> <a href="MemberActionServlet?action=ViewPreviousOrders"><%=messages.getString("MenuViewOrdersButton")%></a> </li>
+
+            <li> <a href="/CA3WebApp/ContactUs.jsp"><%=messages.getString("MenuContactUsButton")%></a> </li>
+            <li> <a href="/CA3WebApp/Cart.jsp"><%=messages.getString("MenuCartButton")%></a> </li>
+            <div id="searchbar">
+                <form  action = "MemberActionServlet" method = "post" >
+                    <td> <input name="searchName" id="searchName" size=30 type="text" />  
+                        <input type="hidden" name="action" value="searchName" />
+                        <input type="submit" value="<%=messages.getString("SearchBarButton")%>"/>
+
+                </form>
+            </div>
+
+        </ul>
+
+
+    </nav> 
+
+
+    <div id="pagecontent2">
 
 
 
 
 
-                <%  Member m = (Member) session.getAttribute("member");
 
-                    if (m == null)
-                    {
-
-                %>
-
-                <li><a href="/CA3WebApp/Login.jsp">Login</a></li>
-
-
-                <li><a href="/CA3WebApp/Login.jsp">Sign Up</a></li>
-            </ul>
-        </nav>
-        <%        } else
-        {
-
-
-        %>
-
-    <li><a href="MemberActionServlet?action=logout">Logout</a></li>
-
-</ul>
-</nav> 
-<% } %>
-<div id="banner">
-    <img src="tempBanner.jpg"/>
-</div>
-
-<nav class="menu-1">
-    <ul class="menu">
-        <li> <a href="/CA3WebApp/HomePage.jsp">Home</a> </li>
-        <li> <a href="MemberActionServlet?action=ViewAllProducts">Shop</a> </li>
-        <li> <a href="/CA3WebApp/About.jsp">About</a> </li>
-
-        <li> <a href="MemberActionServlet?action=ViewPreviousOrders">View Orders</a> </li>
-
-        <li> <a href="/CA3WebApp/ContactUs.jsp">Contact</a> </li>
-        <li> <a href="/CA3WebApp/Cart.jsp">Cart</a> </li>
-
-        <div id="searchbar">
-            <form  action = "MemberActionServlet" method = "post" >
-                <p><td> <input name="searchName" id="searchName" size=30 type="text" />  
-                    <input type="hidden" name="action" value="searchName" />
-                    <input type="submit" value="Search"/>
-                    </p>
-            </form>
-        </div>
-
-    </ul>
-
-
-</nav>
-
-
-<div id="pagecontent2">
-
-    <table>
-
-
-
-       
 
         <%
             List<SalesReceipt> orders;
             orders = (List) (request.getSession().getAttribute("previousOrders"));
 
+            DecimalFormat decFor = new DecimalFormat("####0.00");
+
             if (orders != null)
             {
         %>
-        <tr>
-            <th>Receipt ID</th>
-            <th>Date Ordered</th>
-            <th>Total Price</th>
-            <th>Member ID</th>
-            <th>Payment Type</th>
-        </tr>
-        <%
-            for (SalesReceipt sr : orders)
+        <table>
+            <tr>
+                <th><%=messages.getString("ReceiptIdLabel")%></th>
+                <th><%=messages.getString("DateOrderedLabel")%></th>
+                <th><%=messages.getString("TotalPriceLabel")%></th>
+                <th><%=messages.getString("MemberIdLabel")%></th>
+                <th><%=messages.getString("PaymentTypeLabel")%></th>
+            </tr>
+
+
+            <% for (SalesReceipt sr : orders)
+                {
+            %>
+            <tr>
+                <td><%=sr.getReceiptId()%></td>
+                <td><%=sr.getDateOrdered()%></td>
+                <td><%=messages.getString("CurrencySymbolLabel")%><%=decFor.format(sr.getTotalPrice())%></td>
+                <td><%=sr.getMemberId()%></td>
+                <td><%=sr.getPaymentType()%></td>
+            </tr>
+
+
+
+
+            <%
+                }
+            } else
             {
+            %><h1><%=messages.getString("NoPreviousOrdersHeading")%></h1> <%
+                               }
+            %>
 
-        %>    
+        </table>
 
-
-        <tr>
-            <td><%=sr.getReceiptId()%></td>
-            <td><%=sr.getDateOrdered()%></td>
-            <td><%=sr.getTotalPrice()%></td>
-            <td><%=sr.getMemberId()%></td>
-            <td><%=sr.getPaymentType()%></td>
-        </tr>
-
-
-
-
-        <%
-            }
-        } else
-        {
-        %><h1> You have no previous Orders!</h1> <%
-              }
-        %>
-
-    </table>
-
-</div>
+    </div>
 
 
 </body>

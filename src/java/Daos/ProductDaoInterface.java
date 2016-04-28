@@ -51,7 +51,7 @@ public interface ProductDaoInterface
     
     public boolean removeProduct(int productId);
     
-    public boolean updateQuantityInStock(int qtyInStock, int newQuantityInStock,int productId);
+    public boolean updateQuantityInStock(int newQuantityInStock,int productId);
     
     public ArrayList<String> getAutoCompleteData(String searchEntry);
 }

@@ -599,7 +599,7 @@ public class ProductDao extends Dao implements ProductDaoInterface
         return qtyInStock;
     }
     @Override
-    public boolean updateQuantityInStock(int qtyInStock, int newQuantityInStock,int productId) //throws DaoException
+    public boolean updateQuantityInStock(int newQuantityInStock,int productId) //throws DaoException
     {
 
         Connection conn = null;
@@ -610,15 +610,19 @@ public class ProductDao extends Dao implements ProductDaoInterface
         {
                 
             conn = getConnection();
-            String query = "update product set quantityInStock =? where quantityInStock =? and  productId=?";
+            String query = "update product set quantityInStock =? where productId=?";
             ps = conn.prepareStatement(query);
             
-            ps.setInt(1,newQuantityInStock); //sets newFirstName as the new firstName
-            ps.setInt(2,qtyInStock);
-            ps.setInt(3,productId);
+            ps.setInt(1,newQuantityInStock); 
+            ps.setInt(2,productId);
 
-            ps.executeUpdate();
-  
+            int i = ps.executeUpdate();
+            System.out.println("i " + i);
+            
+            if(i == 0)
+            {
+                return false;
+            }    
         } 
         catch (SQLException e)
         {

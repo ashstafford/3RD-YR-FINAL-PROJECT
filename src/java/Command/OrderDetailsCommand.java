@@ -7,6 +7,7 @@ package Command;
 
 import Daos.MemberDao;
 import Daos.OrderItemDao;
+import Daos.ProductDao;
 import Daos.SalesReceiptDao;
 import Dtos.Member;
 import Dtos.Product;
@@ -65,7 +66,8 @@ public class OrderDetailsCommand implements Command
                 java.sql.Date dateOrdered = new java.sql.Date(utilDate.getTime());
 
                 int memberId = m.getMemberId();
-
+                ProductDao pDao = new ProductDao();
+                
                 String paymentType = "card";
 
                 for (Product prod : cart) 
@@ -75,26 +77,32 @@ public class OrderDetailsCommand implements Command
                 
                 SalesReceipt sr1 =  srDao.insertIntoSalesReceipt(dateOrdered,totalPrice,memberId,paymentType);
  
-                String quantity; 
+                int quantity; 
+                Product p;
+                boolean updated = false;
                 
                 for (Product prod : cart) 
                 {
-        //           quantity = request.getParameter("quantity");
-//                   int quantity2 = Integer.parseInt(quantity);
-  //                 oItemDao.insertIntoOrderItem(memberId, sr1.getReceiptId(), prod.getProductPrice(),quantity2);
-    //               int qty = prod.getQuantityInStock() - quantity2;
-      //             prod.setQuantityInStock(qty);
+                   quantity = prod.getQuantityInStock(); //qty the customer ordered
+                   
+                   p = pDao.findProductById(prod.getProductId());
+                   oItemDao.insertIntoOrderItem(memberId, sr1.getReceiptId(), prod.getProductPrice(),quantity);
+                   int qty = p.getQuantityInStock() - prod.getQuantityInStock(); //qty customer ordered - whats in stock
+                   prod.setQuantityInStock(qty);
+                   System.out.println("new qty " + prod.getQuantityInStock());
+                   updated = pDao.updateQuantityInStock(qty,p.getProductId());
                 } 
-                
-                cart.clear();
+                if(updated = true)
+                {
+                    cart.clear();
 
-                forwardToJsp = "/PurchaseConfirmation.jsp";
-         //  }
-         //  else
-         //  {
-         //    forwardToJsp = "/LoginFailure.jsp";    
-         //  }   
-           
+                    forwardToJsp = "/PurchaseConfirmation.jsp";
+                }
+                else
+                {
+                    //forwardToJsp = "/purchaseFailed.jsp";
+                }     
+    
              return forwardToJsp;    
     }   
 }

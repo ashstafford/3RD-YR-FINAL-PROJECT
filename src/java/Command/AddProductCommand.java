@@ -71,7 +71,7 @@ public class AddProductCommand implements Command
                   
                     session.setAttribute("productAdded", true);
                     
-                    forwardToJsp = "/ViewAllProducts.jsp"; //MemberActionServlet?action=ViewAllProducts
+                    forwardToJsp = "/ProductAddedSuccess.jsp"; //MemberActionServlet?action=ViewAllProducts
                  } 
                  else
                  {

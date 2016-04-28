@@ -13,188 +13,190 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> 
-        <link rel="icon" href="images/flash3.png" type="image/gif" sizes="20x20">
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" type="text/css" href="mainCSS.css" >
-        <script src="//code.jquery.com/jquery-1.10.2.js"></script>
-        <script src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
-        <script type="text/javascript" src="js/autoCompleter.js"></script>
-        <link rel="stylesheet" href="//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
-        
         <title>Select Member</title>
     </head>
-
-
-
-<%
-
-    Locale userSetting = (Locale) session.getAttribute("locale");
-
-    if (userSetting == null)
-    {
-        userSetting = request.getLocale();
-    }
-
+     </head>   
+    <body>
+        
+   <div id="container">  
+          <nav class = "topmenu">
+            <ul class="navigation">
+                    <li><a href="MemberActionServlet?action=viewProfile">My Profile</a></li>
+                    
+            
+ <% 
+   
+        Locale userSetting = (Locale) session.getAttribute("locale");
+       
+        if(userSetting == null)
+        {
+            userSetting = request.getLocale();
+        }
+   
     ResourceBundle messages = ResourceBundle.getBundle("properties.text", userSetting);
 %>     
-
-<body>
-
-    <div id="container">
-
-        <nav class = "topmenu">
-            <ul class="navigation">
-
-                <%  Member m = (Member) session.getAttribute("member");
-
-                    if (m == null)
-                    {
-
-                %>
-
-                <li><a href="Login.jsp"><%=messages.getString("MenuButtonLogin")%></a></li>
-
-
-                <li><a href="Register.jsp"><%=messages.getString("MenuButtonRegister")%></a></li>
-            </ul>
-        </nav>  
+           
+      
+          
+         <%  //Member m = (Member)session.getAttribute("member"); 
+         
+       // if(m == null)
+        //{
+            
+         %>
+        
+         <li><a href="/CA3WebApp/Login.jsp">Login</a></li>
+            
+            
+        <li><a href="/CA3WebApp/Login.jsp">Sign Up</a></li>
+        
         <%
-
-        } else
-        {
-
-
+        
+       // }
+       // else
+        //{
+      
+            
         %>
-        <li><a href="MemberActionServlet?action=viewProfile">My Profile</a></li> 
-        <li><a href="MemberActionServlet?action=logout"><%=messages.getString("MenuButtonLogout")%></a></li>
+            
+           <li><a href="MemberActionServlet?action=logout">Logout</a></li>
+                      
+   </ul>
+     </nav> 
+          <%// } %>
 
-    </ul>
-</nav> 
-<%
-    }
-%>
-
-<div id="banner">
-    <img src="tempBanner.jpg"/>
-</div>
-
-<nav class="menu-1">
+            <div id="banner">
+                <img src="tempBanner.jpg"/>
+            </div>
+  
+       <nav class="menu-1">
     <ul class="menu">
-        <li> <a href="/CA3WebApp/HomePage.jsp"><%=messages.getString("MenuHomeButton")%></a> </li>
-        <li> <a href="MemberActionServlet?action=ViewAllProducts"><%=messages.getString("MenuShopButton")%></a> </li>
-        <li> <a href="/CA3WebApp/About.jsp"><%=messages.getString("MenuAboutButton")%></a> </li>
-
-        <li> <a href="MemberActionServlet?action=ViewPreviousOrders"><%=messages.getString("MenuViewOrdersButton")%></a> </li>
-
-        <li> <a href="/CA3WebApp/ContactUs.jsp"><%=messages.getString("MenuContactUsButton")%></a> </li>
-        <li> <a href="/CA3WebApp/Cart.jsp"><%=messages.getString("MenuCartButton")%></a> </li>
+        <li> <a href="/CA3WebApp/HomePage.jsp">Home</a> </li>
+        <li> <a href="MemberActionServlet?action=ViewAllProducts">Shop</a> </li>
+        <li> <a href="/CA3WebApp/About.jsp">About</a> </li>
+        
+        <li> <a href="MemberActionServlet?action=ViewPreviousOrders">View Orders</a> </li>
+        
+        <li> <a href="/CA3WebApp/ContactUs.jsp">Contact</a> </li>
+        <li> <a href="/CA3WebApp/Cart.jsp">Cart</a> </li>
+        
         <div id="searchbar">
-            <form  action = "MemberActionServlet" method = "post" >
-                <td> <input name="searchName" id="searchName" size=30 type="text" />  
-                    <input type="hidden" name="action" value="searchName" />
-                    <input type="submit" value="<%=messages.getString("SearchBarButton")%>"/>
-
-            </form>
+        <form  action = "MemberActionServlet" method = "post" >
+               <p><td> <input name="searchName" size=30 type="text" />  
+                 <input type="hidden" name="action" value="searchName" />
+                 <input type="submit" value="Search"/>
+               </p>
+        </form>
         </div>
-
+        
     </ul>
-
-
+           
+           
 </nav>
-
-<div id="pagecontent2">
-
-    <div id="overall2"></div>
-
-    <table>
-
-
- <%
-            List<Member> AllMembers = (List) (request.getSession().getAttribute("AllMembers"));
-
-            List<Member> Members = new ArrayList<Member>();
-
-            for (Member mem : AllMembers)
-            {
-                if (m.isAdmin() == false)
-                {
-                    Members.add(m);
-                }
-            }
-
-            if (Members != null)
-            {
-                for (Member mem : Members)
-                {
-
- %>
-
-
-
-        <tr>
-        <div id="overallMain">
-            <div id="profileImage">   
-                <img src="<%=mem.getMemberImageUrl()%>" style="width: 300px; height: 250px;">     
-            </div>
-
-            <div id ="profileInfo">
-                <p><%=messages.getString("UsernameLabel")%> <%=mem.getUserName()%></p>
-                <p><%=messages.getString("FirstNameLabel")%>: <%=mem.getFirstName()%></p>
-                <p><%=messages.getString("LastNameLabel")%>: <%=mem.getLastName()%></p>
-            </div>
-            <%
-                String action = request.getParameter("choice");
-                String message = messages.getString("AddAdminButton");
-
-                if (action.equals(message))
-                {
-
-            %>
-
-            <div id="MemberButton">
-                <form action="MemberActionServlet" method="post"> 
-                    <p><input type="hidden" name="action" value="AddAdmin" /></p>
-                    <input type="hidden" name="AddAdmin" value="<%= m.getMemberId()%>" />
-
-
-
-                    <p><input type="submit" value="<%=messages.getString("MakeAdminButton")%>" /></p>
-
-                </form> 
-
+                  
+        
+      <div id="pagecontent2">
+        
+          <div id="overall2"></div>
+          
+        <table>
+   
+  
                 <%
-                } else
-                {
-
+                  
+                    List<Member> AllMembers = (List) (request.getSession().getAttribute("AllMembers"));
+                   
+                    List<Member> Members = new ArrayList<Member>();
+                    
+                    for (Member m : AllMembers) 
+                    {
+                        if(m.isAdmin() == false)
+                        {
+                            Members.add(m);
+                        }    
+                    }
+                    
+                    if (Members != null) 
+                    {    
+                        for (Member m : Members) 
+                        {
+                           
                 %>
-                <form action="MemberActionServlet" method="post"> 
+          
+              
+           
+           <tr>
+               <div id="overallMain">
+           <div id="profileImage">   
+                <img src="<%=m.getMemberImageUrl()%>" style="width: 300px; height: 250px;">     
+           </div>
+
+           <div id ="profileInfo">
+               <p>Username: <%=m.getUserName()%></p>
+                   <p>First Name: <%=m.getFirstName()%></p>
+                   <p>Last Name: <%=m.getLastName()%></p>
+           </div>
+                   <%  
+                  String action = request.getParameter("choice");
+                  String message = messages.getString("AddAdminButton");
+                 
+                  if(action.equals(message))
+                  {
+                   
+                   %>
+                   
+                   <div id="MemberButton">
+                       <form action="MemberActionServlet" method="post"> 
+                           <p><input type="hidden" name="action" value="AddAdmin" /></p>
+                           <input type="hidden" name="AddAdmin" value="<%= m.getMemberId()%>" />
+                           
+                           
+                           
+                                <p><input type="submit" value="Make Admin" /></p>
+                           
+                           </form> 
+                 
+            <%
+                 } 
+                 else
+                 {
+        
+           %>
+                  <form action="MemberActionServlet" method="post"> 
                     <td><input type="hidden" name="action" value="Remove Member" /></td>
                     <input type="hidden" name="removeMember" value="<%= m.getMemberId()%>"/>
-
-                    <td><input type="submit" value="<%=messages.getString("RemoveMemberButton")%>" /></td>
-                </form>    
+                    
+                        <td><input type="submit" value="Remove Member" /></td>
+                  </form>    
             </div>     
 
+                
+             
+           </div>
+               </div>
+                    </tr>
+                    </table>
+            
+    
+        <%       } 
+               
+              }
+           }
+          else
+          {
+            out.println("sorry not found!!");
+          }        
+            %>
 
 
-        </div>
+        
+          
+        
+        
+      
 </div>
-</tr>
-</table>
-
-
-<%       }
-
-        }
-%>
-
-
-
-
-
-
-
-</div>
-
-</body>
+        
+    </body>
 </html>
