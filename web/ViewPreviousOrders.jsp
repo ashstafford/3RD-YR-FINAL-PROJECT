@@ -108,7 +108,7 @@
 
 
 
-        <!--<tr> <th>Receipt ID</th><th>Date Ordered</th><th>Total Price</th><th>Member ID</th><th>Payment Type</th>-->
+       
 
         <%
             List<SalesReceipt> orders;
