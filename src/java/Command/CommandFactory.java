@@ -57,13 +57,17 @@ public class CommandFactory
         {
     		command = new RemoveProductCommand();
     	}
+        if (commandStr.equals("AddAddress")) 
+        {
+    		command = new AddAddressCommand();
+    	}
+        if (commandStr.equals("FindAddress")) 
+        {
+    		command = new FindAddressCommand();
+    	}
         if (commandStr.equals("Remove Member")) 
         {
     		command = new RemoveMemberCommand();
-    	}
-        if (commandStr.equals("RemoveProductFromCart")) 
-        {
-    		command = new RemoveProductFromCartCommand();
     	}
         if (commandStr.equals("AddAdmin")) 
         {
@@ -132,6 +136,10 @@ public class CommandFactory
         if (commandStr.equals("EmptyCart")) 
         {
     		command = new EmptyCartCommand();
+    	}
+        if (commandStr.equals("updateQty")) 
+        {
+    		command = new UpdateQtyInCartCommand();
     	}
         if (commandStr.equals("Edit First Name")) 
         {

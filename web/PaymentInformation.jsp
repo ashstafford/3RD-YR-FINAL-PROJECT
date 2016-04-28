@@ -10,27 +10,32 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <link rel="icon" href="images/flash3.png" type="image/gif" sizes="20x20">
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Payment Page</title>
         <link rel="stylesheet" type="text/css" href="mainCSS.css" >
-        <script type="text/javascript" src="js/payment.js"></script>
+ <script type="text/javascript" src="payment.js"></script>
     </head>
     <body>
       		
    			
         <div id = container2>
+            <div id="banner">
+                <img src="tempBanner.jpg"/>
+            </div>
    			<div id="main">
       			
       				<br><br><br><br><br><br>
       			<div id ="payform">
-      			<h1>
+      			<h1><center>
       				Payment Form
 
-      			</h1>
+      			</h1></center>
                         </div>
-                                
+                              <font color="blue">   
       			<fieldset>
-         			<legend>Enter your Credit Card Information</legend>
+                            
+         			<legend>Choose Payment Method</legend> 
 
          			<table>
                                     <div id = card>    
@@ -63,7 +68,7 @@
                				</td>
                                             
                				<td class="inputcell2"><br><br>
-                  				<input class="text" name="cname" id="cname" size="35" />
+                  				<input class="text" name="cname" class="resizedTextBox" id="cname" size="35" />
                				</td>
             			</tr>
                                     </div>
@@ -76,7 +81,7 @@
                				</td>
 
                				<td class="inputcell2"><br>
-                  				<input class="text" name="cnumber" id="cnumber" size="35" />
+                  				<input class="text" name="cnumber" class="resizedTextBox" id="cnumber" size="35" />
 
                   				<span class="fieldlabel">
                   					Expiration<span style="color: red">*</span>
@@ -100,7 +105,7 @@
 
                   				/
 
-                  				<select name="cyear" id="cyear">
+                  				<select name="cyear" id="cyear"">
 									<option>Year</option>
                   					<option>2016</option>
                   					<option>2017</option>
@@ -122,16 +127,21 @@
       			</fieldset>
 
       			<p id="formbuttons">
-         			<input type="button" name="prevb" id="prevb" value="Previous" onclick="history.back()" />
+         			<input type="button" name="prevb" class="resizedButton" id="prevb" value="Previous" onclick="history.back()" />
+                        
+                              
+                       
+                        
                         </p>
          			
       			
                         
-                        <form action="MemberActionServlet" method="post" >
+                          
+                                <form action="MemberActionServlet" method="post" >
                 
                        <td><input type="hidden" name="action" value="orderDetails" /></td>
                
-                       <td><input type="submit" value="Purchase Items" /></td
+                      <td><input type="submit" class="resizedButton" value="Purchase Items" /></td>
                       
                         </form>
 	</div>

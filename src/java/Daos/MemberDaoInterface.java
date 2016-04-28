@@ -96,5 +96,6 @@ public interface MemberDaoInterface
     public boolean addAdmin(Member m);
 
     public boolean removeMember(int memberId);
-
+ 
+    
 }

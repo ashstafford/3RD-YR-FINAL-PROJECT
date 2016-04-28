@@ -33,7 +33,7 @@ public class MemberService
      */
     public Member login(String username, String password)
     {
-        System.out.println("Got to here");
+       
         Member m = null;
         try 
         {

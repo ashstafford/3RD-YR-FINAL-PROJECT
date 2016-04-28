@@ -16,11 +16,17 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link rel="icon" href="images/flash3.png" type="image/gif" sizes="20x20">
         <link rel="stylesheet" type="text/css" href="mainCSS.css" >
         <script src="js/jquery_1.js"></script>
         <script src="js/paginate.js"></script>
         <script src="js/custom.js"></script>
         <script type="text/javascript" src="js/modernizr-1.5.min.js"></script>
+        <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+        <script src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+        <script type="text/javascript" src="js/autoCompleter.js"></script>
+        <link rel="stylesheet" href="//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
+        
         <title>View all products</title>
   
 <% 
@@ -92,7 +98,7 @@
         
         <div id="searchbar">
         <form  action = "MemberActionServlet" method = "post" >
-               <p><td> <input name="searchName" size=30 type="text" />  
+               <p><td> <input name="searchName" id="searchName" size=30 type="text" />  
                  <input type="hidden" name="action" value="searchName" />
                  <input type="submit" value="<%=messages.getString("SearchBarButton")%>"/>
                </p>
@@ -268,7 +274,7 @@
                 <p><%=messages.getString("PriceLabel")%>: <%=messages.getString("CurrencySymbolLabel")%> <%=decFor.format(prod.getProductPrice())%></p>
                 
                 
-                <p>Quantity: <input name="quantity" size=15 type = "number" min = "1" max = "<%=prod.getQuantityInStock()%>"></p>
+                <p><%=messages.getString("QuantityLabel")%>: <input name="quantity" size=15 type = "number" min = "1" max = "<%=prod.getQuantityInStock()%>"></p>
                 <p><input type="hidden" name="action" value="Add To Cart" /></p>
                 <input type="hidden" name="addToCart" value="<%=prod.getProductId()%>" />
                 <p><input type="submit" value="<%=messages.getString("AddToCartButton")%>" /></p>

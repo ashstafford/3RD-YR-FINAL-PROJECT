@@ -4,7 +4,8 @@
     Author     : d00155224
 --%>
 
-<%@page import="java.text.DecimalFormat"%>
+<%@page import="java.util.ResourceBundle"%>
+<%@page import="java.util.Locale"%>
 <%@page import="Dtos.Member"%>
 <%@page import="Dtos.Product"%>
 <%@page import="Daos.ProductDao"%>
@@ -13,174 +14,185 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link rel="icon" href="images/flash3.png" type="image/gif" sizes="20x20">
         <link rel="stylesheet" type="text/css" href="mainCSS.css" >
-        <title>JSP Page</title>
+        <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+        <script src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+        <script type="text/javascript" src="js/autoCompleter.js"></script>
+        <link rel="stylesheet" href="//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
+        <title>Edit Product Details</title>
         <style>
 
-</style>      
-    </head>
-    <body>
-        
-   <div id="container">  
-          <nav class = "topmenu">
-             <ul class="navigation">
-                    <li><a href="MemberActionServlet?action=viewProfile">My Profile</a></li>
-                    
-            
-       
-      
-          
-         <%  Member m = (Member)session.getAttribute("member"); 
-         
-       if(m == null)
-        {
-            
-         %>
-        
-         <li><a href="/CA3WebApp/Login.jsp">Login</a></li>
-            
-            
-        <li><a href="/CA3WebApp/Login.jsp">Sign Up</a></li>
-        </ul>
-     </nav>
+        </style>      
         <%
-        
-       }
-        else
-        {
-      
-            
-        %>
-            
-           <li><a href="MemberActionServlet?action=logout">Logout</a></li>
-                      
-   </ul>
-     </nav> 
-          <%} %>
-          
 
-            <div id="banner">
-                <img src="tempBanner.jpg"/>
-            </div>
-  
-       <nav class="menu-1">
-    <ul class="menu">
-        <li> <a href="/CA3WebApp/HomePage.jsp">Home</a> </li>
-        <li> <a href="MemberActionServlet?action=ViewAllProducts">Shop</a> </li>
-        <li> <a href="/CA3WebApp/About.jsp">About</a> </li>
-        
-        <li> <a href="MemberActionServlet?action=ViewPreviousOrders">View Orders</a> </li>
-        
-        <li> <a href="/CA3WebApp/ContactUs.jsp">Contact</a> </li>
-        <li> <a href="/CA3WebApp/Cart.jsp">Cart</a> </li>
-        
-        <div id="searchbar">
-        <form  action = "MemberActionServlet" method = "post" >
-               <p><td> <input name="searchName" size=30 type="text" />  
-                 <input type="hidden" name="action" value="searchName" />
-                 <input type="submit" value="Search"/>
-               </p>
-        </form>
-        </div>
-        
+            Locale userSetting = (Locale) session.getAttribute("locale");
+
+            if (userSetting == null)
+            {
+                userSetting = request.getLocale();
+            }
+
+            ResourceBundle messages = ResourceBundle.getBundle("properties.text", userSetting);
+        %>
+
+    </head>
+</head>   
+<body>
+
+
+
+    <div id="container">
+
+        <nav class = "topmenu">
+            <ul class="navigation">
+
+                <%  Member m = (Member) session.getAttribute("member");
+
+                    if (m == null)
+                    {
+
+                %>
+
+                <li><a href="Login.jsp"><%=messages.getString("MenuButtonLogin")%></a></li>
+
+
+                <li><a href="Register.jsp"><%=messages.getString("MenuButtonRegister")%></a></li>
+            </ul>
+        </nav>  
+        <%
+
+        } else
+        {
+
+
+        %>
+        <li><a href="MemberActionServlet?action=viewProfile">My Profile</a></li> 
+        <li><a href="MemberActionServlet?action=logout"><%=messages.getString("MenuButtonLogout")%></a></li>
+
     </ul>
-           
-           
-</nav>
-       <div id="pagecontent3">
-           
+</nav> 
 <%
-                ProductDao pDao = new ProductDao();
-                
-                String prod = request.getParameter("editProduct");
-                
-                System.out.println("id" + prod);
-                
-                Product p = pDao.findProductById(Integer.parseInt(prod));
-              DecimalFormat decFor = new DecimalFormat("####0.00");
-                if(p == null )
-               {
-                   System.out.println("error!");
-               }    
+    }
 %>
- 
-              <form action="MemberActionServlet" method="post">
-                <div id="addProductMain"> 
-                    <div id="editProductHeading">
-                        <h1>Edit Product</h1>
-                        <hr>
-                    </div>
-                    
-                    <div id ="editProductText">
-                        <table>
-                            <tr>
-                                <label for="exampleInputPassword" style="font-size:20px;">Product Name  : </label> 
-                            </tr>
-                            <tr>
-                                <td><input name="productName" type="text" class="resizedTextBox" value="<%=p.getProductName()%>" style="border:0.5px solid black;" size="35"/> </td>
-                            </tr>
-                        </table>
-                    </div>
-                            
-                    <div id ="editProductText">
-                        <table>
-                            <tr>
-                                <label for="exampleInputPassword" style="font-size:20px;">Price  : </label> 
-                            </tr>
-                            <tr>
-                                <td><input name="productPrice" placeholder="0.00" type="text" class="resizedTextBox"  value="<%=decFor.format(p.getProductPrice())%>" style="border:0.5px solid black;" size="35"/> </td>
-                            </tr>
-                        </table>
-                    </div>
-                    
-                    <div id ="editProductText">
-                        <table>
-                            <tr>
-                                <label for="exampleInputPassword" style="font-size:20px;">Quantity in Stock  : </label> 
-                            </tr>
-                            <tr>
-                                <td><input name="quantityInStock"  type="text" class="resizedTextBox"  value="<%=p.getQuantityInStock()%>" style="border:0.5px solid black;" size="35"/> </td>
-                            </tr>
-                        </table>
-                    </div>
-                        
-                   <div id ="editProductText">
-                        <table>
-                            <tr>
-                                <label for="exampleInputPassword" style="font-size:20px;">Category  : </label> 
-                            </tr>
-                            <tr>
-                                <td><input name="category"  type="text" class="resizedTextBox" value="<%=p.getCategory()%>" style="border:0.5px solid black;" size="35"/> </td>
-                            </tr>
-                        </table>
-                    </div>
-                    
-                    <div id ="editProductText">
-                        <table>
-                            <tr>
-                                <label for="exampleInputPassword" style="font-size:20px;">Product image url  : </label> 
-                            </tr>
-                            <tr>
-                                <td><input name="productImageUrl"  type="text" class="resizedTextBox" value="<%=p.getProductImageUrl()%>" style="border:0.5px solid black;" size="35"/> </td>
-                            </tr>
-                        </table>
-                    </div>
-                    
-                    
-                    
-                
-                
-                <div id ="editProductButton"> 
-                    <input type="hidden" name="action" value="editProductDetails"/>
-                    <input type="hidden" name="ProductId" value="<%=p.getProductId()%>"/>
-                    <input type="submit" class="resizedButton" value="Edit Product"  />
-                </div>
-      </form>
-           
+<div id="banner">
+    <img src="tempBanner.jpg"/>
 </div>
-                
-       
-       </div>
-   </div>  
-    </body>
+
+<nav class="menu-1">
+    <ul class="menu">
+        <li> <a href="/CA3WebApp/HomePage.jsp"><%=messages.getString("MenuHomeButton")%></a> </li>
+        <li> <a href="MemberActionServlet?action=ViewAllProducts"><%=messages.getString("MenuShopButton")%></a> </li>
+        <li> <a href="/CA3WebApp/About.jsp"><%=messages.getString("MenuAboutButton")%></a> </li>
+
+        <li> <a href="MemberActionServlet?action=ViewPreviousOrders"><%=messages.getString("MenuViewOrdersButton")%></a> </li>
+
+        <li> <a href="/CA3WebApp/ContactUs.jsp"><%=messages.getString("MenuContactUsButton")%></a> </li>
+        <li> <a href="/CA3WebApp/Cart.jsp"><%=messages.getString("MenuCartButton")%></a> </li>
+        <div id="searchbar">
+            <form  action = "MemberActionServlet" id="searchName" method = "post" >
+                <td> <input name="searchName" size=30 type="text" />  
+                    <input type="hidden" name="action" value="searchName" />
+                    <input type="submit" value="<%=messages.getString("SearchBarButton")%>"/>
+
+            </form>
+        </div>
+
+    </ul>
+
+
+</nav>
+<div id="pagecontent">
+
+    <%
+        ProductDao pDao = new ProductDao();
+
+        String prod = request.getParameter("editProduct");
+
+        Product p = pDao.findProductById(Integer.parseInt(prod));
+        DecimalFormat decFor = new DecimalFormat("####0.00");
+        if (p == null)
+        {
+            System.out.println("error!");
+        }
+    %>
+    <form action="MemberActionServlet" method="post">
+        <div id="addProductMain"> 
+            <div id="editProductHeading">
+                <h1>Edit Product</h1>
+                <hr>
+            </div>
+
+            <div id ="editProductText">
+                <table>
+                    <tr>
+                    <label for="exampleInputPassword" style="font-size:20px;">Product Name  : </label> 
+                    </tr>
+                    <tr>
+                        <td><input name="productName" type="text" class="resizedTextBox" value="<%=p.getProductName()%>" style="border:0.5px solid black;" size="35"/> </td>
+                    </tr>
+                </table>
+            </div>
+
+            <div id ="editProductText">
+                <table>
+                    <tr>
+                    <label for="exampleInputPassword" style="font-size:20px;">Price  : </label> 
+                    </tr>
+                    <tr>
+                        <td><input name="productPrice" placeholder="0.00" type="text" class="resizedTextBox"  value="<%=decFor.format(p.getProductPrice())%>" style="border:0.5px solid black;" size="35"/> </td>
+                    </tr>
+                </table>
+            </div>
+
+            <div id ="editProductText">
+                <table>
+                    <tr>
+                    <label for="exampleInputPassword" style="font-size:20px;">Quantity in Stock  : </label> 
+                    </tr>
+                    <tr>
+                        <td><input name="quantityInStock"  type="text" class="resizedTextBox"  value="<%=p.getQuantityInStock()%>" style="border:0.5px solid black;" size="35"/> </td>
+                    </tr>
+                </table>
+            </div>
+
+            <div id ="editProductText">
+                <table>
+                    <tr>
+                    <label for="exampleInputPassword" style="font-size:20px;">Category  : </label> 
+                    </tr>
+                    <tr>
+                        <td><input name="category"  type="text" class="resizedTextBox" value="<%=p.getCategory()%>" style="border:0.5px solid black;" size="35"/> </td>
+                    </tr>
+                </table>
+            </div>
+
+            <div id ="editProductText">
+                <table>
+                    <tr>
+                    <label for="exampleInputPassword" style="font-size:20px;">Product image url  : </label> 
+                    </tr>
+                    <tr>
+                        <td><input name="productImageUrl"  type="text" class="resizedTextBox" value="<%=p.getProductImageUrl()%>" style="border:0.5px solid black;" size="35"/> </td>
+                    </tr>
+                </table>
+            </div>
+
+
+
+
+
+            <div id ="editProductButton"> 
+                <input type="hidden" name="action" value="editProductDetails"/>
+                <input type="hidden" name="ProductId" value="<%=p.getProductId()%>"/>
+                <input type="submit" class="resizedButton" value="Edit Product"  />
+            </div>
+    </form>
+
+</div>
+
+
+</div>
+</div>  
+</body>
 </html>

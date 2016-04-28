@@ -268,6 +268,293 @@ ul.menu ul.submenu li:last-child { border: none; }
 .menu ul li:hover > ul { display: block; }
 
 html, body { background: #333 url("http://codepen.io/images/classy_fabric.png"); }
+/*.view {
+    width: 360px;
+    height: 260px;
+    margin-top: 100px;
+    margin-left: 160px;
+    float: left;
+    overflow: hidden;
+    position: absolute;
+    text-align: center;
+    box-shadow: 1px 1px 2px #e6e6e6;
+    cursor: default;
+    background: #fff url(../images/bgimg.jpg) no-repeat center center
+}
+.view .mask, .view .content {
+    width: 360px;
+    height: 260px;
+    position: absolute;
+    overflow: hidden;
+    top: 0;
+    left: 0
+}
+.view img {
+    display: block;
+    position: relative
+}
+.view h2 {
+    text-transform: uppercase;
+    font-family:Arial, Helvetica, sans-serif;
+    font-size: 20px;
+    color: #fff;
+    text-align: center;
+    position: relative;
+    font-size: 17px;
+    padding: 10px;
+    background: rgba(0, 0, 0, 0.8);
+    margin: 20px 0 0 0
+}
+.view p {
+    font-family:Arial, Helvetica, sans-serif;
+    font-size: 15px;
+    position: relative;
+    color:white;
+    font-weight: bold;
+    padding: 10px 20px 20px;
+    text-align: center;
+}
+.view a.info {
+    display: inline-block;
+    text-decoration: none;
+    padding: 7px 14px;
+    background: #06BA6D;
+    color: #fff;
+    text-transform: uppercase;
+    box-shadow: 0 0 1px #000;
+    font-family:Arial, Helvetica, sans-serif;
+    font-size: 15px;
+}
+.view a.info:hover 
+{
+    box-shadow: 0 0 5px #000
+}
+.view-first img 
+{ 
+    transition: all 0.2s linear;
+    width:100%;
+    height: 100%;
+}
+.view-first .mask {
+    opacity: 0;
+    background-color:captiontext;
+    transition: all 0.4s ease-in-out;
+}
+.view-first h2 {
+    transform: translateY(-100px);
+    opacity: 0;
+    transition: all 0.2s ease-in-out;
+}
+.view-first p { 
+    transform: translateY(100px);
+    opacity: 0;
+    transition: all 0.2s linear;
+}
+.view-first a.info{
+    opacity: 0;
+    transition: all 0.2s ease-in-out;
+}
+.view-first:hover img { 
+    transform: scale(1.1);
+} 
+.view-first:hover .mask { 
+    opacity: 1;
+}
+.view-first:hover h2,
+.view-first:hover p,
+.view-first:hover a.info {
+    opacity: 1;
+    transform: translateY(0px);
+}
+.view-first:hover p {
+    transition-delay: 0.1s;
+}
+.view-first:hover a.info {
+    transition-delay: 0.2s;
+}
+
+
+
+.view2 {
+    width: 360px;
+    height: 260px;
+	margin-top: 100px;
+	margin-left: 630px;
+    float: left;
+    overflow: hidden;
+    position: absolute;
+    text-align: center;
+    box-shadow: 1px 1px 2px #e6e6e6;
+    cursor: default;
+    background: #fff url(../images/bgimg.jpg) no-repeat center center
+}
+.view2 .mask, .view2 .content {
+    width: 360px;
+    height: 260px;
+    position: absolute;
+    overflow: hidden;
+    top: 0;
+    left: 0
+}
+.view2 img {
+    display: block;
+    position: relative
+}
+.view2 h2 {
+    text-transform: uppercase;
+    color: #fff;
+    text-align: center;
+    position: relative;
+    font-size: 17px;
+    padding: 10px;
+    background: rgba(0, 0, 0, 0.8);
+    margin: 20px 0 0 0
+}
+.view2 p {
+    font-family: Georgia, serif;
+    font-style: italic;
+    font-size: 12px;
+    position: relative;
+    color: #fff;
+    padding: 10px 20px 20px;
+    text-align: center
+}
+.view2 a.info {
+    display: inline-block;
+    text-decoration: none;
+    padding: 7px 14px;
+    background: #000;
+    color: #fff;
+    text-transform: uppercase;
+    box-shadow: 0 0 1px #000
+}
+.view2 a.info:hover 
+{
+    box-shadow: 0 0 5px #000
+}
+.view-second img 
+{ 
+    transition: all 0.2s linear;
+    width:100%;
+    height: 100%;
+}
+
+.view3 {
+    width: 360px;
+    height: 260px;
+	margin-top: 400px;
+	margin-left: 160px;
+    float: left;
+    overflow: hidden;
+    position: absolute;
+    text-align: center;
+    box-shadow: 1px 1px 2px #e6e6e6;
+    cursor: default;
+    background: #fff url(../images/bgimg.jpg) no-repeat center center
+}
+.view3 .mask, .view3 .content {
+    width: 360px;
+    height: 260px;
+    position: absolute;
+    overflow: hidden;
+    top: 0;
+    left: 0
+}
+.view3 img {
+    display: block;
+    position: relative
+}
+.view3 h2 {
+    text-transform: uppercase;
+    color: #fff;
+    text-align: center;
+    position: relative;
+    font-size: 17px;
+    padding: 10px;
+    background: rgba(0, 0, 0, 0.8);
+    margin: 20px 0 0 0
+}
+.view3 p {
+    font-family: Georgia, serif;
+    font-style: italic;
+    font-size: 12px;
+    position: relative;
+    color: #fff;
+    padding: 10px 20px 20px;
+    text-align: center
+}
+.view3 a.info {
+    display: inline-block;
+    text-decoration: none;
+    padding: 7px 14px;
+    background: #000;
+    color: #fff;
+    text-transform: uppercase;
+    box-shadow: 0 0 1px #000
+}
+.view3 a.info:hover 
+{
+    box-shadow: 0 0 5px #000
+}
+
+.view4 {
+    width: 360px;
+    height: 260px;
+	margin-top: 400px;
+	margin-left: 630px;
+    float: left;
+    overflow: hidden;
+    position: absolute;
+    text-align: center;
+    box-shadow: 1px 1px 2px #e6e6e6;
+    cursor: default;
+    background: #fff url(../images/bgimg.jpg) no-repeat center center
+}
+.view4 .mask, .view4 .content {
+    width: 360px;
+    height: 260px;
+    position: absolute;
+    overflow: hidden;
+    top: 0;
+    left: 0
+}
+.view4 img {
+    display: block;
+    position: relative
+}
+.view4 h2 {
+    text-transform: uppercase;
+    color: #fff;
+    text-align: center;
+    position: relative;
+    font-size: 17px;
+    padding: 10px;
+    background: rgba(0, 0, 0, 0.8);
+    margin: 20px 0 0 0
+}
+.view4 p {
+    font-family: Georgia, serif;
+    font-style: italic;
+    font-size: 12px;
+    position: relative;
+    color: #fff;
+    padding: 10px 20px 20px;
+    text-align: center
+}
+.view4 a.info {
+    display: inline-block;
+    text-decoration: none;
+    padding: 7px 14px;
+    background: #000;
+    color: #fff;
+    text-transform: uppercase;
+    box-shadow: 0 0 1px #000
+}
+.view4 a.info:hover 
+{
+    box-shadow: 0 0 5px #000
+}*/
+
 
 /* CSS for displaying the products */
 div#productImage img{
@@ -357,13 +644,12 @@ div#overall
 div#EditslabelPosition
 {
     padding-left:70px;
-    padding-top:60px;
+    padding-top:40px;
 }
 div#EditsTextboxandButtonPosition
 {
     padding-left:70px;
     padding-top:30px;
-    margin-bottom: 550px;
 }
 
 /* Cart CSS */
@@ -576,7 +862,7 @@ div#payform
 {
    border-style: solid;
     border-color: white;
-        background-color: wheat;
+        background-color: #d6d6c2;
     
 }
 div#main
@@ -645,6 +931,7 @@ div#AboutHeading h1
 {
     padding-left:7%;
     padding-top:5%;
+    
     font-family: Arial, Helvetica, sans-serif;
 }
 div#AboutHeading h3{
@@ -734,54 +1021,43 @@ div#ContactInfoHeadings
 /* View Previous Orders CSS */
 
 
+.social-popout {
+	height: 60px;
+	width: 60px;	
+	float: left;
+        margin-top: 50px;
+       margin-left: 50px;
+	-webkit-transition: all ease 0.5s;
+	-moz-transition: all ease 0.5s;
+	-o-transition: all ease 0.5s;
+	-ms-transition: all ease 0.5s;
+	transition: all ease 0.5s;
+         
+}
+.social-popout img {
+	border-radius: 50%;
+	margin: 8px;
+	width: 100%;
+	box-shadow: 0px 0px 4px 1px rgba(0,0,0,0.8);
+	-webkit-transition: all ease 0.5s;
+	-moz-transition: all ease 0.5s;
+	-o-transition: all ease 0.5s;
+	-ms-transition: all ease 0.5s;
+	transition: all ease 0.5s;
+        
+}
+.social-popout img:hover {
+	margin: 0px;
+	box-shadow: 6px 6px 4px 4px rgba(0,0,0,0.3);
+}
+.images{
+    padding-left: 245px;
+    padding-top:55px;
+}
 
-
-/*edit Product Details*/
-div#editProductHeading
-{
-    width: 80%;
-    padding-left:100px;
-    font-family: Arial, Helvetica, sans-serif;
-}
-div#editProductHeading h1
-{
-    padding-left:180px;
-    font-family: Arial, Helvetica, sans-serif;
-}
-div#editProductText
-{
-   padding-left: 220px;
-    padding-top: 40px;
-    color:black;
-    font-family: Arial, Helvetica, sans-serif;
-}
-div#editProductButton
-{
-    padding-left:270px;
-    padding-top:40px;
-    font-family: Arial, Helvetica, sans-serif;
-}
-
-/* Select member to edit */
-div#productImage2 img{
-    
-    clear:right;
-    border    : thin  black   solid;
-    width: 260px; 
-    height: 220px;
-}
-div#productImage2
-{
-    float:left;
-    clear:right;
-    padding-left: 50px;
-    margin-right: 50px;
-}
-div#productDetails2
-{
-    padding-left: 50px;
-    padding-top: 40px;
-    font-family: Arial, Helvetica, sans-serif;
+.images2{
+    padding-left: 245px;
+    padding-bottom:200px;
     
 }
 .ProductName2

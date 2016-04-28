@@ -14,13 +14,18 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        
+        <link rel="icon" href="images/flash3.png" type="image/gif" sizes="20x20">
         <link rel="stylesheet" type="text/css" href="mainCSS.css" >
         <link rel="stylesheet" type="text/css" href="HomepageSlider.css" >
         <script type="text/javascript" src="HomepageImageSliderScript.js"></script>
        
+        <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+        <script src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+        <script type="text/javascript" src="js/autoCompleter.js"></script>
+        <link rel="stylesheet" 
+              href="//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
     
-        <% 
+<% 
     // Get the request parameter
     Locale userSetting = null;
     
@@ -119,7 +124,7 @@
         
         <div id="searchbar">
         <form  action = "MemberActionServlet" method = "post" >
-               <td> <input name="searchName" size=30 type="text" />  
+               <td> <input name="searchName" id ="searchName" size=30 type="text" class ="searchName" />  
                  <input type="hidden" name="action" value="searchName" />
                  <input type="submit" value="<%=messages.getString("SearchBarButton")%>"/>
                </td>
@@ -174,22 +179,47 @@
                 
                 
                 <div id="DisneyAdvert">
-                    <a href="MemberActionServlet?action=Disney"><img src="images/DisneyAd.jpg" style="width: 29%; height: 30%;"></a>
+                    <img src="images/DisneyAd.jpg" style="width: 29%; height: 30%;">
                 </div>
                 
                 <div id="HarryPotterAdvert">
-                    <a href="MemberActionServlet?action=Harry Potter"><img src="images/HarryPotterAd.jpg" style="width: 29%; height: 30%;"></a>
+                    <img src="images/HarryPotterAd.jpg" style="width: 29%; height: 30%;">
                 </div>
                 
                 <div id="GOTAdvert">
-                    <a href="MemberActionServlet?action=Game Of Thrones"><img src="images/gameofthronesAd.jpg"></a>
+                    <img src="images/gameofthronesAd.jpg">
                 </div>
                 
                 <div id="deadpoolAdvert">
-                    <a href="MemberActionServlet?action=Marvel"><img src="images/DeadpoolAdvertisment.jpg" style="width: 60%; height: 30%;"></a>
+                    <img src="images/DeadpoolAdvertisment.jpg" style="width: 60%; height: 30%;">
                 </div>
                 
+        <div class ="images">
+                <div class="social-popout">
+                    <a href="https://www.facebook.com/inaflash8/"><img src="images/facebook.png" />         
+                </div>
                 
+                <div class="social-popout">            
+                     <a href="http://www.twitter.com"><img src="images/twitter.png" />            
+                </div>
+                
+                <div class="social-popout">             
+                     <a href="http://www.googleplus.com"><img src="images/googleplus.png" />  
+                </div>
+                
+                <div class="social-popout">            
+                     <a href="https://www.instagram.com/inaflash8/"><img src="images/instagram.png" />
+                </div>
+                
+                <div class="social-popout">         
+                     <a href="http://www.pinterest.com"><img src="images/pinterest.png" />
+                </div>
+                
+                <div class="social-popout">
+                     <a href="http://www.tumblr.com"><img src="images/tumblr.png" />
+                </div>
+            </div>
+        
        
 </div>
             

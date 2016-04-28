@@ -10,8 +10,26 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link rel="icon" href="images/flash3.png" type="image/gif" sizes="20x20">
         <link rel="stylesheet" type="text/css" href="mainCSS.css" >
-        <title>JSP Page</title>
+        <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+        <script src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+        <script type="text/javascript" src="js/autoCompleter.js"></script>
+        <link rel="stylesheet" href="//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
+        
+        <title>Contact Us</title>
+ <% 
+   
+        Locale userSetting = (Locale) session.getAttribute("locale");
+       
+        if(userSetting == null)
+        {
+            userSetting = request.getLocale();
+        }
+   
+    ResourceBundle messages = ResourceBundle.getBundle("properties.text", userSetting);
+%>
+
     </head>
     <body>
         <div id="container">
@@ -69,7 +87,7 @@
         
         <div id="searchbar">
         <form  action = "MemberActionServlet" method = "post" >
-               <p><td> <input name="searchName" size=30 type="text" />  
+               <td> <input name="searchName" id="searchName" size=30 type="text" />  
                  <input type="hidden" name="action" value="searchName" />
                  <input type="submit" value="Search"/>
                </p>
@@ -163,6 +181,36 @@ for (var i = 0; i < locations.length; i++)
                                                      })(location_marker, i));
 }
 </script>
+
+    <div class ="images2">
+                <div class="social-popout">
+                    <a href="https://www.facebook.com/inaflash8/"><img src="images/facebook.png" />         
+                </div>
+                
+                <div class="social-popout">            
+                     <a href="http://www.twitter.com"><img src="images/twitter.png" />            
+                </div>
+                
+                <div class="social-popout">             
+                     <a href="http://www.googleplus.com"><img src="images/googleplus.png" />  
+                </div>
+                
+                <div class="social-popout">            
+                     <a href="https://www.instagram.com/inaflash8/"><img src="images/instagram.png" />
+                </div>
+                
+                <div class="social-popout">         
+                     <a href="http://www.pinterest.com"><img src="images/pinterest.png" />
+                </div>
+                
+                <div class="social-popout">
+                     <a href="http://www.tumblr.com"><img src="images/tumblr.png" />
+                </div>
+            </div>
+
+
        </div>
+           
+          
     </body>
 </html>

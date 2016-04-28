@@ -14,7 +14,12 @@
         <title>Login</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="icon" href="images/flash3.png" type="image/gif" sizes="20x20">
         <link rel="stylesheet" type="text/css" href="mainCSS.css" >
+        <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+        <script src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+        <script type="text/javascript" src="js/autoCompleter.js"></script>
+        <link rel="stylesheet" href="//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
         
 <% 
    
@@ -101,7 +106,7 @@
        
         <div id="searchbar">
         <form  action = "MemberActionServlet" method = "post" >
-               <p><td> <input name="searchName" size=30 type="text" />  
+               <p><td> <input name="searchName" id="searchName" size=30 type="text" />  
                  <input type="hidden" name="action" value="searchName" />
                  <input type="submit" value="<%=messages.getString("SearchBarButton")%>"/>
                </p>

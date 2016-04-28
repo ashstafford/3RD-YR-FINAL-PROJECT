@@ -23,9 +23,10 @@ import java.util.ArrayList;
 public class ProductDao extends Dao implements ProductDaoInterface
 {
 
+   
     /**
      *
-     * @return
+     * @returns an arraylist of products
      */
     @Override
     public ArrayList<Product> getAllProducts() 
@@ -92,6 +93,57 @@ public class ProductDao extends Dao implements ProductDaoInterface
         return products;
 
     }
+    
+    /**
+     *
+     * @pulls products name from database that match the string thats been typed in
+     * 
+     */
+    
+    @Override
+    public ArrayList<String> getAutoCompleteData(String searchEntry) 
+    {
+                Connection conn = null;
+		ArrayList<String> list = new ArrayList<String>();
+		PreparedStatement ps = null;
+                ResultSet rs = null;
+                
+		String data;
+		
+                try 
+                {    
+                    conn = getConnection();
+                     
+                    String query = "select productName from product where productName like ?";
+                    
+                    ps = conn.prepareStatement(query);
+                    System.out.println("ps " + ps);
+                    ps.setString(1, searchEntry + "%");
+
+                    rs = ps.executeQuery();
+
+                    while (rs.next())
+                    {
+                            data = rs.getString("productName");
+                            list.add(data);
+                    }                       
+		}
+                
+                catch (Exception e) 
+                {
+			System.out.println(e.getMessage());
+		}
+                
+		return list;
+	}
+    
+    
+    
+       /**
+     *
+     * @creates a product with the information given by user thats an admin
+     * 
+     */
     
     @Override
     public boolean addProduct(String productImageUrl,String productName,double productPrice,int quantityInStock,String category)  
@@ -172,6 +224,13 @@ public class ProductDao extends Dao implements ProductDaoInterface
          return true;   
     }
     
+    
+     /**
+     *
+     * @removes product from database by finding the id of the product 
+     * 
+     */
+    
         @Override
         public boolean removeProduct(int productId) 
         {
@@ -237,7 +296,7 @@ public class ProductDao extends Dao implements ProductDaoInterface
     /**
      *
      * @param category
-     * @return
+     * @returns certain products by the chosen category
      */
     @Override
     public ArrayList<Product> getProductsByCategory(String category) 
@@ -312,7 +371,7 @@ public class ProductDao extends Dao implements ProductDaoInterface
     /**
      *
      * @param title
-     * @return
+     * @returns products from database that match the string thats been typed in
      */
     @Override
     public ArrayList<Product> findProductsByTitle(String title)   //takes in title and returns all details about that product
@@ -395,10 +454,10 @@ public class ProductDao extends Dao implements ProductDaoInterface
     /**
      *
      * @param id
-     * @return
+     * @returns product by taking in id and returns all details about that product
      */
     @Override
- public Product findProductById(int id)  //takes in id and returns all details about that product
+ public Product findProductById(int id)  
  {
             Connection conn = null;
             PreparedStatement ps = null;
@@ -470,8 +529,13 @@ public class ProductDao extends Dao implements ProductDaoInterface
         return prod;    
     }
  
+    /**
+     *
+     * @checks how many of a particular product is left by id
+     */
+ 
        @Override
-        public int checkQuantityInStock(int id)  //how many of a particuar product is left
+        public int checkQuantityInStock(int id)  
         {
             
             Connection conn = null;
@@ -562,6 +626,68 @@ public class ProductDao extends Dao implements ProductDaoInterface
         return qtyInStock;
     }
         
+        
+    /**
+     *
+     * @updates a particular product's quantity using its id and current quantity
+     */
+        
+    @Override
+    public boolean updateQuantityInStock(int qtyInStock, int newQuantityInStock,int productId) //throws DaoException
+    {
+
+        Connection conn = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+
+        try
+        {
+                
+            conn = getConnection();
+            String query = "update product set quantityInStock =? where quantityInStock =? and  productId=?";
+            ps = conn.prepareStatement(query);
+            
+            ps.setInt(1,newQuantityInStock); //sets newFirstName as the new firstName
+            ps.setInt(2,qtyInStock);
+            ps.setInt(3,productId);
+
+            ps.executeUpdate();
+  
+        } 
+        catch (SQLException e)
+        {
+             e.printStackTrace();
+            return false;
+        } 
+        finally
+        {
+            try
+            {
+                if (rs != null)
+                {
+                    rs.close();
+                }
+
+                if (ps != null)
+                {
+                    ps.close();
+                }
+
+                if (conn != null)
+                {
+                    conn.close();
+                }
+
+            } 
+            catch (SQLException e)
+            {
+                e.printStackTrace();
+                return false;
+            }
+        }
+        return true;
+    }
+    
     @Override
     public boolean editProductDetails(int id,String productImageUrl,String productName, double productPrice,int quantityInStock,String category) //throws DaoException
     {
