@@ -135,18 +135,6 @@ public class MemberDao extends Dao implements MemberDaoInterface
             
             m = null; 
             
-            try 
-            {
-                     
-                conn = getConnection();
-                String query = "select * from member where memberId=?";
-                ps = conn.prepareStatement(query);
-                
-                ps.setInt(1, id);
-
-        Member m = new Member();
-
-        m = null;
 
         try
         {
@@ -567,7 +555,12 @@ public class MemberDao extends Dao implements MemberDaoInterface
       @Override
         public boolean removeMember(int memberId) 
         {
-
+        
+        Connection conn = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;  
+        try
+        {
             conn = getConnection();
             String query = "delete from member where memberId= ?";
             ps = conn.prepareStatement(query);
